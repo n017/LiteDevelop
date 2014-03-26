@@ -956,14 +956,8 @@ namespace LiteDevelop.Gui.Forms
                 documentContent.Closed += documentContent_Closed;
                 documentContent.DragEnter += _mainDockPanel_DragEnter;
                 documentContent.DragDrop += _mainDockPanel_DragDrop;
-                
-                windowListSeparator.Visible = true;
-                windowToolStripMenuItem.DropDownItems.Add(
-                    new ToolStripMenuItem(documentContent.Text, null,
-                        new EventHandler((s, args) =>
-                        {
-                            _mainDockPanel.GetContent(x => x.Tag == documentContent).ShowAndActivate(_mainDockPanel);
-                        })) { Tag = documentContent });
+
+                content.DockStateChanged += content_DockStateChanged;
             }
         }
 
@@ -975,16 +969,40 @@ namespace LiteDevelop.Gui.Forms
         {
             var documentContent = sender as LiteDocumentContent;
             var content = _mainDockPanel.GetContent(x => x.Tag == documentContent);
-            content.Tag = null;
-            content.Close();
 
-            foreach (ToolStripItem item in windowToolStripMenuItem.DropDownItems)
+            if (content != null)
             {
-                if (item.Tag == documentContent)
+                content.Tag = null;
+                content.Close();
+            }
+        }
+
+        private void content_DockStateChanged(object sender, EventArgs e)
+        {
+            var content = sender as DockContent;
+            var documentContent = content.Tag as LiteDocumentContent;
+
+            if (content.DockState == DockState.Float || content.DockState == DockState.Hidden)
+            {
+                foreach (ToolStripItem item in windowToolStripMenuItem.DropDownItems)
                 {
-                    windowToolStripMenuItem.DropDownItems.Remove(item);
-                    break;
+                    if (item.Tag == documentContent)
+                    {
+                        windowToolStripMenuItem.DropDownItems.Remove(item);
+                        break;
+                    }
                 }
+            }
+            else
+            {
+
+                windowListSeparator.Visible = true;
+                windowToolStripMenuItem.DropDownItems.Add(
+                    new ToolStripMenuItem(documentContent.Text, null,
+                        new EventHandler((s, args) =>
+                        {
+                            _mainDockPanel.GetContent(x => x.Tag == documentContent).ShowAndActivate(_mainDockPanel);
+                        })) { Tag = documentContent });
             }
 
             windowListSeparator.Visible = _mainDockPanel.DocumentsCount != 0;
@@ -992,12 +1010,15 @@ namespace LiteDevelop.Gui.Forms
       
         private void content_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var documentContent = (sender as DockContent).Tag as LiteDocumentContent;
-            e.Cancel = documentContent != null;
-            if (documentContent != null)
+            var content = sender as DockContent;
+            var documentContent = content.Tag as LiteDocumentContent;
+
+            if (e.Cancel = documentContent != null)
             {
                 documentContent.Close();
             }
+            else
+                content.DockStateChanged -= content_DockStateChanged;
         }
 
         #endregion
