@@ -45,6 +45,7 @@ namespace LiteDevelop.Framework.Extensions
         /// <param name="extensionHost">The extension host to use for interacting with LiteDevelop.</param>
         public abstract void Initialize(ILiteExtensionHost extensionHost);
 
+        /// <inheritdoc />
         public virtual void Dispose()
         {
         }

@@ -7,6 +7,9 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Framework.FileSystem
 {
+    /// <summary>
+    /// Represents a file template that holds a base source code.
+    /// </summary>
     public class SourceFileTemplate : FileTemplate
     {
         public SourceFileTemplate(string name, Bitmap icon, IFileHandler extensionToUse, string baseSource)

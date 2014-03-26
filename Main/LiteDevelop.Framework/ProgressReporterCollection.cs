@@ -12,12 +12,14 @@ namespace LiteDevelop.Framework
     {
         #region IProgressReporter Members
 
+        /// <inheritdoc />
         public void Report(MessageSeverity severity, string message)
         {
             foreach (var item in this)
                 item.Report(severity, message);
         }
 
+        /// <inheritdoc />
         public int ProgressPercentage
         {
             get
@@ -31,6 +33,7 @@ namespace LiteDevelop.Framework
             }
         }
 
+        /// <inheritdoc />
         public bool ProgressVisible
         {
             get
@@ -55,9 +58,17 @@ namespace LiteDevelop.Framework
 
     }
 
+    /// <summary>
+    /// Provides extension methods related to the <see cref="LiteDevelop.Framework.IProgressReporter"/> interface.
+    /// </summary>
     public static class ProgressReporterCollectionExtensions
     {
-
+        /// <summary>
+        /// Gets the first progress reporter holding the given identifier.
+        /// </summary>
+        /// <param name="reporters">The reporters to test the identifier on.</param>
+        /// <param name="id">The identifier of the reporter to look up.</param>
+        /// <returns>An instance of <see cref="LiteDevelop.Framework.INamedProgressReporter"/> holding an identifier of value <paramref name="id"/></returns>
         public static INamedProgressReporter GetReporterById(this IEnumerable<INamedProgressReporter> reporters, string id)
         {
             return reporters.FirstOrDefault(x => x.Identifier == id);

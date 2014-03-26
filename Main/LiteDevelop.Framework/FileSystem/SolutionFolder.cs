@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace LiteDevelop.Framework.FileSystem
 {
+    /// <summary>
+    /// Represents a folder inside a solution.
+    /// </summary>
     public class SolutionFolder : SolutionNode, IDisposable
     {
         public static readonly Guid SolutionFolderGuid = new Guid("{2150E333-8FDC-42A3-9474-1A3956D46DE8}");

@@ -4,8 +4,14 @@ using System.Linq;
 
 namespace LiteDevelop.Framework.Languages
 {
+    /// <summary>
+    /// Provides members for holding and updating a source code snapshot.
+    /// </summary>
     public interface ISnapshotProvider
     {
+        /// <summary>
+        /// Occurs when the <see cref="CurrentSnapshot"/> property has been updated.
+        /// </summary>
         event EventHandler SnapshotUpdated;
 
         /// <summary>

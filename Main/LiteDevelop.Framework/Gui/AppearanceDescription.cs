@@ -5,6 +5,9 @@ using System.Xml.Serialization;
 
 namespace LiteDevelop.Framework.Gui
 {
+    /// <summary>
+    /// Represents a key in an appearance mapping.
+    /// </summary>
     public sealed class AppearanceDescription : IXmlSerializable
     {
         public event EventHandler ForeColorChanged;

@@ -8,6 +8,9 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Framework
 {
+    /// <summary>
+    /// Represents a storage of icons used in the solution explorer of LiteDevelop.
+    /// </summary>
     public class SolutionExplorerIconProvider : IconProvider
     {
         public const int Index_Directory = 0;

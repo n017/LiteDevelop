@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace LiteDevelop.Framework.Gui
 {
+    /// <summary>
+    /// Represents a view content in LiteDevelop.
+    /// </summary>
     public abstract class LiteViewContent : IDisposable
     {
         public event FormClosingEventHandler Closing;

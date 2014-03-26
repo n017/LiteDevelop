@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace LiteDevelop.Framework.FileSystem.Net
 {
+    /// <summary>
+    /// Represents a version of the .NET Framework.
+    /// </summary>
     public sealed class FrameworkVersion
     {
         public FrameworkVersion(Version version, int? servicePack, FrameworkInstallationType installationType)
@@ -12,24 +15,36 @@ namespace LiteDevelop.Framework.FileSystem.Net
             InstallationType = installationType;
         }
 
+        /// <summary>
+        /// Gets the version of the .NET Framework.
+        /// </summary>
         public Version Version
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets (if available) the service pack of this version of the .NET Framework.
+        /// </summary>
         public int? ServicePack
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets the installation type of this version of the .NET Framework.
+        /// </summary>
         public FrameworkInstallationType InstallationType
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets the display name of this version of the .NET Framework.
+        /// </summary>
         public string DisplayName
         {
             get
@@ -39,6 +54,9 @@ namespace LiteDevelop.Framework.FileSystem.Net
             }
         }
 
+        /// <summary>
+        /// Gets the display version number of this version of the .NET Framework.
+        /// </summary>
         public string DisplayVersion
         {
             get

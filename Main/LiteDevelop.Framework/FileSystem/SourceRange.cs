@@ -5,6 +5,9 @@ using System.Text;
 
 namespace LiteDevelop.Framework.FileSystem
 {
+    /// <summary>
+    /// Represents a range of a source code.
+    /// </summary>
     public class SourceRange : SourceLocation 
     {
         public SourceRange(FilePath filePath, int startLine, int startColumn, int endLine, int endColumn)

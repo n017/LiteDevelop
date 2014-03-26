@@ -13,8 +13,13 @@ using LiteDevelop.Framework.Languages.Net;
 
 namespace LiteDevelop.Framework.FileSystem.Net
 {
+    /// <summary>
+    /// Represents a file template using an abstract syntax tree to generate its source.
+    /// </summary>
     public class NetAstFileTemplate : FileTemplate
     {
+        private static Regex _vbOptionsRegex = new Regex(@"Option\s+\w+\s+\w+\s+Option\s+\w+\s+\w+", RegexOptions.IgnoreCase);
+
         public NetAstFileTemplate(string name, string objectName, Bitmap icon, IFileHandler extensionToUse, CodeCompileUnit compileUnit)
             : base(name, icon, extensionToUse)
         {
@@ -81,7 +86,7 @@ namespace LiteDevelop.Framework.FileSystem.Net
                 // VbCodeProvider adds two option statements which should be removed as well because they are specified by default in the project settings.
                 if (language.Name == LanguageDescriptor.GetLanguage<VisualBasicLanguage>().Name)
                 {
-                    match = Regex.Match(source, @"Option\s+\w+\s+\w+\s+Option\s+\w+\s+\w+");
+                    match = _vbOptionsRegex.Match(source);
                     if (match.Success)
                         source = source.Remove(0, match.Index + match.Length);
                 }

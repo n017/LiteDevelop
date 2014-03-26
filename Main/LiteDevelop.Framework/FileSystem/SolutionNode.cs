@@ -19,10 +19,24 @@ namespace LiteDevelop.Framework.FileSystem
             Sections = new EventBasedCollection<SolutionSection>();
         }
 
-        public SolutionFolder Parent { get; set; }
-        public Guid TypeGuid { get; set; }
+        /// <summary>
+        /// Gets the solution folder holding this solution node.
+        /// </summary>
+        public SolutionFolder Parent { get; internal set; }
+
+        /// <summary>
+        /// Gets the unique identifier indicating the type of the node.
+        /// </summary>
+        public Guid TypeGuid { get; internal set; }
+
+        /// <summary>
+        /// Gets the name of the node.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the file path of the node.
+        /// </summary>
         public FilePath FilePath
         {
             get { return _filePath; }
@@ -37,22 +51,43 @@ namespace LiteDevelop.Framework.FileSystem
             }
         }
 
-        public Guid ObjectGuid { get; set; }
+        /// <summary>
+        /// Gets the unique identifier of this node.
+        /// </summary>
+        public Guid ObjectGuid { get; internal set; }
 
+        /// <summary>
+        /// Gets a value indicating whether the contents of this node is loaded.
+        /// </summary>
         public abstract bool IsLoaded
         {
             get;
         }
 
-        public EventBasedCollection<SolutionSection> Sections { get; set; }
+        /// <summary>
+        /// Gets a collection of sections defined in the solution file holding information about this node.
+        /// </summary>
+        public EventBasedCollection<SolutionSection> Sections { get; private set; }
 
+        /// <summary>
+        /// Begins loading the contents of this node asynchronously.
+        /// </summary>
+        /// <param name="reporter">The progress reporter to use for logging.</param>
         public void BeginLoad(IProgressReporter reporter)
         {
             new Thread(() => Load(reporter)).Start();
         }
 
+        /// <summary>
+        /// Loads the contents of this node.
+        /// </summary>
+        /// <param name="reporter">The progress reporter to use for logging.</param>
         public abstract void Load(IProgressReporter reporter);
 
+        /// <summary>
+        /// Saves the contents of this node.
+        /// </summary>
+        /// <param name="reporter">The progress reporter to use for logging.</param>
         public abstract void Save(IProgressReporter reporter);
 
         protected virtual void OnLoadComplete(SolutionNodeLoadEventArgs e)
@@ -67,6 +102,10 @@ namespace LiteDevelop.Framework.FileSystem
                 FilePathChanged(this, e);
         }
 
+        /// <summary>
+        /// Gets the root container of this solution node.
+        /// </summary>
+        /// <returns></returns>
         public SolutionFolder GetRoot()
         {
             SolutionNode node = this;

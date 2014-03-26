@@ -25,16 +25,28 @@ namespace LiteDevelop.Framework
         /// </summary>
         bool ProgressVisible { get; set; }
     }
-
+    
+    /// <summary>
+    /// Provides members for progress logging and holding an identifier and display name.
+    /// </summary>
     public interface INamedProgressReporter : IProgressReporter
     {
+        /// <summary>
+        /// Occurs when the <see cref="DisplayName"/> property changed.
+        /// </summary>
         event EventHandler DisplayNameChanged;
 
+        /// <summary>
+        /// The unique identifier to use for looking up the reporter.
+        /// </summary>
         string Identifier
         {
             get;
         }
 
+        /// <summary>
+        /// The name to display when the reporter is used.
+        /// </summary>
         string DisplayName
         {
             get;

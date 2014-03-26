@@ -5,7 +5,9 @@ using System.Xml.Serialization;
 
 namespace LiteDevelop.Framework.FileSystem
 {
-
+    /// <summary>
+    /// Represents extra settings for storing user data for a specific solution.
+    /// </summary>
 	public sealed class SolutionSettings
 	{
 		private static XmlSerializer serializer = new XmlSerializer(typeof(SolutionSettings));

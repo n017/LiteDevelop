@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 
 namespace LiteDevelop.Framework.FileSystem
 {
+    /// <summary>
+    /// Represents a bookmark in LiteDevelop.
+    /// </summary>
     public class Bookmark : SourceLocation
     {
         public Bookmark(FilePath filePath, int line, int column)

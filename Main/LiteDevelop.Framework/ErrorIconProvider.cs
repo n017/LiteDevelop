@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace LiteDevelop.Framework
 {
+    /// <summary>
+    /// Represents a storage of icons related to error or warning messages.
+    /// </summary>
     public class ErrorIconProvider : IconProvider 
     {
         private ImageList _imageList;
