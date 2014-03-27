@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Main application 
+  ==================================
+  -->
+  
+  <ItemGroup Id="Common">
+    <Item Id="Ok">Ok</Item>
+    <Item Id="Close">Sulje</Item>
+    <Item Id="Cancel">Peruuta</Item>
+    <Item Id="Yes">Kyllä</Item>
+    <Item Id="No">Ei</Item>
+    <Item Id="Add">Lisää</Item>
+    <Item Id="Remove">Poista</Item>
+    <Item Id="Browse">Selaa</Item>
+    <Item Id="None">None</Item>
+    <Item Id="Name">Nimi</Item>
+    <Item Id="Directory">Hakemisto</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="AboutDialog">
+    <Item Id="Title">Tietoja</Item>
+    <Item Id="ProjectFounder">Tekijä</Item>
+    <Item Id="Version">Versio</Item>
+    <Item Id="Repository">Github repositorio</Item>
+    <ItemGroup Id="ModuleListHeaders">
+      <Item Id="Module">Moduuli</Item>
+      <Item Id="Version">Versio</Item>
+    </ItemGroup>
+    <ItemGroup Id="ExtensionDetails">
+      <Item Id="Name">Nimi</Item>
+      <Item Id="Version">Versio</Item>
+      <Item Id="Path">Sijainti</Item>
+      <Item Id="Author">Tekijä</Item>
+      <Item Id="Description">Kuvaus</Item>
+      <Item Id="Copyright">Copyright</Item>
+      <Item Id="AdditionalReleaseInformation">Lisätietoja</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="AppearanceEditor">
+    <Item Id="Extensions">Laajennukset</Item>
+    
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Key">Avain</Item>
+      <Item Id="Preview">Preview</Item>
+    </ItemGroup>
+    
+    <ItemGroup Id="Editor">
+      <Item Id="ForeColor">Väri:</Item>
+      <Item Id="BackColor">Taustaväri:</Item>
+      <Item Id="Transparent">Läpinäkyvä</Item>
+      <Item Id="Bold">Lihavoitu</Item>
+      <Item Id="Italic">Kursivoitu</Item>
+      <Item Id="Underline">Alleviivaus</Item>
+      <Item Id="Strikeout">Yliviivaus</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="CreateFileDialog">
+    <Item Id="Title">Luo uusi tiedosto</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="CreateProjectDialog">
+    <Item Id="Title">Luo uusi projekti</Item>
+    <Item Id="FolderAlreadyExists">$(folder) on jo olemassa. Haluatko jatkaa?</Item>
+    <Item Id="FileAlreadyExists">$(file) on jo olemassa. Haluatko ylikirjoittaa?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="ErrorContent">
+    <Item Id="Title">Virheet</Item>
+    <ItemGroup Id ="Toolbar">
+      <Item Id="Errors">$(count) Virhettä</Item>
+      <Item Id="Warnings">$(count) Varoitusta</Item>
+      <Item Id="Messages">$(count) Viestiä</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Message">Viesti</Item>
+      <Item Id="File">Tiedosto</Item>
+      <Item Id="Line">Rivi</Item>
+      <Item Id="Column">Sarake</Item>
+    </ItemGroup>
+    <ItemGroup Id="ContextMenu">
+      <Item Id="Copy">Kopioi</Item>
+      <Item Id="GotoFile">Mene tiedostoon</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionLoadDialog">
+    <Item Id="Title">Laajennuksen lataus</Item>
+    <Item Id="LoadedSuccessfully">Ladattu onnistuneesti</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Extension">Laajennus</Item>
+      <Item Id="Path">Sijainti</Item>
+      <Item Id="Result">Tulos</Item>
+    </ItemGroup>
+    <ItemGroup Id="Details">
+      <Item Id="Title">Laajennuksen lataus</Item>
+      <Item Id="Message">Laajennus $(extension) lataus: $(result).&#10;&#13;&#10;&#13;Lisätietoa:&#10;&#13;$(details)</Item>
+      <Item Id="Successfully">onnistui</Item>
+      <Item Id="Unsuccessfully">epäonnistui</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionsDialog">
+    <Item Id="Title">Laajennukset</Item>
+    <Item Id="Add.FileFilter">LiteDevelop-laajennuskirjastot (*.dll)</Item>
+    <Item Id="Remove.Warning">Oletko varma että haluat poistaa kirjaston ja sen laajennukset?</Item>
+    <Item Id="RestartRequired">LiteDevelop on käynnistettävä uudelleen operaatioiden suorittamiseksi. Haluatko käynnistää uudelleen nyt?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="LiteDevelopExtension">
+    <Item Id="GeneralSettings">Yleistä</Item>
+    <Item Id="Appearance">Ulkoasu</Item>
+    <Item Id="InternationalSettings">Kieli</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsEditor">
+    <Item Id="DefaultProjectsPath">Projektien oletussijainti:</Item>
+    <Item Id="ShowOutput">Näytä tuloste käännöksen aikana.</Item>
+    <Item Id="ShowErrorList">Näytä virhelistaus jos käännös epäonnistuu.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="MainForm">
+    
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Tiedostolle "$(file)" ei ole sopivaa editoria.</Item>
+      <Item Id="NoDebuggerAvailable">Projektille "$(project)" ei ole sopivaa debuggeria.</Item>
+      <Item Id="BuildFailed">Yhden tai useamman projektin käännös epäonnistui. Lisää tietoa virhelistauksesta tai tulosteikkunasta.</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Oletko varma että haluat sulkea avoimen kokoelman?</Item>
+      <Item Id="CloseAllDocumentsWarning">Oletko varma että haluat sulkea kaikki avoimet dokumentit?</Item>
+    </ItemGroup>
+
+    <ItemGroup Id="Menu">
+      <ItemGroup Id="File">
+        <Item Id="Title">&amp;Tiedosto</Item>
+        <Item Id="New">&amp;Uusi</Item>
+        <Item Id="New.NewFile">Uusi tiedosto</Item>
+        <Item Id="New.NewProject">Uusi projekti</Item>
+        <Item Id="Open">&amp;Avaa</Item>
+        <Item Id="Save">&amp;Sulje</Item>
+        <Item Id="SaveAs">Tallenna &amp;nimellä</Item>
+        <Item Id="SaveAll">Tallenna kaikki</Item>
+        <Item Id="Close">Sulje</Item>
+        <Item Id="CloseSolution">Sulje kokoelma</Item>
+        <Item Id="Print">&amp;Tulosta</Item>
+        <Item Id="PrintPreview">Tulostuksen &amp;esikatselu</Item>
+        <Item Id="Exit">&amp;Poistu</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Edit">
+        <Item Id="Title">&amp;Muokkaa</Item>
+        <Item Id="Undo">&amp;Kumoa</Item>
+        <Item Id="Redo">&amp;Tee uudelleen</Item>
+        <Item Id="Cut">&amp;Leikkaa</Item>
+        <Item Id="Copy">&amp;Kopioi</Item>
+        <Item Id="Paste">&amp;Liitä</Item>
+        <Item Id="SelectAll">&amp;Valitse kaikki</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="View">
+        <Item Id="Title">&amp;Näytä</Item>
+        <Item Id="Toolbox">&amp;Työkalulaatikko</Item>
+        <Item Id="SolutionExplorer">&amp;Tiedostonhallinta</Item>
+        <Item Id="PropertiesWindow">&amp;Ominaisuudet</Item>
+        <Item Id="ErrorList">&amp;Virhelistaus</Item>
+        <Item Id="OutputWindow">&amp;Tuloste</Item>
+        <Item Id="Fullscreen">&amp;Koko näyttö</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Build">
+        <Item Id="Title">&amp;Käännä</Item>
+        <Item Id="BuildSolution">Käännä &amp;kokoelma</Item>
+        <Item Id="CleanSolution">&amp;Puhdista kokoelma</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Debug">
+        <Item Id="Title">&amp;Suoritus</Item>
+        <Item Id="Run">&amp;Suorita</Item>
+        <Item Id="RunWithoutDebugger">Suorita &amp;ilman debuggeria</Item>
+        <Item Id="RunLastBuild">Suorita &amp;viimeisin käännös</Item>
+        <Item Id="Break">&amp;Pysäytä</Item>
+        <Item Id="StopDebugging">&amp;Lopeta debuggaus</Item>
+        <Item Id="StepOver">Hyppää &amp;yli</Item>
+        <Item Id="StepInto">Hyppää &amp;sisään</Item>
+        <Item Id="StepOut">Hyppää &amp;ulos</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Tools">
+        <Item Id="Title">&amp;Työkalut</Item>
+        <Item Id="Settings">&amp;Asetukset</Item>
+        <Item Id="Extensions">&amp;Laajennukset</Item>
+      </ItemGroup>
+      
+      <ItemGroup Id="Window">
+        <Item Id="Title">&amp;Ikkuna</Item>
+        <Item Id="NextWindow">&amp;Seuraava ikkuna</Item>
+        <Item Id="PreviousWindow">&amp;Edellinen ikkuna</Item>
+        <Item Id="CloseAllDocuments">&amp;Sulje kaikki dokumentit</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Help">
+        <Item Id="Title">&amp;Apua</Item>
+        <Item Id="SourceCode">Lähdekoodi</Item>
+        <Item Id="About">&amp;Tietoja</Item>
+      </ItemGroup>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OpenWithDialog">
+    <Item Id="Title">Avaa sovelluksella...</Item>
+    <ItemGroup Id ="ListHeaders">
+      <Item Id="Name">Nimi</Item>
+      <Item Id="Description">Kuvaus</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OutputContent">
+    <Item Id="Title">Tuloste</Item>
+    <Item Id="ShowOutputFrom">Näytä tuloste:</Item>
+    <Item Id="ClearAll">Tyhjennä kaikki</Item>
+    <Item Id="ToggleWordWrap">WordWrap päälle/pois</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="PropertiesContent">
+    <Item Id="Title">Ominaisuudet</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SettingsDialog">
+    <Item Id="Title">Asetukset</Item>
+    <Item Id="ResetToDefaults">Palauta oletusasetuksiin</Item>
+    <Item Id="ResetToDefaultsWarning">Oletko varma että haluat palauttaa kaikki asetukset oletusarvoihinsa?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SolutionExplorerContent">
+    <Item Id="Title">Tiedostonhallinta</Item>
+    <Item Id ="DeleteFileWarning">$(file) poistetaan lopullisesti.</Item>
+    
+    <ItemGroup Id ="ContextMenu">
+      <Item Id="Add">Lisää</Item>
+      <Item Id="Add.NewFile">Lisää uusi</Item>
+      <Item Id="Add.NewDirectory">Lisää uusi hakemisto</Item>
+      <Item Id="Add.NewProject">Lisää uusi projekti</Item>
+      <Item Id="Add.ExistingFile">Lisää olemassaoleva objekti...</Item>
+      <Item Id="Open">Avaa</Item>
+      <Item Id="Remove">Poista</Item>
+      <Item Id="Rename">Nimeä uudelleen</Item>
+      <Item Id="SetAsStartupProject">Aseta käynnistyväksi projektiksi</Item>
+      <Item Id="ViewInExplorer">Näytä Windowsin tiedostojenhallinassa</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ToolBoxContent">
+    <Item Id="Title">Työkalulaatikko</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="UnsavedFilesDialog">
+    <Item Id="Title">Tallentamattomia tiedostoja</Item>
+    <Item Id="Message">Seuraavat tiedostot sisältävät tallentamattomia tietoja.</Item>
+    <Item Id="SaveSelected">Tallenna valitut</Item>
+    <Item Id="DontSave">Älä tallenna</Item>
+  </ItemGroup>
+
+  <!-- 
+  ==================================
+  Framework library (TODO)
+  ==================================
+  -->
+  
+</UILanguagePack>

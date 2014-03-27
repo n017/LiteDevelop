@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Leikkaa</Item>
+      <Item Id = "Copy">Kopioi</Item>
+      <Item Id = "Paste">Liitä</Item>
+      <Item Id = "SelectAll">Valitse kaikki</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">Yleistä</Item>
+    <Item Id = "AutoCompleteSettings">Automaattinen täydennys</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Näytä ehdotukset</Item>
+      <Item Id = "CommentRegion">Muuta valinta kommentiksi</Item>
+      <Item Id = "UncommentRegion">Kumoa valinnan muutos kommentiksi</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Rivi $(line)</Item>
+      <Item Id = "CurrentColumn">Sarake $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Näytä rivinumerot</Item>
+    <Item Id = "WordWrap">WordWrap</Item>
+    <Item Id = "SyntaxHighlighting">Syntaksin väritys</Item>
+    <Item Id = "TrackUnsavedChanges">Seuraa tallentamattomia muutoksia</Item>
+    <Item Id = "HighlightCurrentLine">Korosta valittu rivi</Item>
+    <Item Id = "ShowDocumentMiniMap">Näytä tiedoston kartta</Item>
+  </ItemGroup>
+
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Ehdota jäseniä automaattisesti</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Näytä ehdotuksia kun:</Item>
+        <Item Id = "TypingAnyChar">kirjoitetaan mikä tahansa merkki</Item>
+        <Item Id = "PressingCtrlSpace">Ctrl+Välilyönti painetaan</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">Käytä valittua ehdotusta kun jotain seuraavista näppäimistä painetaan:</Item>
+      <Item Id = "CommitItemOnSpaceBar">Käytä valittua ehdotusta kun välilyöntiä painetaan</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Täydennä koodilohkot automaattisesti (esim. ( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Lisää sulut parametreille automaattisesti kun funktio täydennetään.</Item>
+  </ItemGroup>
+
+</UILanguagePack>
