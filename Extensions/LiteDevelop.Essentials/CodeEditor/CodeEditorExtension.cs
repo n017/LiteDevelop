@@ -64,12 +64,21 @@ namespace LiteDevelop.Essentials.CodeEditor
 
         public override string ReleaseInformation
         {
-            get { return "Special thanks to Pavel Torgashov for developing FastColoredTextBox (https://github.com/PavelTorgashov/FastColoredTextBox)."; }
+            get { return @"Main programmer: Jerre S.
+
+Translations:
+Dutch: Jerre S.
+Finnish: Dextrey
+Pirate (>:D): Jerre S.
+
+Third-party components:
+Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorgashov/FastColoredTextBox).";
+            }
         }
 
         public override Version Version
         {
-            get { return new Version(0, 9, 0, 0); }
+            get { return new Version(0, 9, 0, 1); }
         }
 
         public override string Copyright
@@ -77,13 +86,13 @@ namespace LiteDevelop.Essentials.CodeEditor
             get { return "Copyright © Jerre S. 2014"; }
         }
 
-        public override void Initialize(ILiteExtensionHost extensionHost)
+        public override void Initialize(InitializationContext context)
         {
-            ExtensionHost = extensionHost;
+            ExtensionHost = context.Host;
 
             try
             {
-                Settings = CodeEditorSettings.LoadSettings(extensionHost.SettingsManager);
+                Settings = CodeEditorSettings.LoadSettings(context.Host.SettingsManager);
             }
             catch
             {
@@ -310,11 +319,17 @@ namespace LiteDevelop.Essentials.CodeEditor
 
         private void SetupGui()
         {
-            MuiProcessor = new MuiProcessor(ExtensionHost, Path.Combine(Path.GetDirectoryName(typeof(CodeEditorExtension).Assembly.Location), "MUI"));
+            ExtensionHost.ControlManager.InvokeOnMainThread(new Action(() =>
+            {
+                MuiProcessor = new MuiProcessor(ExtensionHost, Path.Combine(Path.GetDirectoryName(typeof(CodeEditorExtension).Assembly.Location), "MUI"));
 
-            AddToMuiIdentifiers(SetupSettingsControls());
-            AddToMuiIdentifiers(SetupToolbar());
-            AddStatusBarItems();
+                AddToMuiIdentifiers(SetupSettingsControls());
+                AddToMuiIdentifiers(SetupToolbar());
+                AddStatusBarItems();
+
+                ExtensionHost.UILanguageChanged += ExtensionHost_UILanguageChanged;
+                ExtensionHost_UILanguageChanged(null, null);
+            }));
 
             _appearanceMapPath = Path.Combine(ExtensionHost.SettingsManager.GetSettingsDirectory(this), "appearance.xml");
             _defaultAppearanceMap = AppearanceMap.LoadFromFile(Path.Combine(
@@ -330,8 +345,6 @@ namespace LiteDevelop.Essentials.CodeEditor
 
             StyleMap = new Gui.Styles.StyleMap(_appearanceMap, _defaultAppearanceMap);
 
-            ExtensionHost.UILanguageChanged += ExtensionHost_UILanguageChanged;
-            ExtensionHost_UILanguageChanged(null, null);
         }
 
         private void AddToMuiIdentifiers(Dictionary<object, string> dictionary)
@@ -376,7 +389,8 @@ namespace LiteDevelop.Essentials.CodeEditor
                 showSuggestionsToolStripButton,
                 new ToolStripSeparator(),
                 commentRegionToolStripButton,
-                uncommentRegionToolStripButton
+                uncommentRegionToolStripButton,
+
             });
 
             ExtensionHost.ControlManager.ToolBars.Add(_toolBar);

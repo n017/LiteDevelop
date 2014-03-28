@@ -20,7 +20,7 @@ namespace LiteDevelop.Framework.Extensions
         /// Gets a collection of bookmarks of a specific type.
         /// </summary>
         /// <typeparam name="TBookmark">The type of the bookmark.</typeparam>
-        /// <returns>A colletion of bookmarks of type <typeparamref name="T"/></returns>
+        /// <returns>A colletion of bookmarks of type <typeparamref name="TBookmark"/></returns>
         IEnumerable<TBookmark> GetBookmarks<TBookmark>() where TBookmark : Bookmark;
 
         /// <summary>
@@ -29,6 +29,14 @@ namespace LiteDevelop.Framework.Extensions
         /// <param name="file">The file to check.</param>
         /// <returns>A collection of bookmarks registered in file <paramref name="file"/></returns>
         IEnumerable<Bookmark> GetBookmarks(FilePath file);
+
+        /// <summary>
+        /// Gets a collection of bookmarks registered in a specific file.
+        /// </summary>
+        /// <param name="file">The file to check.</param>
+        /// <param name="line">The line to remove all bookmarks from.</param>
+        /// <returns>A collection of bookmarks registered in file <paramref name="file"/> on line <paramref name="line"/>.</returns>
+        IEnumerable<Bookmark> GetBookmarksOnLine(FilePath file, int line);
 
         /// <summary>
         /// Clears all bookmarks registered in a specific file.

@@ -54,9 +54,9 @@ namespace LiteDevelop.Essentials.FormsDesigner
             get { return "Copyright © Jerre S. 2014"; }
         }
 
-        public override void Initialize(ILiteExtensionHost extensionHost)
+        public override void Initialize(InitializationContext context)
         {
-            ExtensionHost = extensionHost;
+            ExtensionHost = context.Host;
             SetupFileTemplates();
             SetupProjectTemplates();
         }

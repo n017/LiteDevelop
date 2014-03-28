@@ -16,7 +16,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
     public class CodeEditorBookmark : TBBookmark
     {
         public CodeEditorBookmark(FastColoredTextBox textBox, LDBookmark bookmark, TextStyle textStyle)
-            : base(textBox, string.Empty, bookmark.Line)
+            : base(textBox, string.Empty, bookmark.Location.Line)
         {
             InnerBookmark = bookmark;
             Style = textStyle;
@@ -48,9 +48,12 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 return;
             }
 
-            var size = (TB.CharHeight);
+            var size = lineRect.Height;
 
-            gr.FillEllipse(Style.BackgroundBrush, 0, lineRect.Top, size, size);
+            if (InnerBookmark.Image == null)
+                gr.FillEllipse(Style.BackgroundBrush, 0, lineRect.Top, size, size);
+            else
+                gr.DrawImage(InnerBookmark.Image, 0, lineRect.Top, size, size);
 
             if (ColorizeEntireLine)
                 gr.FillRectangle(Style.BackgroundBrush, lineRect);
@@ -69,7 +72,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
     public class CodeEditorInstructionPointer : CodeEditorBookmark 
     {
         public CodeEditorInstructionPointer(FastColoredTextBox textBox, TextStyle style)
-            : base(textBox, new LDBookmark(new FilePath(""), 0, 0), style)
+            : base(textBox, new LDBookmark(new SourceLocation(new FilePath(""), 0, 0)), style)
         {
             
         }

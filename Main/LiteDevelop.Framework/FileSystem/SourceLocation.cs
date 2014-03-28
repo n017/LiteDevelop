@@ -8,6 +8,7 @@ namespace LiteDevelop.Framework.FileSystem
     /// </summary>
     public class SourceLocation
     {
+
         public SourceLocation(FilePath filePath, int line, int column)
         {
             FilePath = filePath;
@@ -25,7 +26,7 @@ namespace LiteDevelop.Framework.FileSystem
         }
 
         /// <summary>
-        /// Gets the line of the location in the source file.
+        /// Gets the zero-based line index of the location in the source file.
         /// </summary>
         public int Line
         {
@@ -34,13 +35,14 @@ namespace LiteDevelop.Framework.FileSystem
         }
 
         /// <summary>
-        /// Gets the column of the location in the source file.
+        /// Gets the zero-based column index of the location in the source file.
         /// </summary>
         public int Column
         {
             get;
             private set;
         }
+
     }
 
     public delegate void SourceLocationEventHandler(object sender, SourceLocationEventArgs e);

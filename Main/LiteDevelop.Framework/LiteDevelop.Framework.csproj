@@ -58,12 +58,14 @@
     <Compile Include="Extensions\CredentialRequest.cs" />
     <Compile Include="Debugging\BreakpointBookmark.cs" />
     <Compile Include="Extensions\IAppearanceMapProvider.cs" />
+    <Compile Include="Extensions\IBookmarkHandler.cs" />
     <Compile Include="Extensions\IBookmarkManager.cs" />
     <Compile Include="Extensions\ICredentialManager.cs" />
     <Compile Include="Extensions\IDebugger.cs" />
     <Compile Include="Debugging\DebuggerSession.cs" />
     <Compile Include="Extensions\IExtensionManager.cs" />
     <Compile Include="Extensions\IFileService.cs" />
+    <Compile Include="Extensions\InitializationContext.cs" />
     <Compile Include="Extensions\PropertyContainer.cs" />
     <Compile Include="FileSystem\Bookmark.cs" />
     <Compile Include="FileSystem\Net\CSharp\CSharpProjectDescriptor.cs" />
@@ -226,6 +228,8 @@
     <Content Include="Mui\languages.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\breakpoint.png" />
+    <None Include="Resources\bookmark.png" />
     <None Include="Resources\error.png" />
     <None Include="Resources\correct.png" />
     <None Include="Resources\warning.png" />

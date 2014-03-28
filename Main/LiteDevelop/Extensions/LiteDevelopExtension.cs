@@ -51,9 +51,27 @@ namespace LiteDevelop.Extensions
             get { return "Copyright © Jerre S. 2014"; }
         }
 
-        public override void Initialize(ILiteExtensionHost extensionHost)
+        public override string ReleaseInformation
         {
-            _extensionHost = (LiteExtensionHost)extensionHost;
+            get
+            {
+                return @"Main programmer: Jerre S.
+Icon design: Raxdiam
+
+Translations:
+Dutch: Jerre S.
+Finnish: Dextrey
+Pirate (>:D): Jerre S.
+
+Third-party components:
+Docking UI: Dockpanel Suite (http://sourceforge.net/projects/dockpanelsuite/)
+";
+            }
+        }
+
+        public override void Initialize(InitializationContext context)
+        {
+            _extensionHost = (LiteExtensionHost)context.Host;
 
             var generalSettingsEditorControl = new GeneralSettingsEditor(_settings = LiteDevelopSettings.Instance) { Dock = DockStyle.Fill };
             var internationalSettingsEditorControl = new InternationalSettingsEditor(_settings) { Dock = DockStyle.Fill };
@@ -78,7 +96,7 @@ namespace LiteDevelop.Extensions
                 {internationalSettingsNode, "LiteDevelopExtension.InternationalSettings"},
             };
 
-            extensionHost.UILanguageChanged += extensionHost_UILanguageChanged;
+            _extensionHost.UILanguageChanged += extensionHost_UILanguageChanged;
             extensionHost_UILanguageChanged(null, null);
 
             _appearanceMapPath = Path.Combine(Constants.AppDataDirectory, "appearance.xml");

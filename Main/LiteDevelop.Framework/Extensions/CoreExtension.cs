@@ -50,9 +50,9 @@ namespace LiteDevelop.Framework.Extensions
         }
 
         /// <inheritdoc />
-        public override void Initialize(ILiteExtensionHost extensionHost)
+        public override void Initialize(InitializationContext context)
         {
-            _muiProcessor = new MuiProcessor(extensionHost, Path.Combine(Application.StartupPath, "MUI"));
+            _muiProcessor = new MuiProcessor(context.Host, Path.Combine(Application.StartupPath, "MUI"));
         }
 
         public MuiProcessor MuiProcessor

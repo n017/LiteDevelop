@@ -257,16 +257,23 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             var abstractNode = (mainTreeView.SelectedNode as AbstractNode);
-            openToolStripMenuItem.Visible = abstractNode.CanActivate;
-            removeToolStripMenuItem.Visible = abstractNode.CanDelete;
-            renameToolStripMenuItem.Visible = abstractNode.CanRename;
-            addToolStripMenuItem.Visible = abstractNode.CanAddDirectories || abstractNode.CanAddFiles || abstractNode.CanAddProjects;
-            existingFileToolStripMenuItem.Visible = existingItemSeparator.Visible = newFileToolStripMenuItem.Visible = abstractNode.CanAddFiles;
-            newDirectoryToolStripMenuItem.Visible = abstractNode.CanAddDirectories;
-            newProjectToolStripMenuItem.Visible = abstractNode.CanAddProjects;
+            if (abstractNode == null)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                openToolStripMenuItem.Visible = abstractNode.CanActivate;
+                removeToolStripMenuItem.Visible = abstractNode.CanDelete;
+                renameToolStripMenuItem.Visible = abstractNode.CanRename;
+                addToolStripMenuItem.Visible = abstractNode.CanAddDirectories || abstractNode.CanAddFiles || abstractNode.CanAddProjects;
+                existingFileToolStripMenuItem.Visible = existingItemSeparator.Visible = newFileToolStripMenuItem.Visible = abstractNode.CanAddFiles;
+                newDirectoryToolStripMenuItem.Visible = abstractNode.CanAddDirectories;
+                newProjectToolStripMenuItem.Visible = abstractNode.CanAddProjects;
 
-            viewInExplorerToolStripMenuItem.Visible = explorerSeparator.Visible = abstractNode is IFilePathProvider;
-            setAsStartupProjectToolStripMenuItem.Visible = startupProjectSeparator.Visible = abstractNode is ProjectNode;
+                viewInExplorerToolStripMenuItem.Visible = explorerSeparator.Visible = abstractNode is IFilePathProvider;
+                setAsStartupProjectToolStripMenuItem.Visible = startupProjectSeparator.Visible = abstractNode is ProjectNode;
+            }
         }
 
     }

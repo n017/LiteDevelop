@@ -70,6 +70,21 @@
     <Item Id="FileAlreadyExists">$(file) be existin' alreadys. Overwrite?</Item>
   </ItemGroup>
 
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Stamps</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Add stamp at current line</Item>
+      <Item Id="RemoveBookmark">&amp;Remove stamp from current line</Item>
+      <Item Id="Previous">Go to &amp;previous stamp</Item>
+      <Item Id="Next">Go to &amp;next stamp</Item>
+      <Item Id="DeleteAll">&amp;Delete all</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Line</Item>
+      <Item Id="File">File</Item>
+    </ItemGroup>
+  </ItemGroup>
+
   <ItemGroup Id="ErrorContent">
     <Item Id="Title">Leak list</Item>
     <ItemGroup Id ="Toolbar">

@@ -21,6 +21,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
             TypeDefinitionStyle = new DynamicTextStyle(GetDescription("TypeDefinition"));
             CommentStyle = new DynamicTextStyle(GetDescription("Comment"));
             AttributeStyle = new DynamicTextStyle(GetDescription("Attribute"));
+            BookmarkStyle = new DynamicTextStyle(GetDescription("Bookmark"));
             BreakpointStyle = new DynamicTextStyle(GetDescription("Breakpoint"));
             InstructionPointer = new DynamicTextStyle(GetDescription("InstructionPointer"));
         }
@@ -71,6 +72,12 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
             private set;
         }
 
+        public FastColoredTextBoxNS.TextStyle BookmarkStyle
+        {
+            get;
+            private set;
+        }
+
         public DynamicTextStyle BreakpointStyle
         {
             get;
@@ -82,5 +89,6 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
             get;
             private set;
         }
+
     }
 }

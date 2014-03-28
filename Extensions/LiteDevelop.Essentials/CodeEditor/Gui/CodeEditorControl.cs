@@ -54,7 +54,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointer);
-
+            
             ExtensionHost_UILanguageChanged(null, null);
 
             _extension.AppliedSettings += extension_AppliedSettings;
@@ -101,6 +101,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             this.TextBox.AllowDrop = true;
  
             InitializeEditorLayout();
+            AddRegisteredBookmarks();
 
             this.TextBox.ClearUndo();
             this.TextBox.EndUpdate();
@@ -111,6 +112,14 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             AddTextBoxEventHandlers();
 
             _extension.SetCurrentLocation(1, 1);
+        }
+
+        private void AddRegisteredBookmarks()
+        {
+            foreach (var bookmark in _extension.ExtensionHost.BookmarkManager.GetBookmarks(_file.FilePath))
+            {
+                TextBox.Bookmarks.Add(CreateBookmark(bookmark));
+            }
         }
         
         private void AddTextBoxEventHandlers()
@@ -128,8 +137,33 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             this.TextBox.TextChangedDelayed += this.TextBox_TextChangedDelayed;
             this.TextBox.ScrollbarsUpdated += TextBox_ScrollbarsUpdated;
             this.TextBox.ZoomChanged += TextBox_ZoomChanged;
+            this.TextBox.LineInserted += TextBox_LineCollectionChanged;
+            this.TextBox.LineRemoved += TextBox_LineCollectionChanged;
         }
         
+        private CodeEditorBookmark CreateBookmark(Framework.FileSystem.Bookmark bookmark)
+        {
+            var breakpoint = bookmark as BreakpointBookmark;
+            if (breakpoint != null)
+            {
+                return new CodeEditorBreakpoint(TextBox, breakpoint, _extension.StyleMap.BreakpointStyle);
+            }
+
+            return new CodeEditorBookmark(TextBox, bookmark, _extension.StyleMap.BookmarkStyle);
+        }
+
+        private void UpdateBookmarks()
+        {
+            foreach (var bookmark in this.TextBox.Bookmarks)
+            {
+                var codeEditorBookmark = bookmark as CodeEditorBookmark;
+                if (codeEditorBookmark != null)
+                {
+                    codeEditorBookmark.InnerBookmark.Location = new SourceLocation(_file.FilePath, codeEditorBookmark.LineIndex, 0);
+                }
+            }
+        }
+
         private void InitializeEditorLayout()
         {
             _autoCompleteMenu = new AutocompleteMenu(this.TextBox);
@@ -186,7 +220,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             if (add)
             {
-                _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(new BreakpointBookmark(_file.FilePath, line, 0));
+                _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(new BreakpointBookmark(new SourceLocation(_file.FilePath, line, 0)));
                 //TextBox.Bookmarks.Add(new CodeEditorBreakpoint(TextBox, "Breakpoint", line, _extension.StyleMap.BreakpointStyle));
             }
         }
@@ -466,6 +500,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             }
         }
+   
         private void TextBox_DragEnter(object sender, DragEventArgs e)
         {
             //redirect drag enter event
@@ -514,6 +549,11 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private void TextBox_ZoomChanged(object sender, EventArgs e)
         {
             label1.Text = this.TextBox.Zoom + "%";
+        }
+
+        private void TextBox_LineCollectionChanged(object sender, EventArgs e)
+        {
+            UpdateBookmarks();
         }
 
         #endregion
@@ -623,15 +663,14 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
        
         private void Bookmarks_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            var bookmark = e.TargetObject as BreakpointBookmark;
-            TextBox.Bookmarks.Add(new CodeEditorBreakpoint(TextBox, bookmark, _extension.StyleMap.BreakpointStyle));
+            TextBox.Bookmarks.Add(CreateBookmark(e.TargetObject as Framework.FileSystem.Bookmark));
         }
 
         private void Bookmarks_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
-            var bookmark = e.TargetObject as BreakpointBookmark;
+            var bookmark = e.TargetObject as Framework.FileSystem.Bookmark;
             foreach (var tbBookmark in TextBox.Bookmarks)
-                if ((tbBookmark as CodeEditorBookmark).InnerBookmark == bookmark)
+                if (tbBookmark.LineIndex == bookmark.Location.Line)
                 {
                     TextBox.Bookmarks.Remove(tbBookmark);
                     break;
@@ -701,6 +740,20 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             {
                 return GetEnumerator();
             }
+        }
+
+        internal void BookmarkCurrentLine()
+        {
+            if (_extension.ExtensionHost.BookmarkManager.GetBookmarksOnLine(_file.FilePath, TextBox.Selection.Start.iLine).Count() == 0)
+            {
+                _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(
+                    new Framework.FileSystem.Bookmark(new SourceLocation(_file.FilePath, TextBox.Selection.Start.iLine, 1)));
+            }
+        }
+
+        internal void UnbookmarkCurrentLine()
+        {
+            _extension.ExtensionHost.BookmarkManager.ClearBookmarksOnLine(_file.FilePath, TextBox.Selection.Start.iLine);
         }
     }
 }

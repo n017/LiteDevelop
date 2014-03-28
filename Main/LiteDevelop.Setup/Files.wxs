@@ -76,10 +76,11 @@
             <Component Id = "MainAppEnglishMuiFile" Guid ="{E1954D25-FB78-4985-8011-8D1F2504D2D1}">
               <File Id = "mainapp_english.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\english.xml" KeyPath="yes" />
             </Component>
-            <!--
-            <Component Id = "MainAppFinnishMuiFile" Guid ="{8D720C9B-B775-4BC2-8BCF-DD12D363F5C7}">
+            <Component Id = "MainAppFinnishMuiFile" Guid ="{183CFC2E-B1AA-41B9-9E3A-8930D7ECCA17}">
               <File Id = "mainapp_finnish.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\finnish.xml" KeyPath="yes" />
             </Component>
+            
+            <!--
             <Component Id = "MainAppFrenchMuiFile" Guid ="{C623B2E3-A416-416C-8B11-9F4BA4E32206}">
               <File Id = "mainapp_french.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\french.xml" KeyPath="yes" />
             </Component>
@@ -144,10 +145,11 @@
                 <Component Id = "EssentialsEnglishMuiFile" Guid ="{596434C7-728F-4669-AD34-BEC0BA002243}">
                   <File Id = "essentials_english.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\english.xml" KeyPath="yes" />
                 </Component>
-                <!--
-                <Component Id = "EssentialsFinnishMuiFile" Guid ="{946568C5-20A1-467C-ADE7-E82CFC264798}">
+                <Component Id = "EssentialsFinnishMuiFile" Guid ="{84CDFB1B-8D92-4117-804C-3E16842B367D}">
                   <File Id = "essentials_finnish.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\finnish.xml" KeyPath="yes" />
                 </Component>
+                
+                <!--
                 <Component Id = "EssentialsFrenchMuiFile" Guid ="{8F7D260D-D339-47CF-986C-96D03E77FC10}">
                   <File Id = "essentials_french.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\french.xml" KeyPath="yes" />
                 </Component>

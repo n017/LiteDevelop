@@ -80,6 +80,7 @@
             this.toolBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.solutionExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.errorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -567,6 +568,7 @@
             this.toolBoxToolStripMenuItem,
             this.solutionExplorerToolStripMenuItem,
             this.propertiesToolStripMenuItem,
+            this.bookmarksToolStripMenuItem,
             this.errorListToolStripMenuItem,
             this.outputToolStripMenuItem,
             this.toolStripSeparator10,
@@ -598,6 +600,14 @@
             this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.propertiesToolStripMenuItem.Text = "&Properties";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
+            // 
+            // bookmarksToolStripMenuItem
+            // 
+            this.bookmarksToolStripMenuItem.Image = global::LiteDevelop.Properties.Resources.bookmarks;
+            this.bookmarksToolStripMenuItem.Name = "bookmarksToolStripMenuItem";
+            this.bookmarksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.bookmarksToolStripMenuItem.Text = "Book&marks";
+            this.bookmarksToolStripMenuItem.Click += new System.EventHandler(this.bookmarksToolStripMenuItem_Click);
             // 
             // errorListToolStripMenuItem
             // 
@@ -861,6 +871,7 @@
             this.ClientSize = new System.Drawing.Size(856, 589);
             this.Controls.Add(this.toolStripPanel1);
             this.Controls.Add(this.mainStatusStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "LiteDevelop";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -961,6 +972,7 @@
         private System.Windows.Forms.ToolStripMenuItem stepIntoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stepOverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stepOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bookmarksToolStripMenuItem;
     }
 }
 

@@ -31,17 +31,22 @@ namespace LiteDevelop.Extensions
 
         public IEnumerable<Bookmark> GetBookmarks(FilePath file)
         {
-            return Bookmarks.Where(x => x.FilePath == file);
+            return Bookmarks.Where(x => x.Location.FilePath == file);
+        }
+
+        public IEnumerable<Bookmark> GetBookmarksOnLine(FilePath file, int line)
+        {
+            return Bookmarks.Where(x => x.Location.FilePath == file && x.Location.Line == line);
         }
 
         public void ClearBookmarksFromFile(FilePath path)
         {
-            RemoveBookmarks(x => x.FilePath == path);
+            RemoveBookmarks(x => x.Location.FilePath == path);
         }
 
         public void ClearBookmarksOnLine(FilePath path, int line)
         {
-            RemoveBookmarks(x => x.FilePath == path && x.Line == line);
+            RemoveBookmarks(x => x.Location.FilePath == path && x.Location.Line == line);
         }
 
         #endregion

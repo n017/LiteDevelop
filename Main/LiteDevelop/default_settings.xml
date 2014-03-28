@@ -24,4 +24,7 @@
   <ItemGroup Id="OutputWindow">
     <Item Id="WordWrap">False</Item>
   </ItemGroup>
+  <ItemGroup Id="PropertiesWindow">
+    <Item Id="Sorting">CategorizedAlphabetical</Item>
+  </ItemGroup>
 </Settings>

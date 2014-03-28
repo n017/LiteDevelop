@@ -10,7 +10,7 @@ using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Essentials.CodeEditor.Gui
 {
-    public class CodeEditorContent : LiteDocumentContent, IClipboardHandler, IHistoryProvider, ISourceNavigator
+    public class CodeEditorContent : LiteDocumentContent, IClipboardHandler, IHistoryProvider, ISourceNavigator, IBookmarkHandler 
     {
         private readonly CodeEditorControl _editorControl;
         private readonly ILiteExtensionHost _extensionHost;
@@ -112,5 +112,29 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             Text = e.NewPath.FileName + e.NewPath.Extension;
         }
 
+
+        #region IBookmarkHandler Members
+
+        public bool CanSetBookmark
+        {
+            get { return true; }
+        }
+
+        public bool CanRemoveBookmark
+        {
+            get { return true; }
+        }
+
+        public void SetBookmark()
+        {
+            _editorControl.BookmarkCurrentLine();
+        }
+
+        public void RemoveBookmark()
+        {
+            _editorControl.UnbookmarkCurrentLine();
+        }
+
+        #endregion
     }
 }

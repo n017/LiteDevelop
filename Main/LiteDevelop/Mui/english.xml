@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <UILanguagePack>
-
+  
   <!-- 
   ==================================
   Main application 
@@ -70,6 +70,21 @@
     <Item Id="FileAlreadyExists">$(file) already exists. Overwrite?</Item>
   </ItemGroup>
 
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Bookmarks</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Add bookmark at current line</Item>
+      <Item Id="RemoveBookmark">&amp;Remove bookmark from current line</Item>
+      <Item Id="Previous">Go to &amp;previous bookmark</Item>
+      <Item Id="Next">Go to &amp;next bookmark</Item>
+      <Item Id="DeleteAll">&amp;Delete all</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Line</Item>
+      <Item Id="File">File</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
   <ItemGroup Id="ErrorContent">
     <Item Id="Title">Error list</Item>
     <ItemGroup Id ="Toolbar">

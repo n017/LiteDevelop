@@ -40,7 +40,8 @@ namespace LiteDevelop
         private BackgroundWorker _worker;
         private MuiProcessor _muiProcessor;
         private AppearanceProcessor _appearanceProcessor;
- 
+        private SynchronizationContext _syncContext;
+        
         public static void Run(string[] args)
         {
             var app = new LiteDevelopApplication();
@@ -71,6 +72,11 @@ namespace LiteDevelop
             get { return _muiProcessor; }
         }
 
+        public SynchronizationContext SyncContext
+        {
+            get { return _syncContext; }
+        }
+
         public void EnsureAppDataDirectoryIsCreated()
         {
             if (!Directory.Exists(Constants.AppDataDirectory))
@@ -82,6 +88,9 @@ namespace LiteDevelop
             // TODO handle command line arguments....
 
             _mainForm = new MainForm();
+
+            _syncContext = SynchronizationContext.Current;
+
             _mainForm.Disposed += (o, e) =>
                 {
                     LiteDevelopSettings.Instance.Save();
@@ -119,7 +128,7 @@ namespace LiteDevelop
 
             _extensionHost.SettingsManager = new ExtensionSettingsManager();
 
-            _extensionHost.ControlManager = new ControlManager(_extensionHost)
+            _extensionHost.ControlManager = new ControlManager(_extensionHost, _syncContext)
             {
                 DockPanel = _mainForm.DockPanel,
                 ToolStripPanel = _mainForm.ToolStripPanel,
@@ -154,6 +163,7 @@ namespace LiteDevelop
             {
                 results.AddRange(_extensionHost.ExtensionManager.LoadExtensions(library));
             }
+
             foreach (var result in results)
             {
                 if (!result.SuccesfullyLoaded)

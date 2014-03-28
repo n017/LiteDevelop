@@ -84,5 +84,7 @@ namespace LiteDevelop.Framework.Extensions
         /// Occurs when the global appearance map or menu renderer has been changed by the user.
         /// </summary>
         event EventHandler AppearanceChanged;
+
+        void InvokeOnMainThread(Action action);
     }
 }

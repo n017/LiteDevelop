@@ -70,6 +70,21 @@
     <Item Id="FileAlreadyExists">$(file) bestaat al. Overschrijven?</Item>
   </ItemGroup>
 
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Bladwijzers</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">Bladwijzer &amp;toevoegen op de huidige lijn</Item>
+      <Item Id="AddBookmark">Bladwijzer &amp;verwijderen van de huidige lijn</Item>
+      <Item Id="Previous">Ga naar &amp;vorige bladwijzer</Item>
+      <Item Id="Next">Ga &amp;naar volgende bladwijzer</Item>
+      <Item Id="DeleteAll">&amp;Alles verwijderen</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Lijn</Item>
+      <Item Id="File">Bestand</Item>
+    </ItemGroup>
+  </ItemGroup>
+
   <ItemGroup Id="ErrorContent">
     <Item Id="Title">Foutmeldingen</Item>
     <ItemGroup Id ="Toolbar">

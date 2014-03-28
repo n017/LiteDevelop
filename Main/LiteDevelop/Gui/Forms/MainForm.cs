@@ -32,6 +32,7 @@ namespace LiteDevelop.Gui.Forms
         private readonly ToolboxContent _toolBox;
         private readonly PropertiesContent _propertiesWindow;
         private readonly SolutionExplorerContent _solutionExplorer;
+        private readonly BookmarksContent _bookmarksWindow;
         private readonly ErrorContent _errorList;
         private readonly OutputContent _outputWindow;
         private LiteExtensionHost _extensionHost;
@@ -73,6 +74,7 @@ namespace LiteDevelop.Gui.Forms
                 _toolBox = new ToolboxContent(),
                 _propertiesWindow = new PropertiesContent(),
                 _solutionExplorer = new SolutionExplorerContent(),
+                _bookmarksWindow = new BookmarksContent(),
                 _errorList = new ErrorContent(),
                 _outputWindow = new OutputContent()
             };
@@ -117,7 +119,6 @@ namespace LiteDevelop.Gui.Forms
 
             _extensionHost.UILanguageChanged += _extensionHost_UILanguageChanged;
             _extensionHost_UILanguageChanged(null, null);
-            
         }
 
         private void SetupMuiComponents()
@@ -604,6 +605,11 @@ namespace LiteDevelop.Gui.Forms
         private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _propertiesWindow.ShowAndActivate(_mainDockPanel);
+        }
+
+        private void bookmarksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _bookmarksWindow.ShowAndActivate(_mainDockPanel);
         }
 
         private void errorListToolStripMenuItem_Click(object sender, EventArgs e)

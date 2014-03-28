@@ -50,8 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>ldicon1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -78,9 +77,16 @@
     <Compile Include="Extensions\ExtensionManager.cs" />
     <Compile Include="Extensions\FileService.cs" />
     <Compile Include="Extensions\FileServiceOpenedFile.cs" />
+    <Compile Include="Extensions\ExtensionInitializationContext.cs" />
     <Compile Include="Extensions\LiteDevelopExtension.cs" />
     <Compile Include="Extensions\LiteExtensionHost.cs" />
     <Compile Include="Extensions\ExtensionSettingsManager.cs" />
+    <Compile Include="Gui\DockContents\BookmarksContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\DockContents\BookmarksContent.Designer.cs">
+      <DependentUpon>BookmarksContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\DockContents\OutputProgressReporter.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\AbstractNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\DirectoryNode.cs" />
@@ -218,6 +224,9 @@
     <Compile Include="Gui\Forms\UnsavedFilesDialog.Designer.cs">
       <DependentUpon>UnsavedFilesDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Gui\DockContents\BookmarksContent.resx">
+      <DependentUpon>BookmarksContent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\Forms\AboutDialog.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -360,6 +369,7 @@
     <Content Include="default_appearance.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ldicon1.ico" />
     <Content Include="Mui\dutch.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -375,6 +385,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\forward.png" />
+    <None Include="Resources\backward.png" />
+    <None Include="Resources\bookmark_remove.png" />
+    <None Include="Resources\bookmark_add.png" />
+    <None Include="Resources\bookmarks.png" />
     <None Include="Resources\play_empty.png" />
     <None Include="Resources\play.png" />
     <None Include="Resources\stop.png" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
@@ -30,10 +31,12 @@ namespace LiteDevelop.Extensions
         private readonly ToolStripAeroRenderer _renderer = new ToolStripAeroRenderer(ToolbarTheme.Toolbar);
         private readonly ILiteExtensionHost _extensionHost;
         private readonly Dictionary<LiteDocumentContent, OpenedFile> _openedFiles = new Dictionary<LiteDocumentContent, OpenedFile>();
+        private readonly SynchronizationContext _syncContext;
 
-        public ControlManager(ILiteExtensionHost extensionHost)
+        public ControlManager(ILiteExtensionHost extensionHost, SynchronizationContext syncContext)
         {
             _extensionHost = extensionHost;
+            _syncContext = syncContext;
 
             _documentContents = new EventBasedCollection<LiteDocumentContent>();
             _documentContents.InsertedItem += viewContent_InsertedItem;
@@ -228,6 +231,11 @@ namespace LiteDevelop.Extensions
             set;
         }
         
+        public void InvokeOnMainThread(Action action)
+        {
+            _syncContext.Post(new SendOrPostCallback((o) => action()), null);
+        }
+
         private DockContent FindDockContent(LiteViewContent documentContent)
         {
             foreach (DockContent document in DockPanel.DocumentsToArray())

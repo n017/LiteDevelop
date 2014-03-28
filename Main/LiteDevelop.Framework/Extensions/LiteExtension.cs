@@ -40,10 +40,10 @@ namespace LiteDevelop.Framework.Extensions
         public abstract string Copyright { get; }
 
         /// <summary>
-        /// Initializes the extension by using litedevelop's extension host.
+        /// Initializes the extension.
         /// </summary>
-        /// <param name="extensionHost">The extension host to use for interacting with LiteDevelop.</param>
-        public abstract void Initialize(ILiteExtensionHost extensionHost);
+        /// <param name="context">The initialization context to use for initializing the extension.</param>
+        public abstract void Initialize(InitializationContext context);
 
         /// <inheritdoc />
         public virtual void Dispose()

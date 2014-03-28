@@ -28,6 +28,9 @@ namespace LiteDevelop.Gui.DockContents
                 {this, "PropertiesContent.Title"},
             };
 
+
+            mainPropertyGrid.PropertySort = LiteDevelopSettings.Instance.GetValue<PropertySort>("PropertiesWindow.Sorting");
+
             LiteDevelopApplication.Current.ExtensionHost.UILanguageChanged += ExtensionHost_UILanguageChanged;
             LiteDevelopApplication.Current.ExtensionHost.ControlManager.AppearanceChanged += ControlManager_AppearanceChanged;
             ExtensionHost_UILanguageChanged(null, null);
@@ -60,6 +63,11 @@ namespace LiteDevelop.Gui.DockContents
             {
                 mainPropertyGrid.SelectedObjects = _propertyContainer.SelectedObjects;
             }
+        }
+
+        private void mainPropertyGrid_PropertySortChanged(object sender, EventArgs e)
+        {
+            LiteDevelopSettings.Instance.SetValue<PropertySort>("PropertiesWindow.Sorting", mainPropertyGrid.PropertySort);
         }
 
         private void _propertyContainer_SelectedObjectsChanged(object sender, EventArgs e)

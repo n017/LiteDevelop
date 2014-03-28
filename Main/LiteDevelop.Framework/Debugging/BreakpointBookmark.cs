@@ -8,10 +8,11 @@ namespace LiteDevelop.Framework.Debugging
 {
     public class BreakpointBookmark : Bookmark
     {
-        public BreakpointBookmark(FilePath filePath, int line, int column)
-            : base(filePath, line, column)
+        public BreakpointBookmark(SourceLocation location)
+            : base(location)
         {
             IsActive = true;
+            Image = Properties.Resources.breakpoint;
         }
 
         public bool IsActive

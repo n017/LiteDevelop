@@ -151,7 +151,7 @@ namespace LiteDevelop.Extensions
             {
                 var extension = Activator.CreateInstance(extensionType) as LiteExtension;
                 LoadedExtensions.Add(extension);
-                extension.Initialize(_extensionHost);
+                extension.Initialize(new ExtensionInitializationContext(LiteDevelopApplication.Current.IsInitialized ? InitializationTime.UserLoad : InitializationTime.Startup));
                 return new ExtensionLoadResult(extensionType, extension);
             }
             catch (Exception ex)

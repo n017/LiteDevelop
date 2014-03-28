@@ -41,6 +41,11 @@
       <BackColor UseSystemName="False">FFF5F5F5</BackColor>
       <FontStyle>Regular</FontStyle>
     </AppearanceDescription>
+    <AppearanceDescription Name="Bookmark" Id="Bookmark">
+      <ForeColor UseSystemName="False">FF000000</ForeColor>
+      <BackColor UseSystemName="False">FF00FFFF</BackColor>
+      <FontStyle>Regular</FontStyle>
+    </AppearanceDescription>
     <AppearanceDescription Name="Breakpoint" Id="Breakpoint">
       <ForeColor UseSystemName="False">FFFFFFFF</ForeColor>
       <BackColor UseSystemName="False">FFC40000</BackColor>

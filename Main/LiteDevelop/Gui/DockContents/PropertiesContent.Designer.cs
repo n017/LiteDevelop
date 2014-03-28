@@ -38,6 +38,7 @@
             this.mainPropertyGrid.Name = "mainPropertyGrid";
             this.mainPropertyGrid.Size = new System.Drawing.Size(284, 262);
             this.mainPropertyGrid.TabIndex = 0;
+            this.mainPropertyGrid.PropertySortChanged += new System.EventHandler(this.mainPropertyGrid_PropertySortChanged);
             // 
             // PropertiesContent
             // 
