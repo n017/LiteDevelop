@@ -74,7 +74,7 @@
     <Item Id="Title">Bladwijzers</Item>
     <ItemGroup Id="Toolbar">
       <Item Id="AddBookmark">Bladwijzer &amp;toevoegen op de huidige lijn</Item>
-      <Item Id="AddBookmark">Bladwijzer &amp;verwijderen van de huidige lijn</Item>
+      <Item Id="RemoveBookmark">Bladwijzer &amp;verwijderen van de huidige lijn</Item>
       <Item Id="Previous">Ga naar &amp;vorige bladwijzer</Item>
       <Item Id="Next">Ga &amp;naar volgende bladwijzer</Item>
       <Item Id="DeleteAll">&amp;Alles verwijderen</Item>
@@ -181,6 +181,7 @@
         <Item Id="Toolbox">&amp;Werkbalk</Item>
         <Item Id="SolutionExplorer">&amp;Solution verkenner</Item>
         <Item Id="PropertiesWindow">&amp;Eigenschappen</Item>
+        <Item Id="Bookmarks">&amp;Bladwijzers</Item>
         <Item Id="ErrorList">&amp;Foutmeldingen</Item>
         <Item Id="OutputWindow">&amp;Uitvoer</Item>
         <Item Id="Fullscreen">&amp;Volledig scherm</Item>

@@ -181,6 +181,7 @@
         <Item Id="Toolbox">&amp;Toolbox</Item>
         <Item Id="SolutionExplorer">&amp;Solution explorer</Item>
         <Item Id="PropertiesWindow">&amp;Properties</Item>
+        <Item Id="Bookmarks">&amp;Bookmarks</Item>
         <Item Id="ErrorList">&amp;Error list</Item>
         <Item Id="OutputWindow">&amp;Output</Item>
         <Item Id="Fullscreen">&amp;Fullscreen</Item>

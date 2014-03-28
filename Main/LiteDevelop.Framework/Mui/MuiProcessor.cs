@@ -61,7 +61,8 @@ namespace LiteDevelop.Framework.Mui
                 var path = GetLanguagePackFilePath(language);
                 if (File.Exists(path.FullPath))
                 {
-                    pack = new UILanguagePack(path);
+                    var fallbackPack = language == UILanguage.Default ? null : DefaultLanguagePack;
+                    pack = new UILanguagePack(path, fallbackPack);
                     _cachedLanguagePacks.Add(language, pack);
                 }
             }
@@ -164,7 +165,8 @@ namespace LiteDevelop.Framework.Mui
                 return false;
 
             string value;
-            if (languagePack.TryGetValue(id, out value))
+            if ((languagePack.TryGetValue(id, out value)) ||
+                (languagePack.FallbackMap != null && languagePack.FallbackMap.TryGetValue(id, out value)))
             {
                 property.SetValue(component, value, null);
                 return true;

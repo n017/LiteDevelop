@@ -15,9 +15,10 @@ namespace LiteDevelop.Framework.Mui
     public sealed class UILanguagePack : SettingsMap 
     {
 
-        public UILanguagePack(FilePath filePath)
+        public UILanguagePack(FilePath filePath, UILanguagePack fallBackPack)
             : base(filePath)
         {
+            FallbackMap = fallBackPack;
         }
 
         public override string DocumentRoot

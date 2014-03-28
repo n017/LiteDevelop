@@ -181,6 +181,7 @@
         <Item Id="Toolbox">&amp;Gunnery</Item>
         <Item Id="SolutionExplorer">&amp;Navy spy</Item>
         <Item Id="PropertiesWindow">&amp;Properties</Item>
+        <Item Id="Bookmarks">&amp;Stamps</Item>
         <Item Id="ErrorList">&amp;Leak list</Item>
         <Item Id="OutputWindow">&amp;Bottle o' messages</Item>
         <Item Id="Fullscreen">&amp;Fullscreen</Item>

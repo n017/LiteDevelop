@@ -36,6 +36,7 @@ namespace LiteDevelop.Gui.DockContents
 
             _componentMuiIdentifiers = new Dictionary<object, string>()
             {
+                {this, "BookmarkContent.Title"},
                 {addBookmarkToolStripButton, "BookmarkContent.Toolbar.AddBookmark"},
                 {removeBookmarkToolStripButton, "BookmarkContent.Toolbar.RemoveBookmark"},
                 {previousToolStripButton, "BookmarkContent.Toolbar.Previous"},

@@ -153,6 +153,7 @@ namespace LiteDevelop.Gui.Forms
                 {this.toolBoxToolStripMenuItem, "MainForm.Menu.View.Toolbox"},
                 {this.solutionExplorerToolStripMenuItem, "MainForm.Menu.View.SolutionExplorer"},
                 {this.propertiesToolStripMenuItem, "MainForm.Menu.View.PropertiesWindow"},
+                {this.bookmarksToolStripMenuItem, "MainForm.Menu.View.Bookmarks"},
                 {this.errorListToolStripMenuItem, "MainForm.Menu.View.ErrorList"},
                 {this.outputToolStripMenuItem, "MainForm.Menu.View.OutputWindow"},
                 {this.fullScreenToolStripMenuItem, "MainForm.Menu.View.Fullscreen"},
