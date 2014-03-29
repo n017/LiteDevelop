@@ -25,7 +25,7 @@
     <Item Id="Title">Tietoja</Item>
     <Item Id="ProjectFounder">Tekijä</Item>
     <Item Id="Version">Versio</Item>
-    <Item Id="Repository">Github repositorio</Item>
+    <Item Id="Repository">GitHub-repositorio</Item>
     <ItemGroup Id="ModuleListHeaders">
       <Item Id="Module">Moduuli</Item>
       <Item Id="Version">Versio</Item>
@@ -68,6 +68,21 @@
     <Item Id="Title">Luo uusi projekti</Item>
     <Item Id="FolderAlreadyExists">$(folder) on jo olemassa. Haluatko jatkaa?</Item>
     <Item Id="FileAlreadyExists">$(file) on jo olemassa. Haluatko ylikirjoittaa?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Kirjanmerkit</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Lisää kirjanmerkki valitulle riville</Item>
+      <Item Id="RemoveBookmark">&amp;Poista kirjanmerkki valitulta riviltä</Item>
+      <Item Id="Previous">Hyppää &amp;edelliseen kirjanmerkkiin</Item>
+      <Item Id="Next">Hyppää &amp;seuraavaan kirjanmerkkiin</Item>
+      <Item Id="DeleteAll">&amp;Poista kaikki</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Line</Item>
+      <Item Id="File">File</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="ErrorContent">
@@ -166,6 +181,7 @@
         <Item Id="Toolbox">&amp;Työkalulaatikko</Item>
         <Item Id="SolutionExplorer">&amp;Tiedostonhallinta</Item>
         <Item Id="PropertiesWindow">&amp;Ominaisuudet</Item>
+        <Item Id="Bookmarks">&amp;Kirjanmerkit</Item>
         <Item Id="ErrorList">&amp;Virhelistaus</Item>
         <Item Id="OutputWindow">&amp;Tuloste</Item>
         <Item Id="Fullscreen">&amp;Koko näyttö</Item>
