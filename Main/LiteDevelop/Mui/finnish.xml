@@ -80,8 +80,8 @@
       <Item Id="DeleteAll">&amp;Poista kaikki</Item>
     </ItemGroup>
     <ItemGroup Id="ListHeaders">
-      <Item Id="Line">Line</Item>
-      <Item Id="File">File</Item>
+      <Item Id="Line">Rivi</Item>
+      <Item Id="File">Tiedosto</Item>
     </ItemGroup>
   </ItemGroup>
 
