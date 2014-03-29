@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+  
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Kes</Item>
+      <Item Id = "Copy">Kopyala</Item>
+      <Item Id = "Paste">Yapıştır</Item>
+      <Item Id = "SelectAll">Tümünü Seç</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">Genel</Item>
+    <Item Id = "AutoCompleteSettings">Otomatik tamamlama</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Önerileri göster</Item>
+      <Item Id = "CommentRegion">Bölgeyi yorumla</Item>
+      <Item Id = "UncommentRegion">Bölge yorumunu kaldır</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Satır $(line)</Item>
+      <Item Id = "CurrentColumn">Sütun $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Satır numalarını göster</Item>
+    <Item Id = "WordWrap">Kelime oturtma</Item>
+    <Item Id = "SyntaxHighlighting">Sözdizimi vurgulama</Item>
+    <Item Id = "TrackUnsavedChanges">Kaydedilmemiş değişiklikleri izle</Item>
+    <Item Id = "HighlightCurrentLine">Geçerli satırı vurgula</Item>
+    <Item Id = "ShowDocumentMiniMap">Belgenin küçük haritasını göster</Item>
+  </ItemGroup>
+  
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Üyeleri otomatik listele</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Öneriler listesini sadece şurada göster:</Item>
+        <Item Id = "TypingAnyChar">herhangi bir karakter yazarken</Item>
+        <Item Id = "PressingCtrlSpace">Ctrl+Boşluk tuşuna basarken</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">Şu karakterlere basarken öğeyi işle:</Item>
+      <Item Id = "CommitItemOnSpaceBar">Boşluk tuşuna basarken öğeyi işle</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Kod bloklarını otomatik tamamla (örn. ( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Metod önerisini ekledikten sonra otomatik olarak metod parantezini ekle.</Item>
+  </ItemGroup>
+  
+</UILanguagePack>

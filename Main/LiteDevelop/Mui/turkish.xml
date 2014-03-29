@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <ItemGroup Id="Common">
+    <Item Id="Ok">Tamam</Item>
+    <Item Id="Close">Kapat</Item>
+    <Item Id="Cancel">İptal</Item>
+    <Item Id="Yes">Evet</Item>
+    <Item Id="No">Hayır</Item>
+    <Item Id="Add">Ekle</Item>
+    <Item Id="Remove">Kaldır</Item>
+    <Item Id="Browse">Seç</Item>
+    <Item Id="None">Hiçbiri</Item>
+    <Item Id="Name">İsim</Item>
+    <Item Id="Directory">Konum</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="AboutDialog">
+    <Item Id="Title">Hakkında</Item>
+    <Item Id="ProjectFounder">Proje sahibi</Item>
+    <Item Id="Version">Sürüm</Item>
+    <Item Id="Repository">Github deposu</Item>
+    <ItemGroup Id="ModuleListHeaders">
+      <Item Id="Module">Modül</Item>
+      <Item Id="Version">Versiyon</Item>
+    </ItemGroup>
+    <ItemGroup Id="ExtensionDetails">
+      <Item Id="Name">İsim</Item>
+      <Item Id="Version">Sürüm</Item>
+      <Item Id="Path">Konum</Item>
+      <Item Id="Author">Yazar</Item>
+      <Item Id="Description">Açıklama</Item>
+      <Item Id="Copyright">Telif hakkı</Item>
+      <Item Id="AdditionalReleaseInformation">Ek sürüm bilgileri</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="AppearanceEditor">
+    <Item Id="Extensions">Uzantılar</Item>
+    
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Key">Anahtar</Item>
+      <Item Id="Preview">Önizleme</Item>
+    </ItemGroup>
+    
+    <ItemGroup Id="Editor">
+      <Item Id="ForeColor">Ön renk:</Item>
+      <Item Id="BackColor">Arka renk:</Item>
+      <Item Id="Transparent">Şeffaf</Item>
+      <Item Id="Bold">Kalın</Item>
+      <Item Id="Italic">İtalik</Item>
+      <Item Id="Underline">Alt çizgi</Item>
+      <Item Id="Strikeout">Üzerini çiz</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="CreateFileDialog">
+    <Item Id="Title">Yeni dosya oluştur</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="CreateProjectDialog">
+    <Item Id="Title">Yeni proje oluştur</Item>
+    <Item Id="FolderAlreadyExists">$(folder) klasörü zaten mevcut. Devam etmek istiyormusunuz?</Item>
+    <Item Id="FileAlreadyExists">$(file) dosyası zaten mevcut. Üzerine yazılsınmı?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="ErrorContent">
+    <Item Id="Title">Hata listesi</Item>
+    <ItemGroup Id ="Toolbar">
+      <Item Id="Errors">$(count) Hatalar</Item>
+      <Item Id="Warnings">$(count) Uyarılar</Item>
+      <Item Id="Messages">$(count) Mesajlar</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Message">Mesaj</Item>
+      <Item Id="File">Dosya</Item>
+      <Item Id="Line">Satır</Item>
+      <Item Id="Column">Sütun</Item>
+    </ItemGroup>
+    <ItemGroup Id="ContextMenu">
+      <Item Id="Copy">Kopyala</Item>
+      <Item Id="GotoFile">Dosyaya git</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionLoadDialog">
+    <Item Id="Title">Uzantı yükleme sonucu</Item>
+    <Item Id="LoadedSuccessfully">Başarıyla yüklendi</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Extension">Uzantı</Item>
+      <Item Id="Path">Konum</Item>
+      <Item Id="Result">Sonuç</Item>
+    </ItemGroup>
+    <ItemGroup Id="Details">
+      <Item Id="Title">Uzantı yükleme sonucu</Item>
+      <Item Id="Message">$(extension) uzantısı $(result) bir şekilde yüklendi.&#10;&#13;&#10;&#13;Details:&#10;&#13;$(details)</Item>
+      <Item Id="Successfully">başarılı</Item>
+      <Item Id="Unsuccessfully">başarısız</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionsDialog">
+    <Item Id="Title">Uzantılar</Item>
+    <Item Id="Add.FileFilter">LiteDevelop Uzantıları (*.dll)</Item>
+    <Item Id="Remove.Warning">Uzantıyı kaldırmak istediğinizden eminmisiniz?</Item>
+    <Item Id="RestartRequired">Yapılan işlemleri uygulamak için LiteDevelop'u yeniden başlatmalısınız. Şimdi yeniden başlatmak istermisiniz?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="LiteDevelopExtension">
+    <Item Id="GeneralSettings">Genel</Item>
+    <Item Id="Appearance">Görünüm</Item>
+    <Item Id="InternationalSettings">Uluslararası</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsEditor">
+    <Item Id="DefaultProjectsPath">Varasıylan proje kayıt konumu:</Item>
+    <Item Id="ShowOutput">Oluştururken kayıt konumunu göster.</Item>
+    <Item Id="ShowErrorList">Oluşturma başarısız olduğunda hata listesini göster.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="MainForm">
+    
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">"$(file)" dosyası için editör mevcut değil.</Item>
+      <Item Id="NoDebuggerAvailable">"$(project)" projesi için debugger mevcut değil.</Item>
+      <Item Id="BuildFailed">Bir veya birden fazla proje derlenemedi. Ayrıntılar için hata listesine veya çıkış penceresine bakın.</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Mevcut oturumu kapatmak istediğinizden eminmisiniz?</Item>
+      <Item Id="CloseAllDocumentsWarning">Açık olan tüm dökümanları kapatmak istediğinizden eminmisiniz?</Item>
+    </ItemGroup>
+
+    <ItemGroup Id="Menu">
+      <ItemGroup Id="File">
+        <Item Id="Title">&amp;Dosya</Item>
+        <Item Id="New">&amp;Yeni</Item>
+        <Item Id="New.NewFile">Yeni dosya</Item>
+        <Item Id="New.NewProject">Yeni proje</Item>
+        <Item Id="Open">&amp;Aç</Item>
+        <Item Id="Save">&amp;Kaydet</Item>
+        <Item Id="SaveAs">Farklı k&amp;aydet</Item>
+        <Item Id="SaveAll">Tümünü kaydet</Item>
+        <Item Id="Close">Kapat</Item>
+        <Item Id="CloseSolution">Oturumu kapat</Item>
+        <Item Id="Print">&amp;Yazdır</Item>
+        <Item Id="PrintPreview">Baskı &amp;Önizleme</Item>
+        <Item Id="Exit">&amp;Çıkış</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Edit">
+        <Item Id="Title">&amp;Düzenle</Item>
+        <Item Id="Undo">&amp;Geri al</Item>
+        <Item Id="Redo">&amp;İleri al</Item>
+        <Item Id="Cut">K&amp;es</Item>
+        <Item Id="Copy">&amp;Kopyala</Item>
+        <Item Id="Paste">&amp;Yapıştır</Item>
+        <Item Id="SelectAll">Tümünü &amp;seç</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="View">
+        <Item Id="Title">&amp;Görüntü</Item>
+        <Item Id="Toolbox">&amp;Araç kutusu</Item>
+        <Item Id="SolutionExplorer">&amp;Oturum tarayıcısı</Item>
+        <Item Id="PropertiesWindow">&amp;Özellikler</Item>
+        <Item Id="ErrorList">&amp;Hata listesi</Item>
+        <Item Id="OutputWindow">&amp;Çıktı</Item>
+        <Item Id="Fullscreen">&amp;Tam ekran</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Build">
+        <Item Id="Title">&amp;Derle</Item>
+        <Item Id="BuildSolution">Projeyi &amp;derle</Item>
+        <Item Id="CleanSolution">&amp;Oturumu temizle</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Debug">
+        <Item Id="Title">&amp;Debug</Item>
+        <Item Id="Run">&amp;Çalıştır</Item>
+        <Item Id="RunWithoutDebugger">Debugger &amp;olmadan çalıştır</Item>
+        <Item Id="RunLastBuild">So&amp;n derlemeyi çalıştır</Item>
+        <Item Id="Break">&amp;Durdur</Item>
+        <Item Id="StopDebugging">&amp;Ayıklamayı durdur</Item>
+        <Item Id="StepOver">Üzerine &amp;ilerle</Item>
+        <Item Id="StepInto">İçeri &amp;ilerle</Item>
+        <Item Id="StepOut">Dışarı &amp;ilerle</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Tools">
+        <Item Id="Title">&amp;Araçlar</Item>
+        <Item Id="Settings">&amp;Ayarlar</Item>
+        <Item Id="Extensions">&amp;Uzantılar</Item>
+      </ItemGroup>
+      
+      <ItemGroup Id="Window">
+        <Item Id="Title">&amp;Pencere</Item>
+        <Item Id="NextWindow">&amp;Sonraki pencere</Item>
+        <Item Id="PreviousWindow">&amp;Önceki pencere</Item>
+        <Item Id="CloseAllDocuments">&amp;Tüm dökümanları kapat</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Help">
+        <Item Id="Title">&amp;Yardım</Item>
+        <Item Id="SourceCode">Kaynak kodu</Item>
+        <Item Id="About">&amp;Hakkında</Item>
+      </ItemGroup>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OpenWithDialog">
+    <Item Id="Title">Birlikte aç...</Item>
+    <ItemGroup Id ="ListHeaders">
+      <Item Id="Name">İsim</Item>
+      <Item Id="Description">Açıklama</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OutputContent">
+    <Item Id="Title">Çıktı</Item>
+    <Item Id="ShowOutputFrom">Çıktıyı şurdan göster:</Item>
+    <Item Id="ClearAll">Tümünü temizle</Item>
+    <Item Id="ToggleWordWrap">Kelime sarmayı aç</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="PropertiesContent">
+    <Item Id="Title">Özellikler</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SettingsDialog">
+    <Item Id="Title">Ayarlar</Item>
+    <Item Id="ResetToDefaults">Varasıylan sıfırla</Item>
+    <Item Id="ResetToDefaultsWarning">Tüm ayarları varasıylan olarak geri yüklemek istediğinize eminmisiniz?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SolutionExplorerContent">
+    <Item Id="Title">Oturum tarayıcısı</Item>
+    <Item Id ="DeleteFileWarning">$(file) dosya tamamen silinecektir.</Item>
+    
+    <ItemGroup Id ="ContextMenu">
+      <Item Id="Add">Ekle</Item>
+      <Item Id="Add.NewFile">Yeni öğe</Item>
+      <Item Id="Add.NewDirectory">Yeni dizin</Item>
+      <Item Id="Add.NewProject">Yeni proje</Item>
+      <Item Id="Add.ExistingFile">Mevcut öğe...</Item>
+      <Item Id="Open">Aç</Item>
+      <Item Id="Remove">Kaldır</Item>
+      <Item Id="Rename">Yeniden Adlandır</Item>
+      <Item Id="SetAsStartupProject">Açılış projesi olarak seç</Item>
+      <Item Id="ViewInExplorer">Tarayıcıda gör</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ToolBoxContent">
+    <Item Id="Title">Araç Kutusu</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="UnsavedFilesDialog">
+    <Item Id="Title">Kaydedilmemiş dosyalar</Item>
+    <Item Id="Message">Aşağıdaki dosyalar kaydedilmemiş içeriğe sahip.</Item>
+    <Item Id="SaveSelected">Seçilenleri kaydet</Item>
+    <Item Id="DontSave">Kaydetme</Item>
+  </ItemGroup>
+
+  <!-- 
+  ==================================
+  Framework library (TODO)
+  ==================================
+  -->
+  
+</UILanguagePack>

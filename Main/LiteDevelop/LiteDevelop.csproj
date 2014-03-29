@@ -385,6 +385,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Mui\turkish.xml" />
     <None Include="Resources\forward.png" />
     <None Include="Resources\backward.png" />
     <None Include="Resources\bookmark_remove.png" />
