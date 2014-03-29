@@ -63,6 +63,7 @@ Dutch: Jerre S.
 Finnish: Dextrey
 Pirate (>:D): Jerre S.
 Turkish: Woopza
+French: Wallace87000
 
 Third-party components:
 Docking UI: Dockpanel Suite (http://sourceforge.net/projects/dockpanelsuite/)

@@ -71,6 +71,7 @@ Dutch: Jerre S.
 Finnish: Dextrey
 Pirate (>:D): Jerre S.
 Turkish: Woopza
+French: Wallace87000
 
 Third-party components:
 Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorgashov/FastColoredTextBox).";
