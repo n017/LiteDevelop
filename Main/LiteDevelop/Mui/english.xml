@@ -139,13 +139,6 @@
     <Item Id="ShowErrorList">Show error list when build failed.</Item>
   </ItemGroup>
 
-  <ItemGroup Id="InternationalSettingsEditor">
-    <Item Id="PartialTranslationWarning">Some parts or extensions of LiteDevelop might not have the selected language implemented or installed. In this case the default language will be used.</Item>
-    <Item Id="ApplicationLanguage">Application Language:</Item>
-  </ItemGroup>
-
-
-
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">

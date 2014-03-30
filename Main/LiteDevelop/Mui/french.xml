@@ -120,11 +120,8 @@
 
   <ItemGroup Id="GeneralSettingsEditor">
     <Item Id="DefaultProjectsPath">Répertoire des projets:</Item>
-  </ItemGroup>
-  
-  <ItemGroup Id="InternationalSettingsEditor">
-    <Item Id="PartialTranslationWarning">Certaines parties ou extensions de LiteDevelop pourraient ne pas avoir de traduction disponible. Dans ce cas, la langue (Anglais) par défaut sera utilisé.</Item>
-    <Item Id="ApplicationLanguage">Langage de l'application:</Item>
+    <Item Id="ShowOutput">Afficher le résultat de sortie lors de la génération.</Item>
+    <Item Id="ShowErrorList">Afficher la liste d'erreur(s) lorsque la génération a échouée.</Item>
   </ItemGroup>
 
   <ItemGroup Id="MainForm">
