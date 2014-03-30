@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Mui;
+//Added
+using System.Collections.Generic;
+//
 
 namespace LiteDevelop.Gui.Settings
 {
@@ -11,13 +14,37 @@ namespace LiteDevelop.Gui.Settings
     {
         private LiteDevelopSettings _settings;
 
+        //Added
+        private readonly System.Collections.Generic.Dictionary<object, string> _componentMuiIdentifiers;
+        //
+
+
         public InternationalSettingsEditor(LiteDevelopSettings settings)
         {
             InitializeComponent();
             _settings = settings;
             foreach (var language in UILanguage.InstalledLanguages)
                 comboBox1.Items.Add(language.Name);
+
+
+            //Added
+            _componentMuiIdentifiers = new Dictionary<object, string>()
+            {
+                {this.Controls.Find("label2", true).FirstOrDefault() as Label, "InternationalSettingsEditor.PartialTranslationWarning"},
+                {this.Controls.Find("applicationLanguageLabel", true).FirstOrDefault() as Label, "InternationalSettingsEditor.ApplicationLanguage"},
+            };
+
+            LiteDevelopApplication.Current.ExtensionHost.UILanguageChanged += ExtensionHost_UILanguageChanged;
+            ExtensionHost_UILanguageChanged(null, null);
+            //
         }
+        //Added
+        private void ExtensionHost_UILanguageChanged(object sender, EventArgs e)
+        {
+            LiteDevelopApplication.Current.MuiProcessor.ApplyLanguageOnComponents(_componentMuiIdentifiers);
+        }
+        //
+
 
         public override void ApplySettings()
         {

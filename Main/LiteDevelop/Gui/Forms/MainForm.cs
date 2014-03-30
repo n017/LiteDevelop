@@ -526,7 +526,11 @@ namespace LiteDevelop.Gui.Forms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _mainDockPanel.GetActiveDocument().Close();
+            //Check if _mainDockPanel.GetActiveDocument() isn't Null reference before closing 
+            if ((_mainDockPanel.GetActiveDocument() != null))
+            {
+                _mainDockPanel.GetActiveDocument().Close();
+            }
         }
 
         private void closeSolutionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -848,19 +852,23 @@ namespace LiteDevelop.Gui.Forms
 
         private void closeAllDocumentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(
-                LiteDevelopApplication.Current.MuiProcessor.GetString("MainForm.Messages.CloseAllDocumentsWarning"), 
-                "LiteDevelop", 
-                MessageBoxButtons.YesNo, 
-                MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
-            {
-                var documents = _mainDockPanel.DocumentsToArray();
+            // Check if documents are opened before prompt user to close
+            var documents = _mainDockPanel.DocumentsToArray();
 
-                foreach (var document in documents)
+            if (documents.Length != 0)
+            {
+                if (MessageBox.Show(
+                              LiteDevelopApplication.Current.MuiProcessor.GetString("MainForm.Messages.CloseAllDocumentsWarning"),
+                              "LiteDevelop",
+                              MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    document.DockHandler.Close();
+                    foreach (var document in documents)
+                    {
+                        document.DockHandler.Close();
+                    }
                 }
-            }
+            }  
         }
 
         #endregion
