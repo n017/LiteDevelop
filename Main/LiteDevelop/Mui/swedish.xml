@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Main application 
+  ==================================
+  -->
+  
+  <ItemGroup Id="Common">
+    <Item Id="Ok">Ok</Item>
+    <Item Id="Close">Stäng</Item>
+    <Item Id="Cancel">Avbryt</Item>
+    <Item Id="Yes">Ja</Item>
+    <Item Id="No">Nej</Item>
+    <Item Id="Add">Lägg till</Item>
+    <Item Id="Remove">Ta bort</Item>
+    <Item Id="Browse">Bläddra</Item>
+    <Item Id="None">Ingen</Item>
+    <Item Id="Name">Namn</Item>
+    <Item Id="Directory">Katalog</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="AboutDialog">
+    <Item Id="Title">Om</Item>
+    <Item Id="ProjectFounder">Projektets grundare</Item>
+    <Item Id="Version">Version</Item>
+    <Item Id="Repository">Github repository</Item>
+    <ItemGroup Id="ModuleListHeaders">
+      <Item Id="Module">Modul</Item>
+      <Item Id="Version">Version</Item>
+    </ItemGroup>
+    <ItemGroup Id="ExtensionDetails">
+      <Item Id="Name">Namn</Item>
+      <Item Id="Version">Version</Item>
+      <Item Id="Path">Sökväg</Item>
+      <Item Id="Author">Utgivare</Item>
+      <Item Id="Description">Beskrivning</Item>
+      <Item Id="Copyright">Copyright</Item>
+      <Item Id="AdditionalReleaseInformation">Ytterligare release information</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="AppearanceEditor">
+    <Item Id="Extensions">Tillägg</Item>
+    
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Key">Nyckel</Item>
+      <Item Id="Preview">Förhandsvisning</Item>
+    </ItemGroup>
+    
+    <ItemGroup Id="Editor">
+      <Item Id="ForeColor">Främre färg:</Item>
+      <Item Id="BackColor">Bakre färg:</Item>
+      <Item Id="Transparent">Transparent</Item>
+      <Item Id="Bold">Fet</Item>
+      <Item Id="Italic">Kursiv</Item>
+      <Item Id="Underline">Understruken</Item>
+      <Item Id="Strikeout">Överstruken</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="CreateFileDialog">
+    <Item Id="Title">Skapa ny fil</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="CreateProjectDialog">
+    <Item Id="Title">Skapa nytt projekt</Item>
+    <Item Id="FolderAlreadyExists">$(folder) existerar redan. Vill du fortsätta?</Item>
+    <Item Id="FileAlreadyExists">$(file) existerar redan. Vill du skriva över?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Bokmärken</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Lägg till bokmärke vid aktuell rad</Item>
+      <Item Id="RemoveBookmark">&amp;Ta bort bokmärke vid aktuell rad</Item>
+      <Item Id="Previous">Gå till &amp;föregående bokmärke</Item>
+      <Item Id="Next">Gå till &amp;nästa bokmärke</Item>
+      <Item Id="DeleteAll">&amp;Ta bort alla</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Rad</Item>
+      <Item Id="File">Fil</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ErrorContent">
+    <Item Id="Title">Fellista</Item>
+    <ItemGroup Id ="Toolbar">
+      <Item Id="Errors">$(count) Fel</Item>
+      <Item Id="Warnings">$(count) Varningar</Item>
+      <Item Id="Messages">$(count) Meddelanden</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Message">Meddelande</Item>
+      <Item Id="File">Fil</Item>
+      <Item Id="Line">Rad</Item>
+      <Item Id="Column">Kolumn</Item>
+    </ItemGroup>
+    <ItemGroup Id="ContextMenu">
+      <Item Id="Copy">Kopiera</Item>
+      <Item Id="GotoFile">Gå till fil</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionLoadDialog">
+    <Item Id="Title">Tillägg laddnings resultat</Item>
+    <Item Id="LoadedSuccessfully">Loaded successfully</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Extension">Tillägg</Item>
+      <Item Id="Path">Sökväg</Item>
+      <Item Id="Result">Resultat</Item>
+    </ItemGroup>
+    <ItemGroup Id="Details">
+      <Item Id="Title">Tillägg laddnings resultat</Item>
+      <Item Id="Message">Tillägget $(extension) laddades $(result).&#10;&#13;&#10;&#13;Detaljer:&#10;&#13;$(details)</Item>
+      <Item Id="Successfully">lyckat</Item>
+      <Item Id="Unsuccessfully">inte</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionsDialog">
+    <Item Id="Title">Tillägg</Item>
+    <Item Id="Add.FileFilter">LiteDevelop tilläggs filer (*.dll)</Item>
+    <Item Id="Remove.Warning">Är du säker på att du vill ta bort filen och dess tillägg?</Item>
+    <Item Id="RestartRequired">För att kunna utföra arbetet, måste du starta om LiteDevelop. Vill du starta om nu?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="LiteDevelopExtension">
+    <Item Id="GeneralSettings">Generell</Item>
+    <Item Id="Appearance">Utseende</Item>
+    <Item Id="InternationalSettings">Internationell</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsEditor">
+    <Item Id="DefaultProjectsPath">Projektets förvalda sökväg:</Item>
+    <Item Id="ShowOutput">Visa output vid build.</Item>
+    <Item Id="ShowErrorList">Visa fellista när build misslyckas.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="MainForm">
+    
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Det finns ingen redigerare för filen "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Det finns ingen debugger tillgänglig för projektet "$(project)".</Item>
+      <Item Id="BuildFailed">Ett eller flera projekt misslyckades att byggas. Se fellista eller output fönstret för detaljer.</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Är du säker på att du vill ta bort aktuell solution?</Item>
+      <Item Id="CloseAllDocumentsWarning">Är du säker på att du vill stänga alla öppna dokument?</Item>
+    </ItemGroup>
+
+    <ItemGroup Id="Menu">
+      <ItemGroup Id="File">
+        <Item Id="Title">&amp;Arkiv</Item>
+        <Item Id="New">&amp;Ny</Item>
+        <Item Id="New.NewFile">Ny fil</Item>
+        <Item Id="New.NewProject">Nytt projekt</Item>
+        <Item Id="Open">&amp;Öppna</Item>
+        <Item Id="Save">&amp;Spara</Item>
+        <Item Id="SaveAs">Spara &amp;som</Item>
+        <Item Id="SaveAll">Spara alla</Item>
+        <Item Id="Close">Stäng</Item>
+        <Item Id="CloseSolution">Stäng solution</Item>
+        <Item Id="Print">&amp;Skriv ut</Item>
+        <Item Id="PrintPreview">Utskrivnings förhands&amp;granskning</Item>
+        <Item Id="Exit">A&amp;vsluta</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Edit">
+        <Item Id="Title">&amp;Redigera</Item>
+        <Item Id="Undo">&amp;Ångra</Item>
+        <Item Id="Redo">&amp;Gör om</Item>
+        <Item Id="Cut">Klipp &amp;ut</Item>
+        <Item Id="Copy">&amp;Kopiera</Item>
+        <Item Id="Paste">K&amp;listra in</Item>
+        <Item Id="SelectAll">Välj &amp;alla</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="View">
+        <Item Id="Title">&amp;View</Item>
+        <Item Id="Toolbox">Ve&amp;rktygslåda</Item>
+        <Item Id="SolutionExplorer">&amp;Solution utforskare</Item>
+        <Item Id="PropertiesWindow">&amp;Egenskaper</Item>
+        <Item Id="ErrorList">&amp;Fellista</Item>
+        <Item Id="Bookmarks">&amp;Bokmärken</Item>
+        <Item Id="OutputWindow">&amp;Output</Item>
+        <Item Id="Fullscreen">F&amp;ullskärm</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Build">
+        <Item Id="Title">&amp;Bygg</Item>
+        <Item Id="BuildSolution">Bygg &amp;solution</Item>
+        <Item Id="CleanSolution">&amp;Rensa solution</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Debug">
+        <Item Id="Title">&amp;Debug</Item>
+        <Item Id="Run">&amp;Kör</Item>
+        <Item Id="RunWithoutDebugger">Kör &amp;utan debugger</Item>
+        <Item Id="RunLastBuild">Kör &amp;sista build</Item>
+        <Item Id="Break">&amp;Bryt</Item>
+        <Item Id="StopDebugging">&amp;Stoppa debugging</Item>
+        <Item Id="StepOver">Hoppa &amp;över</Item>
+        <Item Id="StepInto">Hoppa &amp;in i</Item>
+        <Item Id="StepOut">Hoppa &amp;ut</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Tools">
+        <Item Id="Title">&amp;Verktyg</Item>
+        <Item Id="Settings">&amp;Inställningar</Item>
+        <Item Id="Extensions">&amp;Tillägg</Item>
+      </ItemGroup>
+      
+      <ItemGroup Id="Window">
+        <Item Id="Title">&amp;Fönster</Item>
+        <Item Id="NextWindow">&amp;Nästa fönster</Item>
+        <Item Id="PreviousWindow">&amp;Föregående fönster</Item>
+        <Item Id="CloseAllDocuments">&amp;Stäng alla dokument</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Help">
+        <Item Id="Title">&amp;Hjälp</Item>
+        <Item Id="SourceCode">Källkod</Item>
+        <Item Id="About">&amp;Om</Item>
+      </ItemGroup>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OpenWithDialog">
+    <Item Id="Title">Öppna med...</Item>
+    <ItemGroup Id ="ListHeaders">
+      <Item Id="Name">Namn</Item>
+      <Item Id="Description">Beskrivning</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OutputContent">
+    <Item Id="Title">Output</Item>
+    <Item Id="ShowOutputFrom">Visa output från:</Item>
+    <Item Id="ClearAll">Rensa alla</Item>
+    <Item Id="ToggleWordWrap">Växla automatiskt radbyte</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="PropertiesContent">
+    <Item Id="Title">Egenskaper</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SettingsDialog">
+    <Item Id="Title">Inställningar</Item>
+    <Item Id="ResetToDefaults">Återställ standardvärden</Item>
+    <Item Id="ResetToDefaultsWarning">Är du säker på att du vill ställa in alla inställningar till de ursprungliga värdena?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SolutionExplorerContent">
+    <Item Id="Title">Solution utforskare</Item>
+    <Item Id ="DeleteFileWarning">$(file) kommer tas bort permanent.</Item>
+    
+    <ItemGroup Id ="ContextMenu">
+      <Item Id="Add">Lägg till</Item>
+      <Item Id="Add.NewFile">Ny fil</Item>
+      <Item Id="Add.NewDirectory">Ny katalog</Item>
+      <Item Id="Add.NewProject">Nytt projekt</Item>
+      <Item Id="Add.ExistingFile">Befintlig fil...</Item>
+      <Item Id="Open">Öppna</Item>
+      <Item Id="Remove">Ta bort</Item>
+      <Item Id="Rename">Döp om</Item>
+      <Item Id="SetAsStartupProject">Välj som startup projekt</Item>
+      <Item Id="ViewInExplorer">Visa i Utforskaren</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ToolBoxContent">
+    <Item Id="Title">Verktygslåda</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="UnsavedFilesDialog">
+    <Item Id="Title">Osparade filerUnsaved files</Item>
+    <Item Id="Message">Följande filer innehåller osparad data.</Item>
+    <Item Id="SaveSelected">Spara vald</Item>
+    <Item Id="DontSave">Spara inte</Item>
+  </ItemGroup>
+
+  <!-- 
+  ==================================
+  Framework library (TODO)
+  ==================================
+  -->
+  
+</UILanguagePack>
