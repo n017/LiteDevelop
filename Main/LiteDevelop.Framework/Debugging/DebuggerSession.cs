@@ -16,6 +16,8 @@ namespace LiteDevelop.Framework.Debugging
 
         public event EventHandler ActiveChanged;
         public event EventHandler Disposed;
+        public event EventHandler Paused;
+        public event EventHandler Resumed;
         public event SourceRangeEventHandler CurrentSourceRangeChanged;
         
         private bool _isActive;
@@ -86,6 +88,18 @@ namespace LiteDevelop.Framework.Debugging
         {
             if (ActiveChanged != null)
                 ActiveChanged(this, e);
+        }
+
+        protected virtual void OnPaused(EventArgs e)
+        {
+            if (Paused != null)
+                Paused(this, e);
+        }
+
+        protected virtual void OnResumed(EventArgs e)
+        {   
+            if (Resumed != null)
+                Resumed(this, e);
         }
 
         protected virtual void OnCurrentSourceRangeChanged(SourceRangeEventArgs e)

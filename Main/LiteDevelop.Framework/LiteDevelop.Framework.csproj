@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="ArrayComparer.cs" />
     <Compile Include="AssemblyIconProvider.cs" />
-    <Compile Include="EmptyEnumerator.cs" />
     <Compile Include="ErrorIconProvider.cs" />
     <Compile Include="Extensions\CoreExtension.cs" />
     <Compile Include="Extensions\CredentialRequest.cs" />

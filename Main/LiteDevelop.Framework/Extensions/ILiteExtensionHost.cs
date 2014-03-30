@@ -36,6 +36,11 @@ namespace LiteDevelop.Framework.Extensions
         /// Occurs when the user starts debugging an application.
         /// </summary>
         event EventHandler DebugStarted;
+
+        /// <summary>
+        /// Occurs when the current debugging session stopped.
+        /// </summary>
+        event EventHandler DebugStopped;
         
         /// <summary>
         /// Gets the current language of the UI of LiteDevelop.

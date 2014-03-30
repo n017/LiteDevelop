@@ -119,6 +119,14 @@ namespace LiteDevelop.Gui.Forms
 
             _extensionHost.UILanguageChanged += _extensionHost_UILanguageChanged;
             _extensionHost_UILanguageChanged(null, null);
+
+            _extensionHost.DebugStarted += _extensionHost_DebugStarted;
+        }
+
+        void _extensionHost_DebugStarted(object sender, EventArgs e)
+        {
+            DisableDebuggerItems();
+            CurrentDebuggerSession_Resumed(null, null);
         }
 
         private void SetupMuiComponents()
@@ -435,6 +443,34 @@ namespace LiteDevelop.Gui.Forms
             }
         }
 
+        private void EnableDebuggerItems()
+        {
+            buildSolutionToolStripMenuItem.Enabled =
+                buildSolutionStripButton.Enabled =
+                cleanSolutionToolStripMenuItem.Enabled =
+                runWithoutDebuggerToolStripButton.Enabled =
+                runWithoutDebuggerToolStripMenuItem.Enabled =
+                runLastBuildToolStripMenuItem.Enabled = true;
+
+            runToolStripButton.Enabled =
+                runToolStripMenuItem.Enabled = _extensionHost.CurrentSolution.HasDebuggableProjects(_extensionHost.ExtensionManager);
+        }
+
+        private void DisableDebuggerItems()
+        {
+            buildSolutionToolStripMenuItem.Enabled =
+                buildSolutionStripButton.Enabled =
+                cleanSolutionToolStripMenuItem.Enabled =
+                runToolStripButton.Enabled =
+                runToolStripMenuItem.Enabled =
+                runWithoutDebuggerToolStripButton.Enabled =
+                runWithoutDebuggerToolStripMenuItem.Enabled =
+                runLastBuildToolStripMenuItem.Enabled =
+                stepIntoToolStripMenuItem.Enabled =
+                stepOverToolStripMenuItem.Enabled =
+                stepOutToolStripMenuItem.Enabled = false;
+        }
+
         #endregion
 
         #region Menu event handlers
@@ -713,13 +749,14 @@ namespace LiteDevelop.Gui.Forms
                                 break;
                             case PostBuildAction.Debug:
                                 // TODO: use more reliable method of selecting debugger.
-                                new Thread(() =>
-                                    {
-                                        _extensionHost.CurrentDebuggerSession = _extensionHost.ExtensionManager.GetPreferredDebugger(solution.GetFirstExecutableProject()).CreateSession();
-                                        _extensionHost.CurrentSolution.Debug(_extensionHost.CurrentDebuggerSession);
-                                        Invoke(new Action(() => _extensionHost.DispatchDebugStarted(EventArgs.Empty)));
-                                    }).Start();
-
+                                _extensionHost.CurrentDebuggerSession = _extensionHost.ExtensionManager.GetPreferredDebugger(solution.GetFirstExecutableProject()).CreateSession();
+                                _extensionHost.CurrentDebuggerSession.ActiveChanged += CurrentDebuggerSession_ActiveChanged;
+                                _extensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
+                                _extensionHost.CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
+                                _extensionHost.CurrentDebuggerSession.Disposed += CurrentDebuggerSession_Disposed;
+                                _extensionHost.CurrentSolution.Debug(_extensionHost.CurrentDebuggerSession);
+                                _extensionHost.DispatchDebugStarted(EventArgs.Empty);
+                                
                                 break;
                         }
                     }
@@ -735,6 +772,35 @@ namespace LiteDevelop.Gui.Forms
                 }
             }));
 
+        }
+
+        void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
+        {
+            EnableDebuggerItems();
+        }
+
+        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
+        {
+            runToolStripButton.Enabled = runToolStripMenuItem.Enabled =
+                stepIntoToolStripMenuItem.Enabled =
+                stepOverToolStripMenuItem.Enabled =
+                stepOutToolStripMenuItem.Enabled = true;
+        }
+
+        private void CurrentDebuggerSession_Resumed(object sender, EventArgs e)
+        {
+            runToolStripButton.Enabled = runToolStripMenuItem.Enabled =
+                stepIntoToolStripMenuItem.Enabled =
+                stepOverToolStripMenuItem.Enabled =
+                stepOutToolStripMenuItem.Enabled = false;
+        }
+
+        private void CurrentDebuggerSession_ActiveChanged(object sender, EventArgs e)
+        {
+            if (!_extensionHost.CurrentDebuggerSession.IsActive)
+            {
+                _extensionHost.CurrentDebuggerSession.Dispose();
+            }
         }
 
         private void cleanSolutionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -765,8 +831,15 @@ namespace LiteDevelop.Gui.Forms
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _postBuildAction = PostBuildAction.Debug;
-            buildSolutionToolStripMenuItem.PerformClick();
+            if (_extensionHost.CurrentDebuggerSession != null)
+            {
+                _extensionHost.CurrentDebuggerSession.Continue();
+            }
+            else
+            {
+                _postBuildAction = PostBuildAction.Debug;
+                buildSolutionToolStripMenuItem.PerformClick();
+            }
         }
 
         private void runWithoutDebuggerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -890,38 +963,13 @@ namespace LiteDevelop.Gui.Forms
             _extensionHost.CurrentSolution.BuildCompleted += CurrentSolution_BuildCompleted;
             _extensionHost.CurrentSolution.CleanStarted += CurrentSolution_BuildOrCleanStarted;
             _extensionHost.CurrentSolution.CleanCompleted += CurrentSolution_CleanCompleted;
-            
-            buildSolutionToolStripMenuItem.Enabled =
-                buildSolutionStripButton.Enabled =
-                cleanSolutionToolStripMenuItem.Enabled =
-                runWithoutDebuggerToolStripButton.Enabled =
-                runWithoutDebuggerToolStripMenuItem.Enabled =
-                runLastBuildToolStripMenuItem.Enabled = true;
 
-            runToolStripButton.Enabled = 
-                runToolStripMenuItem.Enabled =
-                stepOverToolStripMenuItem.Enabled = 
-                stepIntoToolStripMenuItem.Enabled =
-                stepOutToolStripMenuItem.Enabled = _extensionHost.CurrentSolution.HasDebuggableProjects(_extensionHost.ExtensionManager);
+            EnableDebuggerItems();
         }
 
         private void _extensionHost_SolutionUnload(object sender, SolutionEventArgs e)
         {
-            /*
-            _extensionHost.CurrentSolution.BuildStarted -= CurrentSolution_BuildOrCleanStarted;
-            _extensionHost.CurrentSolution.BuildCompleted -= CurrentSolution_BuildCompleted;
-            _extensionHost.CurrentSolution.CleanStarted -= CurrentSolution_BuildOrCleanStarted;
-            _extensionHost.CurrentSolution.CleanCompleted -= CurrentSolution_CleanCompleted;
-            */
-
-            buildSolutionToolStripMenuItem.Enabled =
-                buildSolutionStripButton.Enabled =
-                cleanSolutionToolStripMenuItem.Enabled =
-                runToolStripButton.Enabled =
-                runToolStripMenuItem.Enabled =
-                runWithoutDebuggerToolStripButton.Enabled =
-                runWithoutDebuggerToolStripMenuItem.Enabled =
-                runLastBuildToolStripMenuItem.Enabled = false;
+            DisableDebuggerItems();
         }
 
         private void _extensionHost_UILanguageChanged(object sender, EventArgs e)

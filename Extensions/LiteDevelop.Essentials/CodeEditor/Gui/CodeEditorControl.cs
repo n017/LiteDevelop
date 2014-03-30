@@ -53,6 +53,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.BookmarkManager.Bookmarks.InsertedItem += Bookmarks_InsertedItem;
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
+            _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
             _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointer);
             
             ExtensionHost_UILanguageChanged(null, null);
@@ -65,24 +66,35 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
         private void ExtensionHost_DebugStarted(object sender, EventArgs e)
         {
-            _extension.ExtensionHost.CurrentDebuggerSession.Disposed += CurrentDebuggerSession_Disposed;
             _extension.ExtensionHost.CurrentDebuggerSession.CurrentSourceRangeChanged += CurrentDebuggerSession_CurrentSourceRangeChanged;
+            fastColoredTextBox1.ReadOnly = true;
+        }
+
+        void ExtensionHost_DebugStopped(object sender, EventArgs e)
+        {
+            _extension.ExtensionHost.CurrentDebuggerSession.CurrentSourceRangeChanged -= CurrentDebuggerSession_CurrentSourceRangeChanged;
+            fastColoredTextBox1.ReadOnly = false;
+
+            if (TextBox.Bookmarks.Contains(_instructionPointer))
+                TextBox.Bookmarks.Remove(_instructionPointer);
         }
 
         private void CurrentDebuggerSession_CurrentSourceRangeChanged(object sender, SourceRangeEventArgs e)
         {
-            _instructionPointer.LineIndex = e.Range.Line;
-            if (e.Range.FilePath == _file.FilePath && !TextBox.Bookmarks.Contains(_instructionPointer))
-                TextBox.Bookmarks.Add(_instructionPointer);
-        }
+            _instructionPointer.InnerBookmark.Location = e.Range;
 
-        private void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
-        {
-            _extension.ExtensionHost.CurrentDebuggerSession.CurrentSourceRangeChanged -= CurrentDebuggerSession_CurrentSourceRangeChanged;
-            _extension.ExtensionHost.CurrentDebuggerSession.Disposed -= CurrentDebuggerSession_Disposed;
-
-            if (TextBox.Bookmarks.Contains(_instructionPointer))
-                TextBox.Bookmarks.Remove(_instructionPointer);
+            if (!TextBox.Bookmarks.Contains(_instructionPointer))
+            {
+                if (e.Range.FilePath == _file.FilePath)
+                {
+                    TextBox.Bookmarks.Add(_instructionPointer);
+                    _instructionPointer.DoVisible();
+                }
+                else
+                {
+                    TextBox.Bookmarks.Remove(_instructionPointer);
+                }
+            }
         }
 
         public FastColoredTextBox TextBox
@@ -210,7 +222,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             bool add = true;
             foreach (var bookmark in TextBox.Bookmarks)
             {
-                if (bookmark.LineIndex == line)
+                if (bookmark.LineIndex == line - 1)
                 {
                     _extension.ExtensionHost.BookmarkManager.Bookmarks.Remove((bookmark as CodeEditorBookmark).InnerBookmark);
                     add = false;
@@ -220,8 +232,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             if (add)
             {
-                _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(new BreakpointBookmark(new SourceLocation(_file.FilePath, line, 0)));
-                //TextBox.Bookmarks.Add(new CodeEditorBreakpoint(TextBox, "Breakpoint", line, _extension.StyleMap.BreakpointStyle));
+                _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(new BreakpointBookmark(new SourceLocation(_file.FilePath, line, 1)));
             }
         }
 
@@ -397,7 +408,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 _extension.ExtensionHost.CurrentSolution.HasDebuggableProjects(_extension.ExtensionHost.ExtensionManager))
             {
                 int line = TextBox.PointToPlace(e.Location).iLine;
-                ToggleBreakpoint(line);
+                ToggleBreakpoint(line + 1);
             }
         }
 
@@ -663,18 +674,23 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
        
         private void Bookmarks_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            TextBox.Bookmarks.Add(CreateBookmark(e.TargetObject as Framework.FileSystem.Bookmark));
+            var bookmark = e.TargetObject as Framework.FileSystem.Bookmark;
+            if (bookmark.Location.FilePath == _file.FilePath)
+                TextBox.Bookmarks.Add(CreateBookmark(bookmark));
         }
 
         private void Bookmarks_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
             var bookmark = e.TargetObject as Framework.FileSystem.Bookmark;
-            foreach (var tbBookmark in TextBox.Bookmarks)
-                if (tbBookmark.LineIndex == bookmark.Location.Line)
-                {
-                    TextBox.Bookmarks.Remove(tbBookmark);
-                    break;
-                }
+            if (bookmark.Location.FilePath == _file.FilePath)
+            {
+                foreach (var tbBookmark in TextBox.Bookmarks)
+                    if (tbBookmark.LineIndex == bookmark.Location.Line - 1)
+                    {
+                        TextBox.Bookmarks.Remove(tbBookmark);
+                        break;
+                    }
+            }
         }
 
         private void ExtensionHost_UILanguageChanged(object sender, EventArgs e)
@@ -733,7 +749,8 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             {
                 if (CanYieldItems)
                     return _map.GetEnumerator();
-                return new EmptyEnumerator<AutocompleteItem>();
+
+                return Enumerable.Empty<AutocompleteItem>().GetEnumerator();
             }
 
             System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -747,13 +764,13 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             if (_extension.ExtensionHost.BookmarkManager.GetBookmarksOnLine(_file.FilePath, TextBox.Selection.Start.iLine).Count() == 0)
             {
                 _extension.ExtensionHost.BookmarkManager.Bookmarks.Add(
-                    new Framework.FileSystem.Bookmark(new SourceLocation(_file.FilePath, TextBox.Selection.Start.iLine, 1)));
+                    new Framework.FileSystem.Bookmark(new SourceLocation(_file.FilePath, TextBox.Selection.Start.iLine + 1, 1)));
             }
         }
 
         internal void UnbookmarkCurrentLine()
         {
-            _extension.ExtensionHost.BookmarkManager.ClearBookmarksOnLine(_file.FilePath, TextBox.Selection.Start.iLine);
+            _extension.ExtensionHost.BookmarkManager.ClearBookmarksOnLine(_file.FilePath, TextBox.Selection.Start.iLine + 1);
         }
     }
 }

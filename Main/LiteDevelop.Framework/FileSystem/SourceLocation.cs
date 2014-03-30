@@ -26,7 +26,7 @@ namespace LiteDevelop.Framework.FileSystem
         }
 
         /// <summary>
-        /// Gets the zero-based line index of the location in the source file.
+        /// Gets the line index of the location in the source file.
         /// </summary>
         public int Line
         {
@@ -35,7 +35,7 @@ namespace LiteDevelop.Framework.FileSystem
         }
 
         /// <summary>
-        /// Gets the zero-based column index of the location in the source file.
+        /// Gets the column index of the location in the source file.
         /// </summary>
         public int Column
         {

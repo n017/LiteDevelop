@@ -105,7 +105,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Syntax.Net
                 }
             }
 
-            return new EmptyEnumerator<AutocompleteItem>();
+            return Enumerable.Empty<AutocompleteItem>().GetEnumerator();
         }
 
         private IEnumerator<AutocompleteItem> GetEnumeratorOfObject(int currentPosition, object item)

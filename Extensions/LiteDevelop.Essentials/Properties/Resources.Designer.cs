@@ -103,6 +103,16 @@ namespace LiteDevelop.Essentials.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap current {
+            get {
+                object obj = ResourceManager.GetObject("current", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dll {
             get {
                 object obj = ResourceManager.GetObject("dll", resourceCulture);

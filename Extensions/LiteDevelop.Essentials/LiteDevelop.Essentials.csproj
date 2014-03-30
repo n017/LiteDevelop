@@ -196,6 +196,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Mui\turkish.xml" />
+    <None Include="Resources\current.png" />
     <None Include="Resources\list.png" />
     <None Include="Resources\comment_cancel.png" />
     <None Include="Resources\comment_accept.png" />

@@ -32,12 +32,12 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.addBookmarkToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.removeBookmarkToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.previousToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.nextToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +66,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             this.listView1.SizeChanged += new System.EventHandler(this.listView1_SizeChanged);
             // 
             // toolStrip1
@@ -83,6 +84,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(367, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // addBookmarkToolStripButton
             // 
@@ -104,15 +115,10 @@
             this.removeBookmarkToolStripButton.Text = "&Remove bookmark from current line";
             this.removeBookmarkToolStripButton.Click += new System.EventHandler(this.removeBookmarkToolStripButton_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // previousToolStripButton
             // 
             this.previousToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.previousToolStripButton.Image = global::LiteDevelop.Properties.Resources.backward;
+            this.previousToolStripButton.Image = global::LiteDevelop.Properties.Resources.left;
             this.previousToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.previousToolStripButton.Name = "previousToolStripButton";
             this.previousToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -122,17 +128,12 @@
             // nextToolStripButton
             // 
             this.nextToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nextToolStripButton.Image = global::LiteDevelop.Properties.Resources.forward;
+            this.nextToolStripButton.Image = global::LiteDevelop.Properties.Resources.right;
             this.nextToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nextToolStripButton.Name = "nextToolStripButton";
             this.nextToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.nextToolStripButton.Text = "Go to &next bookmark";
             this.nextToolStripButton.Click += new System.EventHandler(this.nextToolStripButton_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // deleteAllToolStripButton
             // 

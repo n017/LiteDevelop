@@ -10,6 +10,7 @@ using LiteDevelop.Extensions;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.Gui;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
@@ -73,7 +74,7 @@ namespace LiteDevelop.Gui.DockContents
             var bookmark = e.TargetObject as Bookmark;
 
             var item = new ListViewItem(new string[] { 
-                (bookmark.Location.Line + 1).ToString(), 
+                bookmark.Location.Line.ToString(), 
                 // bookmark.Tooltip, 
                 bookmark.Location.FilePath.ToString() })
             {
@@ -99,7 +100,7 @@ namespace LiteDevelop.Gui.DockContents
         {
             var bookmark = sender as Bookmark;
             var listItem = _bookmarkItems[bookmark];
-            listItem.SubItems[0].Text = (bookmark.Location.Line + 1).ToString();
+            listItem.SubItems[0].Text = bookmark.Location.Line.ToString();
             //listItem.SubItems[1].Text = bookmark.Tooltip;
             listItem.SubItems[1].Text = bookmark.Location.FilePath.FullPath;
         }
@@ -154,6 +155,22 @@ namespace LiteDevelop.Gui.DockContents
         private void deleteAllToolStripButton_Click(object sender, EventArgs e)
         {
             _extensionHost.BookmarkManager.Bookmarks.Clear();
+        }
+
+        private void listView1_ItemActivate(object sender, EventArgs e)
+        {
+            var bookmark =  _bookmarkItems.First(x=> x.Value == listView1.SelectedItems[0]).Key;
+            var fileHandlers = _extensionHost.ExtensionManager.GetFileHandlers(bookmark.Location.FilePath).Where(x => x is ISourceNavigator);
+            var handler = _extensionHost.FileService.SelectFileHandler(fileHandlers, bookmark.Location.FilePath);
+            var file = _extensionHost.FileService.OpenFile(bookmark.Location.FilePath);
+            handler.OpenFile(file);
+
+            ISourceNavigator navigator = file.CurrentDocumentContent as ISourceNavigator ??
+                file.RegisteredDocumentContents.FirstOrDefault(x => x is ISourceNavigator) as ISourceNavigator ??
+                handler as ISourceNavigator;
+
+            if (navigator != null)
+                navigator.NavigateToLocation(bookmark.Location);
         }
 
 
