@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+  
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Couper</Item>
+      <Item Id = "Copy">Copier</Item>
+      <Item Id = "Paste">Coller</Item>
+      <Item Id = "SelectAll">Sélectionner tout</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">Général</Item>
+    <Item Id = "AutoCompleteSettings">Auto complétion</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Afficher suggestions</Item>
+      <Item Id = "CommentRegion">Commenter région</Item>
+      <Item Id = "UncommentRegion">Supprimer région commentée</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Ligne $(line)</Item>
+      <Item Id = "CurrentColumn">Colonne $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Afficher les numéros de ligne</Item>
+    <Item Id = "WordWrap">Word wrap</Item>
+    <Item Id = "SyntaxHighlighting">Reconnaissance synthaxique</Item>
+    <Item Id = "TrackUnsavedChanges">Suivi des modifications non enregistrées</Item>
+    <Item Id = "HighlightCurrentLine">Mettre en surbrillance la ligne courante</Item>
+    <Item Id = "ShowDocumentMiniMap">Afficher le miniature du document</Item>
+  </ItemGroup>
+  
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Lister automatiquement les membres</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Afficher suggestion lorsque:</Item>
+        <Item Id = "TypingAnyChar">un caractère pressé</Item>
+        <Item Id = "PressingCtrlSpace">Ctrl+Space pressé</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">proposer l'élément lorsque vous appuyez sur l'un des caractères suivants:</Item>
+      <Item Id = "CommitItemOnSpaceBar">proposer l'élément lorsque vous appuyez sur la barre espace</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Remplissage auto des blocs de code (e.g. ( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Ajout auto des parenthèses aux méthodes après l'insertion de la méthode suggérée.</Item>
+  </ItemGroup>
+  
+</UILanguagePack>
