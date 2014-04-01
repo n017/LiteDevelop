@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+  
+  <!-- 
+  ==================================
+  Main application 
+  ==================================
+  -->
+  
+  <ItemGroup Id="Common">
+    <Item Id="Ok">Ok</Item>
+    <Item Id="Close">Schließen</Item>
+    <Item Id="Cancel">Abbrechen</Item>
+    <Item Id="Yes">Ja</Item>
+    <Item Id="No">Nein</Item>
+    <Item Id="Add">Hinzufügen</Item>
+    <Item Id="Remove">Entfernen</Item>
+    <Item Id="Browse">Durchsuchen</Item>
+    <Item Id="None">Keine</Item>
+    <Item Id="Name">Name</Item>
+    <Item Id="Directory">Verzeichnis</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="AboutDialog">
+    <Item Id="Title">Über</Item>
+    <Item Id="ProjectFounder">Projekt Gründer</Item>
+    <Item Id="Version">Version</Item>
+    <Item Id="Repository">Github Repository</Item>
+    <ItemGroup Id="ModuleListHeaders">
+      <Item Id="Module">Module</Item>
+      <Item Id="Version">Version</Item>
+    </ItemGroup>
+    <ItemGroup Id="ExtensionDetails">
+      <Item Id="Name">Name</Item>
+      <Item Id="Version">Version</Item>
+      <Item Id="Path">Pfad</Item>
+      <Item Id="Author">Autor</Item>
+      <Item Id="Description">Beschreibung</Item>
+      <Item Id="Copyright">Copyright</Item>
+      <Item Id="AdditionalReleaseInformation">Zusätzliche Release Informationen</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="AppearanceEditor">
+    <Item Id="Extensions">Erweiterungen</Item>
+    
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Key">Schlüssel</Item>
+      <Item Id="Preview">Vorschau</Item>
+    </ItemGroup>
+    
+    <ItemGroup Id="Editor">
+      <Item Id="ForeColor">Vordergrund Farbe:</Item>
+      <Item Id="BackColor">Hintergrund Farbe:</Item>
+      <Item Id="Transparent">Transparenz</Item>
+      <Item Id="Bold">Fett</Item>
+      <Item Id="Italic">Kursiv</Item>
+      <Item Id="Underline">Unterstrichen</Item>
+      <Item Id="Strikeout">Durchgestrichen</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="CreateFileDialog">
+    <Item Id="Title">Neue Datei erstellen</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="CreateProjectDialog">
+    <Item Id="Title">Neues Projekt erstellen</Item>
+    <Item Id="FolderAlreadyExists">$(folder) ist bereits vorhanden. Möchten Sie fortfahren?</Item>
+    <Item Id="FileAlreadyExists">$(file) ist bereits vorhanden. Überschreiben?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Lesezeichen</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Lesezeichen an dieser Zeile hinzufügen</Item>
+      <Item Id="RemoveBookmark">&amp;Lesezeichen an dieser Zeile entfernen</Item>
+      <Item Id="Previous">Gehe zum &amp;vorherigem Lesezeichen</Item>
+      <Item Id="Next">Gehe zum &amp;nächsten Lesezeichen</Item>
+      <Item Id="DeleteAll">&amp;Alle löschen</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Zeile</Item>
+      <Item Id="File">Datei</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="ErrorContent">
+    <Item Id="Title">Fehlerliste</Item>
+    <ItemGroup Id ="Toolbar">
+      <Item Id="Errors">$(count) Fehler</Item>
+      <Item Id="Warnings">$(count) Warnungen</Item>
+      <Item Id="Messages">$(count) Meldungen</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Message">Meldung</Item>
+      <Item Id="File">Datei</Item>
+      <Item Id="Line">Zeile</Item>
+      <Item Id="Column">Spalte</Item>
+    </ItemGroup>
+    <ItemGroup Id="ContextMenu">
+      <Item Id="Copy">Kopieren</Item>
+      <Item Id="GotoFile">Gehe zu Datei</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionLoadDialog">
+    <Item Id="Title">Erweiterungs-Lade Resultat</Item>
+    <Item Id="LoadedSuccessfully">Erfolgreich geladen</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Extension">Erweiterungen</Item>
+      <Item Id="Path">Pfad</Item>
+      <Item Id="Result">Resultat</Item>
+    </ItemGroup>
+    <ItemGroup Id="Details">
+      <Item Id="Title">Erweiterungs-Lade Resultat</Item>
+      <Item Id="Message">Die Erweiterung $(extension) wurde $(result) geladen.&#10;&#13;&#10;&#13;Details:&#10;&#13;$(details)</Item>
+      <Item Id="Successfully">erfolgreich</Item>
+      <Item Id="Unsuccessfully">nicht erfolgreich</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionsDialog">
+    <Item Id="Title">Erweiterungen</Item>
+    <Item Id="Add.FileFilter">LiteDevelop Erweiterungs-Bibliotheken (*.dll)</Item>
+    <Item Id="Remove.Warning">Sind Sie sich sicher, dass Sie die Bibliothek und ihre Erweiterungen entfernen möchten?</Item>
+    <Item Id="RestartRequired">Um die Operationen abzuschließen, muss LiteDevelop neu gestartet werden. Möchten Sie jetzt neustarten?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="LiteDevelopExtension">
+    <Item Id="GeneralSettings">Allgemein</Item>
+    <Item Id="Appearance">Oberfläche</Item>
+    <Item Id="InternationalSettings">International</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsEditor">
+    <Item Id="DefaultProjectsPath">Standard Projekte Pfad:</Item>
+    <Item Id="ShowOutput">Ausgabe anzeigen beim erstellen.</Item>
+    <Item Id="ShowErrorList">Fehlerliste anzeigen wenn Erstellen fehlschlägt.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="MainForm">
+    
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Es ist kein Editor verfügbar für "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Es ist kein Debugger verfügbar für "$(project)".</Item>
+      <Item Id="BuildFailed">Erstellen eines oder mehrerer Projekte fehlgeschlagen. Mehr Details in der Fehlerliste oder im Ausgabefenster.</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Möchten Sie wirklich die Solution schließen?</Item>
+      <Item Id="CloseAllDocumentsWarning">Möchten Sie wirklich alle offenen Dateien schließen?</Item>
+    </ItemGroup>
+
+    <ItemGroup Id="Menu">
+      <ItemGroup Id="File">
+        <Item Id="Title">&amp;Datei</Item>
+        <Item Id="New">&amp;Neu</Item>
+        <Item Id="New.NewFile">Neue Datei</Item>
+        <Item Id="New.NewProject">Neues Projekt</Item>
+        <Item Id="Open">&amp;Öffnen</Item>
+        <Item Id="Save">&amp;Speichern</Item>
+        <Item Id="SaveAs">Speichern &amp;als</Item>
+        <Item Id="SaveAll">Alles speichern</Item>
+        <Item Id="Close">Schließen</Item>
+        <Item Id="CloseSolution">Solution schließen</Item>
+        <Item Id="Print">&amp;Drucken</Item>
+        <Item Id="PrintPreview">Druck Vorsc&amp;hau</Item>
+        <Item Id="Exit">Schli&amp;eßen</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Edit">
+        <Item Id="Title">&amp;Bearbeiten</Item>
+        <Item Id="Undo">&amp;Rückgängig</Item>
+        <Item Id="Redo">&amp;Wiederherstellen</Item>
+        <Item Id="Cut">&amp;Ausschneiden</Item>
+        <Item Id="Copy">&amp;Kopieren</Item>
+        <Item Id="Paste">&amp;Einfügen</Item>
+        <Item Id="SelectAll">Alles &amp;auswählen</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="View">
+        <Item Id="Title">&amp;Ansicht</Item>
+        <Item Id="Toolbox">&amp;Toolbox</Item>
+        <Item Id="SolutionExplorer">&amp;Solution Explorer</Item>
+        <Item Id="PropertiesWindow">&amp;Eigenschaften</Item>
+        <Item Id="Bookmarks">&amp;Lesezeichen</Item>
+        <Item Id="ErrorList">&amp;Fehlerliste</Item>
+        <Item Id="OutputWindow">&amp;Ausgabe</Item>
+        <Item Id="Fullscreen">&amp;Vollbild</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Build">
+        <Item Id="Title">&amp;Erstellen</Item>
+        <Item Id="BuildSolution">Solution &amp;erstellen</Item>
+        <Item Id="CleanSolution">Solution &amp;bereinigen</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Debug">
+        <Item Id="Title">&amp;Debug</Item>
+        <Item Id="Run">&amp;Ausführen</Item>
+        <Item Id="RunWithoutDebugger">Ausführen &amp;ohne Debugger</Item>
+        <Item Id="RunLastBuild">&amp;Letzte erstelle Datei ausführen</Item>
+        <Item Id="Break">&amp;Anhalten</Item>
+        <Item Id="StopDebugging">&amp;Debugging abbrechen</Item>
+        <Item Id="StepOver">Schritt &amp;über</Item>
+        <Item Id="StepInto">Schritt &amp;hinein</Item>
+        <Item Id="StepOut">Schritt &amp;heraus</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Tools">
+        <Item Id="Title">&amp;Tools</Item>
+        <Item Id="Settings">&amp;Einstellungen</Item>
+        <Item Id="Extensions">&amp;Erweiterungen</Item>
+      </ItemGroup>
+      
+      <ItemGroup Id="Window">
+        <Item Id="Title">&amp;Fenster</Item>
+        <Item Id="NextWindow">&amp;Nächstes Fenster</Item>
+        <Item Id="PreviousWindow">&amp;Vorheriges Fenster</Item>
+        <Item Id="CloseAllDocuments">&amp;Alle Dateien schließen</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Help">
+        <Item Id="Title">&amp;Hilfe</Item>
+        <Item Id="SourceCode">Quelltext</Item>
+        <Item Id="About">&amp;Über</Item>
+      </ItemGroup>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OpenWithDialog">
+    <Item Id="Title">Öffnen mit...</Item>
+    <ItemGroup Id ="ListHeaders">
+      <Item Id="Name">Name</Item>
+      <Item Id="Description">Beschreibung</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OutputContent">
+    <Item Id="Title">Ausgabe</Item>
+    <Item Id="ShowOutputFrom">Zeige Ausgabe von:</Item>
+    <Item Id="ClearAll">Alles löschen</Item>
+    <Item Id="ToggleWordWrap">Zeilenumbruch de/aktivieren</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="PropertiesContent">
+    <Item Id="Title">Eigenschaften</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SettingsDialog">
+    <Item Id="Title">Einstellungen</Item>
+    <Item Id="ResetToDefaults">Auf Werkseinstellungen zurücksetzen</Item>
+    <Item Id="ResetToDefaultsWarning">Sind Sie sich sicher, dass Sie alle Einstellungen auf ihren Werkszustand zurücksetzen wollen?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SolutionExplorerContent">
+    <Item Id="Title">Solution Explorer</Item>
+    <Item Id ="DeleteFileWarning">$(file) wird unwiderrufbar gelöscht.</Item>
+    
+    <ItemGroup Id ="ContextMenu">
+      <Item Id="Add">Hinzufügen</Item>
+      <Item Id="Add.NewFile">Neue Datei</Item>
+      <Item Id="Add.NewDirectory">Neues Verzeichnis</Item>
+      <Item Id="Add.NewProject">Neues Projekt</Item>
+      <Item Id="Add.ExistingFile">Vorhandene Datei...</Item>
+      <Item Id="Open">Öffnen</Item>
+      <Item Id="Remove">Entfernen</Item>
+      <Item Id="Rename">Umbenennen</Item>
+      <Item Id="SetAsStartupProject">Als Start-Projekt setzen</Item>
+      <Item Id="ViewInExplorer">Im Explorer anzeigen</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ToolBoxContent">
+    <Item Id="Title">Toolbox</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="UnsavedFilesDialog">
+    <Item Id="Title">Ungespeicherte Dateien</Item>
+    <Item Id="Message">Die folgenden Dateien enthalten ungespeicherte Daten.</Item>
+    <Item Id="SaveSelected">Ausgewählte speichern</Item>
+    <Item Id="DontSave">Nicht speichern</Item>
+  </ItemGroup>
+
+  <!-- 
+  ==================================
+  Framework library (TODO)
+  ==================================
+  -->
+  
+</UILanguagePack>

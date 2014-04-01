@@ -82,21 +82,20 @@
             <Component Id = "MainAppFrenchMuiFile" Guid ="{C623B2E3-A416-416C-8B11-9F4BA4E32206}">
               <File Id = "mainapp_french.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\french.xml" KeyPath="yes" />
             </Component>
-            
-            <!--
             <Component Id = "MainAppGermanMuiFile" Guid ="{23CFB27D-CAA4-4CFD-86BD-AFA118F8B265}">
               <File Id = "mainapp_german.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\german.xml" KeyPath="yes" />
             </Component>
+            <!--
             <Component Id = "MainAppNorwegianMuiFile" Guid ="{EC585D25-5306-400D-98DC-E51660F5AF3D}">
               <File Id = "mainapp_norwegian.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\norwegian.xml" KeyPath="yes" />
             </Component>
             <Component Id = "MainAppSpanishMuiFile" Guid ="{9B8DCAA2-1CA2-46C8-ADC8-419F7640A1D6}">
               <File Id = "mainapp_spanish.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\spanish.xml" KeyPath="yes" />
             </Component>
-            <Component Id = "MainAppSwedishMuiFile" Guid ="{DE0C2406-B1DA-47B4-B111-D0FE1DE28722}">
-              <File Id = "mainapp_swedish.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\swedish.xml" KeyPath="yes" />
-            </Component>
             -->
+              <Component Id = "MainAppSwedishMuiFile" Guid ="{DE0C2406-B1DA-47B4-B111-D0FE1DE28722}">
+                <File Id = "mainapp_swedish.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\swedish.xml" KeyPath="yes" />
+              </Component>
             <Component Id = "MainAppPirateTalkMuiFile" Guid ="{EC790002-480D-49CB-9A37-AF117C37D7FA}">
               <File Id = "mainapp_pirate_talk.xml" Source ="$(var.LiteDevelop.TargetDir)\Mui\pirate.xml" KeyPath="yes" />
             </Component>

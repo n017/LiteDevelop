@@ -62,6 +62,7 @@ Translations:
 Dutch: Jerre S.
 Finnish: Dextrey
 French: Wallace87000
+German: MaxX0r
 Pirate (>:D): Jerre S.
 Swedish: UbbeLol
 Turkish: Woopza

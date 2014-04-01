@@ -86,20 +86,20 @@
             <ComponentRef Id = "MainAppFrenchMuiFile"/>
           </Feature>
 
-          <!--
           <Feature Id = "MainAppGermanMuiFeature" Title = "German">
             <ComponentRef Id = "MainAppGermanMuiFile"/>
           </Feature>
+          <!--
           <Feature Id = "MainAppNorwegianMuiFeature" Title = "Norwegan">
             <ComponentRef Id = "MainAppNorwegianMuiFile"/>
           </Feature>
           <Feature Id = "MainAppSpanishMuiFeature" Title = "Spanish">
             <ComponentRef Id = "MainAppSpanishMuiFile"/>
           </Feature>
-          <Feature Id = "MainAppSwedishMuiFeature" Title = "Swedish">
-            <ComponentRef Id = "MainAppSwedishMuiFile"/>
-          </Feature>
           -->
+            <Feature Id = "MainAppSwedishMuiFeature" Title = "Swedish">
+              <ComponentRef Id = "MainAppSwedishMuiFile"/>
+            </Feature>
           <Feature Id = "MainAppPirateTalkMuiFeature" Title = "Pirate Talk">
             <ComponentRef Id = "MainAppPirateTalkMuiFile"/>
           </Feature>
