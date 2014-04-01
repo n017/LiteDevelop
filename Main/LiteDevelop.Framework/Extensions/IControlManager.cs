@@ -11,6 +11,11 @@ namespace LiteDevelop.Framework.Extensions
     public interface IControlManager
     {
         /// <summary>
+        /// Occurs whether LiteDevelop cannot retrieve the corresponding tool window by its persist name during the restoration of the window layout.
+        /// </summary>
+        event ResolveToolWindowEventHandler ResolveToolWindow;
+
+        /// <summary>
         /// Gets a collecton of document view contents opened in LiteDevelop.
         /// </summary>
         EventBasedCollection<LiteDocumentContent> OpenDocumentContents { get; }
@@ -85,6 +90,26 @@ namespace LiteDevelop.Framework.Extensions
         /// </summary>
         event EventHandler AppearanceChanged;
 
+        /// <summary>
+        /// Invokes a specific action on the main thread.
+        /// </summary>
+        /// <param name="action">The action to invoke.</param>
         void InvokeOnMainThread(Action action);
+    }
+
+    public delegate LiteToolWindow ResolveToolWindowEventHandler(object sender, ResolveToolWindowEventArgs e);
+
+    public class ResolveToolWindowEventArgs :EventArgs
+    {
+        public ResolveToolWindowEventArgs(string persistName)
+        {
+            PersistName = persistName;
+        }
+
+        public string PersistName
+        { 
+            get; 
+            private set; 
+        }
     }
 }

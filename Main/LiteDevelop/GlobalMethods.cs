@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using LiteDevelop.Framework.FileSystem;
 using LiteDevelop.Framework.Gui;
+using LiteDevelop.Gui.DockContents;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop
@@ -33,9 +35,15 @@ namespace LiteDevelop
             return GetContent(dockPanel, x => x.DockHandler.IsActivated);
         }
 
+        public static ViewContentContainer GetContainer(this DockPanel dockPanel, LiteViewContent liteContent)
+        {
+            return GetContent(dockPanel, x => x is ViewContentContainer &&
+                (x as ViewContentContainer).ViewContent == liteContent) as ViewContentContainer;
+        }
+
         public static DockContent GetContentByFile(this DockPanel dockPanel, OpenedFile file)
         {
-            return GetContent(dockPanel, x => x.Tag is LiteDocumentContent && (x.Tag as LiteDocumentContent).AssociatedFile.FilePath == file.FilePath);
+            return GetContentByFilePath(dockPanel, file.FilePath);
         }
 
         public static DockContent GetContentByFilePath(this DockPanel dockPanel, string filePath)
@@ -45,7 +53,10 @@ namespace LiteDevelop
 
         public static DockContent GetContentByFilePath(this DockPanel dockPanel, FilePath filePath)
         {
-            return GetContent(dockPanel, x => x.Tag is LiteDocumentContent && (x.Tag as LiteDocumentContent).AssociatedFile != null && (x.Tag as LiteDocumentContent).AssociatedFile.FilePath == filePath);
+            return GetContent(dockPanel, x => x is ViewContentContainer &&
+                (x as ViewContentContainer).DocumentContent != null &&
+                (x as ViewContentContainer).DocumentContent.AssociatedFile != null && 
+                (x as ViewContentContainer).DocumentContent.AssociatedFile.FilePath == filePath);
         }
 
         public static DockContent GetContent(this DockPanel dockPanel, Func<DockContent, bool> condition)
@@ -71,7 +82,8 @@ namespace LiteDevelop
         {
             foreach (DockContent document in dockPanel.DocumentsToArray())
             {
-                if (document.Tag == documentContent)
+                if (document is ViewContentContainer && 
+                    (document as ViewContentContainer).DocumentContent == documentContent)
                 {
                     document.Activate();
                     break;
@@ -105,5 +117,32 @@ namespace LiteDevelop
         {
             Array.Sort(collection, (x, y) => string.Compare(x.Text, y.Text, StringComparison.OrdinalIgnoreCase));
         }
+
+        private static readonly Dictionary<LiteToolWindowDockState, DockState> _dockStates = new Dictionary<LiteToolWindowDockState, DockState>()
+        {
+            {LiteToolWindowDockState.Bottom, DockState.DockBottom},
+            {LiteToolWindowDockState.BottomAutoHide, DockState.DockBottomAutoHide},
+            {LiteToolWindowDockState.Left, DockState.DockLeft},
+            {LiteToolWindowDockState.LeftAutoHide, DockState.DockLeft},
+            {LiteToolWindowDockState.Right, DockState.DockRight},
+            {LiteToolWindowDockState.RightAutoHide, DockState.DockRight},
+            {LiteToolWindowDockState.Top, DockState.DockTop},
+            {LiteToolWindowDockState.TopAutoHide, DockState.DockTop},
+            {LiteToolWindowDockState.Float, DockState.Float},
+            {LiteToolWindowDockState.Hidden, DockState.Hidden},
+            {LiteToolWindowDockState.Unknown, DockState.Unknown},
+        };
+        
+        public static DockState ToDockPanelSuite(this LiteToolWindowDockState dockState)
+        {
+            return _dockStates[dockState];
+        }
+
+        public static LiteToolWindowDockState ToLiteDevelop(this DockState dockState)
+        {
+            return _dockStates.First(x => x.Value == dockState).Key;
+        }
+
+
     }
 }

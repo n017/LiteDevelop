@@ -202,6 +202,13 @@ namespace LiteDevelop.Extensions
             return null;
         }
 
+        public event EventHandler Initialized;
+        public void DispatchInitialized(EventArgs e)
+        {
+            if (Initialized != null)
+                Initialized(this, e);
+        }
+
         public event SolutionEventHandler SolutionCreated;
         public void DispatchSolutionCreated(SolutionEventArgs e)
         {

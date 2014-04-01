@@ -199,6 +199,10 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 _autoCompleteMenu.SearchPattern = _autoCompletionMap.SearchPattern;
                 _autoCompleteMenu.Selecting += _autoCompleteMenu_Selecting;
             }
+            else
+            {
+                _itemEnumerator = new InternalAutoCompletionMap(null);
+            }
 
         }
 
@@ -747,7 +751,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             public IEnumerator<AutocompleteItem> GetEnumerator()
             {
-                if (CanYieldItems)
+                if (CanYieldItems && _map != null)
                     return _map.GetEnumerator();
 
                 return Enumerable.Empty<AutocompleteItem>().GetEnumerator();

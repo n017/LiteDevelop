@@ -185,7 +185,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-	<Content Include="Mui\french.xml">
+    <Content Include="Mui\french.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -195,7 +195,9 @@
     <Content Include="Mui\pirate.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Mui\turkish.xml" />
+    <Content Include="Mui\turkish.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\current.png" />
     <None Include="Resources\list.png" />
     <None Include="Resources\comment_cancel.png" />

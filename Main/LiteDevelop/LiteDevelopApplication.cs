@@ -104,8 +104,9 @@ namespace LiteDevelop
                     LoadExtensions();
                 };
             _worker.RunWorkerCompleted += (o, e) =>
-                {
+                {   
                     OnInitializedApplication(EventArgs.Empty);
+                    _extensionHost.DispatchInitialized(EventArgs.Empty);
                     _splashScreen.Dispose();
                     
                 };

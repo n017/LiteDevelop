@@ -169,7 +169,7 @@ namespace LiteDevelop.Framework.FileSystem
                 var encoding = encodingInfo.GetEncoding();
                 bom = encoding.GetPreamble();
 
-                if (bom.Length > 0)
+                if (bom.Length > 0 && bytes.Length >= bom.Length)
                 {
                     bool matchesBom = true;
                     for (int i = 0; i < bom.Length; i++)

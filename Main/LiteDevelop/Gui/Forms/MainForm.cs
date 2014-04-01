@@ -80,7 +80,7 @@ namespace LiteDevelop.Gui.Forms
             };
 
             // manual set keys, visual studio's designer doesn't show the enter key (at least not for me).
-            fullScreenToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Enter; 
+            fullScreenToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.Enter;
 
             SetupMuiComponents();
             LiteDevelopApplication.Current.InitializedApplication += new EventHandler(ThisApplication_InitializedApplication);
@@ -88,6 +88,11 @@ namespace LiteDevelop.Gui.Forms
 
         private void ThisApplication_InitializedApplication(object sender, EventArgs e)
         {
+            _extensionHost = LiteDevelopApplication.Current.ExtensionHost as LiteExtensionHost;
+            _extensionHost.ErrorManager.NavigateToErrorRequested += ErrorManager_NavigateToErrorRequested;
+            _extensionHost.SolutionLoad += _extensionHost_SolutionLoad;
+            _extensionHost.SolutionUnload += _extensionHost_SolutionUnload;
+
             if (!TryLoadDockPanelState())
             {
                 _toolBox.Show(_mainDockPanel, DockState.DockLeft);
@@ -101,11 +106,6 @@ namespace LiteDevelop.Gui.Forms
             
             _mainDockPanel.ContentAdded += _mainDockPanel_ContentAdded;
             _mainDockPanel.ActiveContentChanged += _mainDockPanel_ActiveContentChanged;
-
-            _extensionHost = LiteDevelopApplication.Current.ExtensionHost as LiteExtensionHost;
-            _extensionHost.ErrorManager.NavigateToErrorRequested += ErrorManager_NavigateToErrorRequested;
-            _extensionHost.SolutionLoad += _extensionHost_SolutionLoad;
-            _extensionHost.SolutionUnload += _extensionHost_SolutionUnload;
 
             _extensionHost.ControlManager.AppearanceChanged += ControlManager_AppearanceChanged;
             ControlManager_AppearanceChanged(null, null);
@@ -121,12 +121,6 @@ namespace LiteDevelop.Gui.Forms
             _extensionHost_UILanguageChanged(null, null);
 
             _extensionHost.DebugStarted += _extensionHost_DebugStarted;
-        }
-
-        void _extensionHost_DebugStarted(object sender, EventArgs e)
-        {
-            DisableDebuggerItems();
-            CurrentDebuggerSession_Resumed(null, null);
         }
 
         private void SetupMuiComponents()
@@ -294,6 +288,13 @@ namespace LiteDevelop.Gui.Forms
             foreach (var dockConcent in _contents)
                 if (dockConcent.GetType().FullName == persistName)
                     return dockConcent;
+
+            var liteContent = _extensionHost.ControlManager.DispatchResolveViewContent(new ResolveToolWindowEventArgs(persistName));
+            if (liteContent != null)
+            {
+                var container = _mainDockPanel.GetContainer(liteContent) ?? _extensionHost.ControlManager.AddContainer(liteContent);
+                return container;
+            }
             return null;
         }
 
@@ -976,6 +977,12 @@ namespace LiteDevelop.Gui.Forms
         {
             LiteDevelopApplication.Current.MuiProcessor.ApplyLanguageOnComponents(_componentMuiIdentifiers);
         }
+        
+        private void _extensionHost_DebugStarted(object sender, EventArgs e)
+        {
+            DisableDebuggerItems();
+            CurrentDebuggerSession_Resumed(null, null);
+        }
 
         private void ControlManager_AppearanceChanged(object sender, EventArgs e)
         {
@@ -989,15 +996,19 @@ namespace LiteDevelop.Gui.Forms
 
         private void _mainDockPanel_ActiveContentChanged(object sender, EventArgs e)
         {
-            if (_mainDockPanel.GetActiveDocument() != null)
-            {
-                CurrentDocument = _mainDockPanel.GetActiveDocument().Tag as LiteDocumentContent;
-                (_extensionHost.ControlManager as ControlManager).OnSelectedDocumentContentChanged(EventArgs.Empty);
-                SetToolBox(CurrentDocument);
-                SetPropertyContainer(CurrentDocument);
-                ProcessClipboardCommands(CurrentDocument);
-                ProcessHistoryCommands(CurrentDocument);
-            }
+            var viewContainer = _mainDockPanel.GetActiveDocument() as ViewContentContainer;
+
+            if (viewContainer == null || viewContainer.DocumentContent == null)
+                CurrentDocument = null;
+            else
+                CurrentDocument = viewContainer.DocumentContent as LiteDocumentContent;
+
+            _extensionHost.ControlManager.DispatchSelectedDocumentContentChanged(EventArgs.Empty);
+            SetToolBox(CurrentDocument);
+            SetPropertyContainer(CurrentDocument);
+            ProcessClipboardCommands(CurrentDocument);
+            ProcessHistoryCommands(CurrentDocument);
+            
             UpdateCurrentActiveContent();
         }
 

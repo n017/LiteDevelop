@@ -82,10 +82,11 @@
           <Feature Id = "MainAppFinnishMuiFeature" Title = "Finnish">
             <ComponentRef Id = "MainAppFinnishMuiFile"/>
           </Feature>
-          <!--
           <Feature Id = "MainAppFrenchMuiFeature" Title = "French">
             <ComponentRef Id = "MainAppFrenchMuiFile"/>
           </Feature>
+
+          <!--
           <Feature Id = "MainAppGermanMuiFeature" Title = "German">
             <ComponentRef Id = "MainAppGermanMuiFile"/>
           </Feature>
@@ -107,6 +108,9 @@
             <ComponentRef Id = "MainAppRussianMuiFile"/>
           </Feature>
           -->
+          <Feature Id = "MainAppTurkishMuiFeature" Title = "Turkish">
+            <ComponentRef Id = "MainAppTurkishMuiFile"/>
+          </Feature>
         </Feature>
         
       </Feature>
@@ -138,10 +142,11 @@
           <Feature Id = "EssentialsFinnishMuiFeature" Title = "Finnish">
             <ComponentRef Id = "EssentialsFinnishMuiFile"/>
           </Feature>
-          <!--
           <Feature Id = "EssentialsFrenchMuiFeature" Title = "French">
             <ComponentRef Id = "EssentialsFrenchMuiFile"/>
           </Feature>
+
+          <!--
           <Feature Id = "EssentialsGermanMuiFeature" Title = "German">
             <ComponentRef Id = "EssentialsGermanMuiFile"/>
           </Feature>
@@ -163,6 +168,9 @@
             <ComponentRef Id = "EssentialsRussianMuiFile"/>
           </Feature>
           -->
+          <Feature Id = "EssentialsTurkishMuiFeature" Title = "Turkish">
+            <ComponentRef Id = "EssentialsTurkishMuiFile"/>
+          </Feature>
         </Feature>
       </Feature>
 

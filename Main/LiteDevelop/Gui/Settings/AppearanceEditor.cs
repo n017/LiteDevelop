@@ -53,7 +53,7 @@ namespace LiteDevelop.Gui.Settings
                 keyValuePair.Value.CopyTo(keyValuePair.Key.CurrentAppearanceMap);
             }
 
-            (_extensionHost.ControlManager as ControlManager).OnAppearanceChanged(EventArgs.Empty);
+            (_extensionHost.ControlManager as ControlManager).DispatchAppearanceChanged(EventArgs.Empty);
         }
 
         public override void LoadUserDefinedPresets()

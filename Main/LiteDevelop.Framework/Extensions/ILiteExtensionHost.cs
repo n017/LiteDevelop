@@ -12,6 +12,8 @@ namespace LiteDevelop.Framework.Extensions
     /// </summary>
     public interface ILiteExtensionHost
     {
+        event EventHandler Initialized;
+
         /// <summary>
         /// Occurs when a solution has been created in LiteDevelop.
         /// </summary>

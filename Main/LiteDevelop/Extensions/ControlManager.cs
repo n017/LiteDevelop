@@ -9,6 +9,7 @@ using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Gui;
+using LiteDevelop.Gui.DockContents;
 using LiteDevelop.Gui.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -30,7 +31,8 @@ namespace LiteDevelop.Extensions
         
         private readonly ToolStripAeroRenderer _renderer = new ToolStripAeroRenderer(ToolbarTheme.Toolbar);
         private readonly ILiteExtensionHost _extensionHost;
-        private readonly Dictionary<LiteDocumentContent, OpenedFile> _openedFiles = new Dictionary<LiteDocumentContent, OpenedFile>();
+        private readonly Dictionary<LiteViewContent, ViewContentContainer> _containers = new Dictionary<LiteViewContent, ViewContentContainer>();
+        //private readonly Dictionary<LiteDocumentContent, OpenedFile> _openedFiles = new Dictionary<LiteDocumentContent, OpenedFile>();
         private readonly SynchronizationContext _syncContext;
 
         public ControlManager(ILiteExtensionHost extensionHost, SynchronizationContext syncContext)
@@ -43,6 +45,7 @@ namespace LiteDevelop.Extensions
             _documentContents.RemovedItem += viewContent_RemovedItem;
 
             _toolWindows = new EventBasedCollection<LiteToolWindow>();
+            _toolWindows.InsertingItem += _toolWindows_InsertingItem;
             _toolWindows.InsertedItem += viewContent_InsertedItem;
             _toolWindows.RemovedItem += viewContent_RemovedItem;
 
@@ -83,6 +86,8 @@ namespace LiteDevelop.Extensions
 
         #region IControlManager Members
 
+        public event ResolveToolWindowEventHandler ResolveToolWindow;
+
         public EventBasedCollection<LiteDocumentContent> OpenDocumentContents
         {
             get { return _documentContents; }
@@ -91,11 +96,12 @@ namespace LiteDevelop.Extensions
         public LiteDocumentContent SelectedDocumentContent
         {
             get 
-            { 
-                var selectedContent = DockPanel.GetActiveDocument();
+            {
+                var selectedContent = DockPanel.GetActiveDocument() as ViewContentContainer;
 
                 if (selectedContent != null)
-                    return selectedContent.Tag as LiteDocumentContent; 
+                    return selectedContent.DocumentContent;
+
                 return null;
             }
             set 
@@ -103,7 +109,6 @@ namespace LiteDevelop.Extensions
                 DockPanel.SetActiveDocument(value);
             }
         }
-
 
         public event EventHandler SelectedDocumentContentChanged;
 
@@ -174,7 +179,6 @@ namespace LiteDevelop.Extensions
             internal set;
         }
 
-
         public ToolStripPanel ToolStripPanel
         {
             get;
@@ -236,155 +240,67 @@ namespace LiteDevelop.Extensions
             _syncContext.Post(new SendOrPostCallback((o) => action()), null);
         }
 
-        private DockContent FindDockContent(LiteViewContent documentContent)
+
+        internal void DispatchSelectedDocumentContentChanged(EventArgs e)
         {
-            foreach (DockContent document in DockPanel.DocumentsToArray())
-            {
-                if (document.Tag == documentContent)
-                    return document;
-            }
-            return null;
+            OnSelectedDocumentContentChanged(e);
         }
 
-        private void SetDockContentText(LiteViewContent content)
+        internal void DispatchAppearanceChanged(EventArgs e)
         {
-            var dockContent = FindDockContent(content);
-            if (dockContent != null)
-            {
-                string text = content.Text;
-
-                if (content is LiteDocumentContent)
-                {
-                    var documentContent = content as LiteDocumentContent;
-                    text += (documentContent.AssociatedFile != null ? (documentContent.AssociatedFile.HasUnsavedData ? "*" : "") : "");
-                }
-
-                dockContent.Text = text;
-            }
+            OnAppearanceChanged(e);
         }
 
-        internal virtual void OnSelectedDocumentContentChanged(EventArgs e)
+        internal LiteViewContent DispatchResolveViewContent(ResolveToolWindowEventArgs e)
+        {
+            return OnResolveViewContent(e);
+        }
+
+        protected virtual void OnSelectedDocumentContentChanged(EventArgs e)
         {
             if (SelectedDocumentContentChanged != null)
                 SelectedDocumentContentChanged(this, e);
         }
 
-        internal virtual void OnAppearanceChanged(EventArgs e)
+        protected virtual void OnAppearanceChanged(EventArgs e)
         {
             if (AppearanceChanged != null)
                 AppearanceChanged(this, e);
         }
 
+        protected virtual LiteViewContent OnResolveViewContent(ResolveToolWindowEventArgs e)
+        {
+            if (ResolveToolWindow != null)
+                return ResolveToolWindow(this, e);
+            return null;
+        }
+
+        internal ViewContentContainer AddContainer(LiteViewContent viewContent)
+        {
+            var container = new ViewContentContainer(viewContent);
+            container.Show(DockPanel, container.ToolWindow != null ?
+                container.ToolWindow.DockState.ToDockPanelSuite() :
+                DockState.Document);
+            _containers.Add(viewContent, container);
+            return container;
+        }
+
+        private void _toolWindows_InsertingItem(object sender, CollectionChangingEventArgs e)
+        {
+            e.Cancel = _containers.ContainsKey(e.TargetObject as LiteViewContent);
+        }
+
         private void viewContent_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            LiteViewContent viewContent = e.TargetObject as LiteViewContent;
-            DockContent dockContent = new DockContent() 
-            {
-                Text = viewContent.Text,
-                Tag = viewContent,
-                AllowDrop = true,
-            };
-
-            dockContent.Controls.Add(viewContent.Control);
-
-            viewContent.TextChanged += viewContent_TextChanged;
-            viewContent.ControlChanged += viewContent_ControlChanged;
-            
-            if (viewContent is LiteDocumentContent)
-            {
-                var documentContent = viewContent as LiteDocumentContent;
-                dockContent.DockHandler.DockAreas = DockAreas.Document | DockAreas.Float;
-
-                if (documentContent.AssociatedFile != null)
-                {
-                    documentContent.AssociatedFile.HasUnsavedDataChanged += AssociatedFile_HasUnsavedDataChanged;
-                }
-
-                documentContent.AssociatedFileChanged += documentContent_AssociatedFileChanged;
-
-                _openedFiles.Add(documentContent, documentContent.AssociatedFile);
-            }
-
-            viewContent.Closing += viewContent_Closing;
-            
-            dockContent.Show(DockPanel);
-            SetDockContentText(viewContent);            
+            AddContainer(e.TargetObject as LiteViewContent);
         }
 
         private void viewContent_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
-            LiteDocumentContent documentContent = e.TargetObject as LiteDocumentContent;
-            DockContent dockContent = FindDockContent(documentContent);
-
-            if (dockContent == null)
-                throw new ArgumentException("Document content is not found");
-
-            documentContent.TextChanged -= viewContent_TextChanged;
-            documentContent.ControlChanged -= viewContent_ControlChanged;
-            if (_openedFiles[documentContent] != null)
-            {
-                _openedFiles[documentContent].HasUnsavedDataChanged -= AssociatedFile_HasUnsavedDataChanged;
-            }
-            documentContent.AssociatedFileChanged -= documentContent_AssociatedFileChanged;
-            documentContent.Closing -= viewContent_Closing;
+            LiteViewContent viewContent = e.TargetObject as LiteViewContent;
+            DockContent dockContent = _containers[viewContent];
             dockContent.DockHandler.Close();
-        }
-
-        private void viewContent_Closing(object sender, FormClosingEventArgs e)
-        {
-            var documentContent = sender as LiteDocumentContent;
-            if (NotifyUnsavedFilesWhenClosing && documentContent != null && documentContent.AssociatedFile != null)
-            {
-                if (documentContent.AssociatedFile.HasUnsavedData)
-                {
-                    var dialog = new UnsavedFilesDialog(new OpenedFile[1] { documentContent.AssociatedFile });
-                    switch (dialog.ShowDialog())
-                    {
-                        case DialogResult.Yes:
-                            dialog.GetItemsToSave()[0].Save(_extensionHost.CreateOrGetReporter("Build"));
-                            break;
-                        case DialogResult.Cancel:
-                            e.Cancel = true;
-                            break;
-                    }
-                }
-            }
-        }
-
-        private void viewContent_TextChanged(object sender, EventArgs e)
-        {
-            SetDockContentText(sender as LiteViewContent);
-        }
-
-        private void viewContent_ControlChanged(object sender, EventArgs e)
-        {
-            DockContent content = FindDockContent(sender as LiteDocumentContent);
-            if (content != null)
-            {
-                content.Controls.Clear();
-                content.Controls.Add((sender as LiteDocumentContent).Control);
-            }
-        }
-
-        private void documentContent_AssociatedFileChanged(object sender, EventArgs e)
-        {
-            var documentContent = sender as LiteDocumentContent;
-            var oldFile = _openedFiles[documentContent];
-            if (oldFile != null)
-                oldFile.HasUnsavedDataChanged -= AssociatedFile_HasUnsavedDataChanged;
-            var newFile = documentContent.AssociatedFile;
-            _openedFiles[documentContent] = newFile;
-            if (newFile != null)
-            {
-                newFile.HasUnsavedDataChanged += AssociatedFile_HasUnsavedDataChanged;
-            }
-        }
-
-        private void AssociatedFile_HasUnsavedDataChanged(object sender, EventArgs e)
-        {
-            var keyPair = _openedFiles.FirstOrDefault(x => x.Value == sender);
-            if (keyPair.Key != null)
-                SetDockContentText(keyPair.Key);
+            _containers.Remove(viewContent);
         }
 
         private void toolBars_InsertedItem(object sender, CollectionChangedEventArgs e)

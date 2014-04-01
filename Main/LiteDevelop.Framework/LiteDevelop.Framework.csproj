@@ -76,6 +76,7 @@
     <Compile Include="Gui\AppearanceProcessor.cs" />
     <Compile Include="Gui\DefaultAppearanceDefinition.cs" />
     <Compile Include="Gui\LiteToolWindow.cs" />
+    <Compile Include="Gui\LiteToolWindowDockState.cs" />
     <Compile Include="Gui\LiteViewContent.cs" />
     <Compile Include="Gui\MenuService.cs">
       <SubType>Component</SubType>
