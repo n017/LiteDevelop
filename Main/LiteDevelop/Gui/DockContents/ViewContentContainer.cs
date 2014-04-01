@@ -16,6 +16,7 @@ namespace LiteDevelop.Gui.DockContents
     {
         private LiteExtensionHost _extensionHost;
         private OpenedFile _currentFile;
+        private bool _canCloseSafely;
 
         public ViewContentContainer(LiteViewContent viewContent)
         {
@@ -115,7 +116,8 @@ namespace LiteDevelop.Gui.DockContents
 
         private void ViewContent_Closed(object sender, FormClosedEventArgs e)
         {
-            Dispose();
+            _canCloseSafely = true;
+            Close();
         }
 
         private void DocumentContent_AssociatedFileChanged(object sender, EventArgs e)
@@ -147,7 +149,7 @@ namespace LiteDevelop.Gui.DockContents
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            if (e.Cancel = ViewContent != null)
+            if (e.Cancel = !_canCloseSafely)
                 ViewContent.Close();
             else 
                 base.OnClosing(e);

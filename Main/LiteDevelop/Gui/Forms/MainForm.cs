@@ -1019,7 +1019,6 @@ namespace LiteDevelop.Gui.Forms
             {
                 var documentContent = content.Tag as LiteDocumentContent;
                 content.FormClosing += content_FormClosing;
-                documentContent.Closed += documentContent_Closed;
                 documentContent.DragEnter += _mainDockPanel_DragEnter;
                 documentContent.DragDrop += _mainDockPanel_DragDrop;
 
@@ -1030,19 +1029,7 @@ namespace LiteDevelop.Gui.Forms
         #endregion
 
         #region DockContent event handlers
-
-        private void documentContent_Closed(object sender, FormClosedEventArgs e)
-        {
-            var documentContent = sender as LiteDocumentContent;
-            var content = _mainDockPanel.GetContent(x => x.Tag == documentContent);
-
-            if (content != null)
-            {
-                content.Tag = null;
-                content.Close();
-            }
-        }
-
+        
         private void content_DockStateChanged(object sender, EventArgs e)
         {
             var content = sender as DockContent;
@@ -1135,6 +1122,11 @@ namespace LiteDevelop.Gui.Forms
 
             if (!e.Cancel)
             {
+                foreach (var document in _mainDockPanel.DocumentsToArray())
+                {
+                    (document as DockContent).Close();
+                }
+
                 SaveDockPanelState();
                 Rectangle usingBounds = (WindowState == FormWindowState.Normal ? this.Bounds : this.RestoreBounds);
                 LiteDevelopSettings.Instance.SetValue("MainWindow.Location", usingBounds.Location);
