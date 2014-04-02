@@ -151,7 +151,7 @@ namespace LiteDevelop.Extensions
 
         public bool IsDebugging
         {
-            get { return CurrentDebuggerSession == null || !CurrentDebuggerSession.IsActive; }
+            get { return CurrentDebuggerSession != null && CurrentDebuggerSession.IsActive; }
         }
 
         public DebuggerSession CurrentDebuggerSession
@@ -244,7 +244,7 @@ namespace LiteDevelop.Extensions
         public event EventHandler DebugStarted;
         public void DispatchDebugStarted(EventArgs e)
         {
-            CurrentDebuggerSession.CurrentSourceRangeChanged += CurrentDebuggerSession_CurrentSourceRangeChanged;
+            CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
             CurrentDebuggerSession.Disposed += CurrentDebuggerSession_Disposed;
             if (DebugStarted != null)
                 DebugStarted(this, e);
@@ -263,13 +263,15 @@ namespace LiteDevelop.Extensions
             DispatchDebugStopped(EventArgs.Empty);
         }
 
-        private void CurrentDebuggerSession_CurrentSourceRangeChanged(object sender, SourceRangeEventArgs e)
+        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
         {
-            if (_lastFilePath != e.Range.FilePath)
+            var session = sender as DebuggerSession;
+            var range = session.CurrentSourceRange;
+            if (range != null && _lastFilePath != range.FilePath)
             {
-                var fileHandlers = ExtensionManager.GetFileHandlers(e.Range.FilePath).Where(x => x is ISourceNavigator);
-                var handler = FileService.SelectFileHandler(fileHandlers, e.Range.FilePath);
-                var file = FileService.OpenFile(_lastFilePath = e.Range.FilePath);
+                var fileHandlers = ExtensionManager.GetFileHandlers(range.FilePath).Where(x => x is ISourceNavigator);
+                var handler = FileService.SelectFileHandler(fileHandlers, range.FilePath);
+                var file = FileService.OpenFile(_lastFilePath = range.FilePath);
                 handler.OpenFile(file);
 
                 ISourceNavigator navigator = file.CurrentDocumentContent as ISourceNavigator ??
@@ -277,7 +279,7 @@ namespace LiteDevelop.Extensions
                     handler as ISourceNavigator;
 
                 if (navigator != null)
-                    navigator.NavigateToLocation(e.Range);
+                    navigator.NavigateToLocation(range);
             }
         }
     }

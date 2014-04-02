@@ -30,6 +30,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private CodeEditorContent _content;
         private CodeEditorExtension _extension;
         private bool _justCompletedBrace;
+        private Range _lastIPRange;
 
         public CodeEditorControl(CodeEditorContent content, OpenedFile file)
         {
@@ -55,45 +56,59 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
             _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointer);
-            
+
+            if (_extension.ExtensionHost.IsDebugging)
+                ExtensionHost_DebugStarted(null, null);
+
             ExtensionHost_UILanguageChanged(null, null);
 
             _extension.AppliedSettings += extension_AppliedSettings;
             extension_AppliedSettings(null, null);
 
             file.HasUnsavedDataChanged += file_HasUnsavedDataChanged;
+
         }
 
         private void ExtensionHost_DebugStarted(object sender, EventArgs e)
         {
-            _extension.ExtensionHost.CurrentDebuggerSession.CurrentSourceRangeChanged += CurrentDebuggerSession_CurrentSourceRangeChanged;
+            _extension.ExtensionHost.CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
+            _extension.ExtensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
+            CurrentDebuggerSession_Paused(_extension.ExtensionHost.CurrentDebuggerSession, EventArgs.Empty);
             fastColoredTextBox1.ReadOnly = true;
         }
 
-        void ExtensionHost_DebugStopped(object sender, EventArgs e)
+        private void CurrentDebuggerSession_Resumed(object sender, EventArgs e)
         {
-            _extension.ExtensionHost.CurrentDebuggerSession.CurrentSourceRangeChanged -= CurrentDebuggerSession_CurrentSourceRangeChanged;
-            fastColoredTextBox1.ReadOnly = false;
-
-            if (TextBox.Bookmarks.Contains(_instructionPointer))
-                TextBox.Bookmarks.Remove(_instructionPointer);
+            TextBox.Bookmarks.Remove(_instructionPointer);
+            ClearLastHighlighting(_instructionPointer.Style);
         }
 
-        private void CurrentDebuggerSession_CurrentSourceRangeChanged(object sender, SourceRangeEventArgs e)
+        private void ExtensionHost_DebugStopped(object sender, EventArgs e)
         {
-            _instructionPointer.InnerBookmark.Location = e.Range;
+            _extension.ExtensionHost.CurrentDebuggerSession.Paused -= CurrentDebuggerSession_Paused;
+            fastColoredTextBox1.ReadOnly = false;
+            TextBox.Bookmarks.Remove(_instructionPointer);
+            ClearLastHighlighting(_instructionPointer.Style);
+        }
 
-            if (!TextBox.Bookmarks.Contains(_instructionPointer))
+        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
+        {
+            var session = sender as DebuggerSession;
+            var range = session.CurrentSourceRange;
+            if (range != null && range.FilePath == _file.FilePath)
             {
-                if (e.Range.FilePath == _file.FilePath)
-                {
+                _instructionPointer.InnerBookmark.Location = range;
+                HighlightRange(range, _instructionPointer.Style);
+
+                if (!TextBox.Bookmarks.Contains(_instructionPointer))
                     TextBox.Bookmarks.Add(_instructionPointer);
-                    _instructionPointer.DoVisible();
-                }
-                else
-                {
-                    TextBox.Bookmarks.Remove(_instructionPointer);
-                }
+
+                _instructionPointer.DoVisible();
+            }
+            else
+            {
+                ClearLastHighlighting(_instructionPointer.Style);
+                TextBox.Bookmarks.Remove(_instructionPointer);
             }
         }
 
@@ -171,7 +186,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 var codeEditorBookmark = bookmark as CodeEditorBookmark;
                 if (codeEditorBookmark != null)
                 {
-                    codeEditorBookmark.InnerBookmark.Location = new SourceLocation(_file.FilePath, codeEditorBookmark.LineIndex, 0);
+                    codeEditorBookmark.InnerBookmark.Location = new SourceLocation(_file.FilePath, codeEditorBookmark.LineIndex + 1, 0);
                 }
             }
         }
@@ -397,6 +412,27 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             TextBox.TextSource.Manager.EndAutoUndoCommands();
             TextBox.Selection.EndUpdate();
             TextBox.EndUpdate();
+        }
+
+        private void HighlightRange(SourceRange sourceRange, TextStyle style)
+        {
+            var range = new Range(TextBox, 
+                sourceRange.Column - 1, 
+                sourceRange.Line - 1,
+                sourceRange.EndColumn - 1, 
+                sourceRange.EndLine - 1);
+
+            ClearLastHighlighting(style);
+
+            range.SetStyle(style);
+
+            _lastIPRange = range;
+        }
+
+        private void ClearLastHighlighting(TextStyle style)
+        {
+            if (_lastIPRange != null)
+                _lastIPRange.ClearStyle(style);
         }
 
         #endregion

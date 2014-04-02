@@ -18,7 +18,6 @@ namespace LiteDevelop.Framework.Debugging
         public event EventHandler Disposed;
         public event EventHandler Paused;
         public event EventHandler Resumed;
-        public event SourceRangeEventHandler CurrentSourceRangeChanged;
         
         private bool _isActive;
 
@@ -100,12 +99,6 @@ namespace LiteDevelop.Framework.Debugging
         {   
             if (Resumed != null)
                 Resumed(this, e);
-        }
-
-        protected virtual void OnCurrentSourceRangeChanged(SourceRangeEventArgs e)
-        {
-            if (CurrentSourceRangeChanged != null)
-                CurrentSourceRangeChanged(this, e);
         }
 
         #region IDisposable Members

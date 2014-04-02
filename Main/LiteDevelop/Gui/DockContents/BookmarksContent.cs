@@ -21,7 +21,7 @@ namespace LiteDevelop.Gui.DockContents
         private readonly Dictionary<Bookmark, ListViewItem> _bookmarkItems = new Dictionary<Bookmark, ListViewItem>();
         private readonly ImageList _imageList;
         private LiteExtensionHost _extensionHost;
-       
+        private int _currentBookmarkIndex;
 
         public BookmarksContent()
         {
@@ -144,17 +144,32 @@ namespace LiteDevelop.Gui.DockContents
 
         private void previousToolStripButton_Click(object sender, EventArgs e)
         {
-
+            _currentBookmarkIndex--;
+            if (_currentBookmarkIndex < 0)
+                _currentBookmarkIndex = listView1.Items.Count - 1; 
+            ActivateBookmark();
         }
 
         private void nextToolStripButton_Click(object sender, EventArgs e)
         {
-
+            _currentBookmarkIndex++;
+            if (_currentBookmarkIndex >= listView1.Items.Count)
+                _currentBookmarkIndex = 0;
+            ActivateBookmark();
         }
 
         private void deleteAllToolStripButton_Click(object sender, EventArgs e)
         {
             _extensionHost.BookmarkManager.Bookmarks.Clear();
+        }
+
+        private void ActivateBookmark()
+        {
+            if (_currentBookmarkIndex <= listView1.Items.Count)
+            {
+                listView1.Items[_currentBookmarkIndex].Selected = true;
+                listView1_ItemActivate(null, null);
+            }
         }
 
         private void listView1_ItemActivate(object sender, EventArgs e)

@@ -775,7 +775,7 @@ namespace LiteDevelop.Gui.Forms
 
         }
 
-        void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
+        private void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
         {
             EnableDebuggerItems();
         }

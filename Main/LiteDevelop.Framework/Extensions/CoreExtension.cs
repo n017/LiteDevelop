@@ -40,7 +40,7 @@ namespace LiteDevelop.Framework.Extensions
         /// <inheritdoc />
         public override Version Version
         {
-            get { return Version.Parse(Application.ProductVersion); }
+            get { return typeof(CoreExtension).Assembly.GetName().Version; }
         }
 
         /// <inheritdoc />

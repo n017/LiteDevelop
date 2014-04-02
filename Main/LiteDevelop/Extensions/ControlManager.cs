@@ -32,7 +32,6 @@ namespace LiteDevelop.Extensions
         private readonly ToolStripAeroRenderer _renderer = new ToolStripAeroRenderer(ToolbarTheme.Toolbar);
         private readonly ILiteExtensionHost _extensionHost;
         private readonly Dictionary<LiteViewContent, ViewContentContainer> _containers = new Dictionary<LiteViewContent, ViewContentContainer>();
-        //private readonly Dictionary<LiteDocumentContent, OpenedFile> _openedFiles = new Dictionary<LiteDocumentContent, OpenedFile>();
         private readonly SynchronizationContext _syncContext;
 
         public ControlManager(ILiteExtensionHost extensionHost, SynchronizationContext syncContext)
@@ -239,7 +238,6 @@ namespace LiteDevelop.Extensions
         {
             _syncContext.Post(new SendOrPostCallback((o) => action()), null);
         }
-
 
         internal void DispatchSelectedDocumentContentChanged(EventArgs e)
         {
