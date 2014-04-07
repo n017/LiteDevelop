@@ -153,10 +153,10 @@
                 <Component Id = "EssentialsFrenchMuiFile" Guid ="{8F7D260D-D339-47CF-986C-96D03E77FC10}">
                   <File Id = "essentials_french.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\french.xml" KeyPath="yes" />
                 </Component>
-                <!--
                 <Component Id = "EssentialsGermanMuiFile" Guid ="{6EB3526F-2F9A-49A4-BBB0-D8E36E620ADC}">
                   <File Id = "essentials_german.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\german.xml" KeyPath="yes" />
                 </Component>
+                <!--
                 <Component Id = "EssentialsNorwegianMuiFile" Guid ="{4798DCE3-907F-42E5-8AF6-EA5412F63FF9}">
                   <File Id = "essentials_norwegian.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\norwegian.xml" KeyPath="yes" />
                 </Component>

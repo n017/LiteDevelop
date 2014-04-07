@@ -69,6 +69,7 @@ namespace LiteDevelop.Essentials.CodeEditor
 Translations:
 Dutch: Jerre S.
 Finnish: Dextrey
+German: MaxX0r
 Pirate (>:D): Jerre S.
 Turkish: Woopza
 French: Wallace87000

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+  
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Ausschneiden</Item>
+      <Item Id = "Copy">Kopieren</Item>
+      <Item Id = "Paste">Einfügen</Item>
+      <Item Id = "SelectAll">Alles auswählen</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">Allgemein</Item>
+    <Item Id = "AutoCompleteSettings">Automatische Vervollständigung</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Empfehlungen anzeigen</Item>
+      <Item Id = "CommentRegion">Region kommentieren</Item>
+      <Item Id = "UncommentRegion">Region unkommentieren</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Zeile $(line)</Item>
+      <Item Id = "CurrentColumn">Spalte $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Zeilennummern anzeigen</Item>
+    <Item Id = "WordWrap">Zeilenumbruch</Item>
+    <Item Id = "SyntaxHighlighting">Syntax-Hervorhebung</Item>
+    <Item Id = "TrackUnsavedChanges">Ungespeicherte Änderungen verfolgen</Item>
+    <Item Id = "HighlightCurrentLine">Aktuelle Zeile hervorheben</Item>
+    <Item Id = "ShowDocumentMiniMap">Dokumente-Minimap anzeigen</Item>
+  </ItemGroup>
+  
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Automatisierungs-Einstellungen</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Empfehlungsliste anzeigen, wenn:</Item>
+        <Item Id = "TypingAnyChar">einen beliebigen Buchstaben drücken</Item>
+        <Item Id = "PressingCtrlSpace">STRG + SPACE drücken</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">Ausgewählte Empfehlung übernehmen, wenn einer der folgenden Buchstaben gedrückt wird:</Item>
+      <Item Id = "CommitItemOnSpaceBar">Ausgewählte Empfehlung übernehmen, wenn Leerzeichen gedrückt wird</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Code-Blöcke automatisch vervollständigen (z.B. ( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Automatisch Methoden-Block hinzufügen nach dem Einfügen einer Methoden-Empfehlung.</Item>
+  </ItemGroup>
+  
+</UILanguagePack>

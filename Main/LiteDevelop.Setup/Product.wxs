@@ -145,11 +145,10 @@
           <Feature Id = "EssentialsFrenchMuiFeature" Title = "French">
             <ComponentRef Id = "EssentialsFrenchMuiFile"/>
           </Feature>
-
-          <!--
           <Feature Id = "EssentialsGermanMuiFeature" Title = "German">
             <ComponentRef Id = "EssentialsGermanMuiFile"/>
           </Feature>
+          <!--
           <Feature Id = "EssentialsNorwegianMuiFeature" Title = "Norwegian">
             <ComponentRef Id = "EssentialsNorwegianMuiFile"/>
           </Feature>
