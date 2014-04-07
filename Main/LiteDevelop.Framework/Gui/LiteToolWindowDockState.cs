@@ -18,5 +18,6 @@ namespace LiteDevelop.Framework.Gui
         Bottom,
         Right,
         Hidden,
+        Document,
     }
 }

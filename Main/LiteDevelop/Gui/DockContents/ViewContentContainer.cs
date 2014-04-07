@@ -20,10 +20,13 @@ namespace LiteDevelop.Gui.DockContents
 
         public ViewContentContainer(LiteViewContent viewContent)
         {
+            base.HideOnClose = true;
             _extensionHost = LiteDevelopApplication.Current.ExtensionHost;
+            
             ViewContent = viewContent;
             ViewContent.ControlChanged += ViewContent_ControlChanged;
             ViewContent.TextChanged += ViewContent_TextChanged;
+            ViewContent.IconChanged += ViewContent_IconChanged;
             ViewContent.Closing += ViewContent_Closing;
             ViewContent.Closed += ViewContent_Closed;
 
@@ -40,6 +43,7 @@ namespace LiteDevelop.Gui.DockContents
 
             UpdateText();
             UpdateControl();
+            UpdateIcon();
         }
 
         public LiteViewContent ViewContent
@@ -76,6 +80,11 @@ namespace LiteDevelop.Gui.DockContents
             Controls.Add(ViewContent.Control);
         }
 
+        private void UpdateIcon()
+        {
+            this.Icon = ViewContent.Icon;
+        }
+
         protected override string GetPersistString()
         {
             if (ToolWindow != null)
@@ -91,6 +100,11 @@ namespace LiteDevelop.Gui.DockContents
         private void ViewContent_ControlChanged(object sender, EventArgs e)
         {
             UpdateControl();
+        }
+
+        private void ViewContent_IconChanged(object sender, EventArgs e)
+        {
+            UpdateIcon();
         }
 
         private void ViewContent_Closing(object sender, System.Windows.Forms.FormClosingEventArgs e)

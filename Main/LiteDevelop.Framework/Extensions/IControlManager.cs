@@ -36,6 +36,12 @@ namespace LiteDevelop.Framework.Extensions
         EventBasedCollection<LiteToolWindow> ToolWindows { get; }
 
         /// <summary>
+        /// Shows and sets focus to the view content.
+        /// </summary>
+        /// <param name="viewContent">The view content to activate.</param>
+        void ShowAndActivate(LiteViewContent viewContent);
+
+        /// <summary>
         /// Gets a collection of menu items added by extensions in LiteDevelop.
         /// </summary>
         EventBasedCollection<ToolStripMenuItem> MenuItems { get; }

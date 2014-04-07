@@ -31,7 +31,6 @@ namespace LiteDevelop.Extensions
         
         private readonly ToolStripAeroRenderer _renderer = new ToolStripAeroRenderer(ToolbarTheme.Toolbar);
         private readonly ILiteExtensionHost _extensionHost;
-        private readonly Dictionary<LiteViewContent, ViewContentContainer> _containers = new Dictionary<LiteViewContent, ViewContentContainer>();
         private readonly SynchronizationContext _syncContext;
 
         public ControlManager(ILiteExtensionHost extensionHost, SynchronizationContext syncContext)
@@ -114,6 +113,21 @@ namespace LiteDevelop.Extensions
         public EventBasedCollection<LiteToolWindow> ToolWindows
         {
             get { return _toolWindows; }
+        }
+
+        public void ShowAndActivate(LiteViewContent viewContent)
+        {
+            var dockContent = DockPanel.GetContainer(viewContent);
+
+            if (dockContent == null)
+            {
+                if (viewContent is LiteToolWindow)
+                    _toolWindows.Add(viewContent as LiteToolWindow);
+                else
+                    _documentContents.Add(viewContent as LiteDocumentContent);
+            }
+            else
+                dockContent.ShowAndActivate(DockPanel);
         }
         
         public EventBasedCollection<ToolStrip> ToolBars
@@ -276,29 +290,36 @@ namespace LiteDevelop.Extensions
         internal ViewContentContainer AddContainer(LiteViewContent viewContent)
         {
             var container = new ViewContentContainer(viewContent);
-            container.Show(DockPanel, container.ToolWindow != null ?
-                container.ToolWindow.DockState.ToDockPanelSuite() :
-                DockState.Document);
-            _containers.Add(viewContent, container);
+
+            var dockState = DockState.Document;
+            if (container.ToolWindow != null)
+            {
+                dockState = container.ToolWindow.DockState.ToDockPanelSuite();
+                if (dockState == DockState.Hidden || dockState == DockState.Unknown)
+                {
+                    dockState = DockState.DockBottomAutoHide;
+                }
+            }
+
+            container.Show(DockPanel, dockState);
             return container;
         }
 
         private void _toolWindows_InsertingItem(object sender, CollectionChangingEventArgs e)
         {
-            e.Cancel = _containers.ContainsKey(e.TargetObject as LiteViewContent);
+            e.Cancel = DockPanel.GetContainer(e.TargetObject as LiteViewContent) != null;
         }
 
         private void viewContent_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            AddContainer(e.TargetObject as LiteViewContent);
+            AddContainer(e.TargetObject as LiteViewContent).ShowAndActivate(DockPanel);
         }
 
         private void viewContent_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
             LiteViewContent viewContent = e.TargetObject as LiteViewContent;
-            DockContent dockContent = _containers[viewContent];
+            var dockContent = DockPanel.GetContainer(viewContent);
             dockContent.DockHandler.Close();
-            _containers.Remove(viewContent);
         }
 
         private void toolBars_InsertedItem(object sender, CollectionChangedEventArgs e)
@@ -345,7 +366,8 @@ namespace LiteDevelop.Extensions
 
         private void viewItems_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            ViewMenu.DropDownItems.Add(e.TargetObject as ToolStripItem);
+            // insert before full screen menu item.
+            ViewMenu.DropDownItems.Insert(ViewMenu.DropDownItems.Count - 2, e.TargetObject as ToolStripItem);
         }
 
         private void viewItems_RemovedItem(object sender, CollectionChangedEventArgs e)

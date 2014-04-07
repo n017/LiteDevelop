@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,13 +14,15 @@ namespace LiteDevelop.Framework.Gui
         public event FormClosedEventHandler Closed;
         public event EventHandler TextChanged;
         public event EventHandler ControlChanged;
+        public event EventHandler IconChanged;
         public event DragEventHandler DragEnter;
         public event DragEventHandler DragDrop;
 
         private string _text = string.Empty;
         private Control _control;
+        private Icon _icon;
 
-        public LiteViewContent()
+        internal LiteViewContent()
         {
             UseDefaultFileDrop = true;
         }
@@ -44,7 +47,7 @@ namespace LiteDevelop.Framework.Gui
         }
 
         /// <summary>
-        /// Gets or sets the control that works as a container for the view content.
+        /// Gets or sets the control representing the container control of this view content.
         /// </summary>
         public Control Control
         {
@@ -58,6 +61,22 @@ namespace LiteDevelop.Framework.Gui
                 {
                     _control = value;
                     OnControlChanged(EventArgs.Empty);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the image icon displayed by the container holding this view content.
+        /// </summary>
+        public Icon Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    OnIconChanged(EventArgs.Empty);
                 }
             }
         }
@@ -136,6 +155,12 @@ namespace LiteDevelop.Framework.Gui
 
             if (ControlChanged != null)
                 ControlChanged(this, e);
+        }
+
+        protected virtual void OnIconChanged(EventArgs e)
+        {
+            if (IconChanged != null)
+                IconChanged(this, e);
         }
 
         private void Control_DragEnter(object sender, DragEventArgs e)

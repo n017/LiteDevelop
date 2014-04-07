@@ -61,7 +61,7 @@ namespace LiteDevelop
 
         public static DockContent GetContent(this DockPanel dockPanel, Func<DockContent, bool> condition)
         {
-            foreach (DockContent document in dockPanel.DocumentsToArray())
+            foreach (DockContent document in dockPanel.Contents)
             {
             	if (condition(document))
             		return document;
@@ -131,6 +131,7 @@ namespace LiteDevelop
             {LiteToolWindowDockState.Float, DockState.Float},
             {LiteToolWindowDockState.Hidden, DockState.Hidden},
             {LiteToolWindowDockState.Unknown, DockState.Unknown},
+            {LiteToolWindowDockState.Document, DockState.Document},
         };
         
         public static DockState ToDockPanelSuite(this LiteToolWindowDockState dockState)
