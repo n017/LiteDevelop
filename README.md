@@ -12,7 +12,7 @@ Features
 --
 The standard LiteDevelop suite has the following features:
 -   Portable, can be run from a removable drive.
--	Very small compared to Visual Studio.
+-    Very small compared to Visual Studio.
 -	Full control over features. Very easy to extend with extra features, and very easy to remove features you don’t like. 
 -	Create, open and build any of your Visual Studio (MSBuild) projects, and view them in the solution explorer.
 -	Multilingual user interface.
@@ -26,6 +26,12 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -	Place, reposition and resize controls using the “What-you-see-is-what-you-get” interface.
     -	Edit properties in the properties window.
     -	Serialize and deserialize forms from source code (alpha). 
+
+Donate
+--
+
+[![Alt text](http://puu.sh/7I7aC.gif "Please donate! :D")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HAEW49Q5VY2YC)
+
 
 How to compile
 --
