@@ -331,6 +331,7 @@ namespace LiteDevelop.Gui.Forms
         {
             var fileHandlers = _extensionHost.ExtensionManager.GetFileHandlers(path).ToArray();
 
+
             if (fileHandlers.Length == 0)
             {
                 MessageBox.Show(LiteDevelopApplication.Current.MuiProcessor.GetString("MainForm.Messages.NoEditorAvailable", "file=" + path.FullPath), "LiteDevelop", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -998,10 +999,8 @@ namespace LiteDevelop.Gui.Forms
         {
             var viewContainer = _mainDockPanel.GetActiveDocument() as ViewContentContainer;
 
-            if (viewContainer == null || viewContainer.DocumentContent == null)
-                CurrentDocument = null;
-            else
-                CurrentDocument = viewContainer.DocumentContent as LiteDocumentContent;
+            if (viewContainer != null && viewContainer.DocumentContent != null)
+                CurrentDocument = viewContainer.DocumentContent;
 
             _extensionHost.ControlManager.DispatchSelectedDocumentContentChanged(EventArgs.Empty);
             SetToolBox(CurrentDocument);

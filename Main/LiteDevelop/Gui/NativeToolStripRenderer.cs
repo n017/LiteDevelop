@@ -274,9 +274,13 @@ namespace LiteDevelop.Gui
                     e.Graphics.ExcludeClip(insideRect);
 
                     renderer.DrawBackground(e.Graphics, e.ToolStrip.ClientRectangle, e.AffectedBounds);
-
+                    
                     // Restore the old clip in case the Graphics is used again (does that ever happen?)
                     e.Graphics.Clip = oldClip;
+                }
+                else if (e.ToolStrip is MenuStrip)
+                {
+                    renderer.DrawEdge(e.Graphics, e.ToolStrip.ClientRectangle, Edges.Bottom, EdgeStyle.Sunken, EdgeEffects.Flat);
                 }
             }
             else

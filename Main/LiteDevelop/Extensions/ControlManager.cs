@@ -331,8 +331,7 @@ namespace LiteDevelop.Extensions
 
             foreach (var toolbar in lastRow.Controls)
             {
-                nextControlLocation.Offset(toolbar.Margin.Left, toolbar.Margin.Top);
-                nextControlLocation.X += toolbar.Width + toolbar.Margin.Right + ToolStripPanel.Padding.Horizontal;
+                nextControlLocation.Offset(toolbar.Margin.Horizontal + toolbar.Padding.Horizontal + toolbar.Width, toolbar.Margin.Top);
             }
 
             ToolStripPanel.Join(toolstrip, nextControlLocation);

@@ -162,7 +162,7 @@
             this.runWithoutDebuggerToolStripButton,
             this.toolStripSeparator11,
             this.aboutToolStripButton});
-            this.mainToolBar.Location = new System.Drawing.Point(3, 24);
+            this.mainToolBar.Location = new System.Drawing.Point(0, 25);
             this.mainToolBar.Name = "mainToolBar";
             this.mainToolBar.Size = new System.Drawing.Size(289, 25);
             this.mainToolBar.TabIndex = 4;
@@ -312,8 +312,8 @@
             this.toolStripPanel1.Location = new System.Drawing.Point(0, 0);
             this.toolStripPanel1.Name = "toolStripPanel1";
             this.toolStripPanel1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.toolStripPanel1.Size = new System.Drawing.Size(856, 49);
+            this.toolStripPanel1.RowMargin = new System.Windows.Forms.Padding(0);
+            this.toolStripPanel1.Size = new System.Drawing.Size(856, 50);
             // 
             // mainMenuStrip
             // 
@@ -327,9 +327,11 @@
             this.toolsToolStripMenuItem,
             this.windowToolStripMenuItem,
             this.helpToolStripMenuItem});
+            this.mainMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(856, 24);
+            this.mainMenuStrip.Padding = new System.Windows.Forms.Padding(6, 2, 0, 4);
+            this.mainMenuStrip.Size = new System.Drawing.Size(856, 25);
             this.mainMenuStrip.TabIndex = 3;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
