@@ -72,6 +72,7 @@
     <Compile Include="Extensions\BookmarkManager.cs" />
     <Compile Include="Extensions\ControlManager.cs" />
     <Compile Include="Extensions\CredentialManager.cs" />
+    <Compile Include="Extensions\DefaultSourceNavigator.cs" />
     <Compile Include="Extensions\ErrorManager.cs" />
     <Compile Include="Extensions\ExtensionLibraryData.cs" />
     <Compile Include="Extensions\ExtensionManager.cs" />

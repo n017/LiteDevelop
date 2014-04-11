@@ -107,6 +107,11 @@ namespace LiteDevelop.Framework.Extensions
         ICredentialManager CredentialManager { get; }
 
         /// <summary>
+        /// Gets the default source navigator for navigating to source locations.
+        /// </summary>
+        ISourceNavigator SourceNavigator { get; }
+
+        /// <summary>
         /// Gets a value indicating whether the user is debugging the current solution.
         /// </summary>
         bool IsDebugging { get; }

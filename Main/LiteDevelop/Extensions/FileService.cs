@@ -14,9 +14,9 @@ namespace LiteDevelop.Extensions
         private ILiteExtensionHost _extensionHost;
         private List<OpenedFile> _openedFiles = new List<OpenedFile>();
 
-        public FileService(ILiteExtensionHost extensionHost)
+        public FileService()
         {
-            _extensionHost = extensionHost;
+            _extensionHost = LiteDevelopApplication.Current.ExtensionHost;
         }
 
         public IList<OpenedFile> OpenedFiles

@@ -1138,25 +1138,7 @@ namespace LiteDevelop.Gui.Forms
 
         private void ErrorManager_NavigateToErrorRequested(object sender, BuildErrorEventArgs e)
         {
-            var content = _mainDockPanel.GetContainerByFilePath(e.Error.Location.FilePath);
-            if (content == null)
-            {
-                UserOpenWith(e.Error.Location.FilePath);
-                content = _mainDockPanel.GetContainerByFilePath(e.Error.Location.FilePath);
-            }
-
-            if (content != null)
-            {
-                var documentContent = content.DocumentContent;
-                if (documentContent != null)
-                {
-                    _mainDockPanel.SetActiveDocument(documentContent);
-                    if (documentContent.ParentExtension is ISourceNavigator)
-                    {
-                        (documentContent.ParentExtension as ISourceNavigator).NavigateToLocation(e.Error.Location);
-                    }
-                }
-            }
+            _extensionHost.SourceNavigator.NavigateToLocation(e.Error.Location);
         }
 
         private void toolStripPanel1_Resize(object sender, EventArgs e)

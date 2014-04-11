@@ -142,12 +142,13 @@ namespace LiteDevelop
                 SolutionExplorerMenu = FindControl(solutionExplorer, "mainTreeView").ContextMenuStrip
             };
 
-            _extensionHost.FileService = new FileService(_extensionHost);
+            _extensionHost.FileService = new FileService();
             _extensionHost.BookmarkManager = new BookmarkManager();
             _extensionHost.ErrorManager = new ErrorManager();
             _extensionHost.OutputContent = outputWindow;
             _extensionHost.ProgressBar = _mainForm.DefaultStatusProgressBar.ProgressBar;
             _extensionHost.CredentialManager = new CredentialManager();
+            _extensionHost.SourceNavigator = new DefaultSourceNavigator();
             _extensionHost.UILanguage = UILanguage.GetLanguageById(LiteDevelopSettings.Instance.GetValue("Application.LanguageID"));
 
             _muiProcessor = new Framework.Mui.MuiProcessor(_extensionHost, Path.Combine(Application.StartupPath, "MUI"));

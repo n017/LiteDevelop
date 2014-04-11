@@ -14,7 +14,6 @@ namespace LiteDevelop.Extensions
     public class LiteExtensionHost : ILiteExtensionHost
     {
         private UILanguage _language;
-        private FilePath _lastFilePath;
 
         public LiteExtensionHost()
         {
@@ -149,6 +148,12 @@ namespace LiteDevelop.Extensions
             internal set;
         }
 
+        public ISourceNavigator SourceNavigator
+        {
+            get;
+            internal set;
+        }
+
         public bool IsDebugging
         {
             get { return CurrentDebuggerSession != null && CurrentDebuggerSession.IsActive; }
@@ -267,19 +272,9 @@ namespace LiteDevelop.Extensions
         {
             var session = sender as DebuggerSession;
             var range = session.CurrentSourceRange;
-            if (range != null && _lastFilePath != range.FilePath)
+            if (range != null)
             {
-                var fileHandlers = ExtensionManager.GetFileHandlers(range.FilePath).Where(x => x is ISourceNavigator);
-                var handler = FileService.SelectFileHandler(fileHandlers, range.FilePath);
-                var file = FileService.OpenFile(_lastFilePath = range.FilePath);
-                handler.OpenFile(file);
-
-                ISourceNavigator navigator = file.CurrentDocumentContent as ISourceNavigator ??
-                    file.RegisteredDocumentContents.FirstOrDefault(x => x is ISourceNavigator) as ISourceNavigator ?? 
-                    handler as ISourceNavigator;
-
-                if (navigator != null)
-                    navigator.NavigateToLocation(range);
+                SourceNavigator.NavigateToLocation(range);
             }
         }
     }
