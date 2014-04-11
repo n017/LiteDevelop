@@ -1053,7 +1053,7 @@ namespace LiteDevelop.Gui.Forms
                     new ToolStripMenuItem(documentContent.Text, null,
                         new EventHandler((s, args) =>
                         {
-                            _mainDockPanel.GetContent(x => x.Tag == documentContent).ShowAndActivate(_mainDockPanel);
+                            _mainDockPanel.GetContainer(x => x.Tag == documentContent).ShowAndActivate(_mainDockPanel);
                         })) { Tag = documentContent });
             }
 
@@ -1138,16 +1138,16 @@ namespace LiteDevelop.Gui.Forms
 
         private void ErrorManager_NavigateToErrorRequested(object sender, BuildErrorEventArgs e)
         {
-            var content = _mainDockPanel.GetContentByFilePath(e.Error.Location.FilePath);
+            var content = _mainDockPanel.GetContainerByFilePath(e.Error.Location.FilePath);
             if (content == null)
             {
                 UserOpenWith(e.Error.Location.FilePath);
-                content = _mainDockPanel.GetContentByFilePath(e.Error.Location.FilePath);
+                content = _mainDockPanel.GetContainerByFilePath(e.Error.Location.FilePath);
             }
 
             if (content != null)
             {
-                var documentContent = content.Tag as LiteDocumentContent;
+                var documentContent = content.DocumentContent;
                 if (documentContent != null)
                 {
                     _mainDockPanel.SetActiveDocument(documentContent);

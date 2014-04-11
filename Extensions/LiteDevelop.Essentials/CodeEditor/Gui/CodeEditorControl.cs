@@ -42,6 +42,8 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             SetupTextBox();
 
+            contextMenuStrip1.Renderer = _extension.ExtensionHost.ControlManager.MenuRenderer;
+
             _componentMuiIdentifiers = new Dictionary<object, string>()
             {
                 {this.cutToolStripMenuItem, "CodeEditorControl.ContextMenu.Cut"},
@@ -422,18 +424,27 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 sourceRange.EndColumn - 1, 
                 sourceRange.EndLine - 1);
 
+            // remove last ip highlighting
             ClearLastHighlighting(style);
 
+            // remove syntax highlighting and add ip highlighting
+            range.ClearStyle(StyleIndex.All);
             range.SetStyle(style);
-
+            
             _lastIPRange = range;
         }
 
         private void ClearLastHighlighting(TextStyle style)
         {
             if (_lastIPRange != null)
+            {
+                // clear ip highlighting
                 _lastIPRange.ClearStyle(style);
+                // add syntax highlighting
+                HighlightSyntax(_lastIPRange);
+            }
         }
+
 
         #endregion
 

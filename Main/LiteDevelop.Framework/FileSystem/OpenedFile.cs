@@ -25,6 +25,9 @@ namespace LiteDevelop.Framework.FileSystem
 
         public OpenedFile(FilePath filePath)
         {
+            if (!File.Exists(filePath.FullPath))
+                throw new FileNotFoundException("File does not exist.");
+
             FilePath = filePath;
             _registeredContents = new List<LiteDocumentContent>();
             Dependencies = new EventBasedCollection<string>();

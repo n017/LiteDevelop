@@ -32,39 +32,39 @@ namespace LiteDevelop
 
         public static DockContent GetActiveDocument(this DockPanel dockPanel)
         {
-            return GetContent(dockPanel, x => x.DockHandler.IsActivated);
+            return GetContainer(dockPanel, x => x.DockHandler.IsActivated);
         }
 
         public static ViewContentContainer GetContainer(this DockPanel dockPanel, LiteViewContent liteContent)
         {
-            return GetContent(dockPanel, x => x is ViewContentContainer &&
-                (x as ViewContentContainer).ViewContent == liteContent) as ViewContentContainer;
+            return GetContainer(dockPanel, x => x.ViewContent == liteContent);
         }
 
-        public static DockContent GetContentByFile(this DockPanel dockPanel, OpenedFile file)
+        public static ViewContentContainer GetContainerByFile(this DockPanel dockPanel, OpenedFile file)
         {
-            return GetContentByFilePath(dockPanel, file.FilePath);
+            return GetContainerByFilePath(dockPanel, file.FilePath);
         }
 
-        public static DockContent GetContentByFilePath(this DockPanel dockPanel, string filePath)
+        public static ViewContentContainer GetContainerByFilePath(this DockPanel dockPanel, string filePath)
         {
-            return GetContentByFilePath(dockPanel, filePath);
+            return GetContainerByFilePath(dockPanel, filePath);
         }
 
-        public static DockContent GetContentByFilePath(this DockPanel dockPanel, FilePath filePath)
+        public static ViewContentContainer GetContainerByFilePath(this DockPanel dockPanel, FilePath filePath)
         {
-            return GetContent(dockPanel, x => x is ViewContentContainer &&
-                (x as ViewContentContainer).DocumentContent != null &&
-                (x as ViewContentContainer).DocumentContent.AssociatedFile != null && 
-                (x as ViewContentContainer).DocumentContent.AssociatedFile.FilePath == filePath);
+            return GetContainer(dockPanel, x => 
+                x.DocumentContent != null &&
+                x.DocumentContent.AssociatedFile != null && 
+                x.DocumentContent.AssociatedFile.FilePath == filePath);
         }
 
-        public static DockContent GetContent(this DockPanel dockPanel, Func<DockContent, bool> condition)
+        public static ViewContentContainer GetContainer(this DockPanel dockPanel, Func<ViewContentContainer, bool> condition)
         {
             foreach (DockContent document in dockPanel.Contents)
             {
-            	if (condition(document))
-            		return document;
+                var container = document as ViewContentContainer;
+                if (container != null && condition(container))
+                    return container;
             }
             return null;
         }

@@ -30,47 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeEditorControl));
-            this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.documentMap1 = new FastColoredTextBoxNS.DocumentMap();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.textBoxWrapperPanel = new System.Windows.Forms.Panel();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
+            this.fastColoredTextBox1 = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.documentMap1 = new FastColoredTextBoxNS.DocumentMap();
             this.contextMenuStrip1.SuspendLayout();
             this.textBoxWrapperPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // fastColoredTextBox1
-            // 
-            this.fastColoredTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(47, 14);
-            this.fastColoredTextBox1.BackBrush = null;
-            this.fastColoredTextBox1.ChangedLineColor = System.Drawing.Color.PaleGoldenrod;
-            this.fastColoredTextBox1.CharHeight = 14;
-            this.fastColoredTextBox1.CharWidth = 8;
-            this.fastColoredTextBox1.ContextMenuStrip = this.contextMenuStrip1;
-            this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fastColoredTextBox1.Hotkeys = resources.GetString("fastColoredTextBox1.Hotkeys");
-            this.fastColoredTextBox1.IsReplaceMode = false;
-            this.fastColoredTextBox1.LeftPadding = 20;
-            this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.fastColoredTextBox1.Name = "fastColoredTextBox1";
-            this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
-            this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fastColoredTextBox1.ShowScrollBars = false;
-            this.fastColoredTextBox1.Size = new System.Drawing.Size(358, 341);
-            this.fastColoredTextBox1.TabIndex = 0;
-            this.fastColoredTextBox1.Zoom = 100;
             // 
             // contextMenuStrip1
             // 
@@ -115,22 +90,6 @@
             this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.selectAllToolStripMenuItem.Text = "Select All";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
-            // 
-            // documentMap1
-            // 
-            this.documentMap1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.documentMap1.BackColor = System.Drawing.SystemColors.Window;
-            this.documentMap1.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.documentMap1.Location = new System.Drawing.Point(361, 0);
-            this.documentMap1.Name = "documentMap1";
-            this.documentMap1.Scale = 0.2F;
-            this.documentMap1.ScrollbarVisible = false;
-            this.documentMap1.Size = new System.Drawing.Size(97, 341);
-            this.documentMap1.TabIndex = 1;
-            this.documentMap1.Target = this.fastColoredTextBox1;
-            this.documentMap1.Text = "documentMap1";
-            this.documentMap1.VisibleChanged += new System.EventHandler(this.documentMap1_VisibleChanged);
             // 
             // hScrollBar1
             // 
@@ -178,6 +137,47 @@
             this.label1.Text = "100 %";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // fastColoredTextBox1
+            // 
+            this.fastColoredTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fastColoredTextBox1.AutoScrollMinSize = new System.Drawing.Size(47, 14);
+            this.fastColoredTextBox1.BackBrush = null;
+            this.fastColoredTextBox1.ChangedLineColor = System.Drawing.Color.PaleGoldenrod;
+            this.fastColoredTextBox1.CharHeight = 14;
+            this.fastColoredTextBox1.CharWidth = 8;
+            this.fastColoredTextBox1.ContextMenuStrip = this.contextMenuStrip1;
+            this.fastColoredTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fastColoredTextBox1.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fastColoredTextBox1.Hotkeys = resources.GetString("fastColoredTextBox1.Hotkeys");
+            this.fastColoredTextBox1.IsReplaceMode = false;
+            this.fastColoredTextBox1.LeftPadding = 20;
+            this.fastColoredTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.fastColoredTextBox1.Name = "fastColoredTextBox1";
+            this.fastColoredTextBox1.Paddings = new System.Windows.Forms.Padding(0);
+            this.fastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fastColoredTextBox1.ShowScrollBars = false;
+            this.fastColoredTextBox1.Size = new System.Drawing.Size(358, 341);
+            this.fastColoredTextBox1.TabIndex = 0;
+            this.fastColoredTextBox1.Zoom = 100;
+            // 
+            // documentMap1
+            // 
+            this.documentMap1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.documentMap1.BackColor = System.Drawing.SystemColors.Window;
+            this.documentMap1.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.documentMap1.Location = new System.Drawing.Point(361, 0);
+            this.documentMap1.Name = "documentMap1";
+            this.documentMap1.Scale = 0.2F;
+            this.documentMap1.ScrollbarVisible = false;
+            this.documentMap1.Size = new System.Drawing.Size(97, 341);
+            this.documentMap1.TabIndex = 1;
+            this.documentMap1.Target = this.fastColoredTextBox1;
+            this.documentMap1.Text = "documentMap1";
+            this.documentMap1.VisibleChanged += new System.EventHandler(this.documentMap1_VisibleChanged);
+            // 
             // CodeEditorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,9 +189,9 @@
             this.Controls.Add(this.hScrollBar1);
             this.Name = "CodeEditorControl";
             this.Size = new System.Drawing.Size(475, 358);
-            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.textBoxWrapperPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fastColoredTextBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -71,6 +71,7 @@ Dutch: Jerre S.
 Finnish: Dextrey
 German: MaxX0r
 Pirate (>:D): Jerre S.
+Swedish: UbbeLol
 Turkish: Woopza
 French: Wallace87000
 
@@ -81,7 +82,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
 
         public override Version Version
         {
-            get { return new Version(0, 9, 0, 2); }
+            get { return new Version(0, 9, 0, 3); }
         }
 
         public override string Copyright

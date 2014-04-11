@@ -10,8 +10,13 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
 {
     public class DynamicTextStyle : TextStyle 
     {
+        private static SolidBrush CreateBrush(Color color)
+        {
+            return color.ToArgb() != 0 ? new SolidBrush(color) : null;
+        }
+
         public DynamicTextStyle(AppearanceDescription description)
-            : base(new SolidBrush(description.ForeColor), new SolidBrush(description.BackColor), description.FontStyle)
+            : base(CreateBrush(description.ForeColor), CreateBrush(description.BackColor), description.FontStyle)
         {
             Description = description;
             description.ForeColorChanged += description_ForeColorChanged;
@@ -23,14 +28,14 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
         {
             if (ForeBrush != null)
                 ForeBrush.Dispose();
-            ForeBrush = new SolidBrush(Description.ForeColor);
+            ForeBrush = CreateBrush(Description.ForeColor);
         }
 
         private void description_BackColorChanged(object sender, EventArgs e)
         {
             if (BackgroundBrush != null)
                 BackgroundBrush.Dispose();
-            BackgroundBrush = new SolidBrush(Description.BackColor);
+            BackgroundBrush = CreateBrush(Description.BackColor);
         }
 
         private void description_FontStyleChanged(object sender, EventArgs e)
