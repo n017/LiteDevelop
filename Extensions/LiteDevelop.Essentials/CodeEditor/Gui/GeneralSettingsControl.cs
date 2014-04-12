@@ -33,6 +33,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             };
 
             _extensionHost.UILanguageChanged += _extensionHost_UILanguageChanged;
+            _extensionHost_UILanguageChanged(null, EventArgs.Empty);
         }
 
         public override void ApplySettings()
