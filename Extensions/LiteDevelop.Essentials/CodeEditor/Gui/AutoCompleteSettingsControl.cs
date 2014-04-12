@@ -4,7 +4,6 @@ using System.Linq;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Mui;
-using System.Text;
 
 namespace LiteDevelop.Essentials.CodeEditor.Gui
 {
@@ -68,18 +67,6 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             var languagePack = this._muiProcessor.GetCurrentLanguagePack();
             showSuggestionsListComboBox.Items[0] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.TypingAnyChar");
             showSuggestionsListComboBox.Items[1] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.PressingCtrlSpace");
-
-            string showSuggestionsListWhen = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.Title");
-
-            if (showSuggestionsListWhen.Length > 30)
-            {
-                int index = showSuggestionsListWhen.LastIndexOf(" ");
-
-                StringBuilder sb = new StringBuilder(showSuggestionsListWhen);
-
-                sb[index] = '\n';
-                showSuggestionsListWhenLabel.Text = sb.ToString();
-            }
         }
     }
 }
