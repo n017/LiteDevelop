@@ -9,7 +9,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 {
     public partial class AutoCompleteSettingsControl : SettingsControl
     {
-        private Dictionary<object, string> _componentMuiIdentifiers;
+        private readonly Dictionary<object, string> _componentMuiIdentifiers;
         private ILiteExtensionHost _extensionHost;
         private MuiProcessor _muiProcessor;
         private CodeEditorSettings _settings;
@@ -67,6 +67,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             var languagePack = this._muiProcessor.GetCurrentLanguagePack();
             showSuggestionsListComboBox.Items[0] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.TypingAnyChar");
             showSuggestionsListComboBox.Items[1] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.PressingCtrlSpace");
+            showSuggestionsListWhenLabel.Text = MuiProcessor.BreakIntoLines(showSuggestionsListWhenLabel.Text, 30);
         }
     }
 }

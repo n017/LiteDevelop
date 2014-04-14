@@ -169,7 +169,7 @@ namespace LiteDevelop.Framework.Mui
             if ((languagePack.TryGetValue(id, out value)) ||
                 (languagePack.FallbackMap != null && languagePack.FallbackMap.TryGetValue(id, out value)))
             {
-                property.SetValue(component, CheckLength(component, value), null);
+                property.SetValue(component, value, null);
                 return true;
             }
 
@@ -191,16 +191,9 @@ namespace LiteDevelop.Framework.Mui
             return null;
         }
 
-        private static string CheckLength(object component, string value)
+        public static string BreakIntoLines(string value, int maxLength)
         {
-            if (component.GetType() != typeof(System.Windows.Forms.Label))
-                return value;
-
-            System.Windows.Forms.Label cLabel = (System.Windows.Forms.Label)component;
-            if (cLabel.Name == "commitSelectedItemWhenLabel")
-                return value;
-
-            if (value.Length > 30)
+            if (value.Length > maxLength)
             {
                 int index = value.LastIndexOf(" ");
 
