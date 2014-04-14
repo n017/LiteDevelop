@@ -25,7 +25,7 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\LiteDevelop.Essentials\LiteDevelop.Essentials.csproj">
+    <ProjectReference Include="..\..\Extensions\Editors\LiteDevelop.Essentials\LiteDevelop.Essentials.csproj">
       <Name>LiteDevelop.Essentials</Name>
       <Project>{1bf221f0-f68c-472a-8543-ec3f3f16b049}</Project>
       <Private>True</Private>

@@ -111,7 +111,8 @@
           
           <!-- Extension files -->
           <Directory Id="ExtensionsFolder" Name="Extensions">
-            <Directory Id="EssentialsFolder" Name="Essentials">
+            <Directory Id="EditorsFolder" Name="Editors">
+              <Directory Id="EssentialsFolder" Name="Essentials">
               
               <!-- Assembly files -->
               <Component Id = "LiteDevelopEssentialsDll" Guid = "{BD3A872E-118A-40C1-8177-97C86B48F0BF}">
@@ -179,6 +180,7 @@
                   <File Id = "essentials_turkish.xml" Source ="$(var.LiteDevelop.Essentials.TargetDir)\Mui\turkish.xml" KeyPath="yes" />
                 </Component>
               </Directory>
+            </Directory>
             </Directory>
           </Directory>
 

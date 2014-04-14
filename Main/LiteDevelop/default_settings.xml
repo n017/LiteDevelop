@@ -3,7 +3,7 @@
   <ItemGroup Id="Application">
     <Item Id="LanguageID">english</Item>
     <ItemArray Id="Extensions">
-      <Element>Extensions\Essentials\LiteDevelop.Essentials.dll</Element>
+      <Element>Extensions\Editors\Essentials\LiteDevelop.Essentials.dll</Element>
     </ItemArray>
   </ItemGroup>
   <ItemGroup Id="MainWindow">
