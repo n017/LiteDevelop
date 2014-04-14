@@ -33,6 +33,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             };
 
             _extensionHost.UILanguageChanged += _extensionHost_UILanguageChanged;
+            _extensionHost_UILanguageChanged(null, EventArgs.Empty);
         }
         
         public override void ApplySettings()
@@ -66,7 +67,6 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             var languagePack = this._muiProcessor.GetCurrentLanguagePack();
             showSuggestionsListComboBox.Items[0] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.TypingAnyChar");
             showSuggestionsListComboBox.Items[1] = languagePack.GetValue("AutoCompleteSettingsControl.AutoListMembers.PopupTime.PressingCtrlSpace");
-
         }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using LiteDevelop.Framework.FileSystem;
+using System.Text;
 
 namespace LiteDevelop.Framework.Mui
 {
@@ -168,7 +169,7 @@ namespace LiteDevelop.Framework.Mui
             if ((languagePack.TryGetValue(id, out value)) ||
                 (languagePack.FallbackMap != null && languagePack.FallbackMap.TryGetValue(id, out value)))
             {
-                property.SetValue(component, value, null);
+                property.SetValue(component, CheckLength(component, value), null);
                 return true;
             }
 
@@ -188,6 +189,26 @@ namespace LiteDevelop.Framework.Mui
             }
 
             return null;
+        }
+
+        private static string CheckLength(object component, string value)
+        {
+            if (component.GetType() != typeof(System.Windows.Forms.Label))
+                return value;
+
+            System.Windows.Forms.Label cLabel = (System.Windows.Forms.Label)component;
+            if (cLabel.Name == "commitSelectedItemWhenLabel")
+                return value;
+
+            if (value.Length > 30)
+            {
+                int index = value.LastIndexOf(" ");
+
+                StringBuilder sb = new StringBuilder(value);
+                sb[index] = '\n';
+                return sb.ToString();
+            }
+            return value;
         }
     }
 }
