@@ -15,6 +15,7 @@ using LiteDevelop.Extensions;
 using LiteDevelop.Gui.DockContents;
 using LiteDevelop.Gui.DockContents.SolutionExplorer;
 using System.Threading;
+using LiteDevelop.Framework.Debugging;
 
 namespace LiteDevelop.Gui.Forms
 {
@@ -197,6 +198,8 @@ namespace LiteDevelop.Gui.Forms
                 {this.pasteToolStripButton, "MainForm.Menu.Edit.Paste"},
                 {this.buildSolutionStripButton, "MainForm.Menu.Build.BuildSolution"},
                 {this.runToolStripButton, "MainForm.Menu.Debug.Run"},
+                {this.breakToolStripButton, "MainForm.Menu.Debug.Break"},
+                {this.stopDebuggingToolStripButton, "MainForm.Menu.Debug.StopDebugging"},
                 {this.runWithoutDebuggerToolStripButton, "MainForm.Menu.Debug.RunWithoutDebugger"},
                 {this.aboutToolStripButton, "MainForm.Menu.Help.About"},
             };
@@ -468,6 +471,10 @@ namespace LiteDevelop.Gui.Forms
                 runWithoutDebuggerToolStripButton.Enabled =
                 runWithoutDebuggerToolStripMenuItem.Enabled =
                 runLastBuildToolStripMenuItem.Enabled =
+                breakToolStripButton.Enabled =
+                breakToolStripMenuItem.Enabled = 
+                stopDebuggingToolStripButton.Enabled = 
+                stopDebuggingToolStripMenuItem.Enabled =
                 stepIntoToolStripMenuItem.Enabled =
                 stepOverToolStripMenuItem.Enabled =
                 stepOutToolStripMenuItem.Enabled = false;
@@ -783,18 +790,30 @@ namespace LiteDevelop.Gui.Forms
 
         private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
         {
-            runToolStripButton.Enabled = runToolStripMenuItem.Enabled =
-                stepIntoToolStripMenuItem.Enabled =
-                stepOverToolStripMenuItem.Enabled =
-                stepOutToolStripMenuItem.Enabled = true;
+            var session = _extensionHost.CurrentDebuggerSession;
+            runToolStripButton.Enabled = runToolStripMenuItem.Enabled = true;
+
+            stepIntoToolStripMenuItem.Enabled = session.CanStepInto;
+            stepOverToolStripMenuItem.Enabled = session.CanStepOver;
+            stepOutToolStripMenuItem.Enabled = session.CanStepOut;
+
+            breakToolStripButton.Enabled =
+                breakToolStripMenuItem.Enabled = false;
         }
 
         private void CurrentDebuggerSession_Resumed(object sender, EventArgs e)
         {
+            var session = _extensionHost.CurrentDebuggerSession;
             runToolStripButton.Enabled = runToolStripMenuItem.Enabled =
                 stepIntoToolStripMenuItem.Enabled =
                 stepOverToolStripMenuItem.Enabled =
                 stepOutToolStripMenuItem.Enabled = false;
+
+            stopDebuggingToolStripButton.Enabled =
+                stopDebuggingToolStripMenuItem.Enabled = true;
+
+            breakToolStripButton.Enabled =
+                breakToolStripMenuItem.Enabled = session.CanBreak;
         }
 
         private void CurrentDebuggerSession_ActiveChanged(object sender, EventArgs e)
@@ -818,9 +837,13 @@ namespace LiteDevelop.Gui.Forms
             {
                 Invoke(new Action(() =>
                 {
-                    var errorList = _mainDockPanel.FindContent<ErrorContent>();
-                    errorList.SetErrors(e.Result.Errors);
-                    errorList.Focus();
+                    if (e.Result.Errors.Length > 0)
+                    {
+                        var errorList = _mainDockPanel.FindContent<ErrorContent>();
+                        errorList.SetErrors(e.Result.Errors);
+                        errorList.ShowAndActivate(DockPanel);
+                    }
+                    UseWaitCursor = false;
                 }));
             }
             
@@ -853,6 +876,16 @@ namespace LiteDevelop.Gui.Forms
         private void runLastBuildToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _extensionHost.CurrentSolution.Execute();
+        }
+
+        private void breakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _extensionHost.CurrentDebuggerSession.BreakAll();
+        }
+
+        private void stopDebuggingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _extensionHost.CurrentDebuggerSession.StopAll();
         }
 
         private void stepOverToolStripMenuItem_Click(object sender, EventArgs e)

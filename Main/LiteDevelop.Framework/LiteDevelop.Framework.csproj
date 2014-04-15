@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="ArrayComparer.cs" />
     <Compile Include="AssemblyIconProvider.cs" />
+    <Compile Include="Debugging\PauseEvent.cs" />
+    <Compile Include="Debugging\PauseReason.cs" />
     <Compile Include="ErrorIconProvider.cs" />
     <Compile Include="Extensions\CoreExtension.cs" />
     <Compile Include="Extensions\CredentialRequest.cs" />

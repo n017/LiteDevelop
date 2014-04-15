@@ -268,8 +268,12 @@ namespace LiteDevelop.Extensions
             DispatchDebugStopped(EventArgs.Empty);
         }
 
-        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
+        private void CurrentDebuggerSession_Paused(object sender, PauseEventArgs e)
         {
+            // Exceptions should be handled by the debugger.
+            if (e.Reason == PauseReason.Exception)
+                return;
+
             var session = sender as DebuggerSession;
             var range = session.CurrentSourceRange;
             if (range != null)

@@ -16,7 +16,7 @@ namespace LiteDevelop.Framework.Debugging
 
         public event EventHandler ActiveChanged;
         public event EventHandler Disposed;
-        public event EventHandler Paused;
+        public event PauseEventHandler Paused;
         public event EventHandler Resumed;
         
         private bool _isActive;
@@ -38,6 +38,11 @@ namespace LiteDevelop.Framework.Debugging
         {
             get;
             set;
+        }
+
+        public abstract bool CanBreak
+        {
+            get;
         }
 
         public abstract bool CanStepOver
@@ -89,7 +94,7 @@ namespace LiteDevelop.Framework.Debugging
                 ActiveChanged(this, e);
         }
 
-        protected virtual void OnPaused(EventArgs e)
+        protected virtual void OnPaused(PauseEventArgs e)
         {
             if (Paused != null)
                 Paused(this, e);

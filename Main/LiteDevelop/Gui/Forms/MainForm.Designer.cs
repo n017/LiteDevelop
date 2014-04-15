@@ -112,6 +112,8 @@
             this.sourceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.breakToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.stopDebuggingToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolBar.SuspendLayout();
             this.toolStripPanel1.SuspendLayout();
@@ -160,11 +162,13 @@
             this.toolStripSeparator12,
             this.runToolStripButton,
             this.runWithoutDebuggerToolStripButton,
+            this.breakToolStripButton,
+            this.stopDebuggingToolStripButton,
             this.toolStripSeparator11,
             this.aboutToolStripButton});
             this.mainToolBar.Location = new System.Drawing.Point(0, 25);
             this.mainToolBar.Name = "mainToolBar";
-            this.mainToolBar.Size = new System.Drawing.Size(289, 25);
+            this.mainToolBar.Size = new System.Drawing.Size(335, 25);
             this.mainToolBar.TabIndex = 4;
             this.mainToolBar.Text = "toolStrip1";
             // 
@@ -353,7 +357,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -493,7 +497,7 @@
             this.toolStripSeparator4,
             this.selectAllToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 19);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // undoToolStripMenuItem
@@ -576,7 +580,7 @@
             this.toolStripSeparator10,
             this.fullScreenToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // toolBoxToolStripMenuItem
@@ -647,7 +651,7 @@
             this.buildSolutionToolStripMenuItem,
             this.cleanSolutionToolStripMenuItem});
             this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            this.buildToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.buildToolStripMenuItem.Size = new System.Drawing.Size(46, 19);
             this.buildToolStripMenuItem.Text = "&Build";
             // 
             // buildSolutionToolStripMenuItem
@@ -682,7 +686,7 @@
             this.stepIntoToolStripMenuItem,
             this.stepOutToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 19);
             this.debugToolStripMenuItem.Text = "Debug";
             // 
             // runToolStripMenuItem
@@ -725,6 +729,7 @@
             this.breakToolStripMenuItem.Name = "breakToolStripMenuItem";
             this.breakToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.breakToolStripMenuItem.Text = "Break";
+            this.breakToolStripMenuItem.Click += new System.EventHandler(this.breakToolStripMenuItem_Click);
             // 
             // stopDebuggingToolStripMenuItem
             // 
@@ -734,6 +739,7 @@
             this.stopDebuggingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.F5)));
             this.stopDebuggingToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.stopDebuggingToolStripMenuItem.Text = "Stop debugging";
+            this.stopDebuggingToolStripMenuItem.Click += new System.EventHandler(this.stopDebuggingToolStripMenuItem_Click);
             // 
             // toolStripSeparator14
             // 
@@ -773,7 +779,7 @@
             this.settingsToolStripMenuItem,
             this.extensionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 19);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // settingsToolStripMenuItem
@@ -799,7 +805,7 @@
             this.closeAllDocumentsToolStripMenuItem,
             this.windowListSeparator});
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.windowToolStripMenuItem.Size = new System.Drawing.Size(63, 19);
             this.windowToolStripMenuItem.Text = "Window";
             // 
             // nextWindowToolStripMenuItem
@@ -844,7 +850,7 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // sourceCodeToolStripMenuItem
@@ -865,6 +871,28 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // breakToolStripButton
+            // 
+            this.breakToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.breakToolStripButton.Enabled = false;
+            this.breakToolStripButton.Image = global::LiteDevelop.Properties.Resources.pause;
+            this.breakToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.breakToolStripButton.Name = "breakToolStripButton";
+            this.breakToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.breakToolStripButton.Text = "Break";
+            this.breakToolStripButton.Click += new System.EventHandler(this.breakToolStripMenuItem_Click);
+            // 
+            // stopDebuggingToolStripButton
+            // 
+            this.stopDebuggingToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.stopDebuggingToolStripButton.Enabled = false;
+            this.stopDebuggingToolStripButton.Image = global::LiteDevelop.Properties.Resources.stop;
+            this.stopDebuggingToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.stopDebuggingToolStripButton.Name = "stopDebuggingToolStripButton";
+            this.stopDebuggingToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.stopDebuggingToolStripButton.Text = "Stop debugging";
+            this.stopDebuggingToolStripButton.Click += new System.EventHandler(this.stopDebuggingToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -975,6 +1003,8 @@
         private System.Windows.Forms.ToolStripMenuItem stepOverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stepOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bookmarksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton breakToolStripButton;
+        private System.Windows.Forms.ToolStripButton stopDebuggingToolStripButton;
     }
 }
 
