@@ -448,7 +448,7 @@ namespace LiteDevelop.Gui.Forms
             }
         }
 
-        private void EnableDebuggerItems()
+        private void EnableInitialDebuggerItems()
         {
             buildSolutionToolStripMenuItem.Enabled =
                 buildSolutionStripButton.Enabled =
@@ -571,7 +571,9 @@ namespace LiteDevelop.Gui.Forms
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _mainDockPanel.GetActiveDocument().Close();
+            var document = _mainDockPanel.GetActiveDocument();
+            if (document != null)
+                document.Close();
         }
 
         private void closeSolutionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -785,7 +787,7 @@ namespace LiteDevelop.Gui.Forms
 
         private void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
         {
-            EnableDebuggerItems();
+            EnableInitialDebuggerItems();
         }
 
         private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
@@ -886,6 +888,8 @@ namespace LiteDevelop.Gui.Forms
         private void stopDebuggingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _extensionHost.CurrentDebuggerSession.StopAll();
+            DisableDebuggerItems();
+            EnableInitialDebuggerItems();
         }
 
         private void stepOverToolStripMenuItem_Click(object sender, EventArgs e)
@@ -999,7 +1003,7 @@ namespace LiteDevelop.Gui.Forms
             _extensionHost.CurrentSolution.CleanStarted += CurrentSolution_BuildOrCleanStarted;
             _extensionHost.CurrentSolution.CleanCompleted += CurrentSolution_CleanCompleted;
 
-            EnableDebuggerItems();
+            EnableInitialDebuggerItems();
         }
 
         private void _extensionHost_SolutionUnload(object sender, SolutionEventArgs e)

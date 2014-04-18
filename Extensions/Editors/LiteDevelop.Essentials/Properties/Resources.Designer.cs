@@ -63,6 +63,26 @@ namespace LiteDevelop.Essentials.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_blue {
+            get {
+                object obj = ResourceManager.GetObject("arrow_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_yellow {
+            get {
+                object obj = ResourceManager.GetObject("arrow_yellow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap comment_accept {
             get {
                 object obj = ResourceManager.GetObject("comment_accept", resourceCulture);
@@ -97,16 +117,6 @@ namespace LiteDevelop.Essentials.Properties {
             get {
                 object obj = ResourceManager.GetObject("csharp_file_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap current {
-            get {
-                object obj = ResourceManager.GetObject("current", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

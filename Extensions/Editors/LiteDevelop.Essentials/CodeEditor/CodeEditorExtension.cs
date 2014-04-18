@@ -67,6 +67,7 @@ namespace LiteDevelop.Essentials.CodeEditor
             get { return @"Main programmer: Jerre S.
 
 Translations:
+Danish: Phoenix
 Dutch: Jerre S.
 Finnish: Dextrey
 German: MaxX0r
@@ -82,7 +83,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
 
         public override Version Version
         {
-            get { return new Version(0, 9, 0, 4); }
+            get { return new Version(0, 9, 0, 5); }
         }
 
         public override string Copyright

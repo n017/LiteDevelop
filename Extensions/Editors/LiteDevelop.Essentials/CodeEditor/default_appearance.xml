@@ -56,5 +56,10 @@
       <BackColor UseSystemName="False">FFFFFF00</BackColor>
       <FontStyle>Regular</FontStyle>
     </AppearanceDescription>
+    <AppearanceDescription Name="Shadow pointer" Id="ShadowInstructionPointer">
+      <ForeColor UseSystemName="False">FF000000</ForeColor>
+      <BackColor UseSystemName="False">FFFFFF00</BackColor>
+      <FontStyle>Regular</FontStyle>
+    </AppearanceDescription>
   </Descriptions>
 </AppearanceMap>

@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+  
+  <!-- 
+  ==================================
+  Main application 
+  ==================================
+  -->
+  
+  <ItemGroup Id="Common">
+    <Item Id="Ok">Ok</Item>
+    <Item Id="Close">Luk</Item>
+    <Item Id="Cancel">Annuler</Item>
+    <Item Id="Yes">Ja</Item>
+    <Item Id="No">Nej</Item>
+    <Item Id="Add">Tilføj</Item>
+    <Item Id="Remove">Fjern</Item>
+    <Item Id="Browse">Gennemse</Item>
+    <Item Id="None">Ingen</Item>
+    <Item Id="Name">Navn</Item>
+    <Item Id="Directory">Mappe</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="AboutDialog">
+    <Item Id="Title">Om</Item>
+    <Item Id="ProjectFounder">Projekt grundlægger</Item>
+    <Item Id="Version">Version</Item>
+    <Item Id="Repository">Github repository</Item>
+    <ItemGroup Id="ModuleListHeaders">
+      <Item Id="Module">Modul</Item>
+      <Item Id="Version">Version</Item>
+    </ItemGroup>
+    <ItemGroup Id="ExtensionDetails">
+      <Item Id="Name">Navn</Item>
+      <Item Id="Version">Version</Item>
+      <Item Id="Path">Sti</Item>
+      <Item Id="Author">Forfatter</Item>
+      <Item Id="Description">Beskrivelse</Item>
+      <Item Id="Copyright">Copyright</Item>
+      <Item Id="AdditionalReleaseInformation">Yderligere udgivelses information</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="AppearanceEditor">
+    <Item Id="Extensions">Tilføjelser</Item>
+    
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Key">Nøgle</Item>
+      <Item Id="Preview">Eksempel</Item>
+    </ItemGroup>
+    
+    <ItemGroup Id="Editor">
+      <Item Id="ForeColor">Forgrunds farve:</Item>
+      <Item Id="BackColor">Baggrunds fave:</Item>
+      <Item Id="Transparent">Gennemsigtig</Item>
+      <Item Id="Bold">Fed</Item>
+      <Item Id="Italic">Kursiv</Item>
+      <Item Id="Underline">Understreget</Item>
+      <Item Id="Strikeout">Gennemstreget</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="CreateFileDialog">
+    <Item Id="Title">Opret ny fil</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="CreateProjectDialog">
+    <Item Id="Title">Opret nyt projekt</Item>
+    <Item Id="FolderAlreadyExists">$(folder) eksistere allerede. Vil du fortsætte?</Item>
+    <Item Id="FileAlreadyExists">$(file) eksistere allerede. Vil du overskrive filen?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="BookmarkContent">
+    <Item Id="Title">Bogmærker</Item>
+    <ItemGroup Id="Toolbar">
+      <Item Id="AddBookmark">&amp;Tilføj et bogmærke på den nuværende linje</Item>
+      <Item Id="RemoveBookmark">&amp;Fjern et bogmærke på den nuværende linje</Item>
+      <Item Id="Previous">Gå til &amp;tidligere bogmærke</Item>
+      <Item Id="Next">Gå til &amp;næste bogmærke</Item>
+      <Item Id="DeleteAll">&amp;Slet alt</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Line">Linje</Item>
+      <Item Id="File">Fil</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="ErrorContent">
+    <Item Id="Title">Fejl liste</Item>
+    <ItemGroup Id ="Toolbar">
+      <Item Id="Errors">$(count) Fejl</Item>
+      <Item Id="Warnings">$(count) Advarsler</Item>
+      <Item Id="Messages">$(count) Beskeder</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Message">Besked</Item>
+      <Item Id="File">Fil</Item>
+      <Item Id="Line">Linje</Item>
+      <Item Id="Column">Kolonne</Item>
+    </ItemGroup>
+    <ItemGroup Id="ContextMenu">
+      <Item Id="Copy">Kopier</Item>
+      <Item Id="GotoFile">Gå til fil</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionLoadDialog">
+    <Item Id="Title">Tilføjelser åben resultat</Item>
+    <Item Id="LoadedSuccessfully">Loaded succesfuldt</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Extension">Tilføjelser</Item>
+      <Item Id="Path">Sti</Item>
+      <Item Id="Result">Resultat</Item>
+    </ItemGroup>
+    <ItemGroup Id="Details">
+      <Item Id="Title">Tilføjelser åben resultat</Item>
+      <Item Id="Message">Tilføjelsen $(extension) åbnede $(result).&#10;&#13;&#10;&#13;Details:&#10;&#13;$(details)</Item>
+      <Item Id="Successfully">succesfuldt</Item>
+      <Item Id="Unsuccessfully">uden succes</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExtensionsDialog">
+    <Item Id="Title">Tilføjelser</Item>
+    <Item Id="Add.FileFilter">LiteDevelop tilføjelses bibliotek (*.dll)</Item>
+    <Item Id="Remove.Warning">Er du sikker på du vil fjerne dette bibliotek og dets tilføjelser?</Item>
+    <Item Id="RestartRequired">For at udføre operationerne skal LiteDevelop genstartes. Vil du gøre det nu?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="LiteDevelopExtension">
+    <Item Id="GeneralSettings">Generelt</Item>
+    <Item Id="Appearance">Udseende</Item>
+    <Item Id="InternationalSettings">Internationalt</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsEditor">
+    <Item Id="DefaultProjectsPath">Standard projekter sti:</Item>
+    <Item Id="ShowOutput">Vis output ved build.</Item>
+    <Item Id="ShowErrorList">Vis fejl liste hvis build fejler.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="MainForm">
+    
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Der er ingen behandler tilgængelig for "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Der er ingen debugger tilgængelig for "$(project)".</Item>
+      <Item Id="BuildFailed">En eller flere projekter kunne ikke bygges. Se fejl listen for mere info.</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Er du sikker på du vil afkoble den nuværende løsning?</Item>
+      <Item Id="CloseAllDocumentsWarning">Er du sikker på du vil lukke alle dokumenter?</Item>
+    </ItemGroup>
+
+    <ItemGroup Id="Menu">
+      <ItemGroup Id="File">
+        <Item Id="Title">&amp;Fil</Item>
+        <Item Id="New">&amp;Ny</Item>
+        <Item Id="New.NewFile">Ny fil</Item>
+        <Item Id="New.NewProject">Nyt projekt</Item>
+        <Item Id="Open">&amp;Åbn</Item>
+        <Item Id="Save">&amp;Gem</Item>
+        <Item Id="SaveAs">Gem &amp;som</Item>
+        <Item Id="SaveAll">Gem alle</Item>
+        <Item Id="Close">Luk</Item>
+        <Item Id="CloseSolution">Luk løsning</Item>
+        <Item Id="Print">&amp;Print</Item>
+        <Item Id="PrintPreview">Print eks&amp;empel</Item>
+        <Item Id="Exit">L&amp;uk</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Edit">
+        <Item Id="Title">&amp;Rediger</Item>
+        <Item Id="Undo">&amp;Fortryd</Item>
+        <Item Id="Redo">&amp;Redo</Item>
+        <Item Id="Cut">Kli&amp;p</Item>
+        <Item Id="Copy">&amp;Kopier</Item>
+        <Item Id="Paste">&amp;Indsæt</Item>
+        <Item Id="SelectAll">Vælg &amp;alle</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="View">
+        <Item Id="Title">&amp;Se</Item>
+        <Item Id="Toolbox">&amp;Værkstøjskasse</Item>
+        <Item Id="SolutionExplorer">&amp;Løsning forsker</Item>
+        <Item Id="PropertiesWindow">&amp;Egenskaber</Item>
+        <Item Id="Bookmarks">&amp;Bogmærke</Item>
+        <Item Id="ErrorList">&amp;Fejl liste</Item>
+        <Item Id="OutputWindow">&amp;Output</Item>
+        <Item Id="Fullscreen">&amp;Fuldskærm</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Build">
+        <Item Id="Title">&amp;Build</Item>
+        <Item Id="BuildSolution">Build &amp;løsning</Item>
+        <Item Id="CleanSolution">&amp;Ren løsning</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Debug">
+        <Item Id="Title">&amp;Debug</Item>
+        <Item Id="Run">&amp;Kør</Item>
+        <Item Id="RunWithoutDebugger">Kør &amp;uden debugger</Item>
+        <Item Id="RunLastBuild">Kør &amp;seneste build</Item>
+        <Item Id="Break">&amp;Bryd</Item>
+        <Item Id="StopDebugging">&amp;Stop debugging</Item>
+        <Item Id="StepOver">Gå &amp;over</Item>
+        <Item Id="StepInto">Gå &amp;ind i</Item>
+        <Item Id="StepOut">Gå &amp;ud</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Tools">
+        <Item Id="Title">&amp;Værktøjer</Item>
+        <Item Id="Settings">&amp;Indstillinger</Item>
+        <Item Id="Extensions">&amp;Tilføjelser</Item>
+      </ItemGroup>
+      
+      <ItemGroup Id="Window">
+        <Item Id="Title">&amp;Vindue</Item>
+        <Item Id="NextWindow">&amp;Næste vindue</Item>
+        <Item Id="PreviousWindow">&amp;Forrige vindue</Item>
+        <Item Id="CloseAllDocuments">&amp;Luk alle dokumenter</Item>
+      </ItemGroup>
+
+      <ItemGroup Id="Help">
+        <Item Id="Title">&amp;Hjælp</Item>
+        <Item Id="SourceCode">Kildekode</Item>
+        <Item Id="About">&amp;Omkring</Item>
+      </ItemGroup>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OpenWithDialog">
+    <Item Id="Title">Åben med...</Item>
+    <ItemGroup Id ="ListHeaders">
+      <Item Id="Name">Navn</Item>
+      <Item Id="Description">Beskrivelse</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="OutputContent">
+    <Item Id="Title">Output</Item>
+    <Item Id="ShowOutputFrom">Show output from:</Item>
+    <Item Id="ClearAll">Fjern alt</Item>
+    <Item Id="ToggleWordWrap">Slå word wrap til/fra</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="PropertiesContent">
+    <Item Id="Title">Egenskaber</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SettingsDialog">
+    <Item Id="Title">Indstillinger</Item>
+    <Item Id="ResetToDefaults">Nulstil til standardindstillinger</Item>
+    <Item Id="ResetToDefaultsWarning">Are you sure you want to reset all the settings to their default states?</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="SolutionExplorerContent">
+    <Item Id="Title">Løsnings forsker</Item>
+    <Item Id ="DeleteFileWarning">$(file) vil blive slettet permanent.</Item>
+    
+    <ItemGroup Id ="ContextMenu">
+      <Item Id="Add">Tilføj</Item>
+      <Item Id="Add.NewFile">Ny fil</Item>
+      <Item Id="Add.NewDirectory">Ny mappe</Item>
+      <Item Id="Add.NewProject">Nyt projekt</Item>
+      <Item Id="Add.ExistingFile">Eksisterene fil...</Item>
+      <Item Id="Open">Åben</Item>
+      <Item Id="Remove">Fjern</Item>
+      <Item Id="Rename">Omdøb</Item>
+      <Item Id="SetAsStartupProject">Sæt som startup projekt</Item>
+      <Item Id="ViewInExplorer">Se i Explorer</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ToolBoxContent">
+    <Item Id="Title">Værktøjskasse</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="UnsavedFilesDialog">
+    <Item Id="Title">Ugemte filer</Item>
+    <Item Id="Message">De følgende filer indeholder ugemt data</Item>
+    <Item Id="SaveSelected">Gem valgte</Item>
+    <Item Id="DontSave">Gem ikke</Item>
+  </ItemGroup>
+
+  <!-- 
+  ==================================
+  Framework library (TODO)
+  ==================================
+  -->
+  
+</UILanguagePack>

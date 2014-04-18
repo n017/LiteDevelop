@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+  
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Klip</Item>
+      <Item Id = "Copy">Kopier</Item>
+      <Item Id = "Paste">Sæt ind</Item>
+      <Item Id = "SelectAll">Vælg alt</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">Generelt</Item>
+    <Item Id = "AutoCompleteSettings">Auto korrektur</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Vis foreslag</Item>
+      <Item Id = "CommentRegion">Kommenter region</Item>
+      <Item Id = "UncommentRegion">Afkommentér region</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Linje $(line)</Item>
+      <Item Id = "CurrentColumn">Kolonne $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Vis linjenummer</Item>
+    <Item Id = "WordWrap">Auto formater tekst</Item>
+    <Item Id = "SyntaxHighlighting">Syntax fremhævning</Item>
+    <Item Id = "TrackUnsavedChanges">Spor ugemte ændringer</Item>
+    <Item Id = "HighlightCurrentLine">Fremhæv nuværende linje</Item>
+    <Item Id = "ShowDocumentMiniMap">Vis dokument plan</Item>
+  </ItemGroup>
+  
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Auto list medlemmer</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Vis foreslagsliste når:</Item>
+        <Item Id = "TypingAnyChar">hvilket som helst bogstav er skrevet</Item>
+        <Item Id = "PressingCtrlSpace">Ctrl+Mellemrum er trykket</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">Indsæt valgte element når en af disse taster er trykket:</Item>
+      <Item Id = "CommitItemOnSpaceBar">Indsæt valgte element når mellemrum er trykket</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Færdiggør automatisk kodeblokke (e.g. ( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Tilføj automatisk paranteser når en metode er indsat</Item>
+  </ItemGroup>
+  
+</UILanguagePack>

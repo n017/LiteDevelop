@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Languages>
+  <Language name = "Danish" id = "danish" />
   <Language name = "Dutch" id = "dutch" />
   <Language name = "English" id = "english" />
   <Language name = "Finnish" id = "finnish" />

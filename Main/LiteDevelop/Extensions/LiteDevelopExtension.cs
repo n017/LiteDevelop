@@ -43,7 +43,7 @@ namespace LiteDevelop.Extensions
 
         public override Version Version
         {
-            get { return Version.Parse(Application.ProductVersion); }
+            get { return typeof(LiteDevelopExtension).Assembly.GetName().Version; }
         }
 
         public override string Copyright
@@ -59,6 +59,7 @@ namespace LiteDevelop.Extensions
 Icon design: Raxdiam
 
 Translations:
+Danish: Phoenix
 Dutch: Jerre S.
 Finnish: Dextrey
 French: Wallace87000

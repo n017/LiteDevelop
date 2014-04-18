@@ -76,10 +76,19 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         }
     }
 
-    public class CodeEditorInstructionPointer : CodeEditorBookmark 
+    public class CodeEditorInstructionPointer : CodeEditorBookmark
     {
         public CodeEditorInstructionPointer(FastColoredTextBox textBox, TextStyle style)
-            : base(textBox, new LDBookmark(new SourceLocation(new FilePath(""), 0, 0)) { Image = Properties.Resources.current }, style)
+            : base(textBox, new LDBookmark(new SourceLocation(new FilePath(""), 0, 0)) { Image = Properties.Resources.arrow_yellow }, style)
+        {
+
+        }
+    }
+
+    public class CodeEditorShadowInstructionPointer : CodeEditorBookmark
+    {
+        public CodeEditorShadowInstructionPointer(FastColoredTextBox textBox, TextStyle style)
+            : base(textBox, new LDBookmark(new SourceLocation(new FilePath(""), 0, 0)) { Image = Properties.Resources.arrow_blue }, style)
         {
 
         }

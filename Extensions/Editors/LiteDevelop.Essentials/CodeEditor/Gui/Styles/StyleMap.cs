@@ -24,6 +24,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
             BookmarkStyle = new DynamicTextStyle(GetDescription("Bookmark"));
             BreakpointStyle = new DynamicTextStyle(GetDescription("Breakpoint"));
             InstructionPointer = new DynamicTextStyle(GetDescription("InstructionPointer"));
+            ShadowInstructionPointer = new DynamicTextStyle(GetDescription("ShadowInstructionPointer"));
         }
 
         private AppearanceDescription GetDescription(string id)
@@ -90,5 +91,10 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui.Styles
             private set;
         }
 
+        public DynamicTextStyle ShadowInstructionPointer
+        {
+            get;
+            private set;
+        }
     }
 }
