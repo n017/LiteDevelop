@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguagePack>
+  
+  <ItemGroup Id="DebuggerBase">
+    <Item Id="Variables">Variabler</Item>
+    <Item Id="Threads">Trådar</Item>
+    <Item Id="CallStack">Call stack</Item>
+    
+    <ItemGroup Id="Settings">
+      <Item Id="Root">Debugging</Item>
+      <Item Id="General">Generell</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsControl">
+    <Item Id="BreakOnHandledException">Bryt på hanterad exception.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="VariablesContent">
+    <Item Id="Title">Variabler</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Name">Namn</Item>
+      <Item Id="Value">Värde</Item>
+      <Item Id="Type">Typ</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="ThreadsContent">
+    <Item Id="Title">Trådar</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Handle">Handle</Item>
+      <Item Id="Id">Id</Item>
+      <Item Id="State">Tillstånd</Item>
+    </ItemGroup>
+    <ItemGroup Id="ThreadStates">
+      <Item Id="Running">Pågående</Item>
+      <Item Id="StopRequested">Stoppa begärda</Item>
+      <Item Id="SuspendRequested">Suspendera begärda</Item>
+      <Item Id="Background">Bakgrund</Item>
+      <Item Id="Unstarted">Ej startad</Item>
+      <Item Id="Stopped">Stoppad</Item>
+      <Item Id="WaitSleepJoin">Vänta sov anslut</Item>
+      <Item Id="Suspended">Suspenderad</Item>
+      <Item Id="AbortRequested">Avbryt begärda</Item>
+      <Item Id="Aborted">Avbruten</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="CallStack">
+    <Item Id="Title">Call stack</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="ExternalCode">[extern kod]</Item>
+      <Item Id="NonUserCode">[icke-användar kod]</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Function">Funktion</Item>
+      <Item Id="Offset">Förskjutning</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExceptionDialog">
+    <Item Id="Title">Exception</Item>
+    <Item Id="ExceptionOccured">En exception inträffade</Item>
+    <Item Id="File">Fil:</Item>
+    <Item Id="Location">Plats:</Item>
+    <Item Id="LocationFormat">Rad: $(line), Kolumn: $(column)</Item>
+    <Item Id="Message">Meddelande:</Item>
+    <Item Id="Close">Stäng</Item>
+    <Item Id="GoToFile">Gå till fil</Item>
+    <Item Id="Details">Detaljer</Item>
+  </ItemGroup>
+
+</LanguagePack>
