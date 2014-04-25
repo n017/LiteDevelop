@@ -10,7 +10,7 @@ using LiteDevelop.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class CreateFileDialog : Form
+    internal partial class CreateFileDialog : Form
     {
         public static void UserCreateFile(LiteExtensionHost extensionHost)
         {

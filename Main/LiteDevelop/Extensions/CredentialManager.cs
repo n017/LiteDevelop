@@ -5,7 +5,7 @@ using LiteDevelop.Gui.Forms;
 
 namespace LiteDevelop.Extensions
 {
-    public class CredentialManager : ICredentialManager
+    internal sealed class CredentialManager : ICredentialManager
     {
         public bool RequestCredential(CredentialRequest request, out System.Net.NetworkCredential credential)
         {

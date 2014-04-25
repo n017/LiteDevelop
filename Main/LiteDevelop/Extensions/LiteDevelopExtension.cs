@@ -10,7 +10,7 @@ using LiteDevelop.Gui.Settings;
 
 namespace LiteDevelop.Extensions
 {
-    public class LiteDevelopExtension : LiteExtension, ISettingsProvider, IAppearanceMapProvider 
+    internal sealed class LiteDevelopExtension : LiteExtension, ISettingsProvider, IAppearanceMapProvider 
     {
         private Dictionary<object, string> _componentMuiIdentifiers;
         private SettingsNode _settingsNode;

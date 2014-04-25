@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class ErrorDialog : Form
+    internal partial class ErrorDialog : Form
     {
         public ErrorDialog(Exception exception)
         {

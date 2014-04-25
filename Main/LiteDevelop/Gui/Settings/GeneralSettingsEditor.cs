@@ -6,7 +6,7 @@ using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Gui.Settings
 {
-    public partial class GeneralSettingsEditor : SettingsControl
+    internal partial class GeneralSettingsEditor : SettingsControl
     {
         private readonly System.Collections.Generic.Dictionary<object, string> _componentMuiIdentifiers;
         private readonly LiteDevelopSettings _settings;

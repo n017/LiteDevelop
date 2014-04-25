@@ -8,7 +8,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public class SolutionFolderNode : PathNode
+    internal class SolutionFolderNode : PathNode
     {
         private IconProvider _iconProvider;
 

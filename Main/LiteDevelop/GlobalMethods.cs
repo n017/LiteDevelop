@@ -10,8 +10,19 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop
 {
-    public static class GlobalMethods
+    internal static class GlobalMethods
     {
+        public static bool IsBasedOn(this Type type, Type baseType)
+        {
+            while (type != null)
+            {
+                if (type == baseType)
+                    return true;
+                type = type.BaseType;
+            }
+            return false;
+        }
+
         [DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
         public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
 
@@ -85,8 +96,8 @@ namespace LiteDevelop
                 if (document is ViewContentContainer && 
                     (document as ViewContentContainer).DocumentContent == documentContent)
                 {
-                    document.Activate();
-                    break;
+                    document.ShowAndActivate(dockPanel);
+                    return;
                 }
             }
         }

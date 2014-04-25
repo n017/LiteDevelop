@@ -11,7 +11,7 @@ using LiteDevelop.Gui.DockContents;
 
 namespace LiteDevelop.Extensions
 {
-    public class LiteExtensionHost : ILiteExtensionHost
+    internal sealed class LiteExtensionHost : ILiteExtensionHost
     {
         private UILanguage _language;
 

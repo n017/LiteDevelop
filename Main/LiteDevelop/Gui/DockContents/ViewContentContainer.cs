@@ -12,7 +12,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public class ViewContentContainer : DockContent
+    internal class ViewContentContainer : DockContent
     {
         private LiteExtensionHost _extensionHost;
         private OpenedFile _currentFile;
@@ -20,7 +20,7 @@ namespace LiteDevelop.Gui.DockContents
 
         public ViewContentContainer(LiteViewContent viewContent)
         {
-            base.HideOnClose = true;
+            base.HideOnClose = viewContent is LiteToolWindow;
             _extensionHost = LiteDevelopApplication.Current.ExtensionHost;
             
             ViewContent = viewContent;

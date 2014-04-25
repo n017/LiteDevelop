@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("LiteDevelop.Essentials")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Essential features for LiteDevelop, including code editor and forms designer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jerre S.")]
 [assembly: AssemblyProduct("LiteDevelop.Essentials")]

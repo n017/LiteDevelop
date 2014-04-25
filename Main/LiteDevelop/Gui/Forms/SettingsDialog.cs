@@ -7,7 +7,7 @@ using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class SettingsDialog : Form
+    internal partial class SettingsDialog : Form
     {
         private IEnumerable<ISettingsProvider> _extensions;
 

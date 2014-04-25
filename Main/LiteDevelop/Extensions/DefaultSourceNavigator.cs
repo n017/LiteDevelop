@@ -9,7 +9,7 @@ using LiteDevelop.Framework.Mui;
 
 namespace LiteDevelop.Extensions
 {
-    public class DefaultSourceNavigator : ISourceNavigator
+    internal sealed class DefaultSourceNavigator : ISourceNavigator
     {
         private LiteExtensionHost _host;
         private MuiProcessor _muiProcessor;

@@ -8,7 +8,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Extensions
 {
-    public class BookmarkManager : IBookmarkManager
+    internal sealed class BookmarkManager : IBookmarkManager
     {
         public BookmarkManager()
         {

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
-using LiteDevelop.Extensions;
+using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class ExtensionLoadDialog : Form
+    internal partial class ExtensionLoadDialog : Form
     {
         public ExtensionLoadDialog(IEnumerable<ExtensionLoadResult> results)
         {
@@ -57,7 +58,7 @@ namespace LiteDevelop.Gui.Forms
             {
                 var result = resultsListView.SelectedItems[0].Tag as ExtensionLoadResult;
                 if (result != null)
-                {
+                {                        
                     string message = LiteDevelopApplication.Current.MuiProcessor.GetString("ExtensionLoadDialog.Details.Message",
                         "extension=" + (result.ExtensionType != null ? result.ExtensionType.FullName : result.FilePath),
                         "result=" + (result.SuccesfullyLoaded ? LiteDevelopApplication.Current.MuiProcessor.GetString("ExtensionLoadDialog.Details.Successfully") : LiteDevelopApplication.Current.MuiProcessor.GetString("ExtensionLoadDialog.Details.Unsuccessfully")),

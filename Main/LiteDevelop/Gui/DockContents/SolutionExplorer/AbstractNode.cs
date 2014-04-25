@@ -7,7 +7,7 @@ using LiteDevelop.Framework;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public abstract class AbstractNode : TreeNode
+    internal abstract class AbstractNode : TreeNode
     {
         public AbstractNode(string text)
             : base(text)

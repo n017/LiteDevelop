@@ -10,7 +10,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public partial class ToolboxContent : DockContent
+    internal partial class ToolboxContent : DockContent
     {
         private Dictionary<object, string> _componentMuiIdentifiers;
         private ToolboxService _lastToolboxService;

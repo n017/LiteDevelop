@@ -10,7 +10,7 @@ using LiteDevelop.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class ExtensionsDialog : Form
+    internal partial class ExtensionsDialog : Form
     {
         private bool _hasRemovedExtensions = false;
 

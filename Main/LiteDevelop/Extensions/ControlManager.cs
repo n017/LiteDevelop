@@ -15,7 +15,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Extensions
 {
-    public class ControlManager : IControlManager
+    internal sealed class ControlManager : IControlManager
     {
         private EventBasedCollection<LiteDocumentContent> _documentContents;
         private EventBasedCollection<LiteToolWindow>_toolWindows;
@@ -255,38 +255,23 @@ namespace LiteDevelop.Extensions
 
         internal void DispatchSelectedDocumentContentChanged(EventArgs e)
         {
-            OnSelectedDocumentContentChanged(e);
-        }
-
-        internal void DispatchAppearanceChanged(EventArgs e)
-        {
-            OnAppearanceChanged(e);
-        }
-
-        internal LiteViewContent DispatchResolveViewContent(ResolveToolWindowEventArgs e)
-        {
-            return OnResolveViewContent(e);
-        }
-
-        protected virtual void OnSelectedDocumentContentChanged(EventArgs e)
-        {
             if (SelectedDocumentContentChanged != null)
                 SelectedDocumentContentChanged(this, e);
         }
 
-        protected virtual void OnAppearanceChanged(EventArgs e)
+        internal void DispatchAppearanceChanged(EventArgs e)
         {
             if (AppearanceChanged != null)
                 AppearanceChanged(this, e);
         }
 
-        protected virtual LiteViewContent OnResolveViewContent(ResolveToolWindowEventArgs e)
+        internal LiteViewContent DispatchResolveViewContent(ResolveToolWindowEventArgs e)
         {
             if (ResolveToolWindow != null)
                 return ResolveToolWindow(this, e);
             return null;
         }
-
+        
         internal ViewContentContainer AddContainer(LiteViewContent viewContent)
         {
             var container = new ViewContentContainer(viewContent);

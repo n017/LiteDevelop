@@ -6,7 +6,7 @@ using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Extensions
 {
-    public sealed class ExtensionInitializationContext : InitializationContext
+    internal sealed class ExtensionInitializationContext : InitializationContext
     {
         private InitializationTime _time;
 

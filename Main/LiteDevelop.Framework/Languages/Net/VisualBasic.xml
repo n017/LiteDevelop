@@ -2,7 +2,7 @@
 <NetLanguageData>
   <Modifiers>Public Friend Protected Friend Protected Protected Friend Private Partial Shared Overrides Overridable MustOverride MustInherit NotInheritable ReadOnly WriteOnly Iterator Const Delegate</Modifiers>
   <MemberIdentifiers>Namespace Class Structure Interface Enum Dim Function Property Sub Event ByVal ByRef</MemberIdentifiers>
-  <Keywords>Imports As Me Get Set New Await Async Yield Return Byte SByte UShort Short UInteger Integer ULong Long Single Double Decimal Nothing GetType If ElseIf Then End Select Case Do While Loop True False SyncLock Using AddHandler RemoveHandler RaiseEvent Handles</Keywords>
+  <Keywords>Imports As Me Get Set New Await Async Yield Return Byte SByte UShort Short UInteger Integer ULong Long Single Double Decimal Nothing GetType If ElseIf Then End Select Case Do While Loop True False SyncLock Using AddHandler RemoveHandler RaiseEvent Handles AddressOf</Keywords>
   <TypeAliases>
     <TypeAlias>
       <Original>System.UInt16</Original>

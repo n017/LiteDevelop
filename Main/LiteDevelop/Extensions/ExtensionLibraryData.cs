@@ -10,7 +10,7 @@ using LiteDevelop.Framework.FileSystem;
 namespace LiteDevelop.Extensions
 {
     [TypeConverter(typeof(ExtensionLibraryDataConverter))]
-    public class ExtensionLibraryData : IXmlSerializable
+    internal sealed class ExtensionLibraryData : IXmlSerializable
     {
         public ExtensionLibraryData()
         {
@@ -57,7 +57,7 @@ namespace LiteDevelop.Extensions
         }
     }
 
-    public class ExtensionLibraryDataConverter : TypeConverter
+    internal class ExtensionLibraryDataConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {

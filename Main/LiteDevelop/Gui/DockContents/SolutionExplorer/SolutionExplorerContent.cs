@@ -15,7 +15,7 @@ using LiteDevelop.Gui.Forms;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public partial class SolutionExplorerContent : DockContent
+    internal partial class SolutionExplorerContent : DockContent
     {
         private Dictionary<object, string> _componentMuiIdentifiers;
         private IconProvider _iconProvider;

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguagePack>
+
+  <ItemGroup Id="DebuggerBase">
+    <Item Id="Variables">Variabelen</Item>
+    <Item Id="Threads">Threads</Item>
+    <Item Id="CallStack">Aanroepstack</Item>
+    
+    <ItemGroup Id="Settings">
+      <Item Id="Root">Foutopsporing</Item>
+      <Item Id="General">Algemeen</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsControl">
+    <Item Id="BreakOnHandledException">Pauseer bij een behandelde uitzondering.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="VariablesContent">
+    <Item Id="Title">Variabelen</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Name">Naam</Item>
+      <Item Id="Value">Waarde</Item>
+      <Item Id="Type">Type</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ThreadsContent">
+    <Item Id="Title">Threads</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Handle">Ingang</Item>
+      <Item Id="Id">Id</Item>
+      <Item Id="State">Status</Item>
+    </ItemGroup>
+    <ItemGroup Id="ThreadStates">
+      <Item Id="Running">Draaiend</Item>
+      <Item Id="StopRequested">Stop aangevraagd</Item>
+      <Item Id="SuspendRequested">Onderbreking aangevraagd</Item>
+      <Item Id="Background">Achtergrond</Item>
+      <Item Id="Unstarted">Niet gestart</Item>
+      <Item Id="Stopped">Gestopt</Item>
+      <Item Id="WaitSleepJoin">Wait sleep join</Item>
+      <Item Id="Suspended">Onderbroken</Item>
+      <Item Id="AbortRequested">Afbreken aangevraagd</Item>
+      <Item Id="Aborted">Afgebroken</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="CallStack">
+    <Item Id="Title">Aanroepstack</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="ExternalCode">[externe code]</Item>
+      <Item Id="NonUserCode">[niet-gebruikerscode]</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Function">Functie</Item>
+      <Item Id="Offset">Startpunt</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExceptionDialog">
+    <Item Id="Title">Uitzondering</Item>
+    <Item Id="ExceptionOccured">Een uitzondering heeft plaatsgevonden</Item>
+    <Item Id="File">Bestand:</Item>
+    <Item Id="Location">Locatie:</Item>
+    <Item Id="LocationFormat">Lijn: $(line), Kolom: $(column)</Item>
+    <Item Id="Message">Bericht:</Item>
+    <Item Id="Close">Sluiten</Item>
+    <Item Id="GoToFile">Ga naar bestand</Item>
+    <Item Id="Details">Details</Item>
+  </ItemGroup>
+
+</LanguagePack>

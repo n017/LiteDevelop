@@ -19,7 +19,7 @@ using LiteDevelop.Framework.Debugging;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class MainForm : Form
+    internal partial class MainForm : Form
     {
         private enum PostBuildAction
         {
@@ -122,6 +122,7 @@ namespace LiteDevelop.Gui.Forms
             _extensionHost_UILanguageChanged(null, null);
 
             _extensionHost.DebugStarted += _extensionHost_DebugStarted;
+            _extensionHost.DebugStopped += _extensionHost_DebugStopped;
         }
 
         private void SetupMuiComponents()
@@ -759,7 +760,6 @@ namespace LiteDevelop.Gui.Forms
                                 solution.Execute();
                                 break;
                             case PostBuildAction.Debug:
-                                // TODO: use more reliable method of selecting debugger.
                                 _extensionHost.CurrentDebuggerSession = _extensionHost.ExtensionManager.GetPreferredDebugger(solution.GetFirstExecutableProject()).CreateSession();
                                 _extensionHost.CurrentDebuggerSession.ActiveChanged += CurrentDebuggerSession_ActiveChanged;
                                 _extensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
@@ -1020,6 +1020,12 @@ namespace LiteDevelop.Gui.Forms
         {
             DisableDebuggerItems();
             CurrentDebuggerSession_Resumed(null, null);
+        }
+
+        private void _extensionHost_DebugStopped(object sender, EventArgs e)
+        {
+            DisableDebuggerItems();
+            EnableInitialDebuggerItems();
         }
 
         private void ControlManager_AppearanceChanged(object sender, EventArgs e)

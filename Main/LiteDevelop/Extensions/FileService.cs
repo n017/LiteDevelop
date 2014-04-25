@@ -9,7 +9,7 @@ using LiteDevelop.Gui.Forms;
 
 namespace LiteDevelop.Extensions
 {
-    public class FileService : IFileService
+    internal sealed class FileService : IFileService
     {
         private ILiteExtensionHost _extensionHost;
         private List<OpenedFile> _openedFiles = new List<OpenedFile>();
@@ -153,14 +153,14 @@ namespace LiteDevelop.Extensions
         }
 
         public event FileEventHandler FileCreated;
-        internal virtual void OnFileCreated(FileEventArgs e)
+        internal void OnFileCreated(FileEventArgs e)
         {
             if (FileCreated != null)
                 FileCreated(this, e);
         }
 
         public event FileEventHandler FileOpened;
-        internal virtual void OnFileOpened(FileEventArgs e)
+        internal void OnFileOpened(FileEventArgs e)
         {
             if (FileOpened != null)
                 FileOpened(this, e);

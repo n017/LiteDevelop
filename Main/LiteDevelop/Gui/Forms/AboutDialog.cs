@@ -10,7 +10,7 @@ using LiteDevelop.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class AboutDialog : Form
+    internal partial class AboutDialog : Form
     {
         private Dictionary<object, string> _componentMuiIdentifiers;
         private ExtensionManager _manager;

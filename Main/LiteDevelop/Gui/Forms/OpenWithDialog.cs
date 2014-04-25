@@ -7,7 +7,7 @@ using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class OpenWithDialog : Form
+    internal partial class OpenWithDialog : Form
     {
         public OpenWithDialog(IEnumerable<LiteExtension> extensions)
         {

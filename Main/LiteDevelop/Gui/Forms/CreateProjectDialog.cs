@@ -10,7 +10,7 @@ using LiteDevelop.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class CreateProjectDialog : Form
+    internal partial class CreateProjectDialog : Form
     {
         public static void UserCreateProject(LiteExtensionHost extensionHost)
         {

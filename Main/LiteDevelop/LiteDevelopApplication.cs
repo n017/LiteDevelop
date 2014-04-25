@@ -20,7 +20,7 @@ using LiteDevelop.Framework;
 
 namespace LiteDevelop
 {
-    public class LiteDevelopApplication
+    internal class LiteDevelopApplication
     {
         public static LiteDevelopApplication Current 
         {

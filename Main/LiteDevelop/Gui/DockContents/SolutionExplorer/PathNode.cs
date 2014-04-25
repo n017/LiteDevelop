@@ -7,7 +7,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public abstract class PathNode : AbstractNode, IFilePathProvider
+    internal abstract class PathNode : AbstractNode, IFilePathProvider
     {
         private FilePath _path;
 

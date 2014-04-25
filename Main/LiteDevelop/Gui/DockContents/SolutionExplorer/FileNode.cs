@@ -9,7 +9,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public class FileNode : PathNode 
+    internal class FileNode : PathNode 
     {
         private readonly IconProvider _iconProvider;
         private bool _handlePathEvents = true;

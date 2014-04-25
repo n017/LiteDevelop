@@ -7,7 +7,7 @@ using LiteDevelop.Framework.Mui;
 
 namespace LiteDevelop.Gui.Settings
 {
-    public partial class InternationalSettingsEditor : SettingsControl
+    internal partial class InternationalSettingsEditor : SettingsControl
     {
         private LiteDevelopSettings _settings;
 

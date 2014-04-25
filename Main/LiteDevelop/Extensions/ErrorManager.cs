@@ -5,7 +5,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Extensions
 {
-    public class ErrorManager : IErrorManager
+    internal sealed class ErrorManager : IErrorManager
     {
         public event BuildErrorEventHandler ReportedError;
         public event BuildErrorEventHandler NavigateToErrorRequested;

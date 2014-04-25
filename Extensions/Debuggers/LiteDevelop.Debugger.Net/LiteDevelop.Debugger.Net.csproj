@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EBB53564-C0E5-4234-A0E4-F11800550795}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LiteDevelop.Debugger.Net</RootNamespace>
+    <AssemblyName>LiteDevelop.Debugger.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\Bin\Debug\Extensions\Debuggers\Debugger.Net\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\Bin\Release\Extensions\Debuggers\Debugger.Net\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LiteDevelop.Framework, Version=0.9.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\Visual Studio\Projects\LiteDevelop\LiteDevelop\Main\LiteDevelop.Framework\Bin\Debug\LiteDevelop.Framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interop\Com\ICLRMetaHost.cs" />
+    <Compile Include="Interop\Com\ICLRRuntimeInfo.cs" />
+    <Compile Include="Interop\Com\ICorDebug.cs" />
+    <Compile Include="Interop\Com\ICorDebugAppDomain.cs" />
+    <Compile Include="Interop\Com\ICorDebugAssembly.cs" />
+    <Compile Include="Interop\Com\ICorDebugBreakpoint.cs" />
+    <Compile Include="Interop\Com\ICorDebugChain.cs" />
+    <Compile Include="Interop\Com\ICorDebugClass.cs" />
+    <Compile Include="Interop\Com\ICorDebugCode.cs" />
+    <Compile Include="Interop\Com\ICorDebugContext.cs" />
+    <Compile Include="Interop\Com\ICorDebugController.cs" />
+    <Compile Include="Interop\Com\ICorDebugEditAndContinueSnapshot.cs" />
+    <Compile Include="Interop\Com\ICorDebugEnum.cs" />
+    <Compile Include="Interop\Com\ICorDebugEval.cs" />
+    <Compile Include="Interop\Com\ICorDebugFrame.cs" />
+    <Compile Include="Interop\Com\ICorDebugFunction.cs" />
+    <Compile Include="Interop\Com\ICorDebugILFrame.cs" />
+    <Compile Include="Interop\Com\ICorDebugManagedCallback.cs" />
+    <Compile Include="Interop\Com\ICorDebugModule.cs" />
+    <Compile Include="Interop\Com\ICorDebugNativeFrame.cs" />
+    <Compile Include="Interop\Com\ICorDebugProcess.cs" />
+    <Compile Include="Interop\Com\ICorDebugProcessEnum.cs" />
+    <Compile Include="Interop\Com\ICorDebugRegisterSet.cs" />
+    <Compile Include="Interop\Com\ICorDebugStepper.cs" />
+    <Compile Include="Interop\Com\ICorDebugThread.cs" />
+    <Compile Include="Interop\Com\ICorDebugType.cs" />
+    <Compile Include="Interop\Com\ICorDebugUnmanagedCallback.cs" />
+    <Compile Include="Interop\Com\ICorDebugValue.cs" />
+    <Compile Include="Interop\Com\NativeMethods.cs" />
+    <Compile Include="Interop\Com\Symbols\IMetaDataDispenser.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedBinder2.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedDocument.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedMethod.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedNamespace.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedReader.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedScope.cs" />
+    <Compile Include="Interop\Com\Symbols\ISymUnmanagedVariable.cs" />
+    <Compile Include="Interop\Com\Symbols\SymbolDefinitions.cs" />
+    <Compile Include="Interop\Wrappers\Breakpoint.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeChain.cs" />
+    <Compile Include="Interop\Wrappers\DebuggerEvent.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeFrame.cs" />
+    <Compile Include="Interop\Wrappers\DebuggeeProcess.cs" />
+    <Compile Include="Interop\Wrappers\DebuggerSessionObject.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeThread.cs" />
+    <Compile Include="Interop\Wrappers\ElementType.cs" />
+    <Compile Include="Interop\Wrappers\ManagedCallback.cs" />
+    <Compile Include="Interop\Wrappers\ManagedCallbackProxy.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeAppDomain.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeAssembly.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeClass.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeFunction.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeFunctionCode.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeModule.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeTypeDescriptor.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeValue.cs" />
+    <Compile Include="Interop\Wrappers\SourceStepper.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\LocalVariable.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\MetaDataDispenser.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\MethodSymbols.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\SequencePoint.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\PdbSymbols.cs" />
+    <Compile Include="MtaStaConnector.cs" />
+    <Compile Include="NetDebuggerExtension.cs" />
+    <Compile Include="NetDebuggerSession.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiteDevelop.Debugger\LiteDevelop.Debugger.csproj">
+      <Project>{6bbba95e-2290-41c5-a61e-0fb3ad4f7df1}</Project>
+      <Name>LiteDevelop.Debugger</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

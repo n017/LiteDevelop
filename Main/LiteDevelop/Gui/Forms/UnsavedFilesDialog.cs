@@ -6,7 +6,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class UnsavedFilesDialog : Form
+    internal partial class UnsavedFilesDialog : Form
     {
         private ISavableFile[] _files;
 

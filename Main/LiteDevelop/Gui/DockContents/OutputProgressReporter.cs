@@ -8,7 +8,7 @@ using LiteDevelop.Gui.Forms;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public class OutputProgressReporter : INamedProgressReporter
+    internal class OutputProgressReporter : INamedProgressReporter
     {
         private OutputContent _outputWindow;
         private ProgressBar _progressBar;

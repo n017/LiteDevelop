@@ -15,7 +15,7 @@
     <Icon Id="LiteDevelopIcon.exe" SourceFile="$(var.LiteDevelop.TargetPath)"/>
     
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <MediaTemplate EmbedCab = "yes"  CompressionLevel = "high"/>
+    <MediaTemplate EmbedCab = "yes" CompressionLevel = "high"/>
 
     <UI>
       <UIRef Id="WixUI_FeatureTree"/>
@@ -40,12 +40,9 @@
         <ComponentRef Id = "LicenseRtf" />
         <ComponentRef Id = "LiteDevelopExe" />
         <ComponentRef Id = "ApplicationShortcut" />
-        <ComponentRef Id = "LiteDevelopPdb" />
         <ComponentRef Id = "LiteDevelopFrameworkDll" />
-        <ComponentRef Id = "LiteDevelopFrameworkPdb" />
         <ComponentRef Id = "LiteDevelopFrameworkXml" />
         <ComponentRef Id = "LiteDevelopMSBuildExe" />
-        <ComponentRef Id = "LiteDevelopMSBuildPdb" />
         <ComponentRef Id = "DockPanelSuiteDll" />
         
         <!-- Language files -->
@@ -75,7 +72,10 @@
                  Description="Installs additional multilingual user interface (MUI) language packs for the main application."
                  InstallDefault="local"
                  AllowAdvertise="no">
-          
+
+          <Feature Id = "MainAppDanishMuiFeature" Title = "Danish">
+            <ComponentRef Id = "MainAppDanishMuiFile"/>
+          </Feature>
           <Feature Id = "MainAppDutchMuiFeature" Title = "Dutch">
             <ComponentRef Id = "MainAppDutchMuiFile"/>
           </Feature>
@@ -121,10 +121,7 @@
                Description="Installs default features of LiteDevelop, such as the code editor and forms designer."
                Display="expand">
         <ComponentRef Id = "LiteDevelopEssentialsDll" />
-        <ComponentRef Id = "LiteDevelopEssentialsPdb" />
         <ComponentRef Id = "FastColoredTextBoxDll" />
-        <ComponentRef Id = "FastColoredTextBoxPdb" />
-        <ComponentRef Id = "FastColoredTextBoxXml" />
         <ComponentRef Id = "EssentialsEnglishMuiFile" />
         <ComponentRef Id = "CodeEditorDefaultAppearanceXml"/>
         <ComponentRef Id = "CodeEditorDefaultSettingsXml"/>
@@ -136,6 +133,9 @@
                  InstallDefault="local"
                  AllowAdvertise="no">
 
+          <Feature Id = "EssentialsDanishMuiFeature" Title = "Danish">
+            <ComponentRef Id = "EssentialsDanishMuiFile"/>
+          </Feature>
           <Feature Id = "EssentialsDutchMuiFeature" Title = "Dutch">
             <ComponentRef Id = "EssentialsDutchMuiFile"/>
           </Feature>
@@ -173,7 +173,75 @@
         </Feature>
       </Feature>
 
-		</Feature>
+      <!-- Debugger -->
+      <Feature Id="DebuggerFeature"
+               Title="Debugger"
+               Description="Installs debugger modules for LiteDevelop."
+               Display="expand">
+
+        <ComponentRef Id="DebuggerDll"/>
+        <ComponentRef Id="DebuggerDefaultSettingsXml"/>
+        <ComponentRef Id="DebuggerEnglishMuiFile"/>
+
+        <!-- Debugger .NET -->
+        <Feature Id="DebuggerNetFeature"
+                 Title="Debugger .NET"
+                 Description="Installs the .NET debugger modules for LiteDevelop."
+                 Display="expand">
+
+          <ComponentRef Id="DebuggerNetDll"/>
+        </Feature>
+        
+        <!-- Additional MUI files -->
+        <Feature Id="DebuggerMuiFiles"
+                 Title="Additional MUI files"
+                 Description="Installs additional multilingual user interface (MUI) language packs for the debugger base."
+                 InstallDefault="local"
+                 AllowAdvertise="no">
+
+          <!--
+          <Feature Id = "DebuggerDanishMuiFeature" Title = "Danish">
+            <ComponentRef Id = "DebuggerDanishMuiFile"/>
+          </Feature>
+          -->
+          <Feature Id = "DebuggerDutchMuiFeature" Title = "Dutch">
+            <ComponentRef Id = "DebuggerDutchMuiFile"/>
+          </Feature>
+          <!--
+          <Feature Id = "DebuggerFinnishMuiFeature" Title = "Finnish">
+            <ComponentRef Id = "DebuggerFinnishMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerFrenchMuiFeature" Title = "French">
+            <ComponentRef Id = "DebuggerFrenchMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerGermanMuiFeature" Title = "German">
+            <ComponentRef Id = "DebuggerGermanMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerNorwegianMuiFeature" Title = "Norwegan">
+            <ComponentRef Id = "DebuggerNorwegianMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerSpanishMuiFeature" Title = "Spanish">
+            <ComponentRef Id = "DebuggerSpanishMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerSwedishMuiFeature" Title = "Swedish">
+            <ComponentRef Id = "DebuggerSwedishMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerPirateTalkMuiFeature" Title = "Pirate Talk">
+            <ComponentRef Id = "DebuggerPirateTalkMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerRussianMuiFeature" Title = "Russian">
+            <ComponentRef Id = "DebuggerRussianMuiFile"/>
+          </Feature>
+          <Feature Id = "DebuggerTurkishMuiFeature" Title = "Turkish">
+            <ComponentRef Id = "DebuggerTurkishMuiFile"/>
+          </Feature>
+          -->
+        </Feature>
+
+      </Feature>
+
+
+    </Feature>
   
 	</Product>
 </Wix>

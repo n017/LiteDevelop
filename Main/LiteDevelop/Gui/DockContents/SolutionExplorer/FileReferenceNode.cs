@@ -7,7 +7,7 @@ using LiteDevelop.Framework;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public class FileReferenceNode : AbstractNode
+    internal class FileReferenceNode : AbstractNode
     {
         public FileReferenceNode(string reference, IconProvider iconProvider)
             : base(Path.GetFileName(reference))

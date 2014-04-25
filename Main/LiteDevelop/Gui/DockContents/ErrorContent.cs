@@ -12,7 +12,7 @@ using LiteDevelop.Extensions;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public partial class ErrorContent : DockContent
+    internal partial class ErrorContent : DockContent
     {
         private readonly Dictionary<object, string> _componentMuiIdentifiers;
         private readonly ErrorIconProvider _iconProvider;

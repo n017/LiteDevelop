@@ -11,7 +11,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop
 {
-    public class LiteDevelopSettings : SettingsMap
+    internal class LiteDevelopSettings : SettingsMap
     {
         public static LiteDevelopSettings Instance { get; set; }
         public static LiteDevelopSettings Default { get; private set; }

@@ -9,7 +9,7 @@ using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Gui.Settings
 {
-    public partial class AppearanceEditor : SettingsControl
+    internal partial class AppearanceEditor : SettingsControl
     {
         private string _globalIdentifier = "[Default]";
         private readonly System.Collections.Generic.Dictionary<object, string> _componentMuiIdentifiers;

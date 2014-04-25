@@ -7,7 +7,7 @@ using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class CredentialsDialog : Form
+    internal partial class CredentialsDialog : Form
     {
         // required for the designer to work.
         private CredentialsDialog()

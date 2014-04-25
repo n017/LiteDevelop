@@ -15,7 +15,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public partial class BookmarksContent : DockContent
+    internal partial class BookmarksContent : DockContent
     {
         private readonly Dictionary<object, string> _componentMuiIdentifiers = new Dictionary<object, string>();
         private readonly Dictionary<Bookmark, ListViewItem> _bookmarkItems = new Dictionary<Bookmark, ListViewItem>();

@@ -7,7 +7,7 @@ using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    public class PropertiesNode : AbstractNode 
+    internal class PropertiesNode : AbstractNode 
     {
         public PropertiesNode(IconProvider iconProvider)
             : base("Properties")

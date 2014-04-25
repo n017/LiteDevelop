@@ -32,7 +32,7 @@ namespace LiteDevelop.Gui
 
     /// <summary>Renders a toolstrip using the UxTheme API via VisualStyleRenderer and a specific style.</summary>
     /// <remarks>Perhaps surprisingly, this does not need to be disposable.</remarks>
-    public class ToolStripAeroRenderer : ToolStripSystemRenderer
+    internal class ToolStripAeroRenderer : ToolStripSystemRenderer
     {
         VisualStyleRenderer renderer;
 

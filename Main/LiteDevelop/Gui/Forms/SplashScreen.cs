@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LiteDevelop.Gui.Forms
 {
-    public partial class SplashScreen : Form
+    internal partial class SplashScreen : Form
     {
         public event EventHandler FadedIn;
         private ShadowForm _shadow;

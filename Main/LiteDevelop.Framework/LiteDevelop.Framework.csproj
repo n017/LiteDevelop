@@ -58,6 +58,7 @@
     <Compile Include="Extensions\CoreExtension.cs" />
     <Compile Include="Extensions\CredentialRequest.cs" />
     <Compile Include="Debugging\BreakpointBookmark.cs" />
+    <Compile Include="Extensions\ExtensionLoadResult.cs" />
     <Compile Include="Extensions\IAppearanceMapProvider.cs" />
     <Compile Include="Extensions\IBookmarkHandler.cs" />
     <Compile Include="Extensions\IBookmarkManager.cs" />

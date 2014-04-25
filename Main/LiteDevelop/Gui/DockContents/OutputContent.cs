@@ -8,7 +8,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public partial class OutputContent : DockContent
+    internal partial class OutputContent : DockContent
     {
         private class ReporterContext
         {

@@ -6,7 +6,7 @@ using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Extensions
 {
-    public class FileServiceOpenedFile : OpenedFile
+    internal sealed class FileServiceOpenedFile : OpenedFile
     {
         private ILiteExtensionHost _extensionHost;
 

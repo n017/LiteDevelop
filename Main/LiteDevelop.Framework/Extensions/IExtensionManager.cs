@@ -17,6 +17,13 @@ namespace LiteDevelop.Framework.Extensions
         IList<LiteExtension> LoadedExtensions { get; }
 
         /// <summary>
+        /// Tries to create an instance of an extension type and calls the <see cref="LiteExtension.Initialize"/> method to initialize the extension object.
+        /// </summary>
+        /// <param name="extensionType">The type of the extension to load.</param>
+        /// <returns>An object holding information about the result of the loading procedure.</returns>
+        ExtensionLoadResult LoadExtension(Type extensionType);
+
+        /// <summary>
         /// Gets the extension by its type.
         /// </summary>
         /// <param name="extensionType">The type of the extension.</param>

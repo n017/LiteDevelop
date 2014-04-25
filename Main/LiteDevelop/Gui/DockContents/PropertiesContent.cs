@@ -8,7 +8,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace LiteDevelop.Gui.DockContents
 {
-    public partial class PropertiesContent : DockContent
+    internal partial class PropertiesContent : DockContent
     {
         private Dictionary<object, string> _componentMuiIdentifiers;
         private PropertyContainer _propertyContainer;

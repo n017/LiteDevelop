@@ -12,8 +12,10 @@ namespace LiteDevelop.Extensions
     /// <summary>
     /// A manager that handles operations for loading extensions.
     /// </summary>
-    public sealed class ExtensionManager : IExtensionManager 
+    internal sealed class ExtensionManager : IExtensionManager 
     {
+        private readonly Dictionary<string, Assembly> _resolvedAssemblies = new Dictionary<string, Assembly>();
+
         private ILiteExtensionHost _extensionHost;
 
         public ExtensionManager(ILiteExtensionHost extensionHost)
@@ -36,6 +38,21 @@ namespace LiteDevelop.Extensions
         IList<LiteExtension> IExtensionManager.LoadedExtensions
         {
             get { return LoadedExtensions.AsReadOnly(); }
+        }
+
+        public ExtensionLoadResult LoadExtension(Type extensionType)
+        {
+            try
+            {
+                var extension = Activator.CreateInstance(extensionType) as LiteExtension;
+                LoadedExtensions.Add(extension);
+                extension.Initialize(new ExtensionInitializationContext(LiteDevelopApplication.Current.IsInitialized ? InitializationTime.UserLoad : InitializationTime.Startup));
+                return new ExtensionLoadResult(extensionType, extension);
+            }
+            catch (Exception ex)
+            {
+                return new ExtensionLoadResult(extensionType, ex);
+            }
         }
 
         public LiteExtension GetLoadedExtension(Type extensionType)
@@ -97,10 +114,11 @@ namespace LiteDevelop.Extensions
             var extensionTypes = new List<Type>();
 
             var assembly = Assembly.LoadFile(file.GetAbsolutePath());
+            _resolvedAssemblies.Add(assembly.FullName, assembly);
 
             foreach (Type type in assembly.GetTypes())
             {
-                if (type.BaseType == typeof(LiteExtension))
+                if (!type.IsAbstract && type.BaseType.IsBasedOn(typeof(LiteExtension)))
                 {
                     extensionTypes.Add(type);
                 }
@@ -140,32 +158,14 @@ namespace LiteDevelop.Extensions
             }
         }
 
-        /// <summary>
-        /// Tries to create a LiteExtension instance of the specified type.
-        /// </summary>
-        /// <param name="extensionType">The type to create the instance from.</param>
-        /// <returns>Returns an instance of an ExtensionLoadResult indicating whenever the extension is loaded or not.</returns>
-        public ExtensionLoadResult LoadExtension(Type extensionType)
-        {
-            try
-            {
-                var extension = Activator.CreateInstance(extensionType) as LiteExtension;
-                LoadedExtensions.Add(extension);
-                extension.Initialize(new ExtensionInitializationContext(LiteDevelopApplication.Current.IsInitialized ? InitializationTime.UserLoad : InitializationTime.Startup));
-                return new ExtensionLoadResult(extensionType, extension);
-            }
-            catch (Exception ex)
-            {
-                return new ExtensionLoadResult(extensionType, ex);
-            }
-        }
-        
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             var asmName = new AssemblyName(args.Name);
             string fileName = asmName.Name + ".dll";
 
-            if (args.RequestingAssembly != null && !string.IsNullOrEmpty(args.RequestingAssembly.Location))
+            Assembly resolvedAssembly = null;
+
+            if (args.RequestingAssembly != null && !_resolvedAssemblies.TryGetValue(asmName.FullName, out resolvedAssembly))
             {
                 string asmPath = args.RequestingAssembly.Location;
                 string asmFolder = Path.GetDirectoryName(asmPath);
@@ -174,65 +174,15 @@ namespace LiteDevelop.Extensions
                 {
                     try
                     {
-                        Assembly targetAssembly = Assembly.LoadFile(Path.Combine(asmFolder, fileName));
-                        return targetAssembly;
+                        resolvedAssembly = Assembly.LoadFile(Path.Combine(asmFolder, fileName));
+                        _resolvedAssemblies.Add(asmName.FullName, resolvedAssembly);
+                        return resolvedAssembly;
                     }
                     catch { }
                 }
             }
 
-            return null;
+            return resolvedAssembly;
         }
-    }
-
-    /// <summary>
-    /// Provides information about the result of a loading extension operation.
-    /// </summary>
-    public class ExtensionLoadResult
-    {
-        public ExtensionLoadResult(string file, Exception error)
-        {
-            this.FilePath = file;
-            this.Error = error;
-        }
-
-        public ExtensionLoadResult(Type type, LiteExtension extension)
-        {
-            this.ExtensionType = type;
-            this.Extension = extension;
-            this.FilePath = type.Assembly.Location;
-        }
-
-        public ExtensionLoadResult(Type type, Exception error)
-        {
-            this.ExtensionType = type;
-            this.Error = error;
-            this.FilePath = type.Assembly.Location;
-        }
-
-        /// <summary>
-        /// Gets the file path of the extension library.
-        /// </summary>
-        public string FilePath { get; private set; }
-
-        /// <summary>
-        /// Gets the original type of the extension.
-        /// </summary>
-        public Type ExtensionType { get; private set; }
-
-        /// <summary>
-        /// Gets the instance of an extension which is being created if succesfully loaded.
-        /// </summary>
-        public LiteExtension Extension { get; private set; }
-
-        /// <summary>
-        /// Gets the exception object of the error that occured while loading the extension if available.
-        /// </summary>
-        public Exception Error { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating the extension has been loaded succesfully in LiteDevelop.
-        /// </summary>
-        public bool SuccesfullyLoaded { get { return Extension != null; } }
     }
 }

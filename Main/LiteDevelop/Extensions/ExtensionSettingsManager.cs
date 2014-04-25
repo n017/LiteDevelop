@@ -6,7 +6,7 @@ using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Extensions
 {
-    public class ExtensionSettingsManager : ISettingsManager
+    internal sealed class ExtensionSettingsManager : ISettingsManager
     {
         public ExtensionSettingsManager()
         {
