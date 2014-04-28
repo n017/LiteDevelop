@@ -13,6 +13,11 @@ namespace LiteDevelop.Debugger
     {      
         public static DebuggerBaseSettings Default { get; private set; }
 
+        static DebuggerBaseSettings()
+        {
+            Default = new DebuggerBaseSettings(_defaultPath);
+        }
+
         private static FilePath _defaultPath = new FilePath(typeof(DebuggerBaseSettings).Assembly.Location).ParentDirectory.Combine("default_settings.xml");
 
         public DebuggerBaseSettings(FilePath path)

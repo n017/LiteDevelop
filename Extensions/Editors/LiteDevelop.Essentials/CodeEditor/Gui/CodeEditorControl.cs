@@ -17,8 +17,6 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
     public partial class CodeEditorControl : UserControl
     {
         private static MarkerStyle _sameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
-        private static Color _trackingColor = Color.FromArgb(255, 230, 230, 255);
-        private static Color _currentLineColor = Color.FromArgb(100, 210, 210, 255);
 
         private readonly Dictionary<object, string> _componentMuiIdentifiers;
         private readonly OpenedFile _file;
@@ -57,7 +55,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
-            _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointer);
+            _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointerStyle);
 
             if (_extension.ExtensionHost.IsDebugging)
                 ExtensionHost_DebugStarted(null, null);
@@ -694,15 +692,16 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             this.TextBox.WordWrap = settings.GetValue<bool>("General.WordWrap");
             this.TextBox.ShowLineNumbers = settings.GetValue<bool>("General.LineNumbers");
-            this.TextBox.CurrentLineColor = settings.GetValue<bool>("General.HighlightCurrentLine") ? _currentLineColor : Color.Transparent;
-            this.TextBox.ChangedLineColor = settings.GetValue<bool>("General.TrackUnsavedChanges") ? _trackingColor : Color.Transparent;
+            this.TextBox.CurrentLineColor = settings.GetValue<bool>("General.HighlightCurrentLine") ? _extension.StyleMap.CurrentLineStyle.Description.BackColor : Color.Transparent;
+            this.TextBox.ChangedLineColor = settings.GetValue<bool>("General.TrackUnsavedChanges") ? _extension.StyleMap.ChangedLineStyle.Description.BackColor : Color.Transparent;
+            this.TextBox.SelectionColor = _extension.StyleMap.SelectionStyle.Description.BackColor;
 
-            var appearance = _extension.CurrentAppearanceMap.GetDescriptionById("DefaultText");
+            var appearance = _extension.StyleMap.DefaultText.Description;
             this.TextBox.BackColor = this.documentMap1.BackColor = appearance.BackColor;
             this.TextBox.ForeColor = appearance.ForeColor;
             this.TextBox.Font = new System.Drawing.Font(this.TextBox.Font, appearance.FontStyle);
 
-            appearance = _extension.CurrentAppearanceMap.GetDescriptionById("LineNumbers");
+            appearance = _extension.StyleMap.LineNumbers.Description;
             this.TextBox.LineNumberColor = appearance.ForeColor;
             this.TextBox.IndentBackColor = appearance.BackColor;
             // TODO: set line number font somehow... (maybe edit in fastcoloredtextbox?)

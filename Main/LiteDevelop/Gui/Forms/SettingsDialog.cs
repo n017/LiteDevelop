@@ -83,6 +83,9 @@ namespace LiteDevelop.Gui.Forms
                     extension.ResetSettings();
                     extension.LoadUserDefinedPresets();
                 }
+
+                foreach (var extension in _extensions)
+                    extension.ApplySettings();
             }
         }
 

@@ -5,7 +5,7 @@
     <ItemArray Id="Extensions">
       <Element>Extensions\Editors\Essentials\LiteDevelop.Essentials.dll</Element>
       <Element>Extensions\Debuggers\Debugger\LiteDevelop.Debugger.dll</Element>
-      <Element>Extensions\Debuggers\Debuggers\LiteDevelop.Debugger.Net.dll</Element>
+      <Element>Extensions\Debuggers\Debugger.Net\LiteDevelop.Debugger.Net.dll</Element>
     </ItemArray>
   </ItemGroup>
   <ItemGroup Id="MainWindow">

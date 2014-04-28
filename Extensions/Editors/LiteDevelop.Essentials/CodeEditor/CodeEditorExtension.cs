@@ -83,7 +83,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
 
         public override Version Version
         {
-            get { return new Version(0, 9, 0, 5); }
+            get { return new Version(0, 9, 0, 6); }
         }
 
         public override string Copyright

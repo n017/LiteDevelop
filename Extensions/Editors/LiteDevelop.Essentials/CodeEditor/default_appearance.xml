@@ -56,9 +56,24 @@
       <BackColor UseSystemName="False">FFFFFF00</BackColor>
       <FontStyle>Regular</FontStyle>
     </AppearanceDescription>
-    <AppearanceDescription Name="Shadow pointer" Id="ShadowInstructionPointer">
+    <AppearanceDescription Name="Instruction pointer (shadow)" Id="ShadowInstructionPointer">
       <ForeColor UseSystemName="False">FF000000</ForeColor>
       <BackColor UseSystemName="False">FFFFFF00</BackColor>
+      <FontStyle>Regular</FontStyle>
+    </AppearanceDescription>
+    <AppearanceDescription Name="Current line" Id="CurrentLine">
+      <ForeColor UseSystemName="False">FF000000</ForeColor>
+      <BackColor UseSystemName="False">FFD2D2FF</BackColor>
+      <FontStyle>Regular</FontStyle>
+    </AppearanceDescription>
+    <AppearanceDescription Name="Changed line" Id="ChangedLine">
+      <ForeColor UseSystemName="False">FF000000</ForeColor>
+      <BackColor UseSystemName="False">FFE6E6FF</BackColor>
+      <FontStyle>Regular</FontStyle>
+    </AppearanceDescription>
+    <AppearanceDescription Name="Selection" Id="Selection">
+      <ForeColor UseSystemName="False">FF000000</ForeColor>
+      <BackColor UseSystemName="False">FF0000FF</BackColor>
       <FontStyle>Regular</FontStyle>
     </AppearanceDescription>
   </Descriptions>
