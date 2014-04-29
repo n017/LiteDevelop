@@ -50,11 +50,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDevelop.Framework, Version=0.9.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>G:\Visual Studio\Projects\LiteDevelop\LiteDevelop\Main\LiteDevelop.Framework\Bin\Debug\LiteDevelop.Framework.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -167,6 +162,12 @@
     <None Include="Resources\stack.png" />
     <None Include="Resources\threads.png" />
     <None Include="Resources\current.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Main\LiteDevelop.Framework\LiteDevelop.Framework.csproj">
+      <Project>{28fcb063-b56a-4b6e-9b9e-9865ca71d852}</Project>
+      <Name>LiteDevelop.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
