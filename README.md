@@ -26,6 +26,13 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -	Place, reposition and resize controls using the “What-you-see-is-what-you-get” interface.
     -	Edit properties in the properties window.
     -	Serialize and deserialize forms from source code (alpha). 
+-   Debugger
+    -   Debug .NET projects.
+    -   Set breakpoints.
+    -   Step through code.
+    -   View variable values.
+    -   View call stack.
+    -   View running threads.
 
 Donate
 --
@@ -43,7 +50,6 @@ Requirements
 
 Todo
 --
--	Debugging possibilities.
 -   Add more UI languages + support in core lib.
 -   Add a nice icon to the executable.
 -	Project resources.
