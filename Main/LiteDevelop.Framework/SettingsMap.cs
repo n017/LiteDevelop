@@ -13,7 +13,7 @@ namespace LiteDevelop.Framework
     /// <summary>
     /// Represents a dynamic settings map which can be serialized to an xml file.
     /// </summary>
-    public abstract class SettingsMap : ICloneable
+    public abstract class SettingsMap
     {
         private static readonly Regex _parametersRegex = new Regex(@"\$\((?<parameter>[\w\.]+)\)");
         private Dictionary<string, object> _nodes = new Dictionary<string, object>();
@@ -400,14 +400,16 @@ namespace LiteDevelop.Framework
             }
         }
 
-        #region ICloneable Members
-
-        /// <inheritdoc />
-        public object Clone()
+        public void CopyTo(SettingsMap destination)
         {
-            return MemberwiseClone();
+            foreach (var node in _nodes)
+            {
+                if (destination._nodes.ContainsKey(node.Key))
+                    destination._nodes[node.Key] = node.Value;
+                else
+                    destination._nodes.Add(node.Key, node.Value);
+            }
         }
 
-        #endregion
     }
 }

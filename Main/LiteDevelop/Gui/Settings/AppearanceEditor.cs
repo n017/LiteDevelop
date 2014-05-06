@@ -67,7 +67,8 @@ namespace LiteDevelop.Gui.Settings
 
                 if (provider != null)
                 {
-                    var mapCopy = provider.CurrentAppearanceMap.Clone() as AppearanceMap;
+                    var mapCopy = new AppearanceMap();
+                    provider.CurrentAppearanceMap.CopyTo(mapCopy);
                     _appearanceMaps.Add(provider, mapCopy);
 
                     if (extension is LiteDevelopExtension)

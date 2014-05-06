@@ -55,6 +55,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
+            //_extension.ExtensionHost.
             _instructionPointer = new CodeEditorInstructionPointer(TextBox, _extension.StyleMap.InstructionPointerStyle);
 
             if (_extension.ExtensionHost.IsDebugging)

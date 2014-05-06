@@ -19,6 +19,11 @@ namespace LiteDevelop.Essentials.CodeEditor
             Default = new CodeEditorSettings(_defaultPath);
         }
 
+        public CodeEditorSettings()
+        {
+            Default.CopyTo(this);
+        }
+
         public CodeEditorSettings(FilePath filePath)
             : base(filePath)
         {

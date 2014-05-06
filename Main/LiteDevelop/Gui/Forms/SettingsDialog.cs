@@ -79,13 +79,13 @@ namespace LiteDevelop.Gui.Forms
             if (MessageBox.Show(LiteDevelopApplication.Current.MuiProcessor.GetString("SettingsDialog.ResetToDefaultsWarning"), "LiteDevelop", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
             {
                 foreach (var extension in _extensions)
-                {
                     extension.ResetSettings();
-                    extension.LoadUserDefinedPresets();
-                }
 
                 foreach (var extension in _extensions)
+                {
+                    extension.LoadUserDefinedPresets();
                     extension.ApplySettings();
+                }
             }
         }
 

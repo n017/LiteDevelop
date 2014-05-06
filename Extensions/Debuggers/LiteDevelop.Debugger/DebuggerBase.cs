@@ -164,7 +164,7 @@ Dutch: Jerre S.";
 
         public void ResetSettings()
         {
-            Settings = DebuggerBaseSettings.Default.Clone() as DebuggerBaseSettings;
+            DebuggerBaseSettings.Default.CopyTo(Settings);
             Settings.SaveSettings(ExtensionHost.SettingsManager);
         }
 

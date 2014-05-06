@@ -60,7 +60,7 @@ namespace LiteDevelop
         {
 
             LiteDevelopApplication.Current.EnsureAppDataDirectoryIsCreated();
-            Instance = Default.Clone() as LiteDevelopSettings;
+            LiteDevelopSettings.Default.CopyTo(Instance);
             Instance.Save();
         }
 

@@ -21,7 +21,6 @@ namespace LiteDevelop.Gui.DockContents
         private IErrorManager _errorManager;
         private int errorCount = 0, warningCount = 0, messageCount = 0;
         private bool _resizing;
-        private IEnumerable<BuildError> _errors;
 
         public ErrorContent()
         {
@@ -59,39 +58,19 @@ namespace LiteDevelop.Gui.DockContents
 
             _extensionHost.UILanguageChanged += extensionHost_UILanguageChanged;
             _extensionHost.ControlManager.AppearanceChanged += ControlManager_AppearanceChanged;
+            _errorManager = _extensionHost.ErrorManager;
+            _errorManager.Errors.InsertedItem += Errors_InsertedItem;
+            _errorManager.Errors.RemovedItem += Errors_RemovedItem;
+
             extensionHost_UILanguageChanged(null, null);
         }
                 
-        public void SetErrorManager(IErrorManager errorManager)
-        {
-            if (_errorManager != null)
-            {
-                _errorManager.ReportedError -= _errorManager_ReportedError;
-            }
-            _errorManager = errorManager;
-            _errorManager.ReportedError += _errorManager_ReportedError;
-        }
-
-        public void ClearErrors()
-        {
-            _errors = null;
-            UpdateListView();
-            UpdateToolbar();
-        }
-
-        public void SetErrors(IEnumerable<BuildError> errors)
-        {
-            _errors = errors;
-            UpdateListView();
-            UpdateToolbar();
-        }
-
         private void UpdateToolbar()
         {
             errorCount = warningCount = messageCount = 0;
-            if (_errors != null)
+            if (_errorManager != null)
             {
-                foreach (var error in _errors)
+                foreach (var error in _errorManager.Errors)
                 {
                     switch (error.Severity)
                     {
@@ -112,12 +91,11 @@ namespace LiteDevelop.Gui.DockContents
             listView1.BeginUpdate();
 
             listView1.Items.Clear();
-            if (_errors != null)
+            if (_errorManager != null)
             {
-                foreach (var error in _errors)
+                foreach (var error in _errorManager.Errors)
                 {
-                    if (GetRowVisibility(error.Severity))
-                        AddError(error);
+                    AddError(error);
                 }
             }
 
@@ -126,16 +104,19 @@ namespace LiteDevelop.Gui.DockContents
 
         private void AddError(BuildError error)
         {
-            var item = new ListViewItem(new string[] 
+            if (GetRowVisibility(error.Severity))
+            {
+                var item = new ListViewItem(new string[] 
                 {
                     error.Message,
                     error.Location.FilePath.FileName,
                     error.Location.Line.ToString(),
                     error.Location.Column.ToString(),
                 });
-            item.Tag = error;
-            item.ImageIndex = _iconProvider.GetImageIndex(error.Severity);
-            listView1.Items.Add(item);
+                item.Tag = error;
+                item.ImageIndex = _iconProvider.GetImageIndex(error.Severity);
+                listView1.Items.Add(item);
+            }
         }
 
         private bool GetRowVisibility(MessageSeverity severity)
@@ -158,16 +139,29 @@ namespace LiteDevelop.Gui.DockContents
             UpdateToolbar();
         }
 
+        private void Errors_InsertedItem(object sender, CollectionChangedEventArgs e)
+        {
+            AddError(e.TargetObject as BuildError);
+            UpdateToolbar();
+        }
+
+        private void Errors_RemovedItem(object sender, CollectionChangedEventArgs e)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.Tag == e.TargetObject)
+                {
+                    item.Remove();
+                    break;
+                }
+            }
+        }
+
         private void ControlManager_AppearanceChanged(object sender, EventArgs e)
         {
             var processor = LiteDevelopApplication.Current.ExtensionHost.ControlManager.GlobalAppearanceMap.Processor;
             processor.ApplyAppearanceOnObject(this, Framework.Gui.DefaultAppearanceDefinition.Window);
             processor.ApplyAppearanceOnObject(listView1, Framework.Gui.DefaultAppearanceDefinition.ListView);
-        }
-
-        private void _errorManager_ReportedError(object sender, BuildErrorEventArgs e)
-        {
-            AddError(e.Error);
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,7 +181,7 @@ namespace LiteDevelop.Gui.DockContents
             if (listView1.SelectedItems.Count > 0)
             {
                 var item = listView1.SelectedItems[0];
-                _errorManager.RequestNavigateToError(item.Tag as BuildError);
+                _extensionHost.SourceNavigator.NavigateToLocation((item.Tag as BuildError).Location);
             }
         }
 

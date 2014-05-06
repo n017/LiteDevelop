@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="CodeEditor\Gui\CodeEditorBookmark.cs" />
     <Compile Include="CodeEditor\Gui\Styles\DynamicTextStyle.cs" />
+    <Compile Include="CodeEditor\Gui\Styles\ErrorStyle.cs" />
     <Compile Include="CodeEditor\Gui\Styles\StyleMap.cs" />
     <Compile Include="CodeEditor\Syntax\ICodeBlockCompleter.cs" />
     <Compile Include="CodeEditor\Syntax\Net\CSharpLayoutData.cs" />

@@ -9,7 +9,7 @@ namespace LiteDevelop.Framework.Gui
     /// <summary>
     /// Provides descriptors of visual styles.
     /// </summary>
-    public sealed class AppearanceMap : ICloneable 
+    public sealed class AppearanceMap 
     {
         private static readonly XmlSerializer _serializer = new XmlSerializer(typeof(AppearanceMap));
         private AppearanceProcessor _processor;
@@ -102,26 +102,5 @@ namespace LiteDevelop.Framework.Gui
                 source.CopyTo(target);
             }
         }
-
-        #region ICloneable Members
-
-        public object Clone()
-        {
-            var newMap = new AppearanceMap()
-            {
-                Name = this.Name
-            };
-
-            foreach (var description in Descriptions)
-            {
-                var newDescription = new AppearanceDescription();
-                description.CopyTo(newDescription);
-                newMap.Descriptions.Add(newDescription);
-            }
-
-            return newMap;
-        }
-
-        #endregion
     }
 }

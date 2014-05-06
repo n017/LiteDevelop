@@ -101,7 +101,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
             }
             catch
             {
-                Settings = CodeEditorSettings.Default.Clone() as CodeEditorSettings;
+                Settings = new CodeEditorSettings();
             }
 
             SetupGui();
@@ -181,7 +181,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
 
         public void ResetSettings()
         {
-            Settings = CodeEditorSettings.Default.Clone() as CodeEditorSettings;
+            CodeEditorSettings.Default.CopyTo(Settings);
             Settings.SaveSettings(ExtensionHost.SettingsManager);
 
             _defaultAppearanceMap.CopyTo(_appearanceMap);

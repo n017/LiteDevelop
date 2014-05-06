@@ -90,7 +90,6 @@ namespace LiteDevelop.Gui.Forms
         private void ThisApplication_InitializedApplication(object sender, EventArgs e)
         {
             _extensionHost = LiteDevelopApplication.Current.ExtensionHost as LiteExtensionHost;
-            _extensionHost.ErrorManager.NavigateToErrorRequested += ErrorManager_NavigateToErrorRequested;
             _extensionHost.SolutionLoad += _extensionHost_SolutionLoad;
             _extensionHost.SolutionUnload += _extensionHost_SolutionUnload;
 
@@ -113,9 +112,7 @@ namespace LiteDevelop.Gui.Forms
 
             this.toolStripPanel1.Resize += toolStripPanel1_Resize;
             this.Resize += MainForm_Resize;
-
-            _errorList.SetErrorManager(_extensionHost.ErrorManager);
-      
+                  
             mainMenuStrip.Renderer = mainToolBar.Renderer = mainStatusStrip.Renderer = toolStripPanel1.Renderer = _extensionHost.ControlManager.MenuRenderer;
 
             _extensionHost.UILanguageChanged += _extensionHost_UILanguageChanged;
@@ -720,8 +717,7 @@ namespace LiteDevelop.Gui.Forms
 			var solution = sender as Solution;
             if (!(e.Cancel = solution.Builder.IsBusy))
             {
-                var errorList = _mainDockPanel.FindContent<ErrorContent>();
-                errorList.ClearErrors();
+                _extensionHost.ErrorManager.Errors.Clear();
 
                 this.UseWaitCursor = true;
             }
@@ -737,12 +733,10 @@ namespace LiteDevelop.Gui.Forms
                 {
                     if (e.Result.Errors.Length != 0)
                     {
-                        _errorList.SetErrors(e.Result.Errors);
+                        _extensionHost.ErrorManager.Errors.AddRange(e.Result.Errors);
 
                         if (LiteDevelopSettings.Instance.GetValue<bool>("Projects.ShowErrorsWhenBuildFailed"))
-                        {
                             _errorList.ShowAndActivate(_mainDockPanel);
-                        }
                     }
 
                     if (!e.Result.Success)
@@ -839,11 +833,12 @@ namespace LiteDevelop.Gui.Forms
             {
                 Invoke(new Action(() =>
                 {
-                    if (e.Result.Errors.Length > 0)
+                    if (e.Result.Errors.Length != 0)
                     {
-                        var errorList = _mainDockPanel.FindContent<ErrorContent>();
-                        errorList.SetErrors(e.Result.Errors);
-                        errorList.ShowAndActivate(DockPanel);
+                        _extensionHost.ErrorManager.Errors.AddRange(e.Result.Errors);
+
+                        if (LiteDevelopSettings.Instance.GetValue<bool>("Projects.ShowErrorsWhenBuildFailed"))
+                            _errorList.ShowAndActivate(_mainDockPanel);
                     }
                     UseWaitCursor = false;
                 }));
@@ -1177,11 +1172,6 @@ namespace LiteDevelop.Gui.Forms
             }
 
             (_extensionHost.ControlManager as ControlManager).NotifyUnsavedFilesWhenClosing = true;
-        }
-
-        private void ErrorManager_NavigateToErrorRequested(object sender, BuildErrorEventArgs e)
-        {
-            _extensionHost.SourceNavigator.NavigateToLocation(e.Error.Location);
         }
 
         private void toolStripPanel1_Resize(object sender, EventArgs e)

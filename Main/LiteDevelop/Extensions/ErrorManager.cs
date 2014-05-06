@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
 
@@ -7,19 +8,16 @@ namespace LiteDevelop.Extensions
 {
     internal sealed class ErrorManager : IErrorManager
     {
-        public event BuildErrorEventHandler ReportedError;
-        public event BuildErrorEventHandler NavigateToErrorRequested;
-        
-        public void ReportError(BuildError error)
+        private EventBasedCollection<BuildError> _errors = new EventBasedCollection<BuildError>();
+
+
+        #region IErrorManager Members
+
+        public EventBasedCollection<BuildError> Errors
         {
-            if (ReportedError != null)
-                ReportedError(this, new BuildErrorEventArgs(error));
+            get { return _errors; }
         }
 
-        public void RequestNavigateToError(BuildError error)
-        {
-            if (NavigateToErrorRequested != null)
-                NavigateToErrorRequested(this, new BuildErrorEventArgs(error));
-        }
+        #endregion
     }
 }
