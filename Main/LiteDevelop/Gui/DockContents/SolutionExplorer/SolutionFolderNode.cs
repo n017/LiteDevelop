@@ -91,18 +91,19 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             if (this.Nodes.Count == 1 && !(this.Nodes[0] is AbstractNode))
             {
                 Nodes.Clear();
-
-                foreach (var node in SolutionFolder.Nodes)
-                {
-                    if (node is ProjectEntry)
-                    {
-                        Nodes.Add(new ProjectNode(node as ProjectEntry, _iconProvider));
-                    }
-                    else if (node is SolutionFolder)
-                    {
-                        Nodes.Add(new SolutionFolderNode(node as SolutionFolder, _iconProvider));
-                    }
-                }
+	
+	            foreach (var node in SolutionFolder.Nodes)
+	            {
+					var projectEntry = node as ProjectEntry;
+	                if (projectEntry != null)
+	                {
+	                    Nodes.Add(new ProjectNode(projectEntry, _iconProvider));
+	                }
+	                else if (node is SolutionFolder)
+	                {
+	                    Nodes.Add(new SolutionFolderNode(node as SolutionFolder, _iconProvider));
+	                }
+	            }
             }
         }
 

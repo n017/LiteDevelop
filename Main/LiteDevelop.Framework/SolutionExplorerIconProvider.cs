@@ -19,6 +19,7 @@ namespace LiteDevelop.Framework
         public const int Index_ReferencesDirectory = 3;
         public const int Index_AssemblyRef = 4;
         public const int Index_Properties = 5;
+        public const int Index_File = 6;
 
         private readonly ImageList _imageList;
         private readonly List<string> _cachedExtensions;
@@ -33,13 +34,18 @@ namespace LiteDevelop.Framework
             _cachedExtensions = new List<string>();
 
             var iconTable = Properties.Resources.browserIcons;
-            _imageList.Images.Add(IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_Directory + 1));
-            _imageList.Images.Add(Properties.Resources.solution);
-            _imageList.Images.Add(Properties.Resources.project);
-            _imageList.Images.Add(IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_ReferenceDirectory + 1));
-            _imageList.Images.Add(IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_AssemblyRef + 1));
-            _imageList.Images.Add(Properties.Resources.config);
-            _startIndex = 6;
+            _imageList.Images.AddRange(new Image[]
+                                       {
+                                       		IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_Directory + 1),
+                                       		Properties.Resources.solution,
+                                       		Properties.Resources.project,
+                                  			IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_ReferenceDirectory + 1),
+	                                  		IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_AssemblyRef + 1),
+	                                  		Properties.Resources.config,
+	                                  		IconProvider.GetIconFromSpriteTable(iconTable, new Size(16, 16), AssemblyIconProvider.Index_File + 1),
+                                       });
+                   
+            _startIndex = _imageList.Images.Count;
         }
 
         /// <inheritdoc />
@@ -59,9 +65,10 @@ namespace LiteDevelop.Framework
                 return Index_Directory;
 
             string filePath = member as string;
-            if (member is FileInfo)
+			var fileInfo = member as FileInfo;
+            if (fileInfo != null)
             {
-                filePath = (member as FileInfo).FullName;
+                filePath = fileInfo.FullName;
             }
             else if (member is IFilePathProvider)
             {
@@ -79,7 +86,7 @@ namespace LiteDevelop.Framework
                 if (extension == ".exe" || extension == ".dll")
                     return Index_AssemblyRef;
 
-                if (File.Exists(filePath))
+                if (File.Exists(filePath) && !filePath.StartsWith("\\", StringComparison.Ordinal))
                 {
                     _imageList.Images.Add(Icon.ExtractAssociatedIcon(filePath).ToBitmap());
                     index = _cachedExtensions.Count;
@@ -87,7 +94,7 @@ namespace LiteDevelop.Framework
                 }
                 else
                 {
-                    index = -1;
+                	return Index_File;
                 }
             }
             return index + _startIndex;

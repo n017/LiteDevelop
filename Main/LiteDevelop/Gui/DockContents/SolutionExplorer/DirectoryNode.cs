@@ -89,7 +89,7 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
                         }
 
                         var files = project.ProjectEntry.Project.GetProjectFilesInDirectory(FilePath.FullPath, false);
-                        Array.Sort(files, (x, y) => x.FilePath.FileName.CompareTo(y.FilePath.FileName));
+                        Array.Sort(files, (x, y) => string.Compare(x.FilePath.FileName, y.FilePath.FileName, StringComparison.Ordinal));
                         foreach (var file in files)
                         {
                             this.Nodes.Add(new FileNode(file, _iconProvider));
@@ -117,8 +117,9 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             int minimum = 0;
             while (Nodes.Count != minimum)
             {
-                if (Nodes[0] is PathNode)
-                    (Nodes[0] as PathNode).DeleteEntry();
+				var pathNode = Nodes[0] as PathNode;
+                if (pathNode != null)
+					pathNode.DeleteEntry();
                 else
                     minimum++;
             }
@@ -142,9 +143,10 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
                 // update sub folders
                 foreach (var subNode in Nodes)
                 {
-                    if (subNode is DirectoryNode)
+					var directoryNode = subNode as DirectoryNode;
+                    if (directoryNode != null)
                     {
-                        var subDirectoryNode = (subNode as DirectoryNode);
+                        var subDirectoryNode = directoryNode;
                         string hintPath = subDirectoryNode.FilePath.GetRelativePath(e.SourcePath);
                         subDirectoryNode.FilePath = new FilePath(e.NewPath, hintPath);
                     }
@@ -170,7 +172,7 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             {
                 foreach (TreeNode node in Nodes)
                 {
-                    if (node is FileNode && (node as FileNode).FilePath == file.FilePath)
+                    if (node is FileNode && ((FileNode)node).FilePath == file.FilePath)
                     {
                         node.Remove();
                         break;

@@ -68,7 +68,7 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
         
         private DirectoryNode GetCurrentDirectoryNode()
         {
-            DirectoryNode directoryNode = mainTreeView.SelectedNode as DirectoryNode;
+            var directoryNode = mainTreeView.SelectedNode as DirectoryNode;
 
             if (directoryNode == null)
                 directoryNode = mainTreeView.SelectedNode.Parent as DirectoryNode;
@@ -111,9 +111,10 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 
         private void mainTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node is AbstractNode)
+			var abstractNode = e.Node as AbstractNode;
+            if (abstractNode != null)
             {
-                (e.Node as AbstractNode).OnSelect();
+				abstractNode.OnSelect();
             }
         }
 
@@ -125,25 +126,28 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 
         private void mainTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node is AbstractNode)
+			var abstractNode = e.Node as AbstractNode;
+            if (abstractNode != null)
             {
-                (e.Node as AbstractNode).Activate();
+				abstractNode.Activate();
             }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mainTreeView.SelectedNode is AbstractNode)
+			var abstractNode = mainTreeView.SelectedNode as AbstractNode;
+            if (abstractNode != null)
             {
-                (mainTreeView.SelectedNode as AbstractNode).Activate();
+				abstractNode.Activate();
             }
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (mainTreeView.SelectedNode is PathNode)
+			var pathNode = mainTreeView.SelectedNode as PathNode;
+            if (pathNode != null)
             {
-                var node = (mainTreeView.SelectedNode as PathNode);
+                var node = pathNode;
                 if (MessageBox.Show(LiteDevelopApplication.Current.MuiProcessor.GetString("SolutionExplorerContent.DeleteFileWarning", "file=" + node.FilePath.FullPath), "LiteDevelop", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
                 {
                     try
@@ -169,9 +173,10 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             {
                 try
                 {
-                    if (e.Node is PathNode)
+					var pathNode = e.Node as PathNode;
+                    if (pathNode != null)
                     {
-                        (e.Node as PathNode).RenameEntry(e.Label);
+						pathNode.RenameEntry(e.Label);
                     }
                     else
                     {

@@ -180,8 +180,11 @@ namespace LiteDevelop.Essentials.FormsDesigner.Gui
 
         private void ControlManager_AppearanceChanged(object sender, EventArgs e)
         {
-            var processor = _extensionHost.ControlManager.GlobalAppearanceMap.Processor;
-            processor.ApplyAppearanceOnObject(_viewControl, DefaultAppearanceDefinition.Window);
+        	if (_viewControl != null)
+        	{
+            	var processor = _extensionHost.ControlManager.GlobalAppearanceMap.Processor;
+            	processor.ApplyAppearanceOnObject(_viewControl, DefaultAppearanceDefinition.Window);
+        	}
         }
 
         private void _errorControl_ReloadRequested(object sender, EventArgs e)
