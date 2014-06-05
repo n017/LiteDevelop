@@ -276,10 +276,9 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
         private void UpdateSnapshotAsync()
         {
-            if (_autoCompletionMap is ISnapshotProvider)
+			var snapshotProvider = _autoCompletionMap as ISnapshotProvider;
+            if (snapshotProvider != null)
             {
-                var snapshotProvider = _autoCompletionMap as ISnapshotProvider;
-
                 string currentSource = TextBox.Text;
                 new Thread(() =>
                 {
@@ -625,9 +624,10 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         {
             _extension.AddLastUsedItem(e.Item.MenuText);
 
-            if (e.Item is CodeEditorMethodAutoCompleteItem)
+			var autoCompleteItem = e.Item as CodeEditorMethodAutoCompleteItem;
+            if (autoCompleteItem != null)
             {
-                (e.Item as CodeEditorMethodAutoCompleteItem).AppendParantheses = CodeEditorExtension.Instance.Settings.GetValue<bool>("AutoCompletion.AutoCompleteMethodParantheses");
+				autoCompleteItem.AppendParantheses = CodeEditorExtension.Instance.Settings.GetValue<bool>("AutoCompletion.AutoCompleteMethodParantheses");
             }
         }
 

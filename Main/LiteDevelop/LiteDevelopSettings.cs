@@ -31,6 +31,11 @@ namespace LiteDevelop
             else
                 Reset();
         }
+        
+        private LiteDevelopSettings()
+        {
+            FallbackMap = Default;
+        }
 
         public LiteDevelopSettings(FilePath path)
             : base(path)
@@ -42,15 +47,9 @@ namespace LiteDevelop
         {
             var returnValue = base.GetValue<T>(path);
 
-            if (returnValue is string)
-            {
-                return (T)Convert.ChangeType(ParseString(returnValue as string, _specialVars), typeof(T));
-            }
-
-            return returnValue;
+			return returnValue is string ? (T)Convert.ChangeType(ParseString(returnValue as string, _specialVars), typeof(T)) : returnValue;
         }
-
-
+        
         public void Save()
         {
             this.Save(new FilePath(_settingsPath));
@@ -58,9 +57,8 @@ namespace LiteDevelop
         
         public static void Reset()
         {
-
             LiteDevelopApplication.Current.EnsureAppDataDirectoryIsCreated();
-            LiteDevelopSettings.Default.CopyTo(Instance);
+            LiteDevelopSettings.Default.CopyTo(Instance = new LiteDevelopSettings());
             Instance.Save();
         }
 

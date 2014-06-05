@@ -20,7 +20,7 @@ namespace LiteDevelop.Framework
         
         public SettingsMap()
         {
-
+			
         }
 
         public SettingsMap(FilePath filePath)

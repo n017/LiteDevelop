@@ -405,9 +405,9 @@ namespace LiteDevelop.Gui.Forms
 
             foreach (var node in folder.Nodes)
             {
-                if (node is ProjectEntry)
+				var projectEntry = node as ProjectEntry;
+                if (projectEntry != null)
                 {
-                    var projectEntry = node as ProjectEntry;
                     if (projectEntry.HasProject && projectEntry.Project.HasUnsavedData)
                     {
                         projects.Add(projectEntry.Project);
@@ -439,9 +439,10 @@ namespace LiteDevelop.Gui.Forms
         {
             foreach (ToolStripItem item in windowToolStripMenuItem.DropDownItems)
             {
-                if (item is ToolStripMenuItem)
+				var toolStripMenuItem = item as ToolStripMenuItem;
+                if (toolStripMenuItem != null)
                 {
-                    (item as ToolStripMenuItem).Checked = CurrentDocument != null && CurrentDocument == item.Tag;
+					toolStripMenuItem.Checked = CurrentDocument != null && CurrentDocument == item.Tag;
                 }
             }
         }
@@ -596,41 +597,46 @@ namespace LiteDevelop.Gui.Forms
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.CurrentDocument is IClipboardHandler)
+			var iClipboardHandler = this.CurrentDocument as IClipboardHandler;
+            if (iClipboardHandler != null)
             {
-                (this.CurrentDocument as IClipboardHandler).Cut();
+				iClipboardHandler.Cut();
             }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.CurrentDocument is IClipboardHandler)
+			var iClipboardHandler = this.CurrentDocument as IClipboardHandler;
+            if (iClipboardHandler != null)
             {
-                (this.CurrentDocument as IClipboardHandler).Copy();
+				iClipboardHandler.Copy();
             }
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.CurrentDocument is IClipboardHandler)
+			var iClipboardHandler = this.CurrentDocument as IClipboardHandler;
+            if (iClipboardHandler != null)
             {
-                (this.CurrentDocument as IClipboardHandler).Paste();
+				iClipboardHandler.Paste();
             }
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.CurrentDocument is IHistoryProvider)
+			var iHistoryProvider = this.CurrentDocument as IHistoryProvider;
+            if (iHistoryProvider != null)
             {
-                (this.CurrentDocument as IHistoryProvider).Undo();
+				iHistoryProvider.Undo();
             }
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.CurrentDocument is IHistoryProvider)
+			var iHistoryProvider = this.CurrentDocument as IHistoryProvider;
+            if (iHistoryProvider != null)
             {
-                (this.CurrentDocument as IHistoryProvider).Redo();
+				iHistoryProvider.Redo();
             }
         }
 
