@@ -1,15 +1,15 @@
-LiteDevelop
-==
+﻿LiteDevelop
+===
 **Light-weight and open source IDE**
 
 LiteDevelop is a free Integrated Development Environment (IDE). It serves as a light-weight and open-source alternative to Visual Studio and is able to be launched from a removable drive such as USB sticks or SD-cards. Thanks to its extendibility, it provides you with the opportunity to add any features you like, and remove any features you don’t like. Thus giving you more control on how big and heavy the application will be. 
 
 History
---
+---
 Originally the project was designed to have a light-weight IDE for computers with either too old hardware or restricted rights to open or install Microsoft Visual Studio. These computers include for instance thin clients, such as computers on many schools.
 
 Features
---
+---
 The standard LiteDevelop suite has the following features:
 -   Portable, can be run from a removable drive.
 -    Very small compared to Visual Studio.
@@ -35,24 +35,28 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View running threads.
 
 Donate
---
+---
 
 [![Alt text](http://puu.sh/7I7aC.gif "Please donate! :D")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HAEW49Q5VY2YC)
 
 
 How to compile
---
-Open the project in visual studio and click build, or use either build-debug.bat or build-release.bat included in the root directory.
+---
+Open the project in visual studio and click build, or use one of the batch files included in the root directory.
+
+| Batch file        | Description
+| ----------------- |:-------------
+| build-debug.bat   | Builds the application using the debug configuration, including all xml, help and pdb files.
+| build-release.bat | Builds the application using the minimal configuration, only including the most necessary files. Choose this one if you have very little storage to spend.
+| build-minimal.bat | Builds the application using the release configuration, including all xml, and help files.    
+
 
 Requirements
---
+---
 -    Framework 4.0 (extended, not the client profile)
 
 Todo
---
--   Add more UI languages + support in core lib.
--   Add a nice icon to the executable.
--	Project resources.
+---
 -	Project dependencies.
 -   Multiple building platforms and configurations for msbuild (Debug, Release, AnyCPU, x86, x64 ...)
 -	Clipboard operations in forms designer.

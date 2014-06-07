@@ -14,12 +14,19 @@ namespace LiteDevelop.Framework.FileSystem.MSBuild
     {
         private static readonly ProjectCollection _globalCollection = new ProjectCollection();
 
+        private static readonly string[] _fileItemTypes = new string[]
+        {
+            "Compile",
+            "EmbeddedResource",
+            "None",
+        };
+
         public event EventHandler ApplicationTypeChanged;
         public event EventHandler ConfigurationChanged;
         public event EventHandler PlatformChanged;
         private readonly ProjectRootElement _msBuildProject;
         private readonly EventBasedCollection<string> _references = new EventBasedCollection<string>();
-
+    
         public MSBuildProject()
         {
             _msBuildProject = ProjectRootElement.Create();
@@ -42,7 +49,7 @@ namespace LiteDevelop.Framework.FileSystem.MSBuild
             {
                 if (item.ItemType == "Reference")
                     References.Add(item.Include);
-                else if (item.ItemType == "Compile" || item.ItemType == "None")
+                else if (_fileItemTypes.Contains(item.ItemType))
                 {
                     var entry = new ProjectFileEntry(new FilePath(this.ProjectDirectory, item.Include));
 
