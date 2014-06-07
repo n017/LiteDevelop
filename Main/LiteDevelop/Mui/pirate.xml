@@ -199,7 +199,7 @@
         <Item Id="RunWithoutDebugger">Fire &amp;without debuggin'</Item>
         <Item Id="RunLastBuild">Fire &amp;last used canon balls</Item>
         <Item Id="Break">&amp;Hold fire!</Item>
-        <Item Id="StopDebugging">&amp;Stop debuggin'</Item>
+        <Item Id="StopDebugging">&amp;Cease fire!</Item>
         <Item Id="StepOver">Step &amp;over</Item>
         <Item Id="StepInto">Step &amp;into</Item>
         <Item Id="StepOut">Step &amp;out</Item>

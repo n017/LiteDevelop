@@ -4,6 +4,7 @@
     <Item Id="LanguageID">english</Item>
     <ItemArray Id="Extensions">
       <Element>Extensions\Editors\Essentials\LiteDevelop.Essentials.dll</Element>
+      <Element>Extensions\Editors\ResourceEditor\LiteDevelop.ResourceEditor.dll</Element>
       <Element>Extensions\Debuggers\Debugger\LiteDevelop.Debugger.dll</Element>
       <Element>Extensions\Debuggers\Debugger.Net\LiteDevelop.Debugger.Net.dll</Element>
     </ItemArray>

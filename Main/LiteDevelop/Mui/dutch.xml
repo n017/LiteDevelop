@@ -145,7 +145,7 @@
       <Item Id="NoEditorAvailable">Er is geen editor beschikbaar voor bestand "$(file)".</Item>
       <Item Id="NoDebuggerAvailable">Er is geen foutopsoringsprogramma beschikbaar voor project "$(project)".</Item>
       <Item Id="BuildFailed">Eén of meerdere bouw-processen zijn mislukt. Zie het output scherm of de foutmeldingen voor details.</Item>
-      <Item Id="UnloadCurrentSolutionWarning">Weet u zeker dat u de huIdige solution wilt sluiten?</Item>
+      <Item Id="UnloadCurrentSolutionWarning">Weet u zeker dat u de huidige solution wilt sluiten?</Item>
       <Item Id="CloseAllDocumentsWarning">Weet u zeker dat u de geopende documenten wilt sluiten?</Item>
     </ItemGroup>
 
@@ -263,7 +263,7 @@
       <Item Id="Add.ExistingFile">Bestaand item...</Item>
       <Item Id="Open">Openen</Item>
       <Item Id="Remove">Verwijderen</Item>
-      <Item Id="Rename">Hernoemen</Item>
+      <Item Id="Rename">Naam wijzigen</Item>
       <Item Id="SetAsStartupProject">Als opstart project instellen</Item>
       <Item Id="ViewInExplorer">In Explorer openen</Item>
     </ItemGroup>

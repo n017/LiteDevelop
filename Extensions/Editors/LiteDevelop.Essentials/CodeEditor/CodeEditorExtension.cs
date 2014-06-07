@@ -326,7 +326,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
         {
             ExtensionHost.ControlManager.InvokeOnMainThread(new Action(() =>
             {
-                MuiProcessor = new MuiProcessor(ExtensionHost, Path.Combine(Path.GetDirectoryName(typeof(CodeEditorExtension).Assembly.Location), "MUI"));
+                MuiProcessor = new MuiProcessor(ExtensionHost, Path.Combine(Path.GetDirectoryName(typeof(CodeEditorExtension).Assembly.Location), "Mui"));
 
                 AddToMuiIdentifiers(SetupSettingsControls());
                 AddToMuiIdentifiers(SetupToolbar());

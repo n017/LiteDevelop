@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+  <ItemGroup Id = "ResourceEditorControl">
+    <ItemGroup Id = "ColumnHeaders">
+      <Item Id = "Name">Name</Item>
+      <Item Id = "Type">Type</Item>
+      <Item Id = "Contents">Contents</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ToolBar">
+      <Item Id = "AddString">Add &amp;string</Item>
+      <Item Id = "AddFile">Add &amp;file</Item>
+      <Item Id = "RemoveSelected">&amp;Remove selected</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Rename">Rename</Item>
+      <Item Id = "Remove">Remove</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Messages">
+      <Item Id = "EditorNotInstalled">There are no editors for this type of resource entry installed.</Item>
+      <Item Id = "RemoveEntryConfirmation">Are you sure you want to remove $(file) from the resource list?</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "ImageViewContent">
+    <Item Id = "UpdateImage">Update image</Item>
+  </ItemGroup>
+</UILanguagePack>

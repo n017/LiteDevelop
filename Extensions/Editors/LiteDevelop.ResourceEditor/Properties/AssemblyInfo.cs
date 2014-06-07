@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LiteDevelop")]
-[assembly: AssemblyDescription("Light weight and open-source IDE.")]
+[assembly: AssemblyTitle("LiteDevelop.ResourceEditor")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jerre S.")]
-[assembly: AssemblyProduct("LiteDevelop")]
-[assembly: AssemblyCopyright("Copyright © Jerre S. 2014")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("LiteDevelop.ResourceEditor")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("bc0e0136-28bb-4ee9-8801-edbdec26cead")]
+[assembly: Guid("1a4b6730-56c0-4f8b-9468-4d1047d8edb8")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.1.5")]
-[assembly: AssemblyFileVersion("0.9.1.5")]
+[assembly: AssemblyVersion("0.9.0.0")]
+[assembly: AssemblyFileVersion("0.9.0.0")]

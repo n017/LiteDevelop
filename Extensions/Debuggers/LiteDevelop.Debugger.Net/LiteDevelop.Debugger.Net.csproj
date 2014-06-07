@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\Bin\Release\Extensions\Debuggers\Debugger.Net\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -118,6 +118,7 @@
     <ProjectReference Include="..\..\..\Main\LiteDevelop.Framework\LiteDevelop.Framework.csproj">
       <Project>{28fcb063-b56a-4b6e-9b9e-9865ca71d852}</Project>
       <Name>LiteDevelop.Framework</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\LiteDevelop.Debugger\LiteDevelop.Debugger.csproj">
       <Project>{6bbba95e-2290-41c5-a61e-0fb3ad4f7df1}</Project>
