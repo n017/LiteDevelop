@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+  <ItemGroup Id = "ResourceEditorControl">
+    <ItemGroup Id = "ColumnHeaders">
+      <Item Id = "Name">Namn</Item>
+      <Item Id = "Type">Typ</Item>
+      <Item Id = "Contents">Innehåll</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ToolBar">
+      <Item Id = "AddString">Lägg till &amp;sträng</Item>
+      <Item Id = "AddFile">Lägg till &amp;fil</Item>
+      <Item Id = "RemoveSelected">&amp;Ta bort vald</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Rename">Döp om</Item>
+      <Item Id = "Remove">Ta bort</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Messages">
+      <Item Id = "EditorNotInstalled">Det finns ingen redigerare för denna typ av resurs installerad.</Item>
+      <Item Id = "RemoveEntryConfirmation">Är du säker på att du vill ta bort $(file) från listan av resurser?</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "ImageViewContent">
+    <Item Id = "UpdateImage">Uppdatera bild</Item>
+  </ItemGroup>
+</UILanguagePack>
