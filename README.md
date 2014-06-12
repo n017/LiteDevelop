@@ -47,8 +47,8 @@ Open the project in visual studio and click build, or use one of the batch files
 | Batch file        | Description
 | ----------------- |:-------------
 | build-debug.bat   | Builds the application using the debug configuration, including all xml, help and pdb files.
-| build-release.bat | Builds the application using the minimal configuration, only including the most necessary files. Choose this one if you have very little storage to spend.
-| build-minimal.bat | Builds the application using the release configuration, including all xml, and help files.    
+| build-minimal.bat | Builds the application using the minimal configuration, only including the most necessary files. Choose this one if you have very little storage to spend.
+| build-release.bat | Builds the application using the release configuration, including all xml, and help files.    
 
 
 Requirements
