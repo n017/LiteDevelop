@@ -6,6 +6,7 @@ using LiteDevelop.Framework;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Mui;
 using LiteDevelop.Gui.DockContents;
 
@@ -149,6 +150,12 @@ namespace LiteDevelop.Extensions
         }
 
         public ISourceNavigator SourceNavigator
+        {
+            get;
+            internal set;
+        }
+
+        public ITemplateService TemplateService
         {
             get;
             internal set;

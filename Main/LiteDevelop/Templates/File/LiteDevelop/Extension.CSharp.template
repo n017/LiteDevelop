@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Extension (C#)"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="LiteDevelop"
+          Type="File"
+          Icon="page_white_csharp.png"
+          DefaultName="Extension$(FileNumber).cs">
+    
+  <File Name="$(FileName).cs">
+    <Contents Type="Text"><![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using LiteDevelop.Framework;
+using LiteDevelop.Framework.Extensions;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of $(EscapedFileName)
+    /// </summary>
+    public class $(EscapedFileName) : LiteExtension
+    {
+        // The extension host giving access to LiteDevelop's main application.
+        private ILiteExtensionHost _extensionHost;
+        
+        public $(EscapedFileName)()
+        {
+        }
+
+        public override string Name
+        {
+            get { return "$(EscapedFileName)"; }
+        }
+
+        public override string Description
+        {
+            get { return "Insert description here."; }
+        }
+
+        public override string Author
+        {
+            get { return "Insert author here"; }
+        }
+
+        public override Version Version
+        {
+            get { return typeof($(EscapedFileName)).Assembly.GetName().Version; }
+        }
+
+        public override string Copyright
+        {
+            get { return "Insert copyright here"; }
+        }
+
+        // Optional: add release information by uncommenting the following:
+        //
+        // public override string ReleaseInformation
+        // {
+        //     get { return "Insert release information here."; }
+        // }
+        
+        public override void Initialize(InitializationContext context)
+        {
+            _extensionHost = context.Host;
+            
+            // TODO: Initialize the extension.
+        }
+        
+    }
+}
+]]></Contents>
+  </File>
+
+</Template>

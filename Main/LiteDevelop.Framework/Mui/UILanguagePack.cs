@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Framework.Mui
 {
@@ -55,7 +56,7 @@ namespace LiteDevelop.Framework.Mui
             {
                 if (parameters.Count > 0)
                 {
-                    value = ParseString(value, parameters);
+                    value = StringEvaluator.EvaluateString(value, parameters);
                 }
 
                 return true;

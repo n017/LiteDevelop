@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using FastColoredTextBoxNS;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Essentials.CodeEditor.Gui

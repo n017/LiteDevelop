@@ -25,7 +25,7 @@ namespace LiteDevelop.Debugger
 
         #region IDebugger Members
 
-        public abstract bool CanDebugProject(Framework.FileSystem.Project project);
+        public abstract bool CanDebugProject(Framework.FileSystem.Projects.Project project);
 
         public abstract Framework.Debugging.DebuggerSession CreateSession();
 

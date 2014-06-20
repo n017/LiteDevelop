@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Gui.DockContents;
 using WeifenLuo.WinFormsUI.Docking;

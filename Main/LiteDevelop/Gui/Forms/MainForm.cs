@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Gui;
 using WeifenLuo.WinFormsUI.Docking;
 using LiteDevelop.Extensions;

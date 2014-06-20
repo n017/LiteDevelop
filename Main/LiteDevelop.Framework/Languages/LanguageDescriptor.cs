@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
+using LiteDevelop.Framework.FileSystem.Templates;
 using LiteDevelop.Framework.Languages;
 using LiteDevelop.Framework.Languages.Net;
 using LiteDevelop.Framework.Languages.Web;
@@ -99,7 +101,6 @@ namespace LiteDevelop.Framework.Languages
 
         public LanguageDescriptor()
         {
-            Templates = new List<Template>();
         }
 
         /// <summary>
@@ -174,15 +175,6 @@ namespace LiteDevelop.Framework.Languages
         public abstract Snippet[] Snippets
         {
             get;
-        }
-
-        /// <summary>
-        /// Gets a list of templates available for this language.
-        /// </summary>
-        public virtual List<Template> Templates
-        {
-            get;
-            private set;
         }
 
         /// <summary>

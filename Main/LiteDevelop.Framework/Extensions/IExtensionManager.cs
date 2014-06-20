@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Framework.Extensions
 {

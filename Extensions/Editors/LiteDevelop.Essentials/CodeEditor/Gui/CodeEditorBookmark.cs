@@ -6,6 +6,7 @@ using System.Text;
 using LiteDevelop.Essentials.CodeEditor.Gui.Styles;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using FastColoredTextBox = FastColoredTextBoxNS.FastColoredTextBox;
 using LDBookmark = LiteDevelop.Framework.FileSystem.Bookmark;
 using TBBookmark = FastColoredTextBoxNS.Bookmark;

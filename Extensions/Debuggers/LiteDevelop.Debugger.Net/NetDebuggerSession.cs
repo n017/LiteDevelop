@@ -12,7 +12,8 @@ using LiteDevelop.Debugger.Net.Interop.Wrappers;
 using LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.FileSystem;
-using LiteDevelop.Framework.FileSystem.Net;
+using LiteDevelop.Framework.FileSystem.Projects;
+using LiteDevelop.Framework.FileSystem.Projects.Net;
 
 namespace LiteDevelop.Debugger.Net
 {

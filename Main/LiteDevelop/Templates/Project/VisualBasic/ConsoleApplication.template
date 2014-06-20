@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template Name="Console Application"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Visual Basic"
+          Type="Project"
+          Icon="application_xp_terminal.png"
+          DefaultName="ConsoleApplication$(FileNumber).vbproj">
+
+  <Project Name="$(FileName).vbproj" 
+           Language="Visual Basic">
+    
+    <References>
+      <Reference>System</Reference>
+      <Reference>System.Core</Reference>
+      <Reference>System.Data</Reference>
+      <Reference>System.Xml</Reference>
+    </References>
+
+    <Properties>
+      <Property Name="OutputType">Exe</Property>
+    </Properties>
+
+    <Files>
+      <File Name = "Program.vb">
+<Contents Type="Text"><![CDATA[
+Imports System
+Imports System.IO
+Imports System.Linq
+Imports System.Globalization
+
+Namespace $(Namespace)
+
+    Module Program
+    
+        Sub Main(ByVal args() As String)
+        
+        End Sub
+    
+    End Module
+    
+End Namespace
+]]></Contents>
+      </File>
+    </Files>
+  </Project>
+
+</Template>

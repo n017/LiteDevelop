@@ -33,8 +33,8 @@
             this.browseButton = new System.Windows.Forms.Button();
             this.directoryTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.languagesTreeView = new System.Windows.Forms.TreeView();
-            this.templatesListView = new System.Windows.Forms.ListView();
+            this.languagesTreeView = new TemplatesTreeView();
+            this.templatesListView = new TemplatesListView();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
@@ -209,8 +209,8 @@
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.TextBox directoryTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView languagesTreeView;
-        private System.Windows.Forms.ListView templatesListView;
+        private TemplatesTreeView languagesTreeView;
+        private TemplatesListView templatesListView;
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button okButton;

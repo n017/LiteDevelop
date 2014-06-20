@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Stucture"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Visual Basic"
+          Type="File"
+          Icon="vb.png"
+          DefaultName="Structure$(FileNumber).vb">
+    
+  <File Name="$(FileName).vb">
+    <Contents Type="Text">
+  <![CDATA[
+Imports System
+Imports System.IO
+Imports System.Linq
+Imports System.Collections.Generic
+
+Namespace $(Namespace)
+
+    ''' <summary>
+    ''' Description of $(EscapedFileName)
+    ''' </summary>
+    Stucture $(EscapedFileName)
+        
+    End Stucture
+    
+End Namespace
+
+]]></Contents>
+  </File>
+
+</Template>

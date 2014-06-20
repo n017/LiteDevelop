@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template Name="Class Library"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Visual Basic"
+          Type="Project"
+          Icon="file_extension_dll.png"
+          DefaultName="ClassLibrary$(FileNumber).vbproj">
+
+  <Project Name="$(FileName).vbproj" 
+           Language="Visual Basic">
+    
+    <References>
+      <Reference>System</Reference>
+      <Reference>System.Core</Reference>
+      <Reference>System.Data</Reference>
+      <Reference>System.Xml</Reference>
+    </References>
+
+    <Properties>
+      <Property Name="OutputType">Library</Property>
+    </Properties>
+
+    <Files>
+      <File Name = "Class1.vb">
+<Contents Type="Text"><![CDATA[
+Imports System
+Imports System.IO
+Imports System.Linq
+Imports System.Collections.Generic
+
+Namespace $(Namespace)
+
+    ''' <summary>
+    ''' Description of $(EscapedFileName)
+    ''' </summary>
+    Class Class1
+    
+    End Class
+
+End Namespace
+]]></Contents>
+      </File>
+    </Files>
+  </Project>
+
+</Template>

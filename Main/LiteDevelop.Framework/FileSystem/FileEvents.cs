@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Framework.FileSystem
 {

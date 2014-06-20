@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Css file"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Web"
+          Type="File"
+          Icon="document_layout.png"
+          DefaultName="XmlFile$(FileNumber).vb">
+    
+  <File Name="$(FileName).css">
+    <Contents Type="Text">
+    </Contents>
+  </File>
+
+</Template>

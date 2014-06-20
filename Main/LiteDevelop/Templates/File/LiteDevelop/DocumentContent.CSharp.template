@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Document Content (C#)"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="LiteDevelop"
+          Type="File"
+          Icon="page_white_csharp.png"
+          DefaultName="ViewContent$(FileNumber).cs">
+    
+  <File Name="$(FileName).cs">
+    <Contents Type="Text">
+  <![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using LiteDevelop.Framework;
+using LiteDevelop.Framework.Extensions;
+using LiteDevelop.Framework.Gui;
+using LiteDevelop.Framework.FileSystem;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of $(EscapedFileName)
+    /// </summary>
+    public class $(EscapedFileName) : LiteDocumentContent
+    {        
+        public $(EscapedFileName)(LiteExtension extension, OpenedFile sourceFile)
+            : base(extension)
+        {
+            this.AssociatedFile = sourceFile;
+            this.AssociatedFile.FilePathChanged += AssociatedFile_FilePathChanged;
+            
+            this.Text = sourceFile.FilePath.FileName + sourceFile.FilePath.Extension;
+            
+            // TODO: Set a control that allows users to view and/or edit the document.
+            this.Control = new Control()
+            {
+                Dock = DockStyle.Fill,
+            };
+        }
+
+        #region LiteDocumentContent Members
+
+        public override void Save(Stream stream)
+        {
+            // TODO: Write changes that are made to the stream.
+        }
+
+        #endregion
+
+        private void AssociatedFile_FilePathChanged(object sender, PathChangedEventArgs e)
+        {
+            this.Text = e.NewPath.FileName + e.NewPath.Extension;
+        }
+    }
+}
+]]></Contents>
+  </File>
+
+</Template>

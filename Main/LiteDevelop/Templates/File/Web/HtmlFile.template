@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Html file"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Web"
+          Type="File"
+          Icon="page_white_world.png"
+          DefaultName="XmlFile$(FileNumber).vb">
+    
+  <File Name="$(FileName).html">
+    <Contents Type="Text"><![CDATA[<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>$(FileName)</title>
+  </head>
+  
+  <body>
+  
+  </body>
+  
+</html>
+]]></Contents>
+  </File>
+
+</Template>

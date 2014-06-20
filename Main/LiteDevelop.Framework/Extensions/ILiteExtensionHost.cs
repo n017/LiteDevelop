@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Mui;
 
 namespace LiteDevelop.Framework.Extensions
@@ -110,6 +111,11 @@ namespace LiteDevelop.Framework.Extensions
         /// Gets the default source navigator for navigating to source locations.
         /// </summary>
         ISourceNavigator SourceNavigator { get; }
+
+        /// <summary>
+        /// Gets the template service used for creating new files using a template.
+        /// </summary>
+        ITemplateService TemplateService { get; }
 
         /// <summary>
         /// Gets a value indicating whether the user is debugging the current solution.

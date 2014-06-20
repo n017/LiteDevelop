@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Php file"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Web"
+          Type="File"
+          Icon="page_white_php.png"
+          DefaultName="PhpFile$(FileNumber).vb">
+    
+  <File Name="$(FileName).php">
+    <Contents Type="Text"><![CDATA[
+<?php 
+
+?>
+]]></Contents>
+  </File>
+
+</Template>

@@ -7,12 +7,13 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using LiteDevelop.Framework.Extensions;
-using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Languages;
 using LiteDevelop.Framework.Languages.Net;
 using LiteDevelop.Essentials.FormsDesigner.Gui;
 using LiteDevelop.Essentials.FormsDesigner.Services;
+using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Essentials.FormsDesigner.Gui
 {

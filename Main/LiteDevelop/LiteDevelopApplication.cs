@@ -8,7 +8,7 @@ using LiteDevelop.Extensions;
 using WeifenLuo.WinFormsUI.Docking;
 using LiteDevelop.Gui;
 using LiteDevelop.Framework.Extensions;
-using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using System.Threading;
 using System.ComponentModel;
 using LiteDevelop.Framework.Mui;
@@ -149,6 +149,7 @@ namespace LiteDevelop
             _extensionHost.ProgressBar = _mainForm.DefaultStatusProgressBar.ProgressBar;
             _extensionHost.CredentialManager = new CredentialManager();
             _extensionHost.SourceNavigator = new DefaultSourceNavigator();
+            _extensionHost.TemplateService = new TemplateService();
             _extensionHost.UILanguage = UILanguage.GetLanguageById(LiteDevelopSettings.Instance.GetValue("Application.LanguageID"));
 
             _muiProcessor = new Framework.Mui.MuiProcessor(_extensionHost, Path.Combine(Application.StartupPath, "MUI"));

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using LiteDevelop.Framework;
 using LiteDevelop.Extensions;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop
@@ -47,7 +48,7 @@ namespace LiteDevelop
         {
             var returnValue = base.GetValue<T>(path);
 
-			return returnValue is string ? (T)Convert.ChangeType(ParseString(returnValue as string, _specialVars), typeof(T)) : returnValue;
+			return returnValue is string ? (T)Convert.ChangeType(StringEvaluator.EvaluateString(returnValue as string, _specialVars), typeof(T)) : returnValue;
         }
         
         public void Save()

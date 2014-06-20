@@ -3,10 +3,10 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using LiteDevelop.Framework.FileSystem;
 using System.Resources;
 using System.ComponentModel.Design;
 using System.Collections.Generic;
+using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.ResourceEditor.Gui
 {

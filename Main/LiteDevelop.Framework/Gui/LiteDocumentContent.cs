@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Framework.Gui
 {

@@ -6,9 +6,10 @@ using System.Text;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
-using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using WeifenLuo.WinFormsUI.Docking;
 using LiteDevelop.Extensions;
+using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents
 {

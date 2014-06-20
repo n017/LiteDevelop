@@ -15,7 +15,6 @@ namespace LiteDevelop.Framework
     /// </summary>
     public abstract class SettingsMap
     {
-        private static readonly Regex _parametersRegex = new Regex(@"\$\((?<parameter>[\w\.]+)\)");
         private Dictionary<string, object> _nodes = new Dictionary<string, object>();
         
         public SettingsMap()
@@ -288,29 +287,6 @@ namespace LiteDevelop.Framework
         {
             var document = GenerateDocument();
             document.Save(stream);
-        }
-
-        /// <summary>
-        /// Applies parameter values to a specific string.
-        /// </summary>
-        /// <param name="text">The text to apply parameters to.</param>
-        /// <param name="parameters">The parameters to use.</param>
-        /// <returns></returns>
-        protected string ParseString(string text, IDictionary<string, string> parameters)
-        {
-            StringBuilder builder = new StringBuilder(text);
-            int offset = 0;
-
-            foreach (Match match in _parametersRegex.Matches(text))
-            {
-                string value = parameters[match.Groups["parameter"].Value];
-                builder.Remove(match.Index + offset, match.Length);
-                builder.Insert(match.Index + offset, value);
-                offset -= match.Length;
-                offset += value.Length;
-            }
-
-            return builder.ToString();
         }
 
         private XmlDocument GenerateDocument()

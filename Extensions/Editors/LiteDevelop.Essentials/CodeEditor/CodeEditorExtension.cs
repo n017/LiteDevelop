@@ -5,8 +5,8 @@ using System.IO;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
-using LiteDevelop.Framework.FileSystem;
-using LiteDevelop.Framework.FileSystem.Net;
+using LiteDevelop.Framework.FileSystem.Projects;
+using LiteDevelop.Framework.FileSystem.Projects.Net;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Languages;
 using LiteDevelop.Framework.Languages.Net;
@@ -14,6 +14,7 @@ using LiteDevelop.Framework.Languages.Web;
 using LiteDevelop.Framework.Mui;
 using LiteDevelop.Essentials.CodeEditor.Gui;
 using LiteDevelop.Essentials.CodeEditor.Gui.Styles;
+using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Essentials.CodeEditor
 {
@@ -105,7 +106,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
             }
 
             SetupGui();
-            SetupTemplates();
+            // SetupTemplates();
         }
 
         public override void Dispose()
@@ -248,80 +249,7 @@ Text editor: FastColoredTextBox by Pavel Torgashov (https://github.com/PavelTorg
             _lineLabel.Text = MuiProcessor.GetString("CodeEditorExtension.Statusbar.CurrentLine", "line=" + line.ToString());
             _columnLabel.Text = MuiProcessor.GetString("CodeEditorExtension.Statusbar.CurrentColumn", "column=" + column.ToString());
         }
-
-        private void SetupTemplates()
-        {
-        	// TODO: move to xml files.
-            SetupFileTemplates();
-            SetupProjectTemplates();
-        }
-
-        private void SetupFileTemplates()
-        {
-            var icon = Properties.Resources.file;
-            foreach (var descriptor in LanguageDescriptor.RegisteredLanguages)
-            {
-                descriptor.Templates.Add(new SourceFileTemplate("Empty File", icon, this, string.Empty));
-            }
-
-            LanguageDescriptor.GetLanguage<CSharpLanguage>().Templates.Add(
-                new NetAstFileTemplate(
-                    "Class File", 
-                    null, 
-                    Properties.Resources.csharp_file_icon.ToBitmap(),
-                    this, 
-                    CodeDomUnitFactory.CreateClassUnit("%folder%", "%file%")));
-
-            LanguageDescriptor.GetLanguage<VisualBasicLanguage>().Templates.Add(
-                new NetAstFileTemplate(
-                    "Class File", 
-                    null,
-                    Properties.Resources.vb_file_icon.ToBitmap(), 
-                    this, 
-                    CodeDomUnitFactory.CreateClassUnit("%folder%", "%file%")));
-
-            LanguageDescriptor.GetLanguage<HtmlLanguage>().Templates.Add(
-                new SourceFileTemplate(
-                    "Web page",
-                    Properties.Resources.html_file_icon,
-                    this,
-                    Properties.Resources.HtmlPageFile,
-                    (f) => { f.SetContents(f.GetContentsAsString().Replace("%file%", f.FilePath.FileName)); }));
-        }
-
-        private void SetupProjectTemplates()
-        {
-            var programTemplate = new NetAstFileTemplate("Program", "Program", null, this, CodeDomUnitFactory.CreateEntryPointModuleUnit("%folder%", "Program"));
-
-            LanguageDescriptor.GetLanguage<CSharpLanguage>().Templates.Add(new NetProjectTemplate(
-                "Console Application",
-                Properties.Resources.console,
-                LanguageDescriptor.GetLanguage<CSharpLanguage>(),
-                SubSystem.Console,programTemplate));
-
-            LanguageDescriptor.GetLanguage<VisualBasicLanguage>().Templates.Add(new NetProjectTemplate(
-                "Console Application",
-                Properties.Resources.console,
-                LanguageDescriptor.GetLanguage<VisualBasicLanguage>(),
-                SubSystem.Console,
-                programTemplate));
-
-            programTemplate = new NetAstFileTemplate("Class1", "Class1", null, this, CodeDomUnitFactory.CreateClassUnit("%folder%", "Class1"));
-
-            LanguageDescriptor.GetLanguage<CSharpLanguage>().Templates.Add(new NetProjectTemplate(
-                "Class Library",
-                Properties.Resources.dll,
-                LanguageDescriptor.GetLanguage<CSharpLanguage>(),
-                SubSystem.Library, programTemplate));
-
-            LanguageDescriptor.GetLanguage<VisualBasicLanguage>().Templates.Add(new NetProjectTemplate(
-                "Class Library",
-                Properties.Resources.dll,
-                LanguageDescriptor.GetLanguage<VisualBasicLanguage>(),
-                SubSystem.Library,
-                programTemplate));
-        }
-
+        
         private void SetupGui()
         {
             ExtensionHost.ControlManager.InvokeOnMainThread(new Action(() =>

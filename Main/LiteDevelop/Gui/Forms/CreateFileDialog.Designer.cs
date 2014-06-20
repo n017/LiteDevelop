@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.nameHeaderLabel = new System.Windows.Forms.Label();
             this.directoryHeaderLabel = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.languagesTreeView = new System.Windows.Forms.TreeView();
-            this.templatesListView = new System.Windows.Forms.ListView();
+            this.languagesTreeView = new LiteDevelop.Gui.Forms.TemplatesTreeView();
+            this.templatesListView = new LiteDevelop.Gui.Forms.TemplatesListView();
             this.browseButton = new System.Windows.Forms.Button();
             this.directoryTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -94,6 +95,7 @@
             this.fileNameTextBox.Name = "fileNameTextBox";
             this.fileNameTextBox.Size = new System.Drawing.Size(439, 20);
             this.fileNameTextBox.TabIndex = 2;
+            this.fileNameTextBox.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
             this.fileNameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CreateFileDialog_KeyUp);
             // 
             // splitContainer1
@@ -158,6 +160,7 @@
             this.directoryTextBox.Name = "directoryTextBox";
             this.directoryTextBox.Size = new System.Drawing.Size(358, 20);
             this.directoryTextBox.TabIndex = 5;
+            this.directoryTextBox.TextChanged += new System.EventHandler(this.textBoxes_TextChanged);
             // 
             // CreateFileDialog
             // 
@@ -195,8 +198,8 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView languagesTreeView;
-        private System.Windows.Forms.ListView templatesListView;
+        private LiteDevelop.Gui.Forms.TemplatesTreeView languagesTreeView;
+        private LiteDevelop.Gui.Forms.TemplatesListView templatesListView;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.TextBox directoryTextBox;
         private System.Windows.Forms.Label nameHeaderLabel;

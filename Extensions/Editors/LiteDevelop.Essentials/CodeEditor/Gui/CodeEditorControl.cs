@@ -10,6 +10,7 @@ using LiteDevelop.Essentials.CodeEditor.Syntax;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Languages;
 
 namespace LiteDevelop.Essentials.CodeEditor.Gui

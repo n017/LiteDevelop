@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Exception"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="C#"
+          Type="File"
+          Icon="page_white_csharp.png"
+          DefaultName="Exception$(FileNumber).cs">
+    
+  <File Name="$(FileName).cs">
+    <Contents Type="Text">
+  <![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of $(EscapedFileName)
+    /// </summary>
+    public class $(EscapedFileName) : Exception
+    {
+        public $(EscapedFileName)()
+        {
+        }
+        
+        public $(EscapedFileName)(string message)
+            : base(message)
+        {
+        }
+        
+        public $(EscapedFileName)(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+    }
+}
+]]></Contents>
+  </File>
+
+</Template>

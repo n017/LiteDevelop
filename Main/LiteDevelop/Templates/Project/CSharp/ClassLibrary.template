@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template Name="Class Library"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="C#"
+          Type="Project"
+          Icon="file_extension_dll.png"
+          DefaultName="ClassLibrary$(FileNumber).csproj">
+
+  <Project Name="$(FileName).csproj" 
+           Language="C#">
+    
+    <References>
+      <Reference>System</Reference>
+      <Reference>System.Core</Reference>
+      <Reference>System.Data</Reference>
+      <Reference>System.Xml</Reference>
+    </References>
+
+    <Properties>
+      <Property Name="OutputType">Library</Property>
+    </Properties>
+
+    <Files>
+      <File Name = "Class1.cs">
+<Contents Type="Text"><![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of Class1
+    /// </summary>
+    class Class1
+    {
+    }
+}
+]]></Contents>
+      </File>
+    </Files>
+  </Project>
+
+</Template>

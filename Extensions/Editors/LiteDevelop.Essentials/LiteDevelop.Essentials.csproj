@@ -110,15 +110,14 @@
     <Compile Include="FormsDesigner\Services\EventBindingService.cs" />
     <Compile Include="FormsDesigner\Services\MenuCommandService.cs" />
     <Compile Include="FormsDesigner\Services\NameCreationService.cs" />
-    <Compile Include="FormsDesigner\NetFormTemplate.cs" />
     <Compile Include="FormsDesigner\Services\FormsToolBoxService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Globals.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CodeEditor\Gui\AutoCompleteSettingsControl.resx">
@@ -140,33 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\browserIcons.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\csharp_file_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\file.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\vb_file_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\html.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\HtmlPageFile.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\window_list.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\console.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\file_extension_dll.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\window_new.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Libraries\FastColoredTextBox\FastColoredTextBox.csproj">

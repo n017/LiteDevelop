@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Template Name="Windows Forms Application"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="Visual Basic"
+          Type="Project"
+          Icon="application_double.png"
+          DefaultName="WindowsFormsApplication$(FileNumber).vbproj">
+
+  <Project Name="$(FileName).vbproj" 
+           Language="Visual Basic">
+    
+    <References>
+      <Reference>System</Reference>
+      <Reference>System.Core</Reference>
+      <Reference>System.Data</Reference>
+      <Reference>System.Xml</Reference>
+      <Reference>System.Drawing</Reference>
+      <Reference>System.Windows.Forms</Reference>
+    </References>
+
+    <Properties>
+      <Property Name="OutputType">WinExe</Property>
+    </Properties>
+
+    <Files>
+      <File Name = "Program.vb">
+<Contents Type="Text"><![CDATA[
+Imports System
+Imports System.IO
+Imports System.Linq
+Imports System.Globalization
+Imports System.Windows.Forms
+
+Namespace $(Namespace)
+
+    Module Program
+    
+        <STAThread>
+        Sub Main(ByVal args() As String)
+            Application.EnableVisualStyles()
+            Application.SetCompatibleTextRenderingDefault(False)
+            Application.Run(New Form1())
+        End Sub
+    
+    End Module
+    
+End Namespace
+]]></Contents>
+      </File>
+      
+      
+      <File Name="Form1.vb">
+        <Contents Type="Text"><![CDATA[
+Imports System
+Imports System.IO
+Imports System.Linq
+Imports System.Collections.Generic
+Imports System.Windows.Forms
+
+Namespace $(Namespace)
+
+    ''' <summary>
+    ''' Description of Form1
+    ''' </summary>
+    Public Partial Class Form1
+        Inherits Form
+    
+        Public Sub New()
+            ' Required for Forms designer support.
+            InitializeComponent()
+        End Sub
+    
+    End Class
+
+End Namespace
+]]></Contents>
+      </File>
+  
+      <File Name="Form1.Designer.vb" 
+            DependentUpon="Form1.vb">
+        <Contents Type="Text"><![CDATA[
+Namespace $(Namespace)
+
+    Public Partial Class Form1
+        
+        Private components As System.ComponentModel.IContainer = Nothing
+        
+        ''' <summary>
+        ''' Disposes resources used by the form.
+        ''' </summary>
+        ''' <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+            If disposing Then
+                If components IsNot Nothing Then
+                    components.Dispose()
+                End If
+            End If
+        End Sub
+    
+        
+        ''' <summary>
+        ''' This method is required for Windows Forms designer support.
+        ''' Do not change the method contents inside the source code editor. The Forms designer might
+        ''' not be able to load this method if it was changed manually.
+        ''' </summary>
+        Private Sub InitializeComponent()
+            ' 
+            ' Form1
+            ' 
+            Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+            Me.Text = "Form1"
+            Me.Name = "Form1"
+        End Sub
+        
+    End Class
+    
+End Namespace
+]]>
+        </Contents>
+      </File>
+    </Files>
+  </Project>
+
+</Template>

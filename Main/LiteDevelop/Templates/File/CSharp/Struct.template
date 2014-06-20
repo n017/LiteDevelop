@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Struct"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="C#"
+          Type="File"
+          Icon="page_white_csharp.png"
+          DefaultName="Struct$(FileNumber).cs">
+    
+  <File Name="$(FileName).cs">
+    <Contents Type="Text">
+      <![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of $(EscapedFileName)
+    /// </summary>
+    struct $(EscapedFileName)
+    {
+        
+    }
+}
+]]>
+    </Contents>
+  </File>
+
+</Template>

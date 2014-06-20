@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Essentials.FormsDesigner.Gui
 {

@@ -79,12 +79,20 @@
     <Compile Include="Extensions\IExtensionManager.cs" />
     <Compile Include="Extensions\IFileService.cs" />
     <Compile Include="Extensions\InitializationContext.cs" />
+    <Compile Include="Extensions\ITemplateService.cs" />
     <Compile Include="Extensions\PropertyContainer.cs" />
     <Compile Include="FileSystem\Bookmark.cs" />
-    <Compile Include="FileSystem\Net\CSharp\CSharpProjectDescriptor.cs" />
-    <Compile Include="FileSystem\Net\VisualBasic\VisualBasicProjectDescriptor.cs" />
-    <Compile Include="FileSystem\ProjectDescriptor.cs" />
+    <Compile Include="FileSystem\BuildException.cs" />
+    <Compile Include="FileSystem\IPropertyProvider.cs" />
+    <Compile Include="FileSystem\Projects\IRootNamespaceProvider.cs" />
+    <Compile Include="FileSystem\Projects\Net\CSharp\CSharpProjectDescriptor.cs" />
+    <Compile Include="FileSystem\Projects\Net\VisualBasic\VisualBasicProjectDescriptor.cs" />
+    <Compile Include="FileSystem\Projects\ProjectDescriptor.cs" />
     <Compile Include="FileSystem\SourceRange.cs" />
+    <Compile Include="FileSystem\Templates\FileCreationContext.cs" />
+    <Compile Include="FileSystem\Templates\FileTemplateNode.cs" />
+    <Compile Include="FileSystem\Templates\ProjectTemplateNode.cs" />
+    <Compile Include="FileSystem\Templates\TemplateNode.cs" />
     <Compile Include="Gui\AppearanceDescription.cs" />
     <Compile Include="Gui\AppearanceMap.cs" />
     <Compile Include="Gui\AppearanceProcessor.cs" />
@@ -96,28 +104,25 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions\ToolboxService.cs" />
-    <Compile Include="FileSystem\Net\FrameworkDetector.cs" />
-    <Compile Include="FileSystem\Net\FrameworkInstallationType.cs" />
-    <Compile Include="FileSystem\Net\FrameworkVersion.cs" />
+    <Compile Include="FileSystem\Projects\Net\FrameworkDetector.cs" />
+    <Compile Include="FileSystem\Projects\Net\FrameworkInstallationType.cs" />
+    <Compile Include="FileSystem\Projects\Net\FrameworkVersion.cs" />
     <Compile Include="FileSystem\SourceLocation.cs" />
-    <Compile Include="FileSystem\TemplateResult.cs" />
-    <Compile Include="FileSystem\FileExceptions.cs" />
+    <Compile Include="FileSystem\Templates\TemplateResult.cs" />
     <Compile Include="FileSystem\FilePath.cs" />
-    <Compile Include="FileSystem\MSBuild\MSBuildInvoker.cs" />
-    <Compile Include="FileSystem\MSBuild\MSBuildProject.cs" />
-    <Compile Include="FileSystem\MSBuild\MSBuildProjectFactory.cs" />
-    <Compile Include="FileSystem\Net\NetAstFileTemplate.cs" />
-    <Compile Include="FileSystem\Net\NetProjectTemplate.cs" />
+    <Compile Include="FileSystem\Projects\MSBuild\MSBuildInvoker.cs" />
+    <Compile Include="FileSystem\Projects\MSBuild\MSBuildProject.cs" />
+    <Compile Include="FileSystem\Projects\MSBuild\MSBuildProjectFactory.cs" />
+    <Compile Include="FileSystem\Projects\Net\NetProjectTemplate.cs" />
     <Compile Include="FileSystem\OpenedFile.cs" />
-    <Compile Include="FileSystem\ProjectEntry.cs" />
-    <Compile Include="FileSystem\SolutionFolder.cs" />
-    <Compile Include="FileSystem\SolutionNode.cs" />
-    <Compile Include="FileSystem\SolutionReader.cs" />
-    <Compile Include="FileSystem\SolutionSection.cs" />
-    <Compile Include="FileSystem\SolutionWriter.cs" />
-    <Compile Include="FileSystem\SolutionVersion.cs" />
-    <Compile Include="FileSystem\SolutionSettings.cs" />
-    <Compile Include="FileSystem\SourceFileTemplate.cs" />
+    <Compile Include="FileSystem\Projects\ProjectEntry.cs" />
+    <Compile Include="FileSystem\Projects\SolutionFolder.cs" />
+    <Compile Include="FileSystem\Projects\SolutionNode.cs" />
+    <Compile Include="FileSystem\Projects\SolutionReader.cs" />
+    <Compile Include="FileSystem\Projects\SolutionSection.cs" />
+    <Compile Include="FileSystem\Projects\SolutionWriter.cs" />
+    <Compile Include="FileSystem\Projects\SolutionVersion.cs" />
+    <Compile Include="FileSystem\Projects\SolutionSettings.cs" />
     <Compile Include="IProgressReporter.cs" />
     <Compile Include="Languages\Net\NetLanguageData.cs" />
     <Compile Include="Languages\SnapshotMemberComparers.cs" />
@@ -135,28 +140,26 @@
     <Compile Include="Gui\SettingsNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileSystem\FileTemplate.cs" />
     <Compile Include="FileSystem\IFileReferenceProvider.cs" />
     <Compile Include="FileSystem\BuildError.cs" />
     <Compile Include="FileSystem\BuildResult.cs" />
     <Compile Include="FileSystem\IFilePathProvider.cs" />
     <Compile Include="FileSystem\ISavableFile.cs" />
-    <Compile Include="FileSystem\Net\AddReferenceDialog.cs">
+    <Compile Include="FileSystem\Projects\Net\AddReferenceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileSystem\Net\AddReferenceDialog.Designer.cs">
+    <Compile Include="FileSystem\Projects\Net\AddReferenceDialog.Designer.cs">
       <DependentUpon>AddReferenceDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileSystem\Net\CSharp\CSharpProject.cs" />
-    <Compile Include="FileSystem\Net\VisualBasic\VisualBasicProject.cs" />
-    <Compile Include="FileSystem\Net\NetProject.cs" />
-    <Compile Include="FileSystem\Net\NetProjectSettingsControl.cs">
+    <Compile Include="FileSystem\Projects\Net\CSharp\CSharpProject.cs" />
+    <Compile Include="FileSystem\Projects\Net\VisualBasic\VisualBasicProject.cs" />
+    <Compile Include="FileSystem\Projects\Net\NetProject.cs" />
+    <Compile Include="FileSystem\Projects\Net\NetProjectSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileSystem\Net\NetProjectSettingsControl.Designer.cs">
+    <Compile Include="FileSystem\Projects\Net\NetProjectSettingsControl.Designer.cs">
       <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileSystem\ProjectTemplate.cs" />
     <Compile Include="IconProvider.cs" />
     <Compile Include="Languages\Net\CodeDomUnitFactory.cs" />
     <Compile Include="Languages\Web\PhpLanguage.cs" />
@@ -165,8 +168,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StringEvaluator.cs" />
     <Compile Include="SubSystem.cs" />
-    <Compile Include="FileSystem\Template.cs" />
+    <Compile Include="FileSystem\Templates\Template.cs" />
     <Compile Include="Languages\ISnapshotProvider.cs" />
     <Compile Include="Languages\Net\CodeDomPropertySerializer.cs" />
     <Compile Include="Languages\Net\NetSnapshotMember.cs" />
@@ -183,13 +187,13 @@
     <Compile Include="Extensions\IClipboardHandler.cs" />
     <Compile Include="Extensions\IFileHandler.cs" />
     <Compile Include="Extensions\IHistoryProvider.cs" />
-    <Compile Include="FileSystem\Project.cs" />
+    <Compile Include="FileSystem\Projects\Project.cs" />
     <Compile Include="Extensions\IControlManager.cs" />
     <Compile Include="Extensions\ILiteExtensionHost.cs" />
     <Compile Include="Gui\LiteDocumentContent.cs" />
     <Compile Include="Extensions\LiteExtension.cs" />
-    <Compile Include="FileSystem\Solution.cs" />
-    <Compile Include="FileSystem\ProjectFileEntry.cs" />
+    <Compile Include="FileSystem\Projects\Solution.cs" />
+    <Compile Include="FileSystem\Projects\ProjectFileEntry.cs" />
     <Compile Include="Languages\Net\CSharpLanguage.cs" />
     <Compile Include="Languages\LanguageDescriptor.cs" />
     <Compile Include="Languages\Net\NetLanguageDescriptor.cs" />
@@ -202,10 +206,10 @@
     <Compile Include="Mui\UILanguagePack.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FileSystem\Net\NetProjectSettingsControl.resx">
+    <EmbeddedResource Include="FileSystem\Projects\Net\NetProjectSettingsControl.resx">
       <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileSystem\Net\AddReferenceDialog.resx">
+    <EmbeddedResource Include="FileSystem\Projects\Net\AddReferenceDialog.resx">
       <DependentUpon>AddReferenceDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

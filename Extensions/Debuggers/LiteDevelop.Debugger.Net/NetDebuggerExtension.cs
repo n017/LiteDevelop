@@ -6,7 +6,8 @@ using LiteDevelop.Debugger.Net.Gui;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
-using LiteDevelop.Framework.FileSystem.Net;
+using LiteDevelop.Framework.FileSystem.Projects;
+using LiteDevelop.Framework.FileSystem.Projects.Net;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Mui;
 
@@ -75,7 +76,7 @@ namespace LiteDevelop.Debugger.Net
             ExtensionHost = context.Host;
         }
 
-        public override bool CanDebugProject(Framework.FileSystem.Project project)
+        public override bool CanDebugProject(Framework.FileSystem.Projects.Project project)
         {
             var netProject = project as NetProject;
             if (netProject != null)

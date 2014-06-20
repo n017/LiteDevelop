@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using LiteDevelop.Debugger.Net.Interop.Com;
 using LiteDevelop.Framework.Debugging;
-using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 {

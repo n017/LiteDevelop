@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
+using LiteDevelop.Framework.FileSystem;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Mui;
 using LiteDevelop.Gui.Settings;
@@ -70,6 +71,9 @@ Turkish: Woopza
 
 Third-party components:
 Docking UI: Dockpanel Suite (http://sourceforge.net/projects/dockpanelsuite/)
+
+Icon packs:
+Fatcow's icon pack (http://www.fatcow.com/free-icons)
 ";
             }
         }
@@ -77,6 +81,9 @@ Docking UI: Dockpanel Suite (http://sourceforge.net/projects/dockpanelsuite/)
         public override void Initialize(InitializationContext context)
         {
             _extensionHost = (LiteExtensionHost)context.Host;
+            _extensionHost.TemplateService.AddFileSearchDirectory(new FilePath(Application.StartupPath).Combine("Templates", "File"));
+            _extensionHost.TemplateService.AddProjectSearchDirectory(new FilePath(Application.StartupPath).Combine("Templates", "Project"));
+            _extensionHost.TemplateService.AddIconSearchDirectory(new FilePath(Application.StartupPath).Combine("Templates", "Icons"));
 
             var generalSettingsEditorControl = new GeneralSettingsEditor(_settings = LiteDevelopSettings.Instance) { Dock = DockStyle.Fill };
             var internationalSettingsEditorControl = new InternationalSettingsEditor(_settings) { Dock = DockStyle.Fill };
