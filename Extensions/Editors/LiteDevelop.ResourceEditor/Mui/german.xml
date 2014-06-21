@@ -7,17 +7,17 @@
       <Item Id = "Contents">Inhalt</Item>
     </ItemGroup>
     <ItemGroup Id = "ToolBar">
-      <Item Id = "AddString">&amp;Text hinzufügen</Item>
-      <Item Id = "AddFile">&amp;Datei hinzufügen</Item>
-      <Item Id = "RemoveSelected">&amp;Ausgewähltes entfernen</Item>
+      <Item Id = "AddString">&amp;Text hinzufÃ¼gen</Item>
+      <Item Id = "AddFile">&amp;Datei hinzufÃ¼gen</Item>
+      <Item Id = "RemoveSelected">&amp;AusgewÃ¤hltes entfernen</Item>
     </ItemGroup>
     <ItemGroup Id = "ContextMenu">
       <Item Id = "Rename">Umbenennen</Item>
       <Item Id = "Remove">Entfernen</Item>
     </ItemGroup>
     <ItemGroup Id = "Messages">
-      <Item Id = "EditorNotInstalled">Es ist kein Editor für diesen Ressourcentyp installiert.</Item>
-      <Item Id = "RemoveEntryConfirmation">Sind Sie sicher, dass Sie die Datei $(file) von der Ressourcenliste entfernen möchten?</Item>
+      <Item Id = "EditorNotInstalled">Es ist kein Editor fÃ¼r diesen Ressourcentyp installiert.</Item>
+      <Item Id = "RemoveEntryConfirmation">Sind Sie sicher, dass Sie die Datei $(file) von der Ressourcenliste entfernen mÃ¶chten?</Item>
     </ItemGroup>
   </ItemGroup>
 
