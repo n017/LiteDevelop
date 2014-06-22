@@ -359,9 +359,9 @@ namespace LiteDevelop.Gui.Forms
             int remainingTabCount = 0;
             while (_mainDockPanel.DocumentsCount != remainingTabCount)
             {
-                var dockContent = (DockContent)_mainDockPanel.DocumentsToArray()[0];
-                if (dockContent.Tag is LiteDocumentContent)
-                    dockContent.Close();
+                var container = _mainDockPanel.DocumentsToArray()[0] as ViewContentContainer;
+                if (container != null && container.ViewContent is LiteDocumentContent)
+                    container.Close();
                 else
                     remainingTabCount++;
             }

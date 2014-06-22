@@ -53,6 +53,20 @@ namespace LiteDevelop.ResourceEditor
             get { return "Copyright © Jerre S. 2014"; }
         }
 
+        public override string ReleaseInformation
+        {
+            get
+            {
+                return @"Main programmer: Jerre S.
+
+Translations:
+Dutch: Jerre S.
+German: MaxXor
+Swedish: UbbeLol
+";
+            }
+        }
+
         public override void Initialize(InitializationContext context)
         {
             ExtensionHost = context.Host;
