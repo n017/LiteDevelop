@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+
+  <!-- 
+  ==================================
+  Code editor 
+  ==================================
+  -->
+  
+  <ItemGroup Id = "CodeEditorControl">
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Cut">Cortar</Item>
+      <Item Id = "Copy">Copiar</Item>
+      <Item Id = "Paste">Pegar</Item>
+      <Item Id = "SelectAll">Selecionar Todo</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "CodeEditorExtension">
+    <Item Id = "GeneralSettings">General</Item>
+    <Item Id = "AutoCompleteSettings">Auto completado</Item>
+    <ItemGroup Id = "Toolbar">
+      <Item Id = "ShowSuggestions">Mostrar sugerencias</Item>
+      <Item Id = "CommentRegion">Comentar región</Item>
+      <Item Id = "UncommentRegion">Descomentar región</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Statusbar">
+      <Item Id = "CurrentLine">Línea $(line)</Item>
+      <Item Id = "CurrentColumn">Columna $(column)</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "GeneralSettingsControl">
+    <Item Id = "ShowLineNumbers">Mostrar números de línea</Item>
+    <Item Id = "WordWrap">Ajuste de línea</Item>
+    <Item Id = "SyntaxHighlighting">Resaltado de sintaxis</Item>
+    <Item Id = "TrackUnsavedChanges">Seguimiento de los cambios no guardados</Item>
+    <Item Id = "HighlightCurrentLine">Resaltar la línea actual</Item>
+    <Item Id = "ShowDocumentMiniMap">Mostra documento minimapa</Item>
+  </ItemGroup>
+  
+  <ItemGroup Id = "AutoCompleteSettingsControl">
+    <ItemGroup Id = "AutoListMembers">
+      <Item Id = "Title">Miembros de la lista de auto</Item>
+      <ItemGroup Id = "PopupTime">
+        <Item Id = "Title">Mostrar lista de sugerencias cuando:</Item>
+        <Item Id = "TypingAnyChar">escriba algún carácter</Item>
+        <Item Id = "PressingCtrlSpace">presione Ctrl+Space</Item>
+      </ItemGroup>
+      <Item Id = "CommitItemOnKeyChars">Cometer el elemento seleccionado al pulsar uno de los siguientes caracteres:</Item>
+      <Item Id = "CommitItemOnSpaceBar">Cometer el elemento seleccionado cuando se presiona la barra espaciadora</Item>
+    </ItemGroup>
+    <Item Id = "AutoCompleteCodeBlocks">Auto completar bloques de código (ej.:( ) [ ] " " ' ')</Item>
+    <Item Id = "AutoAddParantheses">Auto agregar método paréntesis después de insertar la sugerencia de método.</Item>
+  </ItemGroup>
+  
+</UILanguagePack>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguagePack>
+  
+  <ItemGroup Id="DebuggerBase">
+    <Item Id="Variables">Variables</Item>
+    <Item Id="Threads">Hilos</Item>
+    <Item Id="CallStack">Pila de llamadas</Item>
+    
+    <ItemGroup Id="Settings">
+      <Item Id="Root">Depurador</Item>
+      <Item Id="General">General</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsControl">
+    <Item Id="BreakOnHandledException">Inerrupción al manipular la excepción.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="VariablesContent">
+    <Item Id="Title">Variables</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Name">Nombre</Item>
+      <Item Id="Value">Valor</Item>
+      <Item Id="Type">Tipo</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="ThreadsContent">
+    <Item Id="Title">Hilos</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Handle">Indicador(Handle)</Item>
+      <Item Id="Id">Id</Item>
+      <Item Id="State">Estado</Item>
+    </ItemGroup>
+    <ItemGroup Id="ThreadStates">
+      <Item Id="Running">Ejecutándose</Item>
+      <Item Id="StopRequested">Parada solicitada</Item>
+      <Item Id="SuspendRequested">Solicitud suspendida</Item>
+      <Item Id="Background">Fondo</Item>
+      <Item Id="Unstarted">Sin comenzar</Item>
+      <Item Id="Stopped">Parado</Item>
+      <Item Id="WaitSleepJoin">Espera unirse a dormir</Item>
+      <Item Id="Suspended">Suspendido</Item>
+      <Item Id="AbortRequested">Solicitud para abortar</Item>
+      <Item Id="Aborted">Abortada</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="CallStack">
+    <Item Id="Title">Pila de llamadas</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="ExternalCode">[Código externo]</Item>
+      <Item Id="NonUserCode">[Código no-usuario]</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Function">Función</Item>
+      <Item Id="Offset">Desplazamiento</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExceptionDialog">
+    <Item Id="Title">Excepción</Item>
+    <Item Id="ExceptionOccured">Se produjo una excepción</Item>
+    <Item Id="File">File:</Item>
+    <Item Id="Location">Localización:</Item>
+    <Item Id="LocationFormat">Line: $(line), Column: $(column)</Item>
+    <Item Id="Message">Mensaje:</Item>
+    <Item Id="Close">Cerrar</Item>
+    <Item Id="GoToFile">Ir al archivo</Item>
+    <Item Id="Details">Detalles</Item>
+  </ItemGroup>
+
+</LanguagePack>

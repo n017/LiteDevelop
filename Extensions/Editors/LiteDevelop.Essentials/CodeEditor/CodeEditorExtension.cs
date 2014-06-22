@@ -73,6 +73,7 @@ Dutch: Jerre S.
 Finnish: Dextrey
 German: MaxX0r
 Pirate (>:D): Jerre S.
+Spanish: Isidro Padilla
 Swedish: UbbeLol
 Turkish: Woopza
 French: Wallace87000

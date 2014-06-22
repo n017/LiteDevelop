@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UILanguagePack>
+  <ItemGroup Id = "ResourceEditorControl">
+    <ItemGroup Id = "ColumnHeaders">
+      <Item Id = "Name">Nombre</Item>
+      <Item Id = "Type">Tipo</Item>
+      <Item Id = "Contents">Contenidos</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ToolBar">
+      <Item Id = "AddString">Añadir&amp;cadena</Item>
+      <Item Id = "AddFile">Añadir &amp;archivo</Item>
+      <Item Id = "RemoveSelected">&amp;Eliminar seleccionados</Item>
+    </ItemGroup>
+    <ItemGroup Id = "ContextMenu">
+      <Item Id = "Rename">Cambiar nombre</Item>
+      <Item Id = "Remove">Eliminar</Item>
+    </ItemGroup>
+    <ItemGroup Id = "Messages">
+      <Item Id = "EditorNotInstalled">Hay no hay editor para este tipo de entrada de recursos instalado.</Item>
+      <Item Id = "RemoveEntryConfirmation">¿Está seguro que desea eliminar $(file) de la lista de recursos?</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id = "ImageViewContent">
+    <Item Id = "UpdateImage">Actualizar imagen</Item>
+  </ItemGroup>
+</UILanguagePack>

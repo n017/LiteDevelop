@@ -62,6 +62,7 @@ namespace LiteDevelop.ResourceEditor
 Translations:
 Dutch: Jerre S.
 German: MaxXor
+Spanish: Isidro Padilla
 Swedish: UbbeLol
 ";
             }

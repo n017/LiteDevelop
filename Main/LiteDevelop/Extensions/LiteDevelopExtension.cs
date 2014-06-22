@@ -66,6 +66,7 @@ Finnish: Dextrey
 French: Wallace87000
 German: MaxX0r
 Pirate (>:D): Jerre S.
+Spanish: Isidro Padilla
 Swedish: UbbeLol
 Turkish: Woopza
 

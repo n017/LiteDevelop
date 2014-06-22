@@ -106,7 +106,9 @@ namespace LiteDevelop.Debugger
                 return @"Main programmer: Jerre S.
 
 Translations:
-Dutch: Jerre S.";
+Dutch: Jerre S.
+Spanish: Isidro Padilla
+Swedish: UbbeLol";
             }
         }
 
