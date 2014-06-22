@@ -71,7 +71,7 @@ Translations:
 Danish: Phoenix
 Dutch: Jerre S.
 Finnish: Dextrey
-German: MaxX0r
+German: MaxXor
 Pirate (>:D): Jerre S.
 Spanish: Isidro Padilla
 Swedish: UbbeLol
