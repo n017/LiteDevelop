@@ -135,7 +135,7 @@
 
   <ItemGroup Id="GeneralSettingsEditor">
     <Item Id="DefaultProjectsPath">Standard Projekte Pfad:</Item>
-    <Item Id="ShowOutput">Ausgabe anzeigen beim erstellen.</Item>
+    <Item Id="ShowOutput">Ausgabe anzeigen beim Erstellen.</Item>
     <Item Id="ShowErrorList">Fehlerliste anzeigen wenn Erstellen fehlschlägt.</Item>
   </ItemGroup>
 
