@@ -108,7 +108,9 @@ namespace LiteDevelop.Debugger
 Translations:
 Dutch: Jerre S.
 Spanish: Isidro Padilla
-Swedish: UbbeLol";
+Swedish: UbbeLol
+German: MaxXor
+French: wallace87000";
             }
         }
 
