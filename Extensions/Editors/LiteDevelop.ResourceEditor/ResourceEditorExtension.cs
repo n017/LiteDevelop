@@ -64,6 +64,7 @@ Dutch: Jerre S.
 German: MaxXor
 Spanish: Isidro Padilla
 Swedish: UbbeLol
+French: wallace87000
 ";
             }
         }
