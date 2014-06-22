@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguagePack>
+  
+  <ItemGroup Id="DebuggerBase">
+    <Item Id="Variables">Variables</Item>
+    <Item Id="Threads">Threads</Item>
+    <Item Id="CallStack">Pile d'appel</Item>
+    
+    <ItemGroup Id="Settings">
+      <Item Id="Root">Déboguage</Item>
+      <Item Id="General">Général</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="GeneralSettingsControl">
+    <Item Id="BreakOnHandledException">Arrêt sur exception gérée.</Item>
+  </ItemGroup>
+
+  <ItemGroup Id="VariablesContent">
+    <Item Id="Title">Variables</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Name">Nom</Item>
+      <Item Id="Value">Valeur</Item>
+      <Item Id="Type">Type</Item>
+    </ItemGroup>
+  </ItemGroup>
+  
+  <ItemGroup Id="ThreadsContent">
+    <Item Id="Title">Threads</Item>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Handle">Handle</Item>
+      <Item Id="Id">Id</Item>
+      <Item Id="State">Etat</Item>
+    </ItemGroup>
+    <ItemGroup Id="ThreadStates">
+      <Item Id="Running">En cours</Item>
+      <Item Id="StopRequested">Arrêt demandé</Item>
+      <Item Id="SuspendRequested">Suspension demandée</Item>
+      <Item Id="Background">Background</Item>
+      <Item Id="Unstarted">Non damarré</Item>
+      <Item Id="Stopped">Arrêté</Item>
+      <Item Id="WaitSleepJoin">Wait sleep join</Item>
+      <Item Id="Suspended">Suspendu</Item>
+      <Item Id="AbortRequested">Abandon demandé</Item>
+      <Item Id="Aborted">Abandonné</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="CallStack">
+    <Item Id="Title">Call stack</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="ExternalCode">[code externe]</Item>
+      <Item Id="NonUserCode">[code non-utilisateur]</Item>
+    </ItemGroup>
+    <ItemGroup Id="ListHeaders">
+      <Item Id="Function">Fonction</Item>
+      <Item Id="Offset">Offset</Item>
+    </ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup Id="ExceptionDialog">
+    <Item Id="Title">Exception</Item>
+    <Item Id="ExceptionOccured">Une exception s'est produite</Item>
+    <Item Id="File">Fichier:</Item>
+    <Item Id="Location">Emplacement:</Item>
+    <Item Id="LocationFormat">Ligne: $(line), Colonne: $(column)</Item>
+    <Item Id="Message">Message:</Item>
+    <Item Id="Close">Fermer</Item>
+    <Item Id="GoToFile">Aller au fichier</Item>
+    <Item Id="Details">Détails</Item>
+  </ItemGroup>
+
+</LanguagePack>
