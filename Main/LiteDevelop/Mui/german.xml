@@ -162,7 +162,7 @@
         <Item Id="Close">Schließen</Item>
         <Item Id="CloseSolution">Solution schließen</Item>
         <Item Id="Print">&amp;Drucken</Item>
-        <Item Id="PrintPreview">Druck Vorsc&amp;hau</Item>
+        <Item Id="PrintPreview">Druckvorsc&amp;hau</Item>
         <Item Id="Exit">Schli&amp;eßen</Item>
       </ItemGroup>
 
