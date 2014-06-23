@@ -17,7 +17,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 {
     public partial class CodeEditorControl : UserControl
     {
-        private static MarkerStyle _sameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
+        private static readonly MarkerStyle _sameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
 
         private readonly Dictionary<object, string> _componentMuiIdentifiers;
         private readonly OpenedFile _file;
@@ -30,7 +30,9 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private CodeEditorExtension _extension;
         private bool _justCompletedBrace;
         private Range _lastIPRange;
-
+        private ErrorStyle _errorStyle;
+        private WarningStyle _warningStyle;
+        
         public CodeEditorControl(CodeEditorContent content, OpenedFile file)
         {
             InitializeComponent();
@@ -40,6 +42,8 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _file = file;
 
             SetupTextBox();
+            _errorStyle = new ErrorStyle(_extension.StyleMap.DefaultText.Description);
+            _warningStyle = new WarningStyle(_extension.StyleMap.DefaultText.Description);
 
             contextMenuStrip1.Renderer = _extension.ExtensionHost.ControlManager.MenuRenderer;
 
@@ -54,6 +58,8 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.UILanguageChanged += ExtensionHost_UILanguageChanged;
             _extension.ExtensionHost.BookmarkManager.Bookmarks.InsertedItem += Bookmarks_InsertedItem;
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
+            _extension.ExtensionHost.ErrorManager.Errors.InsertedItem += Errors_InsertedItem;
+            _extension.ExtensionHost.ErrorManager.Errors.RemovedItem += Errors_RemovedItem;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
 
@@ -69,49 +75,6 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
 
             file.HasUnsavedDataChanged += file_HasUnsavedDataChanged;
 
-        }
-
-        private void ExtensionHost_DebugStarted(object sender, EventArgs e)
-        {
-            _extension.ExtensionHost.CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
-            _extension.ExtensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
-            CurrentDebuggerSession_Paused(_extension.ExtensionHost.CurrentDebuggerSession, EventArgs.Empty);
-            fastColoredTextBox1.ReadOnly = true;
-        }
-
-        private void CurrentDebuggerSession_Resumed(object sender, EventArgs e)
-        {
-            TextBox.Bookmarks.Remove(_instructionPointer);
-            ClearLastHighlighting(_instructionPointer.Style);
-        }
-
-        private void ExtensionHost_DebugStopped(object sender, EventArgs e)
-        {
-            _extension.ExtensionHost.CurrentDebuggerSession.Paused -= CurrentDebuggerSession_Paused;
-            fastColoredTextBox1.ReadOnly = false;
-            TextBox.Bookmarks.Remove(_instructionPointer);
-            ClearLastHighlighting(_instructionPointer.Style);
-        }
-
-        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
-        {
-            var session = sender as DebuggerSession;
-            var range = session.CurrentSourceRange;
-            if (range != null && range.FilePath == _file.FilePath)
-            {
-                _instructionPointer.InnerBookmark.Location = range;
-                HighlightRange(range, _instructionPointer.Style);
-
-                if (!TextBox.Bookmarks.Contains(_instructionPointer))
-                    TextBox.Bookmarks.Add(_instructionPointer);
-
-                _instructionPointer.DoVisible();
-            }
-            else
-            {
-                ClearLastHighlighting(_instructionPointer.Style);
-                TextBox.Bookmarks.Remove(_instructionPointer);
-            }
         }
 
         public FastColoredTextBox TextBox
@@ -168,6 +131,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             this.TextBox.ZoomChanged += TextBox_ZoomChanged;
             this.TextBox.LineInserted += TextBox_LineCollectionChanged;
             this.TextBox.LineRemoved += TextBox_LineCollectionChanged;
+            this.TextBox.ToolTipNeeded += TextBox_ToolTipNeeded;
         }
         
         private CodeEditorBookmark CreateBookmark(Framework.FileSystem.Bookmark bookmark)
@@ -444,6 +408,20 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             }
         }
 
+        
+        private Range GetErrorRange(SourceLocation errorLocation)
+        {
+            return GetErrorRange(new Place(errorLocation.Column - 1, errorLocation.Line - 1));
+        }
+        
+        private Range GetErrorRange(Place location)
+        {
+            var range = TextBox.GetRange(location, new Place(location.iChar + 1, location.iLine));
+            var fragment = range.GetFragment(@"\w");
+            if (fragment.Text.Length == 0)
+                return range;
+            return fragment;
+        }
 
         #endregion
 
@@ -745,6 +723,67 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             }
         }
 
+        private void ExtensionHost_DebugStarted(object sender, EventArgs e)
+        {
+            _extension.ExtensionHost.CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
+            _extension.ExtensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
+            CurrentDebuggerSession_Paused(_extension.ExtensionHost.CurrentDebuggerSession, EventArgs.Empty);
+            fastColoredTextBox1.ReadOnly = true;
+        }
+
+        private void ExtensionHost_DebugStopped(object sender, EventArgs e)
+        {
+            _extension.ExtensionHost.CurrentDebuggerSession.Paused -= CurrentDebuggerSession_Paused;
+            fastColoredTextBox1.ReadOnly = false;
+            TextBox.Bookmarks.Remove(_instructionPointer);
+            ClearLastHighlighting(_instructionPointer.Style);
+        }
+
+        private void CurrentDebuggerSession_Resumed(object sender, EventArgs e)
+        {
+            TextBox.Bookmarks.Remove(_instructionPointer);
+            ClearLastHighlighting(_instructionPointer.Style);
+        }
+
+        private void CurrentDebuggerSession_Paused(object sender, EventArgs e)
+        {
+            var session = sender as DebuggerSession;
+            var range = session.CurrentSourceRange;
+            if (range != null && range.FilePath == _file.FilePath)
+            {
+                _instructionPointer.InnerBookmark.Location = range;
+                HighlightRange(range, _instructionPointer.Style);
+
+                if (!TextBox.Bookmarks.Contains(_instructionPointer))
+                    TextBox.Bookmarks.Add(_instructionPointer);
+
+                _instructionPointer.DoVisible();
+            }
+            else
+            {
+                ClearLastHighlighting(_instructionPointer.Style);
+                TextBox.Bookmarks.Remove(_instructionPointer);
+            }
+        }
+
+        private void Errors_RemovedItem(object sender, CollectionChangedEventArgs e)
+        {
+            var error = e.TargetObject as BuildError;
+            if (error.Location.FilePath == this._file.FilePath)
+            {
+                GetErrorRange(error.Location).ClearStyle(error.Severity == MessageSeverity.Error ? (Style)_errorStyle : _warningStyle);
+            }
+        }
+
+        private void Errors_InsertedItem(object sender, CollectionChangedEventArgs e)
+        {
+            var error = e.TargetObject as BuildError;
+            if (error.Location.FilePath == this._file.FilePath)
+            {
+                GetErrorRange(error.Location).SetStyle(error.Severity == MessageSeverity.Error ? (Style)_errorStyle : _warningStyle);
+            }
+        }
+
         private void ExtensionHost_UILanguageChanged(object sender, EventArgs e)
         {
             _extension.MuiProcessor.ApplyLanguageOnComponents(_componentMuiIdentifiers);
@@ -752,6 +791,27 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.SetCurrentLocation(location.iLine + 1, location.iChar + 1);
         }
 
+        private void TextBox_ToolTipNeeded(object sender, ToolTipNeededEventArgs e)
+        {
+            foreach (var error in _extension.ExtensionHost.ErrorManager.Errors)
+            {
+                if (error.Location.FilePath == _file.FilePath &&
+                    GetErrorRange(error.Location).Start == GetErrorRange(e.Place).Start)
+                {
+                    switch (error.Severity)
+                    {
+                        case MessageSeverity.Error: e.ToolTipIcon = ToolTipIcon.Error; break;
+                        case MessageSeverity.Warning: e.ToolTipIcon = ToolTipIcon.Warning; break;
+                        default: e.ToolTipIcon = ToolTipIcon.Info; break;
+                    }
+
+                    e.ToolTipTitle = error.Severity.ToString();
+                    e.ToolTipText = error.Message;
+                    return;
+                }
+            }
+        }
+        
         #endregion
 
         #region Other event handlers
