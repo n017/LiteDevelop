@@ -97,6 +97,7 @@
     <Compile Include="Interop\Wrappers\Breakpoint.cs" />
     <Compile Include="Interop\Wrappers\RuntimeChain.cs" />
     <Compile Include="Interop\Wrappers\DebuggerEvent.cs" />
+    <Compile Include="Interop\Wrappers\RuntimeEvaluation.cs" />
     <Compile Include="Interop\Wrappers\RuntimeFrame.cs" />
     <Compile Include="Interop\Wrappers\DebuggeeProcess.cs" />
     <Compile Include="Interop\Wrappers\DebuggerSessionObject.cs" />

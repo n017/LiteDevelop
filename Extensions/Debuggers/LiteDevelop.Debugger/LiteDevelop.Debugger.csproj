@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="IChain.cs" />
     <Compile Include="IDebuggerController.cs" />
+    <Compile Include="IEvaluation.cs" />
     <Compile Include="IFunction.cs" />
     <Compile Include="IFunctionSymbols.cs" />
     <Compile Include="IModule.cs" />

@@ -339,8 +339,10 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             return new string(buffer);
         }
 
-        public RuntimeValue GetFieldValue(SymbolToken token)
+        public RuntimeValue GetFieldValue(RuntimeThread thread, SymbolToken token)
         {
+            // TODO: static members
+
             if (!IsObject)
                 throw new InvalidOperationException("Value must be an object in order to get values of fields.");
 
@@ -354,9 +356,9 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             return value;
         }
 
-        public RuntimeValue GetPropertyValue(SymbolToken token)
+        public RuntimeValue CallFunction(RuntimeThread thread, SymbolToken token)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

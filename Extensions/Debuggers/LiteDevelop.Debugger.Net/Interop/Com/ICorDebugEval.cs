@@ -19,7 +19,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 	    void CallFunction([In, MarshalAs(UnmanagedType.Interface)] ICorDebugFunction pFunction, 
                             [In] uint nArgs, 
-                            [In, MarshalAs(UnmanagedType.Interface)] ref ICorDebugValue ppArgs);
+                            [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugValue[] ppArgs);
 
 	    /*
 	     * NewObject allocates and calls the constructor for an object.
@@ -27,8 +27,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
         
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 	    void NewObject([In, MarshalAs(UnmanagedType.Interface)] ICorDebugFunction pConstructor,
-                         [In] uint nArgs, 
-                         [In, MarshalAs(UnmanagedType.Interface)] ref ICorDebugValue ppArgs);
+                         [In] uint nArgs,
+                         [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugValue[] ppArgs);
 
 	    /*
          * NewObjectNoConstructor allocates a new object without

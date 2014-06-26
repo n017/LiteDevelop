@@ -43,9 +43,15 @@ namespace LiteDevelop.Debugger
         IValue CurrentException { get; }
 
         /// <summary>
-        /// Gests the current state of the thread.
+        /// Gets the current state of the thread.
         /// </summary>
         ThreadState State { get; }
+
+        /// <summary>
+        /// Creates an evaluation session in the thread.
+        /// </summary>
+        /// <returns></returns>
+        IEvaluation CreateEvaluation();
     }
 
     public static class IThreadExtensions

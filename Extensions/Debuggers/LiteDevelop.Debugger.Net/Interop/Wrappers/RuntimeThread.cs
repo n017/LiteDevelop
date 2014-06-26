@@ -148,6 +148,18 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             }
         }
 
+        IEvaluation IThread.CreateEvaluation()
+        {
+            return CreateEvaluation();
+        }
+
+        public RuntimeEvaluation CreateEvaluation()
+        {
+            ICorDebugEval comEval;
+            _comThread.CreateEval(out comEval);
+            return new RuntimeEvaluation(this, comEval);
+        }
+
         #endregion
 
         public override NetDebuggerSession Session
