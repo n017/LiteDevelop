@@ -25,13 +25,13 @@ namespace LiteDevelop.Debugger.Gui
         private IValue _exceptionValue;
         private SourceLocation _sourceLocation;
 
-        public ExceptionDialog(IValue exceptionValue, SourceLocation sourceLocation)
+        public ExceptionDialog(IThread thread)
         {
             InitializeComponent();
             this.Icon = _icon;
 
-            _exceptionValue = exceptionValue;
-            _sourceLocation = sourceLocation;
+            _exceptionValue = thread.CurrentException;
+            _sourceLocation = thread.GetCurrentSourceRange();
 
             // no need to hook to UILanguageChanged as this dialog will be closed 
             // before the user gets any chance to update the UI language.
@@ -46,14 +46,14 @@ namespace LiteDevelop.Debugger.Gui
                 {goToFileButton, "ExceptionDialog.GoToFile"},
                 {detailsButton, "ExceptionDialog.Details"},
             };
-
+            
             DebuggerBase.Instance.MuiProcessor.ApplyLanguageOnComponents(_componentMuiIdentifiers);
 
-            fileTextBox.Text = sourceLocation.FilePath.FullPath;
+            fileTextBox.Text = _sourceLocation.FilePath.FullPath;
             locationTextBox.Text = DebuggerBase.Instance.MuiProcessor.GetString("ExceptionDialog.LocationFormat",
-                "line=" + sourceLocation.Line,
-                "column=" + sourceLocation.Column);
-            messageTextBox.Text = exceptionValue.ValueAsString();
+                "line=" + _sourceLocation.Line,
+                "column=" + _sourceLocation.Column);
+            messageTextBox.Text = _exceptionValue.ValueAsString(thread);
         }
 
         private void closeButton_Click(object sender, EventArgs e)

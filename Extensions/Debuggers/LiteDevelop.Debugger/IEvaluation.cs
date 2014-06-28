@@ -14,5 +14,6 @@ namespace LiteDevelop.Debugger
         void Abort();
         void Call(IFunction function, params IValue[] arguments);
         void CreateObject(IFunction constructor, params IValue[] arguments);
+        bool WaitForResult(int timeout);
     }
 }

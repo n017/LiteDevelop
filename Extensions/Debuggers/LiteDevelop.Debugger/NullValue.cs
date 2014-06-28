@@ -53,9 +53,19 @@ namespace LiteDevelop.Debugger
         }
 
         /// <inheritdoc />
-        public string ValueAsString()
+        public string ValueAsString(IThread thread)
         {
             return "null";
+        }
+
+        public IValue GetFieldValue(IThread thread, System.Diagnostics.SymbolStore.SymbolToken token)
+        {
+            throw new NullReferenceException();
+        }
+
+        public IValue CallMemberFunction(IThread thread, System.Diagnostics.SymbolStore.SymbolToken token, params IValue[] arguments)
+        {
+            throw new NullReferenceException();
         }
 
         #endregion

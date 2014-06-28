@@ -3,4 +3,7 @@
   <ItemGroup Id="Exceptions">
     <Item Id="BreakOnHandledException">False</Item>
   </ItemGroup>
+  <ItemGroup Id="Visualizers">
+    <Item Id="EnableFunctionEvaluation">False</Item>
+  </ItemGroup>
 </Settings>

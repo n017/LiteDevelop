@@ -98,6 +98,16 @@ namespace LiteDevelop.Debugger.Net
             return actionFinished;
         }
 
+        public void WaitForCall()
+        {
+            _hasQueuedActions.WaitOne();
+        }
+
+        public void WaitForCall(int timeOut)
+        {
+            _hasQueuedActions.WaitOne(timeOut);
+        }
+
         public T MarshalAs<T>(object value)
         {
             return (T)MarshalAs(value, typeof(T));

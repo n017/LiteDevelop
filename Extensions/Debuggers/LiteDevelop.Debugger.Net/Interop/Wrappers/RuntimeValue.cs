@@ -157,26 +157,96 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                 return _type;
             }
         }
+        
+        string IValue.ValueAsString(IThread thread)
+        {
+            return ValueAsString((RuntimeThread)thread);
+        }
 
-        public string ValueAsString()
+        public string ValueAsString(RuntimeThread thread)
         {
             if (IsNull)
                 return "null";
 
             if (IsReference)
-                return Dereference().ValueAsString();
+                return Dereference().ValueAsString(thread);
             if (IsString)
                 return GetStringValue();
             if (IsArray)
                 return string.Format("{0}[{1}]", GetArrayElementType(), string.Join(",", GetArrayDimensions()));
             if (IsObject)
-                // TODO: call ToString()
+            {
+                if (DebuggerBase.Instance.Settings.GetValue<bool>("Visualizers.EnableFunctionEvaluation"))
+                {
+                    var type = Type;
+                    while (type != null)
+                    {
+                        var module = Session.Resolver.ResolveModule(type.Class.Module.Name);
+                        if (module != null)
+                        {
+                            var resolvedType = module.ResolveMember(type.Class.Token.GetToken()) as ITypeDefinition;
+                            if (resolvedType != null)
+                            {
+                                var toStringMethod = resolvedType.FindMethod("ToString");
+                                if (toStringMethod != null)
+                                {
+                                    var value = RuntimeEvaluation.InvokeMethod(thread, type.Class.Module.GetFunction((uint)toStringMethod.MetaDataToken));
+                                    if (value != null)
+                                        return value.ValueAsString(thread);
+                                }
+                            }
+                        }
+                        type = type.BaseType;
+                    }
+                }
                 return "{" + Type.ToString() + "}";
+            }
 
             var primitive = GetPrimitiveValue();
             if (primitive == null)
                 return "null";
             return primitive.ToString();
+        }
+
+        IValue IValue.GetFieldValue(IThread thread, SymbolToken token)
+        {
+            return GetFieldValue((RuntimeThread)thread, token);
+        }
+
+        public RuntimeValue GetFieldValue(RuntimeThread thread, SymbolToken token)
+        {
+            // TODO: static members
+
+            if (!IsObject)
+                throw new InvalidOperationException("Value must be an object in order to get values of fields.");
+
+            RuntimeValue value;
+            if (!_fieldValues.TryGetValue(token, out value))
+            {
+                ICorDebugValue comValue;
+                ComObjectValue.GetFieldValue(Type.Class.ComClass, (uint)token.GetToken(), out comValue);
+                _fieldValues.Add(token, value = new RuntimeValue(Session, comValue));
+            }
+            return value;
+        }
+
+        IValue IValue.CallMemberFunction(IThread thread, SymbolToken token, params IValue[] arguments)
+        {
+            return CallMemberFunction((RuntimeThread)thread, token, (RuntimeValue[])arguments);
+        }
+
+        public RuntimeValue CallMemberFunction(RuntimeThread thread, SymbolToken token, params RuntimeValue[] arguments)
+        {
+            ICorDebugFunction comFunction;
+            ComObjectValue.GetVirtualMethod((uint)token.GetToken(), out comFunction);
+
+            var evaluation = thread.CreateEvaluation();
+            evaluation.Call(comFunction, arguments.GetComValues().ToArray());
+
+            if (evaluation.WaitForResult(1000))
+                return evaluation.Result;
+
+            throw new TimeoutException("Evaluation timed out.");
         }
 
         #endregion
@@ -339,26 +409,14 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             return new string(buffer);
         }
 
-        public RuntimeValue GetFieldValue(RuntimeThread thread, SymbolToken token)
+    }
+
+    public static class RuntimeValueExtensions
+    {
+        internal static IEnumerable<ICorDebugValue> GetComValues(this IEnumerable<RuntimeValue> values)
         {
-            // TODO: static members
-
-            if (!IsObject)
-                throw new InvalidOperationException("Value must be an object in order to get values of fields.");
-
-            RuntimeValue value;
-            if (!_fieldValues.TryGetValue(token, out value))
-            {
-                ICorDebugValue comValue;
-                ComObjectValue.GetFieldValue(Type.Class.ComClass, (uint)token.GetToken(), out comValue);
-                _fieldValues.Add(token, value = new RuntimeValue(Session, comValue));
-            }
-            return value;
-        }
-
-        public RuntimeValue CallFunction(RuntimeThread thread, SymbolToken token)
-        {
-            return null;
+            foreach (var value in values)
+                yield return value.ComValue;
         }
     }
 }

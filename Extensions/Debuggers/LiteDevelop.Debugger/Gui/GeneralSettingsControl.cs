@@ -29,6 +29,7 @@ namespace LiteDevelop.Debugger.Net.Gui
             _componentMuiIdentifiers = new Dictionary<object, string>()
             {
                 {breakOnHandledExceptionCheckBox, "GeneralSettingsControl.BreakOnHandledException"},
+                {evaluationCheckBox, "GeneralSettingsControl.EnableFunctionEvaluation"},
             };
 
             host.UILanguageChanged += host_UILanguageChanged;
@@ -38,11 +39,13 @@ namespace LiteDevelop.Debugger.Net.Gui
         public override void LoadUserDefinedPresets()
         {
             breakOnHandledExceptionCheckBox.Checked = _settings.GetValue<bool>("Exceptions.BreakOnHandledException");
+            evaluationCheckBox.Checked = _settings.GetValue<bool>("Visualizers.EnableFunctionEvaluation");
         }
 
         public override void ApplySettings()
         {
             _settings.SetValue<bool>("Exceptions.BreakOnHandledException", breakOnHandledExceptionCheckBox.Checked);
+            _settings.SetValue<bool>("Visualizers.EnableFunctionEvaluation", evaluationCheckBox.Checked);
         }
 
         private void host_UILanguageChanged(object sender, EventArgs e)

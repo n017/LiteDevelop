@@ -71,6 +71,17 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                 FinalizeEvent(eventArgs);
         }
 
+        private void HandleEvalEvent(ICorDebugAppDomain pAppDomain, ICorDebugThread pThread, ICorDebugEval pEval)
+        {
+            var domain = GetProcessWrapper(pAppDomain).GetAppDomain(pAppDomain);
+            var thread = domain.GetThread(pThread);
+            var eval = Session.ComInstanceCollector.GetWrapper<RuntimeEvaluation>(pEval);
+
+            var eventArgs = new DebuggerEventArgs(domain, true);
+            eval.DispatchEvaluationCompleted(eventArgs);
+            FinalizeEvent(eventArgs);
+        }
+
         #region ICorDebugManagedCallback Members
 
         public void Breakpoint(ICorDebugAppDomain pAppDomain, ICorDebugThread pThread, ICorDebugBreakpoint pBreakpoint)
@@ -130,12 +141,13 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 
         public void EvalComplete(ICorDebugAppDomain pAppDomain, ICorDebugThread pThread, ICorDebugEval pEval)
         {
-            HandleEvent(pAppDomain);
+            HandleEvalEvent(pAppDomain, pThread, pEval);
         }
 
         public void EvalException(ICorDebugAppDomain pAppDomain, ICorDebugThread pThread, ICorDebugEval pEval)
         {
-            HandleEvent(pAppDomain);
+            Log("Exception occured during evaluation.");
+            HandleEvalEvent(pAppDomain, pThread, pEval);
         }
 
         public void CreateProcess(ICorDebugProcess pProcess)

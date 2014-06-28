@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAssemblyResolver.cs" />
     <Compile Include="Interop\Com\ICLRMetaHost.cs" />
     <Compile Include="Interop\Com\ICLRRuntimeInfo.cs" />
     <Compile Include="Interop\Com\ICorDebug.cs" />
@@ -128,6 +129,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReflectionAssemblyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Main\LiteDevelop.Framework\LiteDevelop.Framework.csproj">

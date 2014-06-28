@@ -77,6 +77,16 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             }
         }
 
+        public bool IsManaged
+        {
+            get
+            {
+                int isManaged;
+                _comChain.IsManaged(out isManaged);
+                return isManaged == 1;
+            }
+        }
+
         public IEnumerable<RuntimeFrame> GetFrames()
         {
             ICorDebugFrameEnum frameEnum;

@@ -118,4 +118,47 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
                            [MarshalAs(UnmanagedType.Interface)] out ICorDebugValue ppValue);
                 
     }
+
+
+    [ComImport, Guid("FB0D9CE7-BE66-4683-9D32-A42A04E2FD91"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+    internal interface ICorDebugEval2 : ICorDebugEval
+    {
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void CallParameterizedFunction([In, MarshalAs(UnmanagedType.Interface)] ICorDebugFunction pFunction, 
+                                       [In] uint nTypeArgs, 
+                                       [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugType[] ppTypeArgs,
+                                       [In] uint nArgs,
+                                       [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugValue[] ppArgs);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void CreateValueForType([In, MarshalAs(UnmanagedType.Interface)] ICorDebugType pType,
+                                [MarshalAs(UnmanagedType.Interface)] out ICorDebugValue ppValue);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void NewParameterizedObject([In, MarshalAs(UnmanagedType.Interface)] ICorDebugFunction pConstructor,
+                                    [In] uint nTypeArgs,
+                                    [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugType[] ppTypeArgs,
+                                    [In] uint nArgs,
+                                    [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugValue[] ppArgs);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void NewParameterizedObjectNoConstructor([In, MarshalAs(UnmanagedType.Interface)] ICorDebugClass pClass,
+                                                [In] uint nTypeArgs,
+                                                [In, MarshalAs(UnmanagedType.LPArray)] ICorDebugType[] ppTypeArgs);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void NewParameterizedArray([In, MarshalAs(UnmanagedType.Interface)] ICorDebugType pElementType,
+                                   [In] uint rank,
+                                   [In, MarshalAs(UnmanagedType.LPArray)] uint[] dims, 
+                                   [In, MarshalAs(UnmanagedType.LPArray)] uint[] lowBounds);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void NewStringWithLength([In, MarshalAs(UnmanagedType.LPWStr)] string @string,
+                                 [In] uint uiLength);
+
+        [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+        void RudeAbort();
+    }
+
+
 }

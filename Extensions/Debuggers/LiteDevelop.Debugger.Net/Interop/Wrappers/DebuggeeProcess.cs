@@ -44,6 +44,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         public void Stop()
         {
             _comProcess.Stop(uint.MaxValue);
+
+            // TODO: get the current frame somehow.
         }
         
         public void Continue()
@@ -150,6 +152,15 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             Stop();
             _comProcess.Terminate(0);
+        }
+
+        public void WaitForPause()
+        {
+            while (IsRunning)
+            {
+                Session.MtaStaConnector.WaitForCall();
+                Session.MtaStaConnector.PerformAllCalls();
+            }
         }
 
         internal void DispatchEvent(DebuggerEventArgs e)

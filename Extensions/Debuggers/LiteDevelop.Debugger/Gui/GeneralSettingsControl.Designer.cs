@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.breakOnHandledExceptionCheckBox = new System.Windows.Forms.CheckBox();
+            this.evaluationCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // breakOnHandledExceptionCheckBox
@@ -41,10 +42,21 @@
             this.breakOnHandledExceptionCheckBox.Text = "Break on handled exception";
             this.breakOnHandledExceptionCheckBox.UseVisualStyleBackColor = true;
             // 
+            // evaluationCheckBox
+            // 
+            this.evaluationCheckBox.AutoSize = true;
+            this.evaluationCheckBox.Location = new System.Drawing.Point(13, 37);
+            this.evaluationCheckBox.Name = "evaluationCheckBox";
+            this.evaluationCheckBox.Size = new System.Drawing.Size(214, 17);
+            this.evaluationCheckBox.TabIndex = 1;
+            this.evaluationCheckBox.Text = "Enable function and property evaluation";
+            this.evaluationCheckBox.UseVisualStyleBackColor = true;
+            // 
             // GeneralSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.evaluationCheckBox);
             this.Controls.Add(this.breakOnHandledExceptionCheckBox);
             this.Name = "GeneralSettingsControl";
             this.Size = new System.Drawing.Size(456, 263);
@@ -56,5 +68,6 @@
         #endregion
 
         private System.Windows.Forms.CheckBox breakOnHandledExceptionCheckBox;
+        private System.Windows.Forms.CheckBox evaluationCheckBox;
     }
 }

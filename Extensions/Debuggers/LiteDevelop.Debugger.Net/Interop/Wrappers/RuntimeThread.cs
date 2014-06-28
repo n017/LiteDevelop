@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using LiteDevelop.Debugger.Net.Interop.Com;
@@ -157,7 +158,9 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             ICorDebugEval comEval;
             _comThread.CreateEval(out comEval);
-            return new RuntimeEvaluation(this, comEval);
+            var eval = new RuntimeEvaluation(this, comEval);
+            Session.ComInstanceCollector.SetWrapper(comEval, eval);
+            return eval;
         }
 
         #endregion
@@ -196,6 +199,44 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                     _threadObject = new RuntimeValue(Session, value);
                 }
                 return _threadObject;
+            }
+        }
+
+        public bool IsAtGCSafePoint
+        {
+            get
+            {
+                // http://blogs.msdn.com/b/jmstall/archive/2005/11/15/funceval-rules.aspx
+
+                return IsValid && State != ThreadState.AbortRequested;
+            }
+        }
+
+        public bool IsManaged
+        {
+            get { return CurrentChain.IsManaged; }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                try
+                {
+                    ThreadState state;
+                    ComThread.GetUserState(out state);
+                    ICorDebugChainEnum e;
+                    ComThread.EnumerateChains(out e);
+                    return true;
+                }
+                catch (COMException e)
+                {
+                    if ((uint)e.ErrorCode == 0x8013132D)
+                    {
+                        return false;
+                    }
+                    throw;
+                }
             }
         }
 

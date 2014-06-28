@@ -82,6 +82,7 @@ namespace LiteDevelop.Debugger.Gui
         {
             var item = new ListViewItem(new string[4]);
             item.Tag = variable;
+            item.UseItemStyleForSubItems = false;
             UpdateVariableItem(item, frame);
             return item;
         }
@@ -94,7 +95,21 @@ namespace LiteDevelop.Debugger.Gui
                 item.SubItems[0].Text = localVariable.Name;
 
                 var value = localVariable.GetValue(frame);
-                item.SubItems[1].Text = value.ValueAsString();
+
+                try
+                {
+                    item.SubItems[1].ForeColor = item.ForeColor;
+                    if (frame == null || frame.Thread == null)
+                        item.SubItems[1].Text = "Stack frame is required to get a value from the variable.";
+                    else
+                        item.SubItems[1].Text = value.ValueAsString(frame.Thread);
+                }
+                catch (Exception ex)
+                {
+                    item.SubItems[1].ForeColor = Color.Red;
+                    item.SubItems[1].Text = ex.Message;
+                }
+
                 item.SubItems[2].Text = value.Type.ToString();
             }
         }

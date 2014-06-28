@@ -14,6 +14,7 @@
 
   <ItemGroup Id="GeneralSettingsControl">
     <Item Id="BreakOnHandledException">Pauseer bij een behandelde uitzondering.</Item>
+    <Item Id="EnableFunctionEvaluation">Sta evaluatie van functies en eigenschappen toe.</Item>
   </ItemGroup>
 
   <ItemGroup Id="VariablesContent">

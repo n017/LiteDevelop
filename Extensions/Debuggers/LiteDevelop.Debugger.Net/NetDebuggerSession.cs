@@ -48,13 +48,14 @@ namespace LiteDevelop.Debugger.Net
             PendingBreakpoints = new List<BreakpointBookmark>();
             ComInstanceCollector = new ComInstanceCollector();
             MetaDataDispenser = new MetaDataDispenser(ComInstanceCollector);
+            Resolver = new ReflectionAssemblyResolver();
         }
 
         #region DebuggerSession Members
 
         public override bool CanBreak
         {
-            get { return false; } // Not implemented yet.
+            get { return true; }
         }
 
         public override bool CanContinue
@@ -128,13 +129,9 @@ namespace LiteDevelop.Debugger.Net
 
         public override void BreakAll()
         {
-            throw new NotSupportedException();
-
-            //Not implemented properly yet.
-            //
-            //foreach (var process in Processes)
-            //    process.Stop();
-            //OnPaused(new PauseEventArgs(PauseReason.Break));
+            foreach (var process in Processes)
+                process.Stop();
+            OnPaused(new PauseEventArgs(PauseReason.Break));
         }
 
         public override void Continue()
@@ -173,6 +170,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void Dispose()
         {
+            Resolver.Dispose();
             ComInstanceCollector.ReleaseAll();
             base.Dispose();
         }
@@ -185,6 +183,12 @@ namespace LiteDevelop.Debugger.Net
         {
             get;
             private set;
+        }
+
+        public IAssemblyResolver Resolver
+        {
+            get;
+            set;
         }
 
         public IEnumerable<DebuggeeProcess> Processes

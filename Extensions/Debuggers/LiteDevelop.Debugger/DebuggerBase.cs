@@ -250,7 +250,7 @@ French: wallace87000";
 
             if (e.Reason == PauseReason.Exception)
             {
-                using (var dialog = new ExceptionDialog(e.Thread.CurrentException, e.Thread.GetCurrentSourceRange()))
+                using (var dialog = new ExceptionDialog(e.Thread))
                 {
                     dialog.ShowDialog();
                 }

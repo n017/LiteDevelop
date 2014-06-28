@@ -14,6 +14,7 @@
 
   <ItemGroup Id="GeneralSettingsControl">
     <Item Id="BreakOnHandledException">Break on handled exception.</Item>
+    <Item Id="EnableFunctionEvaluation">Enable function and property evaluation.</Item>
   </ItemGroup>
 
   <ItemGroup Id="VariablesContent">
