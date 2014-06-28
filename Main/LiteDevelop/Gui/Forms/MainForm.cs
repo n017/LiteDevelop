@@ -356,16 +356,47 @@ namespace LiteDevelop.Gui.Forms
 
         private void CloseCurrentSolution()
         {
+            _extensionHost.CurrentSolution.Settings.OpenedFiles.Clear();
+
+            foreach (var document in _mainDockPanel.Documents)
+            {
+                var container = document as ViewContentContainer;
+                if (container != null)
+                {
+                    var documentContent = container.ViewContent as LiteDocumentContent;
+                    if (documentContent != null)
+                    {
+                        if (documentContent.AssociatedFile != null &&
+                            _extensionHost.CurrentSolution.FindProjectFile(documentContent.AssociatedFile.FilePath) != null)
+                        {
+                            _extensionHost.CurrentSolution.Settings.OpenedFiles.Add(
+                                new SolutionOpenedFileInfo(
+                                    documentContent.AssociatedFile.FilePath.GetRelativePath(_extensionHost.CurrentSolution.FilePath.ParentDirectory),
+                                    documentContent.ParentExtension.GetType().FullName));
+                        }
+                    }
+                }
+            }
+
+            if (!SaveUnsavedFiles(GetUnsavedItems()))
+                return;
+
+            CloseAllDocuments();
+
+            _extensionHost.DispatchSolutionUnload(new SolutionEventArgs(_extensionHost.CurrentSolution));
+        }
+
+        private void CloseAllDocuments()
+        {
             int remainingTabCount = 0;
             while (_mainDockPanel.DocumentsCount != remainingTabCount)
             {
-                var container = _mainDockPanel.DocumentsToArray()[0] as ViewContentContainer;
+                var container = _mainDockPanel.DocumentsToArray()[remainingTabCount] as ViewContentContainer;
                 if (container != null && container.ViewContent is LiteDocumentContent)
                     container.Close();
                 else
                     remainingTabCount++;
             }
-            _extensionHost.DispatchSolutionUnload(new SolutionEventArgs(_extensionHost.CurrentSolution));
         }
 
         private void SetToolBox(LiteDocumentContent currentDocument)
@@ -434,6 +465,28 @@ namespace LiteDevelop.Gui.Forms
             }
 
             return files.ToArray();
+        }
+
+        private bool SaveUnsavedFiles(ISavableFile[] unsavedItems)
+        {
+            if (unsavedItems.Length > 0)
+            {
+                using (var dialog = new UnsavedFilesDialog(unsavedItems))
+                {
+                    switch (dialog.ShowDialog())
+                    {
+                        case System.Windows.Forms.DialogResult.Yes:
+                            foreach (var item in dialog.GetItemsToSave())
+                                item.Save(_extensionHost.CreateOrGetReporter("Build"));
+                            break;
+                        case System.Windows.Forms.DialogResult.No:
+                            break;
+                        case System.Windows.Forms.DialogResult.Cancel:
+                            return false;
+                    }
+                }
+            }
+            return true;
         }
 
         private void UpdateCurrentActiveContent()
@@ -524,8 +577,22 @@ namespace LiteDevelop.Gui.Forms
             Invoke(new Action(() =>
             {
                 var solution = sender as Solution;
+
+                foreach (var openedFile in solution.Settings.OpenedFiles)
+                {
+                    var filePath = new FilePath(solution.FilePath.ParentDirectory, openedFile.RelativePath);
+                    if (File.Exists(filePath.FullPath))
+                    {
+                        var fileHandler = _extensionHost.ExtensionManager.GetFileHandlers(filePath).FirstOrDefault(x => x.GetType().FullName == openedFile.ExtensionTypeName);
+                        if (fileHandler != null)
+                            fileHandler.OpenFile(_extensionHost.FileService.OpenFile(filePath));
+                    }
+                }
+
                 solution.LoadComplete -= new SolutionNodeLoadEventHandler(solution_LoadComplete);
                 _extensionHost.DispatchSolutionLoad(new SolutionEventArgs(solution));
+
+
             }));
         }
 
@@ -1142,29 +1209,8 @@ namespace LiteDevelop.Gui.Forms
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             (_extensionHost.ControlManager as ControlManager).NotifyUnsavedFilesWhenClosing = false;
-
-            var unsavedItems = GetUnsavedItems();
-
-            if (unsavedItems.Length > 0)
-            {
-                using (var dialog = new UnsavedFilesDialog(unsavedItems))
-                {
-                    switch (dialog.ShowDialog())
-                    {
-                        case System.Windows.Forms.DialogResult.Yes:
-                            foreach (var item in dialog.GetItemsToSave())
-                                item.Save(_extensionHost.CreateOrGetReporter("Build"));
-                            break;
-                        case System.Windows.Forms.DialogResult.No:
-                            break;
-                        case System.Windows.Forms.DialogResult.Cancel:
-                            e.Cancel = true;
-                            break;
-                    }
-                }
-            }
-
-            if (!e.Cancel)
+            
+            if (!(e.Cancel = !SaveUnsavedFiles(GetUnsavedFiles())))
             {
                 foreach (var document in _mainDockPanel.DocumentsToArray())
                 {

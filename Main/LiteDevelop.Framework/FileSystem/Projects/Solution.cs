@@ -23,6 +23,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects
             var solution = MSBuildProjectFactory.CreateSolution(name);
             solution.InitializeEventHandlers();
             solution.GiveUnsavedData();
+            solution.Settings = new SolutionSettings();
             return solution;
         }
 
@@ -40,7 +41,6 @@ namespace LiteDevelop.Framework.FileSystem.Projects
                     solution.FilePath = new FilePath(solutionFile);
                     solution.Name = solution.FilePath.FileName;
                     solutionReader.InitializeSolution(solution);
-                    solution.InitializeEventHandlers();
 
                     var settingsPath = solution.FilePath.ChangeExtension(".litesettings").FullPath;
                     if (File.Exists(settingsPath))
@@ -55,6 +55,13 @@ namespace LiteDevelop.Framework.FileSystem.Projects
                             // TODO: notify user
                         }
                     }
+                    else
+                    {
+                        solution.Settings = new SolutionSettings();
+                    }
+
+                    solution.InitializeEventHandlers();
+                    solution.Settings.HasChanged = false;
 
                     return solution;
                 }
@@ -125,6 +132,10 @@ namespace LiteDevelop.Framework.FileSystem.Projects
                 if (_hasUnsavedData != value)
                 {
                     _hasUnsavedData = value;
+
+                    if (!value)
+                        Settings.HasChanged = false;
+
                     OnHasUnsavedDataChanged(EventArgs.Empty);
                 }
             }
@@ -331,6 +342,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects
             Nodes.InsertedItem += Nodes_InsertedItem;
             Nodes.RemovedItem += Nodes_RemovedItemOrCleared;
             Nodes.ClearedCollection += Nodes_RemovedItemOrCleared;
+            Settings.Changed += Settings_Changed;
         }
 
         private SolutionNode GetSolutionNode(IEnumerable<SolutionNode> folders, Func<SolutionNode, bool> condition)
@@ -404,6 +416,11 @@ namespace LiteDevelop.Framework.FileSystem.Projects
         }
 
         private void Nodes_RemovedItemOrCleared(object sender, EventArgs e)
+        {
+            GiveUnsavedData();
+        }
+
+        private void Settings_Changed(object sender, EventArgs e)
         {
             GiveUnsavedData();
         }
