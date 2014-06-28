@@ -354,7 +354,7 @@ namespace LiteDevelop.Gui.Forms
             UserOpenWith(new FilePath(file));
         }
 
-        private void CloseCurrentSolution()
+        private bool CloseCurrentSolution()
         {
             _extensionHost.CurrentSolution.Settings.OpenedFiles.Clear();
 
@@ -379,11 +379,12 @@ namespace LiteDevelop.Gui.Forms
             }
 
             if (!SaveUnsavedFiles(GetUnsavedItems()))
-                return;
+                return false;
 
             CloseAllDocuments();
 
             _extensionHost.DispatchSolutionUnload(new SolutionEventArgs(_extensionHost.CurrentSolution));
+            return true;
         }
 
         private void CloseAllDocuments()
@@ -1210,13 +1211,8 @@ namespace LiteDevelop.Gui.Forms
         {
             (_extensionHost.ControlManager as ControlManager).NotifyUnsavedFilesWhenClosing = false;
             
-            if (!(e.Cancel = !SaveUnsavedFiles(GetUnsavedFiles())))
+            if (!(e.Cancel = !CloseCurrentSolution()))
             {
-                foreach (var document in _mainDockPanel.DocumentsToArray())
-                {
-                    (document as DockContent).Close();
-                }
-
                 SaveDockPanelState();
                 Rectangle usingBounds = (WindowState == FormWindowState.Normal ? this.Bounds : this.RestoreBounds);
                 LiteDevelopSettings.Instance.SetValue("MainWindow.Location", usingBounds.Location);
