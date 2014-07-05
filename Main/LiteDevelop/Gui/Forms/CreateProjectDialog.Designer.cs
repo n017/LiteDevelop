@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.directoryHeaderLabel = new System.Windows.Forms.Label();
             this.nameHeaderLabel = new System.Windows.Forms.Label();
             this.browseButton = new System.Windows.Forms.Button();
             this.directoryTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.languagesTreeView = new TemplatesTreeView();
-            this.templatesListView = new TemplatesListView();
+            this.languagesTreeView = new LiteDevelop.Gui.Forms.TemplatesTreeView();
+            this.templatesListView = new LiteDevelop.Gui.Forms.TemplatesListView();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
@@ -125,7 +126,9 @@
             this.templatesListView.MultiSelect = false;
             this.templatesListView.Name = "templatesListView";
             this.templatesListView.Size = new System.Drawing.Size(364, 204);
+            this.templatesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.templatesListView.TabIndex = 0;
+            this.templatesListView.TemplateService = null;
             this.templatesListView.UseCompatibleStateImageBehavior = false;
             this.templatesListView.SelectedIndexChanged += new System.EventHandler(this.control_Changed);
             // 

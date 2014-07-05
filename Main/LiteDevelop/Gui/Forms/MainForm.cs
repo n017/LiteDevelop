@@ -356,7 +356,10 @@ namespace LiteDevelop.Gui.Forms
 
         private bool CloseCurrentSolution()
         {
-            _extensionHost.CurrentSolution.Settings.OpenedFiles.Clear();
+            if (_extensionHost.CurrentSolution != null)
+            {
+                _extensionHost.CurrentSolution.Settings.OpenedFiles.Clear();
+            }
 
             foreach (var document in _mainDockPanel.Documents)
             {
@@ -367,6 +370,7 @@ namespace LiteDevelop.Gui.Forms
                     if (documentContent != null)
                     {
                         if (documentContent.AssociatedFile != null &&
+                            _extensionHost.CurrentSolution != null &&
                             _extensionHost.CurrentSolution.FindProjectFile(documentContent.AssociatedFile.FilePath) != null)
                         {
                             _extensionHost.CurrentSolution.Settings.OpenedFiles.Add(
@@ -383,7 +387,8 @@ namespace LiteDevelop.Gui.Forms
 
             CloseAllDocuments();
 
-            _extensionHost.DispatchSolutionUnload(new SolutionEventArgs(_extensionHost.CurrentSolution));
+            if (_extensionHost.CurrentSolution != null)
+                _extensionHost.DispatchSolutionUnload(new SolutionEventArgs(_extensionHost.CurrentSolution));
             return true;
         }
 

@@ -137,7 +137,9 @@
             this.templatesListView.MultiSelect = false;
             this.templatesListView.Name = "templatesListView";
             this.templatesListView.Size = new System.Drawing.Size(355, 201);
+            this.templatesListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.templatesListView.TabIndex = 0;
+            this.templatesListView.TemplateService = null;
             this.templatesListView.UseCompatibleStateImageBehavior = false;
             this.templatesListView.SelectedIndexChanged += new System.EventHandler(this.templatesListView_SelectedIndexChanged);
             // 

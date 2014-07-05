@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
-<Template Name="Class"
+<Template Name="Singleton class"
           Author="Jerre S."
           Version="1.0.0.0"
           Category="Visual Basic"
           Type="File"
           Icon="vb.png"
-          DefaultName="Class$(FileNumber).vb">
+          DefaultName="SingletonClass$(FileNumber).vb">
     
   <File Name="$(FileName).vb">
     <Contents Type="Text">
@@ -21,6 +21,25 @@ Namespace $(Namespace)
     ''' Description of $(EscapedFileName)
     ''' </summary>
     Class $(EscapedFileName)
+        
+        Private Shared ReadOnly _instance As $(EscapedFileName)
+        
+        ''' <summary>
+        ''' Gets the singleton instance of the $(EscapedFileName) class.
+        ''' </summary>
+        Public Shared ReadOnly Property Instance As $(EscapedFileName)
+            Get
+                Return _instance
+            End Get
+        End Property
+        
+        Shared Sub New()
+            _instance = new $(EscapedFileName)()        
+        End Sub
+        
+        Private Sub New()
+            
+        End Sub
         
     End Class
     

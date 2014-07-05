@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Template Name="Singleton class"
+          Author="Jerre S."
+          Version="1.0.0.0"
+          Category="C#"
+          Type="File"
+          Icon="page_white_csharp.png"
+          DefaultName="SingletonClass$(FileNumber).cs">
+    
+  <File Name="$(FileName).cs">
+    <Contents Type="Text"><![CDATA[
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace $(Namespace)
+{
+    /// <summary>
+    /// Description of $(EscapedFileName)
+    /// </summary>
+    class $(EscapedFileName)
+    {
+        private static readonly $(EscapedFileName) _instance;
+        
+        /// <summary>
+        /// Gets the singleton instance of the $(EscapedFileName) class.
+        /// </summary>
+        public static $(EscapedFileName) Instance
+        {
+            get { return _instance; }
+        }
+        
+        static $(EscapedFileName)()
+        {
+            _instance = new $(EscapedFileName)();
+        }
+        
+        private $(EscapedFileName)()
+        {
+        }
+    }
+}
+]]></Contents>
+  </File>
+
+</Template>
