@@ -599,7 +599,7 @@ namespace LiteDevelop.Gui.Forms
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CurrentDocument != null)
+            if (CurrentDocument != null && CurrentDocument.AssociatedFile != null)
             {
                 CurrentDocument.AssociatedFile.Save(_extensionHost.CreateOrGetReporter("Build"));
             }

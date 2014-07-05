@@ -17,6 +17,24 @@ namespace LiteDevelop.Framework.FileSystem.Projects.Net.VisualBasic
             LanguageDescriptor.GetLanguage<VisualBasicLanguage>(),
         };
 
+        /// <summary>
+        /// Gets the singleton instance of the Visual Basic project descriptor.
+        /// </summary>
+        public static VisualBasicProjectDescriptor Instance
+        {
+            get;
+            private set;
+        }
+
+        static VisualBasicProjectDescriptor()
+        {
+            Instance = new VisualBasicProjectDescriptor();
+        }
+
+        private VisualBasicProjectDescriptor()
+        {
+        }
+
         /// <inheritdoc />
         public override string ProjectExtension
         {

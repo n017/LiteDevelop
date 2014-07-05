@@ -17,6 +17,24 @@ namespace LiteDevelop.Framework.FileSystem.Projects.Net.CSharp
             LanguageDescriptor.GetLanguage<CSharpLanguage>(),
         };
 
+        /// <summary>
+        /// Gets the singleton instance of the C# project descriptor.
+        /// </summary>
+        public static CSharpProjectDescriptor Instance
+        {
+            get;
+            private set;
+        }
+
+        static CSharpProjectDescriptor()
+        {
+            Instance = new CSharpProjectDescriptor();
+        }
+
+        private CSharpProjectDescriptor()
+        {
+        }
+
         /// <inheritdoc />
         public override string ProjectExtension
         {

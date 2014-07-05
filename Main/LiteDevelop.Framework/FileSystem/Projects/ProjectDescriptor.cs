@@ -17,8 +17,8 @@ namespace LiteDevelop.Framework.FileSystem.Projects
         {
             ProjectDescriptors = new EventBasedCollection<ProjectDescriptor>()
             {
-                new CSharpProjectDescriptor(),
-                new VisualBasicProjectDescriptor(),
+                CSharpProjectDescriptor.Instance,
+                VisualBasicProjectDescriptor.Instance,
             };
         }
 
