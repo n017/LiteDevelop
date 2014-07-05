@@ -12,7 +12,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects
     /// <summary>
     /// When derived from this class, represents a project that holds files and settings in order to create applications.
     /// </summary>
-    public abstract class Project : IFilePathProvider, ISavableFile, IDisposable
+    public abstract class Project : OpenedFile, IDisposable
     {
         /// <summary>
         /// Opens a project from a file path.
@@ -33,20 +33,16 @@ namespace LiteDevelop.Framework.FileSystem.Projects
 
         public event EventHandler NameChanged;
         public event BuildResultEventHandler ProjectBuilt;
-        public event PathChangedEventHandler FilePathChanged;
-        public event EventHandler HasUnsavedDataChanged;
         public event CancelEventHandler DebugStarted;
 
         private string _name = string.Empty;
-        private FilePath _filePath;
-        private bool _hasUnsavedData = false;
 
         internal Project()
+            : base(new FilePath(string.Empty))
         {
             ProjectFiles = new EventBasedCollection<ProjectFileEntry>();
             ProjectFiles.InsertedItem += ProjectFiles_InsertedItem;
             ProjectFiles.RemovedItem += ProjectFiles_RemovedItem;
-            FilePath = new FilePath(string.Empty);
             GiveUnsavedData();
         }
         
@@ -68,24 +64,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects
                 OnNameChanged(EventArgs.Empty);
             }
         }
-
-        /// <summary>
-        /// Gets or sets the file path of the project file.
-        /// </summary>
-        public FilePath FilePath
-        {
-            get { return _filePath; }
-            set
-            {
-                if (_filePath != value)
-                {
-                    var old = _filePath;
-                    _filePath = value;
-                    OnFilePathChanged(new PathChangedEventArgs(old, _filePath));
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Gets or sets the absolute directory path of the project.
         /// </summary>
@@ -99,14 +78,6 @@ namespace LiteDevelop.Framework.FileSystem.Projects
             }
         }
         
-        /// <summary>
-        /// Gets an instance of a document view content that is being used for editing the properties of the project.
-        /// </summary>
-        public abstract LiteDocumentContent EditorContent
-        {
-            get;
-        }
-
         /// <summary>
         /// Gets the output directory of this project.
         /// </summary>
@@ -131,36 +102,6 @@ namespace LiteDevelop.Framework.FileSystem.Projects
         {
             get;
         }
-
-        /// <summary>
-        /// Gets a value indicating whether the project has unsaved data.
-        /// </summary>
-        /// <remarks>This excludes sub files.</remarks>
-        public bool HasUnsavedData 
-        {
-            get { return _hasUnsavedData; }
-            protected set
-            {
-                if (_hasUnsavedData != value)
-                {
-                    _hasUnsavedData = value;
-                    OnHasUnsavedDataChanged(EventArgs.Empty);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Reports the file has unsaved data that needs to be saved in order to conserve the changes that are made.
-        /// </summary>
-        public void GiveUnsavedData()
-        {
-            HasUnsavedData = true;
-        }
-
-        /// <summary>
-        /// Saves the project and all its files.
-        /// </summary>
-        public abstract void Save(IProgressReporter progressReporter);
 
         /// <summary>
         /// Builds the project and saves the output to the output directory.
@@ -310,25 +251,13 @@ namespace LiteDevelop.Framework.FileSystem.Projects
             if (NameChanged != null)
                 NameChanged(this, e);
         }
-
-        protected virtual void OnFilePathChanged(PathChangedEventArgs e)
-        {
-            if (FilePathChanged != null)
-                FilePathChanged(this, e);
-        }
-
+        
         protected virtual void OnProjectBuilt(BuildResultEventArgs e)
         {
             if (ProjectBuilt != null)
                 ProjectBuilt(this, e);
         }
-
-        protected virtual void OnHasUnsavedDataChanged(EventArgs e)
-        {
-            if (HasUnsavedDataChanged != null)
-                HasUnsavedDataChanged(this, e);
-        }
-
+        
         private void ProjectFiles_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
             var fileEntry = e.TargetObject as ProjectFileEntry;

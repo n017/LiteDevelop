@@ -1,4 +1,4 @@
-﻿namespace LiteDevelop.Framework.FileSystem.Projects.Net
+﻿namespace LiteDevelop.Gui.ProjectEditors
 {
     partial class AddReferenceDialog
     {

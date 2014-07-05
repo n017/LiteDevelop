@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.Gui;
 using LiteDevelop.Framework.Mui;
+using LiteDevelop.Gui.ProjectEditors;
 using LiteDevelop.Gui.Settings;
 
 namespace LiteDevelop.Extensions
 {
-    internal sealed class LiteDevelopExtension : LiteExtension, ISettingsProvider, IAppearanceMapProvider 
+    internal sealed class LiteDevelopExtension : LiteExtension, IProjectHandler, ISettingsProvider, IAppearanceMapProvider 
     {
+        private static readonly ProjectSettingsEditorDescriptor[] _editors = new ProjectSettingsEditorDescriptor[]
+        {
+            NetProjectSettingsControl.EditorDescriptor,
+        };
+
         private Dictionary<object, string> _componentMuiIdentifiers;
         private SettingsNode _settingsNode;
         private LiteDevelopSettings _settings;
@@ -20,7 +28,7 @@ namespace LiteDevelop.Extensions
         private AppearanceMap _appearanceMap;
         private AppearanceMap _defaultAppearanceMap;
         private string _appearanceMapPath;
-
+        
         public LiteDevelopExtension()
         {
         }
@@ -171,9 +179,24 @@ Fatcow's icon pack (http://www.fatcow.com/free-icons)
         
         #endregion
 
+        #region IProjectHandler Members
+
+        public bool CanOpenProject(Project project)
+        {
+            return _editors.FirstOrDefault(x => x.CanOpenProject(project)) != null;
+        }
+
+        public void OpenProject(Project project)
+        {
+            _editors.FirstOrDefault(x => x.CanOpenProject(project)).OpenProject(_extensionHost.ControlManager, project);
+        }
+
+        #endregion
+
         private void extensionHost_UILanguageChanged(object sender, EventArgs e)
         {
             LiteDevelopApplication.Current.MuiProcessor.ApplyLanguageOnComponents(_componentMuiIdentifiers);
         }
+
     }
 }

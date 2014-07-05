@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace LiteDevelop.Framework.FileSystem.Projects.Net
+namespace LiteDevelop.Gui.ProjectEditors
 {
-    public partial class AddReferenceDialog : Form
+    internal partial class AddReferenceDialog : Form
     {
         private static List<string> _assemblyCache = new List<string>();
 

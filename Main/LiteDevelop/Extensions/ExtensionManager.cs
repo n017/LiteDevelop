@@ -66,17 +66,32 @@ namespace LiteDevelop.Extensions
             return LoadedExtensions.FirstOrDefault(x => x is T) as T;
         }
 
+        public IEnumerable<IFileHandler> GetFileHandlers()
+        {
+            return from extension in LoadedExtensions
+                   where extension is IFileHandler
+                   select extension as IFileHandler;
+        }
+
         public IEnumerable<IFileHandler> GetFileHandlers(FilePath filePath)
         {
-            foreach (var extension in LoadedExtensions)
-            {
-                if (extension is IFileHandler)
-                {
-                    var fileHandler = extension as IFileHandler;
-                    if (fileHandler.CanOpenFile(filePath))
-                        yield return fileHandler;
-                }
-            }
+            return from extension in LoadedExtensions
+                   where extension is IFileHandler && (extension as IFileHandler).CanOpenFile(filePath)
+                   select extension as IFileHandler;
+        }
+
+        public IEnumerable<IProjectHandler> GetProjectHandlers()
+        {
+            return from extension in LoadedExtensions
+                   where extension is IProjectHandler
+                   select extension as IProjectHandler;
+        }
+
+        public IEnumerable<IProjectHandler> GetProjectHandlers(Project project)
+        {
+            return from extension in LoadedExtensions
+                   where extension is IProjectHandler && (extension as IProjectHandler).CanOpenProject(project)
+                   select extension as IProjectHandler;
         }
 
         public IFileHandler GetPreferredFileHandler(FilePath filePath)
@@ -86,16 +101,16 @@ namespace LiteDevelop.Extensions
 
         public IEnumerable<IDebugger> GetDebuggers()
         {
-            foreach (var extension in LoadedExtensions)
-                if (extension is IDebugger)
-                    yield return extension as IDebugger;
+            return from extension in LoadedExtensions
+                   where extension is IDebugger
+                   select extension as IDebugger;
         }
 
         public IEnumerable<IDebugger> GetDebuggers(Project project)
         {
-            foreach (var extension in LoadedExtensions)
-                if (extension is IDebugger && (extension as IDebugger).CanDebugProject(project))
-                    yield return extension as IDebugger;
+            return from extension in LoadedExtensions
+                   where extension is IDebugger && (extension as IDebugger).CanDebugProject(project)
+                   select extension as IDebugger;
         }
 
         public IDebugger GetPreferredDebugger(Project project)

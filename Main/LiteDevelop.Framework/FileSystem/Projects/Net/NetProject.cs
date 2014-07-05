@@ -19,8 +19,6 @@ namespace LiteDevelop.Framework.FileSystem.Projects.Net
         public event EventHandler RootNamespaceChanged;
         public event EventHandler TargetFrameworkChanged;
 
-        private LiteDocumentContent _editor;
-
         /// <summary>
         /// Creates a new .NET MSBuild project with the default values.
         /// </summary>
@@ -37,17 +35,6 @@ namespace LiteDevelop.Framework.FileSystem.Projects.Net
         public NetProject(FilePath filePath)
             : base(filePath)
         {
-        }
-
-        /// <inheritdoc />
-        public override LiteDocumentContent EditorContent
-        {
-            get
-            {
-                if (_editor == null)
-                    _editor = new NetProjectSettingsContent(this);
-                return _editor;
-            }
         }
 
         /// <inheritdoc />

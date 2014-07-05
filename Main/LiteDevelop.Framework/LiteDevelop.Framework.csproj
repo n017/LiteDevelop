@@ -79,6 +79,7 @@
     <Compile Include="Extensions\IExtensionManager.cs" />
     <Compile Include="Extensions\IFileService.cs" />
     <Compile Include="Extensions\InitializationContext.cs" />
+    <Compile Include="Extensions\IProjectHandler.cs" />
     <Compile Include="Extensions\ITemplateService.cs" />
     <Compile Include="Extensions\PropertyContainer.cs" />
     <Compile Include="FileSystem\Bookmark.cs" />
@@ -145,21 +146,9 @@
     <Compile Include="FileSystem\BuildResult.cs" />
     <Compile Include="FileSystem\IFilePathProvider.cs" />
     <Compile Include="FileSystem\ISavableFile.cs" />
-    <Compile Include="FileSystem\Projects\Net\AddReferenceDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FileSystem\Projects\Net\AddReferenceDialog.Designer.cs">
-      <DependentUpon>AddReferenceDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="FileSystem\Projects\Net\CSharp\CSharpProject.cs" />
     <Compile Include="FileSystem\Projects\Net\VisualBasic\VisualBasicProject.cs" />
     <Compile Include="FileSystem\Projects\Net\NetProject.cs" />
-    <Compile Include="FileSystem\Projects\Net\NetProjectSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FileSystem\Projects\Net\NetProjectSettingsControl.Designer.cs">
-      <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="IconProvider.cs" />
     <Compile Include="Languages\Net\CodeDomUnitFactory.cs" />
     <Compile Include="Languages\Web\PhpLanguage.cs" />
@@ -206,12 +195,6 @@
     <Compile Include="Mui\UILanguagePack.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FileSystem\Projects\Net\NetProjectSettingsControl.resx">
-      <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FileSystem\Projects\Net\AddReferenceDialog.resx">
-      <DependentUpon>AddReferenceDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

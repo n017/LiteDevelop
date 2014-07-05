@@ -25,9 +25,6 @@ namespace LiteDevelop.Framework.FileSystem
 
         public OpenedFile(FilePath filePath)
         {
-            if (!File.Exists(filePath.FullPath))
-                throw new FileNotFoundException("File does not exist.");
-
             FilePath = filePath;
             _registeredContents = new List<LiteDocumentContent>();
             Dependencies = new EventBasedCollection<string>();
@@ -215,8 +212,18 @@ namespace LiteDevelop.Framework.FileSystem
         }
 
         /// <summary>
-        /// Returns a stream to use for reading the contents.
+        /// Determines whether the file exists on this computer.
         /// </summary>
+        /// <return><c>True</c> whenever the file exists, otherwise <c>False</c>.</return>
+        public bool Exists()
+        {
+            return File.Exists(FilePath.FullPath);
+        }
+
+        /// <summary>
+        /// Opens a stream to read data from.
+        /// </summary>
+        /// <returns>A stream that allows reading data from.</returns>
         public Stream OpenRead()
         {
             if (_contents != null)
@@ -227,7 +234,7 @@ namespace LiteDevelop.Framework.FileSystem
         /// <summary>
         /// Saves the file to the current file path.
         /// </summary>
-        public void Save(IProgressReporter progressReporter)
+        public virtual void Save(IProgressReporter progressReporter)
         {
             if (string.IsNullOrEmpty(FilePath.FullPath))
                 throw new NotSupportedException("File path must be specified.");

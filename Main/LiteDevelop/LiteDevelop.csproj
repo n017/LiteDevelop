@@ -173,6 +173,20 @@
     <Compile Include="Gui\Forms\TemplatesTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Gui\ProjectEditors\AddReferenceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\ProjectEditors\AddReferenceDialog.Designer.cs">
+      <DependentUpon>AddReferenceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\ProjectEditors\NetProjectSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\ProjectEditors\NetProjectSettingsControl.Designer.cs">
+      <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\ProjectEditors\ProjectDocumentContent.cs" />
+    <Compile Include="Gui\ProjectEditors\ProjectSettingsEditorDescriptor.cs" />
     <Compile Include="Gui\Settings\AppearanceEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\Forms\ExtensionsDialog.resx">
       <DependentUpon>ExtensionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProjectEditors\AddReferenceDialog.resx">
+      <DependentUpon>AddReferenceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\ProjectEditors\NetProjectSettingsControl.resx">
+      <DependentUpon>NetProjectSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\Settings\AppearanceEditor.resx">
       <DependentUpon>AppearanceEditor.cs</DependentUpon>

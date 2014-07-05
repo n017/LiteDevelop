@@ -51,12 +51,9 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             if (node != null && node.ProjectEntry != null && node.ProjectEntry.HasProject)
             {
                 var extensionHost = LiteDevelopApplication.Current.ExtensionHost;
-                var editor = node.ProjectEntry.Project.EditorContent;
+                var editor = extensionHost.ExtensionManager.GetProjectHandlers(node.ProjectEntry.Project).FirstOrDefault();
 
-                if (!extensionHost.ControlManager.OpenDocumentContents.Contains(editor))
-                    extensionHost.ControlManager.OpenDocumentContents.Add(editor);
-
-                extensionHost.ControlManager.SelectedDocumentContent = editor;
+                editor.OpenProject(node.ProjectEntry.Project);
             }
         }
     }

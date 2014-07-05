@@ -1,12 +1,31 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using LiteDevelop.Framework;
+using LiteDevelop.Framework.Extensions;
+using LiteDevelop.Framework.FileSystem.Projects;
+using LiteDevelop.Framework.FileSystem.Projects.Net;
 using LiteDevelop.Framework.Gui;
 
-namespace LiteDevelop.Framework.FileSystem.Projects.Net
+namespace LiteDevelop.Gui.ProjectEditors
 {
-    public partial class NetProjectSettingsControl : UserControl
+    internal partial class NetProjectSettingsControl : UserControl
     {
+        public static readonly ProjectSettingsEditorDescriptor EditorDescriptor = new NetProjectSettingsEditorDescriptor();
+
+        private sealed class NetProjectSettingsEditorDescriptor : ProjectSettingsEditorDescriptor
+        {
+            public override bool CanOpenProject(Project project)
+            {
+                return project is NetProject;
+            }
+
+            public override void OpenProject(IControlManager manager, Project project)
+            {
+                manager.OpenDocumentContents.Add(new ProjectDocumentContent(project, new NetProjectSettingsControl((NetProject)project)));
+            }
+        }
+
         private NetProject _project;
         private bool _updateSettings = false;
 

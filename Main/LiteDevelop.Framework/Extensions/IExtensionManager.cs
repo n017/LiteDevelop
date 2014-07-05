@@ -39,7 +39,13 @@ namespace LiteDevelop.Framework.Extensions
         T GetLoadedExtension<T>() where T : LiteExtension;
 
         /// <summary>
-        /// Gets a collection of extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface and can be used for opening a specific file
+        /// Gets a collection of extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface.
+        /// </summary>
+        /// <returns>An enumerable collection of extensions implementing the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface.</returns>
+        IEnumerable<IFileHandler> GetFileHandlers();
+
+        /// <summary>
+        /// Gets a collection of extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface and can be used for opening a specific file.
         /// </summary>
         /// <param name="filePath">The file to open.</param>
         /// <returns>An enumerable collection of extensions implementing the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface.</returns>
@@ -51,6 +57,19 @@ namespace LiteDevelop.Framework.Extensions
         /// <param name="filePath">The file to open.</param>
         /// <returns>An extension implementing the <see cref="LiteDevelop.Framework.Extensions.IFileHandler" /> interface.</returns>
         IFileHandler GetPreferredFileHandler(FilePath filePath);
+
+        /// <summary>
+        /// Gets a collection of extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IProjectHandler" /> interface.
+        /// </summary>
+        /// <returns>An enumerable collection of extensions implementing the <see cref="LiteDevelop.Framework.Extensions.IProjectHandler" /> interface.</returns>
+        IEnumerable<IProjectHandler> GetProjectHandlers();
+
+        /// <summary>
+        /// Gets a collection of extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IProjectHandler" /> interface and can be used for opening a specific project.
+        /// </summary>
+        /// <param name="project">The project to open.</param>
+        /// <returns>An enumerable collection of extensions implementing the <see cref="LiteDevelop.Framework.Extensions.IProjectHandler" /> interface.</returns>
+        IEnumerable<IProjectHandler> GetProjectHandlers(Project project);
 
         /// <summary>
         /// Gets a collection of all extensions that implement the <see cref="LiteDevelop.Framework.Extensions.IDebugger" /> interface and can be used for debugging any project.
