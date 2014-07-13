@@ -13,7 +13,7 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
     {
         private IconProvider _iconProvider;
 
-        public ReferencesNode(IFileReferenceProvider referenceProvider, IconProvider iconProvider)
+        public ReferencesNode(IAssemblyReferenceProvider referenceProvider, IconProvider iconProvider)
             : base("References")
         {
             ReferenceProvider = referenceProvider;
@@ -24,19 +24,19 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             ImageIndex = SelectedImageIndex = SolutionExplorerIconProvider.Index_ReferencesDirectory;
 
             foreach (var reference in referenceProvider.References)
-                Nodes.Add(new FileReferenceNode(reference, _iconProvider));
+                Nodes.Add(new ReferenceNode(reference, _iconProvider));
         }
 
         private void References_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            Nodes.Add(new FileReferenceNode(e.TargetObject as string, _iconProvider));
+            Nodes.Add(new ReferenceNode(e.TargetObject as AssemblyReference, _iconProvider));
         }
 
         private void References_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
             foreach (TreeNode node in Nodes)
             {
-                if (node is FileReferenceNode && (node as FileReferenceNode).Reference == e.TargetObject as string)
+                if (node is ReferenceNode && (node as ReferenceNode).Reference == e.TargetObject as AssemblyReference)
                 {
                     node.Remove();
                     break;
@@ -44,7 +44,7 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
             }
         }
 
-        public IFileReferenceProvider ReferenceProvider
+        public IAssemblyReferenceProvider ReferenceProvider
         {
             get;
             set;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Extensions;
+using LiteDevelop.Framework.FileSystem;
 using LiteDevelop.Framework.FileSystem.Projects;
 using LiteDevelop.Framework.FileSystem.Projects.Net;
 using LiteDevelop.Framework.Gui;
@@ -133,13 +134,13 @@ namespace LiteDevelop.Gui.ProjectEditors
             var dlg = new AddReferenceDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _project.References.Add(dlg.SelectedAssembly);
+                _project.References.AddRange(dlg.GetSelectedAssemblies(_project));
             }
         }
 
         private void removeReferenceButton_Click(object sender, EventArgs e)
         {
-            _project.References.Remove((string)listBox1.SelectedItem);
+            _project.References.Remove((AssemblyReference)listBox1.SelectedItem);
         }
     }
 

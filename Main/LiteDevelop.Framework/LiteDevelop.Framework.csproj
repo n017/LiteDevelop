@@ -84,6 +84,7 @@
     <Compile Include="Extensions\PropertyContainer.cs" />
     <Compile Include="FileSystem\Bookmark.cs" />
     <Compile Include="FileSystem\BuildException.cs" />
+    <Compile Include="FileSystem\AssemblyReference.cs" />
     <Compile Include="FileSystem\IPropertyProvider.cs" />
     <Compile Include="FileSystem\Projects\IRootNamespaceProvider.cs" />
     <Compile Include="FileSystem\Projects\Net\CSharp\CSharpProjectDescriptor.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="FileSystem\Projects\SolutionVersion.cs" />
     <Compile Include="FileSystem\Projects\SolutionSettings.cs" />
     <Compile Include="IProgressReporter.cs" />
+    <Compile Include="IStringEvaluator.cs" />
     <Compile Include="Languages\Net\NetLanguageData.cs" />
     <Compile Include="Languages\SnapshotMemberComparers.cs" />
     <Compile Include="Languages\Web\WebLanguageData.cs" />
@@ -141,7 +143,7 @@
     <Compile Include="Gui\SettingsNode.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FileSystem\IFileReferenceProvider.cs" />
+    <Compile Include="FileSystem\IAssemblyReferenceProvider.cs" />
     <Compile Include="FileSystem\BuildError.cs" />
     <Compile Include="FileSystem\BuildResult.cs" />
     <Compile Include="FileSystem\IFilePathProvider.cs" />
@@ -157,7 +159,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StringEvaluator.cs" />
     <Compile Include="SubSystem.cs" />
     <Compile Include="FileSystem\Templates\Template.cs" />
     <Compile Include="Languages\ISnapshotProvider.cs" />

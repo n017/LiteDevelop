@@ -64,21 +64,18 @@ namespace LiteDevelop.Framework
                 return Index_Project;
             if (member is SolutionFolder)
                 return Index_Directory;
+            if (member is AssemblyReference)
+                return Index_AssemblyRef;
 
             string filePath = member as string;
 			var fileInfo = member as FileInfo;
+
             if (fileInfo != null)
-            {
                 filePath = fileInfo.FullName;
-            }
             else if (member is IFilePathProvider)
-            {
                 filePath = (member as IFilePathProvider).FilePath.FullPath;
-            }
             else if (member is DirectoryInfo || member is SolutionFolder)
-            {
                 return Index_Directory;
-            }
             
             string extension = Path.GetExtension(filePath);
             int index = _cachedExtensions.IndexOf(extension);

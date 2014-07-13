@@ -4,19 +4,20 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using LiteDevelop.Framework;
+using LiteDevelop.Framework.FileSystem;
 
 namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 {
-    internal class FileReferenceNode : AbstractNode
+    internal class ReferenceNode : AbstractNode
     {
-        public FileReferenceNode(string reference, IconProvider iconProvider)
-            : base(Path.GetFileName(reference))
+        public ReferenceNode(AssemblyReference reference, IconProvider iconProvider)
+            : base(reference.AssemblyName)
         {
             ImageIndex = SelectedImageIndex = iconProvider.GetImageIndex(reference);
             Reference = reference;
         }
 
-        public string Reference
+        public AssemblyReference Reference
         {
             get;
             private set;

@@ -30,4 +30,9 @@
   <ItemGroup Id="PropertiesWindow">
     <Item Id="Sorting">CategorizedAlphabetical</Item>
   </ItemGroup>
+  <ItemGroup Id="AddReferenceDialog">
+    <ItemArray Id="SearchPaths">
+      <Element>$(FrameworkInstallationDirectory)</Element>
+    </ItemArray>
+  </ItemGroup>"
 </Settings>

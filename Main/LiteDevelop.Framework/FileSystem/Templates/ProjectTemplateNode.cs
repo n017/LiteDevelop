@@ -49,27 +49,27 @@ namespace LiteDevelop.Framework.FileSystem.Templates
         {
             // TODO: better detection of project descriptor...
             var descriptor = LanguageDescriptor.GetLanguageByName(LanguageName).GetProjectDescriptors().FirstOrDefault();
-            var arguments = context.GetEvaluatorArguments();
+            var evaluator = context.GetStringEvaluator();
 
-            var project = descriptor.CreateProject(StringEvaluator.EvaluateString(Path.GetFileNameWithoutExtension(UnevaluatedName), arguments));
-            project.FilePath = context.FilePath.Combine(StringEvaluator.EvaluateString(UnevaluatedName, arguments));
+            var project = descriptor.CreateProject(evaluator.EvaluateString(Path.GetFileNameWithoutExtension(UnevaluatedName)));
+            project.FilePath = context.FilePath.Combine(evaluator.EvaluateString(UnevaluatedName));
             context.CurrentProject = project;
 
-            var referenceProvider = project as IFileReferenceProvider;
+            var referenceProvider = project as IAssemblyReferenceProvider;
             var propertyProvider = project as IPropertyProvider;
 
             if (referenceProvider != null && ReferencesNode != null)
             {
                 foreach (XmlNode child in ReferencesNode.ChildNodes)
-                    referenceProvider.References.Add(StringEvaluator.EvaluateString(child.InnerText, arguments));
+                    referenceProvider.References.Add(new AssemblyReference(evaluator.EvaluateString(child.InnerText)));
             }
 
             if (propertyProvider != null && PropertiesNode != null)
             {
                 foreach (XmlNode child in PropertiesNode.ChildNodes)
                     propertyProvider.SetProperty(
-                        StringEvaluator.EvaluateString(child.Attributes["Name"].Value, arguments), 
-                        StringEvaluator.EvaluateString(child.InnerText, arguments));
+                        evaluator.EvaluateString(child.Attributes["Name"].Value),
+                        evaluator.EvaluateString(child.InnerText));
             }
 
             if (FilesNode != null)

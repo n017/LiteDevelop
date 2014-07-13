@@ -10,7 +10,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects.MSBuild
     /// <summary>
     /// Represents a project that uses a Microsoft Build script to construct the output.
     /// </summary>
-    public abstract class MSBuildProject : Project, IFileReferenceProvider, IPropertyProvider
+    public abstract class MSBuildProject : Project, IAssemblyReferenceProvider, IPropertyProvider
     {
         private static readonly ProjectCollection _globalCollection = new ProjectCollection();
 
@@ -24,8 +24,9 @@ namespace LiteDevelop.Framework.FileSystem.Projects.MSBuild
         public event EventHandler ApplicationTypeChanged;
         public event EventHandler ConfigurationChanged;
         public event EventHandler PlatformChanged;
+
         private readonly ProjectRootElement _msBuildProject;
-        private readonly EventBasedCollection<string> _references = new EventBasedCollection<string>();
+        private readonly EventBasedCollection<AssemblyReference> _references = new EventBasedCollection<AssemblyReference>();
     
         public MSBuildProject()
         {
@@ -48,27 +49,57 @@ namespace LiteDevelop.Framework.FileSystem.Projects.MSBuild
             foreach (var item in _msBuildProject.Items)
             {
                 if (item.ItemType == "Reference")
-                    References.Add(item.Include);
+                    References.Add(ReadAssemblyReferenceItem(item));
                 else if (_fileItemTypes.Contains(item.ItemType))
                 {
-                    var entry = new ProjectFileEntry(new FilePath(this.ProjectDirectory, item.Include));
-
-                    foreach (var element in item.Metadata)
-                    {
-                        if (element.Name == "DependentUpon")
-                        {
-                            entry.Dependencies.Add(element.Value);
-                        }
-                    }
-
-                    entry.ParentProject = this;
+                    var entry = ReadProjectFileEntryItem(item);
                     AddFileEventHandlers(entry);
                     ProjectFiles.Add(entry);
+
                 }
             }
 
             SetupEventHandlers();
             HasUnsavedData = false;
+        }
+
+        private AssemblyReference ReadAssemblyReferenceItem(ProjectItemElement element)
+        {
+            var reference = new AssemblyReference(element.Include);
+            if (element.HasMetadata)
+            {
+                foreach (var metadata in element.Metadata)
+                {
+                    switch (metadata.Name)
+                    {
+                        case "SpecificVersion":
+                            reference.SpecificVersion = bool.Parse(metadata.Value);
+                            break;
+                        case "HintPath":
+                            reference.HintPath = metadata.Value;
+                            break;
+                        default:
+                            throw new FormatException(string.Format("Invalid or unsupported metadata '{0}'.", metadata.Name));
+                    }
+                }
+            }
+            return reference;
+        }
+
+        private ProjectFileEntry ReadProjectFileEntryItem(ProjectItemElement element)
+        {
+            var entry = new ProjectFileEntry(new FilePath(this.ProjectDirectory, element.Include));
+
+            foreach (var metadata in element.Metadata)
+            {
+                if (metadata.Name == "DependentUpon")
+                {
+                    entry.Dependencies.Add(metadata.Value);
+                }
+            }
+
+            entry.ParentProject = this;
+            return entry;
         }
 
         private void SetupEventHandlers()
@@ -126,7 +157,7 @@ namespace LiteDevelop.Framework.FileSystem.Projects.MSBuild
         /// <summary>
         /// Gets a collection of assembly references that are being used to compile the project.
         /// </summary>
-        public EventBasedCollection<string> References
+        public EventBasedCollection<AssemblyReference> References
         {
             get { return _references; }
         }
@@ -358,12 +389,19 @@ namespace LiteDevelop.Framework.FileSystem.Projects.MSBuild
 
         protected virtual void References_InsertedItem(object sender, CollectionChangedEventArgs e)
         {
-            _msBuildProject.AddItem("Reference", e.TargetObject as string);
+            var reference = e.TargetObject as AssemblyReference;
+            var item = _msBuildProject.AddItem("Reference", reference.AssemblyName);
+            if (!string.IsNullOrEmpty(reference.HintPath))
+            {
+                item.AddMetadata("SpecificVersion", reference.SpecificVersion.ToString());
+                item.AddMetadata("HintPath", reference.HintPath);
+            }
         }
 
         protected virtual void References_RemovedItem(object sender, CollectionChangedEventArgs e)
         {
-            var item = _msBuildProject.Items.FirstOrDefault(x => x.ItemType == "Reference" && x.Include == e.TargetObject as string);
+            var reference = e.TargetObject as AssemblyReference;
+            var item = _msBuildProject.Items.FirstOrDefault(x => x.ItemType == "Reference" && x.Include == reference.AssemblyName);
             if (item != null)
                 item.Parent.RemoveChild(item);
         }

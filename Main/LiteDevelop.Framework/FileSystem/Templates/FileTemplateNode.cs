@@ -50,17 +50,17 @@ namespace LiteDevelop.Framework.FileSystem.Templates
         public override IEnumerable<ISavableFile> Create(FileCreationContext context)
         {
             byte[] data = null;
-            var arguments = context.GetEvaluatorArguments();
+            var evaluator = context.GetStringEvaluator();
 
             if (ContentsType == Templates.ContentsType.Text)
-                data = Encoding.UTF8.GetBytes(StringEvaluator.EvaluateString(UnevaluatedContents, arguments));
+                data = Encoding.UTF8.GetBytes(evaluator.EvaluateString(UnevaluatedContents));
             else
                 data = Convert.FromBase64String(UnevaluatedContents);
 
-            var file = context.FileService.CreateFile(context.FilePath.ParentDirectory.Combine(StringEvaluator.EvaluateString(UnevaluatedName, arguments)), data);
+            var file = context.FileService.CreateFile(context.FilePath.ParentDirectory.Combine(evaluator.EvaluateString(UnevaluatedName)), data);
 
             if (!string.IsNullOrEmpty(DependentUpon))
-                file.Dependencies.Add(StringEvaluator.EvaluateString(DependentUpon, arguments));
+                file.Dependencies.Add(evaluator.EvaluateString(DependentUpon));
 
             if (context.CurrentProject != null)
             {

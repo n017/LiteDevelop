@@ -24,7 +24,7 @@ namespace LiteDevelop.Debugger.Net
             var asmName = new AssemblyName(args.Name);
             try
             {
-                var assembly =  Assembly.Load(asmName);
+                var assembly = Assembly.Load(asmName);
                 if (assembly != null)
                     return assembly;
             }

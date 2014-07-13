@@ -112,7 +112,7 @@
     <Compile Include="Gui\DockContents\SolutionExplorer\AbstractNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\DirectoryNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\FileNode.cs" />
-    <Compile Include="Gui\DockContents\SolutionExplorer\FileReferenceNode.cs" />
+    <Compile Include="Gui\DockContents\SolutionExplorer\ReferenceNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\PathNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\ProjectNode.cs" />
     <Compile Include="Gui\DockContents\SolutionExplorer\PropertiesNode.cs" />

@@ -56,7 +56,8 @@ namespace LiteDevelop.Framework.Mui
             {
                 if (parameters.Count > 0)
                 {
-                    value = StringEvaluator.EvaluateString(value, parameters);
+                    var evaluator = new DictionaryStringEvaluator(parameters);
+                    value = evaluator.EvaluateString(value);
                 }
 
                 return true;

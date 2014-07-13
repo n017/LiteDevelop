@@ -3,21 +3,62 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
+using LiteDevelop.Framework.FileSystem;
+using LiteDevelop.Framework.FileSystem.Projects;
 
 namespace LiteDevelop.Gui.ProjectEditors
 {
     internal partial class AddReferenceDialog : Form
     {
-        private static List<string> _assemblyCache = new List<string>();
+        private class AssemblyListViewItem : ListViewItem
+        {
+            private readonly FilePath _filePath;
+            private static readonly FilePath _microsoftNetFolder = new FilePath(typeof(object).Assembly.Location).ParentDirectory.ParentDirectory;
+
+            public AssemblyListViewItem(FileVersionInfo info)
+            {
+                AssemblyInfo = info;
+                _filePath = new FilePath(info.FileName);
+
+                this.Text = _filePath.FileName;
+                SubItems.AddRange(new string[]
+                {
+                    info.FileVersion,
+                    _filePath.FullPath,
+                });
+            }
+
+            public AssemblyReference GetAssemblyReference(Project container)
+            {
+                var reference = new AssemblyReference(_filePath.FileName);
+                if (!_filePath.ParentDirectory.FullPath.StartsWith(_microsoftNetFolder.FullPath))
+                {
+                    reference.HintPath = _filePath.GetRelativePath(container);
+                }
+
+                return reference;
+            }
+
+            public FileVersionInfo AssemblyInfo
+            {
+                get;
+                private set;
+            }
+        }
+
+        private static List<FileVersionInfo> _assemblyCache = new List<FileVersionInfo>();
 
         static AddReferenceDialog()
         {
-            foreach (var file in Directory.GetFiles(Path.GetDirectoryName(typeof(object).Assembly.Location)))
+            foreach (var searchPath in LiteDevelopSettings.Instance.GetArray("AddReferenceDialog.SearchPaths"))
             {
-                var name = Path.GetFileName(file);
-                if (Path.GetExtension(file) == ".dll" && name.StartsWith("System") || name.StartsWith("Microsoft"))
+                if (Directory.Exists(searchPath))
                 {
-                    _assemblyCache.Add(name);
+                    foreach (var file in Directory.GetFiles(searchPath, "*.dll"))
+                    {                        
+                        _assemblyCache.Add(FileVersionInfo.GetVersionInfo(file));
+                    }
                 }
             }
         }
@@ -25,15 +66,16 @@ namespace LiteDevelop.Gui.ProjectEditors
         public AddReferenceDialog()
         {
             InitializeComponent();
-            assemblyListBox.Items.AddRange(_assemblyCache.ToArray());
+
+            foreach (var assembly in _assemblyCache)
+                listView1.Items.Add(new AssemblyListViewItem(assembly));
         }
 
-        public string SelectedAssembly
-        { 
-            get 
-            {
-                return (string)assemblyListBox.SelectedItem; 
-            }
+        public IEnumerable<AssemblyReference> GetSelectedAssemblies(Project container)
+        {
+            foreach (AssemblyListViewItem item in listView1.CheckedItems)
+                if (item.Checked)
+                    yield return item.GetAssemblyReference(container);
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -55,7 +97,11 @@ namespace LiteDevelop.Gui.ProjectEditors
             };
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                assemblyListBox.Items.Add(ofd.FileName);
+                var item = new AssemblyListViewItem(FileVersionInfo.GetVersionInfo(ofd.FileName));
+                listView1.Items.Add(item);
+                item.Checked = true;
+                item.Selected = true;
+                item.EnsureVisible();
             }
         }
     }

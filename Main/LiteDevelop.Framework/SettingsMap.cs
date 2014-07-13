@@ -50,6 +50,21 @@ namespace LiteDevelop.Framework
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the evaluator to use for evaluating strings with parameters.
+        /// </summary>
+        public virtual IStringEvaluator Evaluator
+        {
+            get { return null; }
+        }
+
+        private string Evaluate(string unevaluatedValue)
+        {
+            if (Evaluator != null)
+                return Evaluator.EvaluateString(unevaluatedValue);
+            return unevaluatedValue;
+        }
+
         private void ReadItems(XmlReader reader, string folder)
         {
             reader.ReadStartElement();
@@ -80,7 +95,7 @@ namespace LiteDevelop.Framework
                     else if (reader.Name == "Item")
                     {
                         string itemName = reader.GetAttribute("Id");
-                        _nodes.Add(GetFullName(folder, itemName), reader.ReadElementString());
+                        _nodes.Add(GetFullName(folder, itemName), Evaluate(reader.ReadElementString()));
                     }
                 }
             }
@@ -95,14 +110,14 @@ namespace LiteDevelop.Framework
             {
                 if (reader.NodeType == XmlNodeType.Element && reader.Name == "Element")
                 {
-                    elements.Add(reader.ReadElementString());
+                    elements.Add(Evaluate(reader.ReadElementString()));
                 }
             }
 
             return elements.ToArray();
         }
 
-        private string GetFullName(string folder, string id)
+        private static string GetFullName(string folder, string id)
         {
             return (string.IsNullOrEmpty(folder) ? id : folder + "." + id);
         }
@@ -160,6 +175,15 @@ namespace LiteDevelop.Framework
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// Gets an array of string elements defined by the settings path.
+        /// </summary>
+        /// <param name="path">The path to the requested settings array.</param>
+        public IEnumerable<string> GetArray(string path)
+        {
+            return GetArray<string>(path);
         }
 
         /// <summary>

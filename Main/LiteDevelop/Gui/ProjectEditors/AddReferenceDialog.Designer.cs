@@ -31,7 +31,10 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.browseButton = new System.Windows.Forms.Button();
-            this.assemblyListBox = new System.Windows.Forms.ListBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // okButton
@@ -67,25 +70,42 @@
             this.browseButton.UseVisualStyleBackColor = true;
             this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
             // 
-            // assemblyListBox
+            // listView1
             // 
-            this.assemblyListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.assemblyListBox.FormattingEnabled = true;
-            this.assemblyListBox.HorizontalScrollbar = true;
-            this.assemblyListBox.IntegralHeight = false;
-            this.assemblyListBox.Location = new System.Drawing.Point(12, 12);
-            this.assemblyListBox.Name = "assemblyListBox";
-            this.assemblyListBox.Size = new System.Drawing.Size(494, 322);
-            this.assemblyListBox.TabIndex = 5;
+            this.listView1.CheckBoxes = true;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(494, 322);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Assembly";
+            this.columnHeader1.Width = 219;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Version";
+            this.columnHeader2.Width = 81;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Path";
+            this.columnHeader3.Width = 184;
             // 
             // AddReferenceDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 374);
-            this.Controls.Add(this.assemblyListBox);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
@@ -101,7 +121,10 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button browseButton;
-        private System.Windows.Forms.ListBox assemblyListBox;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
 
     }
 }

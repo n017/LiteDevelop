@@ -14,14 +14,26 @@ namespace LiteDevelop
 {
     internal class LiteDevelopSettings : SettingsMap
     {
+        public class LiteDevelopSettingsEvaluator : DictionaryStringEvaluator
+        {
+            private static Dictionary<string, string> _argumentMapping = new Dictionary<string, string>()
+            {
+                {"Documents", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)},
+                {"FrameworkInstallationDirectory", Path.GetDirectoryName(typeof(object).Assembly.Location)},
+            };
+
+            public LiteDevelopSettingsEvaluator()
+                : base(_argumentMapping)
+            {
+
+            }
+        }
+
         public static LiteDevelopSettings Instance { get; set; }
         public static LiteDevelopSettings Default { get; private set; }
 
         private static readonly string _settingsPath = Path.Combine(Constants.AppDataDirectory, "settings.xml");
-        private static Dictionary<string, string> _specialVars = new Dictionary<string, string>()
-        {
-            {"Documents", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)},
-        };
+        private static readonly IStringEvaluator _evaluator = new LiteDevelopSettingsEvaluator();
 
         static LiteDevelopSettings()
         {
@@ -44,13 +56,11 @@ namespace LiteDevelop
             FallbackMap = Default;
         }
 
-        public override T GetValue<T>(string path)
+        public override IStringEvaluator Evaluator
         {
-            var returnValue = base.GetValue<T>(path);
-
-			return returnValue is string ? (T)Convert.ChangeType(StringEvaluator.EvaluateString(returnValue as string, _specialVars), typeof(T)) : returnValue;
+            get { return _evaluator; }
         }
-        
+
         public void Save()
         {
             this.Save(new FilePath(_settingsPath));

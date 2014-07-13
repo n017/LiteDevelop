@@ -34,8 +34,8 @@ namespace LiteDevelop.Gui.DockContents.SolutionExplorer
 
                 _propertiesNode = new PropertiesNode(iconProvider);
 
-                if (project.Project is IFileReferenceProvider)
-                    _referencesNode = new ReferencesNode(project.Project as IFileReferenceProvider, iconProvider);
+                if (project.Project is IAssemblyReferenceProvider)
+                    _referencesNode = new ReferencesNode(project.Project as IAssemblyReferenceProvider, iconProvider);
             }
 
             if (project.IsLoaded)
