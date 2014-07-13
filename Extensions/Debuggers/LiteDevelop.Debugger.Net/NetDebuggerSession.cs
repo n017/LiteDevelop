@@ -31,6 +31,7 @@ namespace LiteDevelop.Debugger.Net
         private ManagedCallbackProxy _managedCallback;
         private readonly Dictionary<ICorDebugProcess, DebuggeeProcess> _debuggerProcesses = new Dictionary<ICorDebugProcess, DebuggeeProcess>();
         private SourceRange _currentRange;
+        private bool _isDisposed = false;
 
         public NetDebuggerSession()
         {
@@ -49,6 +50,12 @@ namespace LiteDevelop.Debugger.Net
             ComInstanceCollector = new ComInstanceCollector();
             MetaDataDispenser = new MetaDataDispenser(ComInstanceCollector);
             Resolver = new ReflectionAssemblyResolver();
+        }
+
+        private void AssertIsNotDisposed()
+        {
+            if (_isDisposed)
+                throw new ObjectDisposedException(typeof(NetDebuggerSession).FullName);
         }
 
         #region DebuggerSession Members
@@ -85,6 +92,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void Attach(Process process)
         {
+            AssertIsNotDisposed();
             var debuggerInterface = CreateOrGetDebuggerInterface(process);
 
             ICorDebugProcess rawProcess;
@@ -93,11 +101,14 @@ namespace LiteDevelop.Debugger.Net
 
         public override void Detach()
         {
+            AssertIsNotDisposed();
             throw new NotImplementedException();
         }
 
         public override void Start(ProcessStartInfo startInfo)
         {
+            AssertIsNotDisposed();
+
             if (!File.Exists(startInfo.FileName))
                 throw new FileNotFoundException();
 
@@ -129,6 +140,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void BreakAll()
         {
+            AssertIsNotDisposed();
             foreach (var process in Processes)
                 process.Stop();
             OnPaused(new PauseEventArgs(PauseReason.Break));
@@ -136,6 +148,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void Continue()
         {
+            AssertIsNotDisposed();
             foreach (var process in Processes)
                 process.Continue();
             OnResumed(EventArgs.Empty);
@@ -143,6 +156,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void StepInto()
         {
+            AssertIsNotDisposed();
             OnResumed(EventArgs.Empty);
             foreach (var process in Processes)
                 process.CurrentFrame.CreateStepper().StepIn();
@@ -150,6 +164,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void StepOut()
         {
+            AssertIsNotDisposed();
             OnResumed(EventArgs.Empty);
             foreach (var process in Processes)
                 process.CurrentFrame.CreateStepper().StepOut();
@@ -157,6 +172,7 @@ namespace LiteDevelop.Debugger.Net
 
         public override void StepOver()
         {
+            AssertIsNotDisposed();
             OnResumed(EventArgs.Empty);
             foreach (var process in Processes)
                 process.CurrentFrame.CreateStepper().StepOver();
@@ -164,15 +180,19 @@ namespace LiteDevelop.Debugger.Net
 
         public override void StopAll()
         {
+            AssertIsNotDisposed();
             foreach (var process in Processes)
                 process.Terminate();
         }
 
-        public override void Dispose()
+        public override void Dispose(bool disposing)
         {
-            Resolver.Dispose();
-            ComInstanceCollector.ReleaseAll();
-            base.Dispose();
+            if (!_isDisposed)
+            {
+                Resolver.Dispose();
+                ComInstanceCollector.ReleaseAll();
+                _isDisposed = true;
+            }
         }
 
         #endregion

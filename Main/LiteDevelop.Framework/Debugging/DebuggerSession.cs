@@ -106,10 +106,13 @@ namespace LiteDevelop.Framework.Debugging
                 Resumed(this, e);
         }
 
+        public abstract void Dispose(bool disposing);
+
         #region IDisposable Members
 
-        public virtual void Dispose()
+        public void Dispose()
         {
+            Dispose(true);
             if (Disposed != null)
                 Disposed(this, EventArgs.Empty);
         }

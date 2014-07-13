@@ -257,22 +257,25 @@ namespace LiteDevelop.Extensions
         public void DispatchDebugStarted(EventArgs e)
         {
             CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
-            CurrentDebuggerSession.Disposed += CurrentDebuggerSession_Disposed;
+            CurrentDebuggerSession.ActiveChanged += CurrentDebuggerSession_ActiveChanged;
             if (DebugStarted != null)
                 DebugStarted(this, e);
         }
+
 
         public event EventHandler DebugStopped;
         public void DispatchDebugStopped(EventArgs e)
         {
             if (DebugStopped != null)
                 DebugStopped(this, e);
+            CurrentDebuggerSession.Dispose();
             CurrentDebuggerSession = null;
         }
 
-        private void CurrentDebuggerSession_Disposed(object sender, EventArgs e)
+        private void CurrentDebuggerSession_ActiveChanged(object sender, EventArgs e)
         {
-            DispatchDebugStopped(EventArgs.Empty);
+            if (!CurrentDebuggerSession.IsActive)
+                DispatchDebugStopped(EventArgs.Empty);
         }
 
         private void CurrentDebuggerSession_Paused(object sender, PauseEventArgs e)

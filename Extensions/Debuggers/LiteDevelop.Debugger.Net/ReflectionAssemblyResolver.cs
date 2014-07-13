@@ -11,6 +11,7 @@ namespace LiteDevelop.Debugger.Net
     public class ReflectionAssemblyResolver : IAssemblyResolver
     {
         private readonly AppDomain _domain;
+        private bool _isDisposed = false;
 
         public ReflectionAssemblyResolver()
         {
@@ -57,7 +58,12 @@ namespace LiteDevelop.Debugger.Net
 
         public void Dispose()
         {
-            AppDomain.Unload(_domain);
+            if (!_isDisposed)
+            {
+                AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_AssemblyResolve;
+                AppDomain.Unload(_domain);
+                _isDisposed = true;
+            }
         }
 
         #endregion

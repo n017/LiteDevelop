@@ -835,7 +835,6 @@ namespace LiteDevelop.Gui.Forms
                                 break;
                             case PostBuildAction.Debug:
                                 _extensionHost.CurrentDebuggerSession = _extensionHost.ExtensionManager.GetPreferredDebugger(solution.GetFirstExecutableProject()).CreateSession();
-                                _extensionHost.CurrentDebuggerSession.ActiveChanged += CurrentDebuggerSession_ActiveChanged;
                                 _extensionHost.CurrentDebuggerSession.Resumed += CurrentDebuggerSession_Resumed;
                                 _extensionHost.CurrentDebuggerSession.Paused += CurrentDebuggerSession_Paused;
                                 _extensionHost.CurrentDebuggerSession.Disposed += CurrentDebuggerSession_Disposed;
@@ -891,15 +890,7 @@ namespace LiteDevelop.Gui.Forms
             breakToolStripButton.Enabled =
                 breakToolStripMenuItem.Enabled = session.CanBreak;
         }
-
-        private void CurrentDebuggerSession_ActiveChanged(object sender, EventArgs e)
-        {
-            if (!_extensionHost.CurrentDebuggerSession.IsActive)
-            {
-                _extensionHost.CurrentDebuggerSession.Dispose();
-            }
-        }
-
+        
         private void cleanSolutionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _extensionHost.CurrentSolution.CleanAsync(_extensionHost.CreateOrGetReporter("Build"));
