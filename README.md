@@ -66,4 +66,3 @@ Todo
 -   Forms designer serializer needs work.
 -	Forms designer event bindings.
 -   Appearance mapping needs work.
--	Load templates from xml files. (!)
