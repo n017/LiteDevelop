@@ -19,6 +19,11 @@
     <Item Id="None">Geen</Item>
     <Item Id="Name">Naam:</Item>
     <Item Id="Directory">Map:</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="FileNotFound">Het bestand $(file) kan niet gevonden worden.</Item>
+      <Item Id="NoEditorAvailable">Er is geen editor beschikbaar voor bestand "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Er is geen foutopsoringsprogramma beschikbaar voor project "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +147,6 @@
   <ItemGroup Id="MainForm">
 
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Er is geen editor beschikbaar voor bestand "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">Er is geen foutopsoringsprogramma beschikbaar voor project "$(project)".</Item>
       <Item Id="BuildFailed">Eén of meerdere bouw-processen zijn mislukt. Zie het output scherm of de foutmeldingen voor details.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Weet u zeker dat u de huidige solution wilt sluiten?</Item>
       <Item Id="CloseAllDocumentsWarning">Weet u zeker dat u de geopende documenten wilt sluiten?</Item>

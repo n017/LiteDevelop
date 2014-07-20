@@ -336,7 +336,7 @@ namespace LiteDevelop.Gui.Forms
 
             if (fileHandlers.Length == 0)
             {
-                MessageBox.Show(LiteDevelopApplication.Current.MuiProcessor.GetString("MainForm.Messages.NoEditorAvailable", "file=" + path.FullPath), "LiteDevelop", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(LiteDevelopApplication.Current.MuiProcessor.GetString("Common.Messages.NoEditorAvailable", "file=" + path.FullPath), "LiteDevelop", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

@@ -154,8 +154,8 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemActivate += new System.EventHandler(this.listView1_ItemActivate);
             this.listView1.SizeChanged += new System.EventHandler(this.listView1_SizeChanged);
-            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 

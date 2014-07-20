@@ -13,6 +13,10 @@
     <Item Id="None">Hiçbiri</Item>
     <Item Id="Name">İsim</Item>
     <Item Id="Directory">Konum</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">"$(file)" dosyası için editör mevcut değil.</Item>
+      <Item Id="NoDebuggerAvailable">"$(project)" projesi için debugger mevcut değil.</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -121,8 +125,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">"$(file)" dosyası için editör mevcut değil.</Item>
-      <Item Id="NoDebuggerAvailable">"$(project)" projesi için debugger mevcut değil.</Item>
       <Item Id="BuildFailed">Bir veya birden fazla proje derlenemedi. Ayrıntılar için hata listesine veya çıkış penceresine bakın.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Mevcut oturumu kapatmak istediğinizden eminmisiniz?</Item>
       <Item Id="CloseAllDocumentsWarning">Açık olan tüm dökümanları kapatmak istediğinizden eminmisiniz?</Item>

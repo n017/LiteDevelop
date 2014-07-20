@@ -60,6 +60,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _extension.ExtensionHost.BookmarkManager.Bookmarks.RemovedItem += Bookmarks_RemovedItem;
             _extension.ExtensionHost.ErrorManager.Errors.InsertedItem += Errors_InsertedItem;
             _extension.ExtensionHost.ErrorManager.Errors.RemovedItem += Errors_RemovedItem;
+            _extension.ExtensionHost.ErrorManager.Errors.ClearedCollection += Errors_ClearedCollection;
             _extension.ExtensionHost.DebugStarted += ExtensionHost_DebugStarted;
             _extension.ExtensionHost.DebugStopped += ExtensionHost_DebugStopped;
 
@@ -764,6 +765,11 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 ClearLastHighlighting(_instructionPointer.Style);
                 TextBox.Bookmarks.Remove(_instructionPointer);
             }
+        }
+
+        private void Errors_ClearedCollection(object sender, EventArgs e)
+        {
+            TextBox.Range.ClearStyle(_errorStyle, _warningStyle);
         }
 
         private void Errors_RemovedItem(object sender, CollectionChangedEventArgs e)

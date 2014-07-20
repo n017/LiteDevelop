@@ -157,6 +157,16 @@ namespace LiteDevelop.Framework.FileSystem
             return path;
         }
 
+        public bool FileExists()
+        {
+            return File.Exists(this.FullPath);
+        }
+
+        public bool DirectoryExists()
+        {
+            return Directory.Exists(this.FullPath);
+        }
+
         public bool Equals(FilePath path)
         {
             if (path == null)

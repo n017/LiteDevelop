@@ -19,6 +19,10 @@
     <Item Id="None">Ninguno</Item>
     <Item Id="Name">Nombre</Item>
     <Item Id="Directory">Directorio</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">No hay editor disponible para el archivo "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">No hay depurador disponible para el proyecto "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +146,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">No hay editor disponible para el archivo "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">No hay depurador disponible para el proyecto "$(project)".</Item>
       <Item Id="BuildFailed">Uno o más proyectos fallaron en la construcción. Véase lista de errores o la ventana de salida para más detalles.</Item>
       <Item Id="UnloadCurrentSolutionWarning">¿Está seguro que desea descargar la solución actual?</Item>
       <Item Id="CloseAllDocumentsWarning">¿Está seguro que desea cerrar todos los documentos abiertos?</Item>

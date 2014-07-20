@@ -19,6 +19,10 @@
     <Item Id="None">Aucun</Item>
     <Item Id="Name">Nom</Item>
     <Item Id="Directory">Dossier</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Il n'y a pas d'éditeur disponible pour le fichier "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Il n'y a pas de débogueur disponible pour le project "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -127,8 +131,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Il n'y a pas d'éditeur disponible pour le fichier "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">Il n'y a pas de débogueur disponible pour le project "$(project)".</Item>
       <Item Id="BuildFailed">Echec de la génération d'un ou plusieurs projet(s). Veuillez consulter la liste d'erreur(s) pour plus de détails.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Etes-vos sure de vouloir décharger le projet actuel?</Item>
       <Item Id="CloseAllDocumentsWarning">Etes-vos sure de vouloir fermer tous les documents ouverts?</Item>

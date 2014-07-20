@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using LiteDevelop.Framework.Extensions;
 using LiteDevelop.Framework.FileSystem;
 using LiteDevelop.Framework.Gui;
@@ -16,6 +17,7 @@ namespace LiteDevelop.Extensions
 
         public DefaultSourceNavigator()
         {
+            
             LiteDevelopApplication.Current.InitializedApplication += Current_InitializedApplication;
         }
 
@@ -23,6 +25,15 @@ namespace LiteDevelop.Extensions
 
         public void NavigateToLocation(SourceLocation location)
         {
+            if (!location.FilePath.FileExists())
+            {
+                MessageBox.Show(_muiProcessor.GetString("Common.Messages.FileNotFound", new Dictionary<string, string>()
+                    {
+                        {"file", location.FilePath.FullPath}
+                    }), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var file = _host.FileService.OpenFile(location.FilePath);
 
             var navigator = file.CurrentDocumentContent as ISourceNavigator ??
@@ -33,7 +44,7 @@ namespace LiteDevelop.Extensions
                 var fileHandlers = _host.ExtensionManager.GetFileHandlers(location.FilePath).Where(x => x is ISourceNavigator).ToArray();
 
                 if (fileHandlers.Length == 0)
-                    throw new ArgumentException(_muiProcessor.GetString("MainForm.Messages.NoEditorAvailable", "file=" + location.FilePath.FullPath));
+                    throw new ArgumentException(_muiProcessor.GetString("Common.Messages.NoEditorAvailable", "file=" + location.FilePath.FullPath));
 
                 var handler = _host.FileService.SelectFileHandler(fileHandlers, location.FilePath);
                 handler.OpenFile(file);

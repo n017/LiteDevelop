@@ -46,7 +46,7 @@ namespace LiteDevelop.Framework.FileSystem
                 }
             }
         }
-
+        
         /// <summary>
         /// Gets a read-only collection of document view contents that have currently viewing the file.
         /// </summary>

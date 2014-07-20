@@ -19,6 +19,11 @@
     <Item Id="None">None</Item>
     <Item Id="Name">Name:</Item>
     <Item Id="Directory">Deck:</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="FileNotFound">The treasure at $(file) be not able to be digged up, it ain't found.</Item>
+      <Item Id="NoEditorAvailable">There be no ship builder available to spy "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">There be no debugger available for project "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +147,6 @@
   <ItemGroup Id="MainForm">
 
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">There be no ship builder available to spy "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">There be no debugger available for project "$(project)".</Item>
       <Item Id="BuildFailed">One or more ships sunk to Davy Jones locker. See leak list or bottle o' messages for details.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Ye be sure ye want to abandon yer current navy?</Item>
       <Item Id="CloseAllDocumentsWarning">Ye be sure ye want to throw overboard all th' opened ship parts?</Item>

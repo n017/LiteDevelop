@@ -226,7 +226,7 @@ namespace LiteDevelop.Gui.DockContents
             _resizing = false;
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listView1_ItemActivate(object sender, EventArgs e)
         {
             goToFileToolStripMenuItem.PerformClick();
         }

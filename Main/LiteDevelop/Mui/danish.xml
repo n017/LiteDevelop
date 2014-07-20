@@ -19,6 +19,10 @@
     <Item Id="None">Ingen</Item>
     <Item Id="Name">Navn</Item>
     <Item Id="Directory">Mappe</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Der er ingen behandler tilgængelig for "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Der er ingen debugger tilgængelig for "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +146,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Der er ingen behandler tilgængelig for "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">Der er ingen debugger tilgængelig for "$(project)".</Item>
       <Item Id="BuildFailed">En eller flere projekter kunne ikke bygges. Se fejl listen for mere info.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Er du sikker på du vil afkoble den nuværende løsning?</Item>
       <Item Id="CloseAllDocumentsWarning">Er du sikker på du vil lukke alle dokumenter?</Item>

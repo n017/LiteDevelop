@@ -19,6 +19,10 @@
     <Item Id="None">Ingen</Item>
     <Item Id="Name">Namn</Item>
     <Item Id="Directory">Katalog</Item>
+    <ItemGroup Id="Messages">
+        <Item Id="NoEditorAvailable">Det finns ingen redigerare för filen "$(file)".</Item>
+        <Item Id="NoDebuggerAvailable">Det finns ingen debugger tillgänglig för projektet "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +146,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Det finns ingen redigerare för filen "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">Det finns ingen debugger tillgänglig för projektet "$(project)".</Item>
       <Item Id="BuildFailed">Ett eller flera projekt misslyckades att byggas. Se fellista eller output fönstret för detaljer.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Är du säker på att du vill ta bort aktuell solution?</Item>
       <Item Id="CloseAllDocumentsWarning">Är du säker på att du vill stänga alla öppna dokument?</Item>

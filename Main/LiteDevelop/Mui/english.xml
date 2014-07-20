@@ -19,6 +19,12 @@
     <Item Id="None">None</Item>
     <Item Id="Name">Name</Item>
     <Item Id="Directory">Directory</Item>
+  
+    <ItemGroup Id="Messages">
+      <Item Id="FileNotFound">The file $(file) could not be found.</Item>
+      <Item Id="NoEditorAvailable">There is no editor available for file "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">There is no debugger available for project "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +148,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">There is no editor available for file "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">There is no debugger available for project "$(project)".</Item>
       <Item Id="BuildFailed">One or more projects failed to build. See error list or output window for details.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Are you sure you want to unload the current solution?</Item>
       <Item Id="CloseAllDocumentsWarning">Are you sure you want to close all open documents?</Item>

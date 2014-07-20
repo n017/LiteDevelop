@@ -19,6 +19,10 @@
     <Item Id="None">None</Item>
     <Item Id="Name">Nimi</Item>
     <Item Id="Directory">Hakemisto</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Tiedostolle "$(file)" ei ole sopivaa editoria.</Item>
+      <Item Id="NoDebuggerAvailable">Projektille "$(project)" ei ole sopivaa debuggeria.</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +146,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Tiedostolle "$(file)" ei ole sopivaa editoria.</Item>
-      <Item Id="NoDebuggerAvailable">Projektille "$(project)" ei ole sopivaa debuggeria.</Item>
       <Item Id="BuildFailed">Yhden tai useamman projektin käännös epäonnistui. Lisää tietoa virhelistauksesta tai tulosteikkunasta.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Oletko varma että haluat sulkea avoimen kokoelman?</Item>
       <Item Id="CloseAllDocumentsWarning">Oletko varma että haluat sulkea kaikki avoimet dokumentit?</Item>

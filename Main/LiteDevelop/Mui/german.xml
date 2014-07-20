@@ -19,6 +19,10 @@
     <Item Id="None">Keine</Item>
     <Item Id="Name">Name</Item>
     <Item Id="Directory">Verzeichnis</Item>
+    <ItemGroup Id="Messages">
+      <Item Id="NoEditorAvailable">Es ist kein Editor verfügbar für "$(file)".</Item>
+      <Item Id="NoDebuggerAvailable">Es ist kein Debugger verfügbar für "$(project)".</Item>
+    </ItemGroup>
   </ItemGroup>
 
   <ItemGroup Id="AboutDialog">
@@ -142,8 +146,6 @@
   <ItemGroup Id="MainForm">
     
     <ItemGroup Id="Messages">
-      <Item Id="NoEditorAvailable">Es ist kein Editor verfügbar für "$(file)".</Item>
-      <Item Id="NoDebuggerAvailable">Es ist kein Debugger verfügbar für "$(project)".</Item>
       <Item Id="BuildFailed">Erstellen eines oder mehrerer Projekte fehlgeschlagen. Mehr Details in der Fehlerliste oder im Ausgabefenster.</Item>
       <Item Id="UnloadCurrentSolutionWarning">Möchten Sie wirklich die Solution schließen?</Item>
       <Item Id="CloseAllDocumentsWarning">Möchten Sie wirklich alle offenen Dateien schließen?</Item>
