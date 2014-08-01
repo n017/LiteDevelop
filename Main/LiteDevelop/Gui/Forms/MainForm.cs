@@ -354,8 +354,35 @@ namespace LiteDevelop.Gui.Forms
             UserOpenWith(new FilePath(file));
         }
 
+        private bool PromptDebuggerSessionActive()
+        {
+            if (MessageBox.Show(
+                    LiteDevelopApplication.Current.MuiProcessor.GetString("Common.Messages.DebuggerStillActive"),
+                    "LiteDevelop",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Yes)
+            {
+                try
+                {
+                    _extensionHost.CurrentDebuggerSession.StopAll();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return false;
+        }
+
         private bool CloseCurrentSolution()
         {
+            if (_extensionHost.CurrentDebuggerSession != null && !PromptDebuggerSessionActive())
+            {
+                return false;
+            }
+
             if (_extensionHost.CurrentSolution != null)
             {
                 _extensionHost.CurrentSolution.Settings.OpenedFiles.Clear();

@@ -24,6 +24,7 @@
       <Item Id="FileNotFound">The file $(file) could not be found.</Item>
       <Item Id="NoEditorAvailable">There is no editor available for file "$(file)".</Item>
       <Item Id="NoDebuggerAvailable">There is no debugger available for project "$(project)".</Item>
+      <Item Id="DebuggerStillActive">A debugger is still active. Do you want to terminate the session?</Item>
     </ItemGroup>
   </ItemGroup>
 

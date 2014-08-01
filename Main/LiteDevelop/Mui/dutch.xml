@@ -23,6 +23,7 @@
       <Item Id="FileNotFound">Het bestand $(file) kan niet gevonden worden.</Item>
       <Item Id="NoEditorAvailable">Er is geen editor beschikbaar voor bestand "$(file)".</Item>
       <Item Id="NoDebuggerAvailable">Er is geen foutopsoringsprogramma beschikbaar voor project "$(project)".</Item>
+      <Item Id="DebuggerStillActive">Een foutopsoringsprogramma is nog steeds actief. Wilt u de sessie beëindigen?</Item>
     </ItemGroup>
   </ItemGroup>
 
