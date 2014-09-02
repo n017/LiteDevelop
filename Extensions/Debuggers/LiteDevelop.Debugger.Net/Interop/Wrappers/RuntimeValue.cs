@@ -181,7 +181,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                     var type = Type;
                     while (type != null)
                     {
-                        var module = Session.Resolver.ResolveModule(type.Class.Module.Name);
+                        var module = Session.AssemblyResolver.ResolveModule(type.Class.Module.Name);
                         if (module != null)
                         {
                             var resolvedType = module.ResolveMember(type.Class.Token.GetToken()) as ITypeDefinition;

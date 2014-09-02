@@ -8,21 +8,30 @@ using LiteDevelop.Debugger.Net.Interop.Com.Symbols;
 
 namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
 {
-    public class MetaDataDispenser
+    public class PdbSymbolsResolver : ISymbolsResolver
     {
         private readonly IMetaDataDispenser _dispenser;
         private readonly ISymUnmanagedBinder2 _symbolBinder;
         private readonly Dictionary<string, PdbSymbols> _readers = new Dictionary<string, PdbSymbols>();
         private readonly ComInstanceCollector _instanceCollector;
 
-        internal MetaDataDispenser(ComInstanceCollector instanceCollector)
+        internal PdbSymbolsResolver(ComInstanceCollector instanceCollector)
         {
             _instanceCollector = instanceCollector;
             _instanceCollector.AddComObject(_dispenser = new IMetaDataDispenser());
             _instanceCollector.AddComObject(_symbolBinder = new ISymUnmanagedBinder2());
         }
 
-        public PdbSymbols GetReaderForFile(string assemblyFile)
+        #region ISymbolsResolver Members
+
+        ISymbolsProvider ISymbolsResolver.GetSymbolsProviderForFile(string assemblyFile)
+        {
+            return GetSymbolsProviderForFile(assemblyFile);
+        }
+
+        #endregion
+
+        public PdbSymbols GetSymbolsProviderForFile(string assemblyFile)
         {
             PdbSymbols reader;
             if (!_readers.TryGetValue(assemblyFile, out reader))
@@ -50,5 +59,6 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
 
             return reader;
         }
+
     }
 }

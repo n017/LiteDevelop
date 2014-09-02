@@ -157,7 +157,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 
         public static RuntimeValue InvokeMethod(RuntimeThread thread, int functionToken, params RuntimeValue[] arguments)
         {
-            var resolvedModule = thread.Session.Resolver.ResolveModule(thread.CurrentFrame.Function.Module.Name);
+            var resolvedModule = thread.Session.AssemblyResolver.ResolveModule(thread.CurrentFrame.Function.Module.Name);
             if (resolvedModule != null)
             {
                 var resolvedMember = resolvedModule.ResolveMember(functionToken);

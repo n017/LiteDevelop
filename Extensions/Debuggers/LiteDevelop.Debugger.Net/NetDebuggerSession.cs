@@ -48,8 +48,8 @@ namespace LiteDevelop.Debugger.Net
 
             PendingBreakpoints = new List<BreakpointBookmark>();
             ComInstanceCollector = new ComInstanceCollector();
-            MetaDataDispenser = new MetaDataDispenser(ComInstanceCollector);
-            Resolver = new ReflectionAssemblyResolver();
+            SymbolsResolver = new PdbSymbolsResolver(ComInstanceCollector);
+            AssemblyResolver = new ReflectionAssemblyResolver();
         }
 
         private void AssertIsNotDisposed()
@@ -189,7 +189,7 @@ namespace LiteDevelop.Debugger.Net
         {
             if (!_isDisposed)
             {
-                Resolver.Dispose();
+                AssemblyResolver.Dispose();
                 ComInstanceCollector.ReleaseAll();
                 _isDisposed = true;
             }
@@ -199,13 +199,13 @@ namespace LiteDevelop.Debugger.Net
 
         #region Properties
 
-        public MetaDataDispenser MetaDataDispenser
+        public ISymbolsResolver SymbolsResolver
         {
             get;
-            private set;
+            set;
         }
 
-        public IAssemblyResolver Resolver
+        public IAssemblyResolver AssemblyResolver
         {
             get;
             set;

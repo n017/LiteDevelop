@@ -116,7 +116,7 @@
     <Compile Include="Interop\Wrappers\RuntimeValue.cs" />
     <Compile Include="Interop\Wrappers\SourceStepper.cs" />
     <Compile Include="Interop\Wrappers\Symbols\LocalVariable.cs" />
-    <Compile Include="Interop\Wrappers\Symbols\MetaDataDispenser.cs" />
+    <Compile Include="Interop\Wrappers\Symbols\PdbSymbolsResolver.cs" />
     <Compile Include="Interop\Wrappers\Symbols\MethodSymbols.cs" />
     <Compile Include="Interop\Wrappers\Symbols\SequencePoint.cs" />
     <Compile Include="Interop\Wrappers\Symbols\PdbSymbols.cs" />

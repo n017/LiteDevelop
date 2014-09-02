@@ -21,7 +21,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             _assembly = assembly;
             _comModule = comModule;
 
-            Symbols = _assembly.Domain.Process.Session.MetaDataDispenser.GetReaderForFile(this.Name);
+            Symbols = _assembly.Domain.Process.Session.SymbolsResolver.GetSymbolsProviderForFile(this.Name);
             if (Symbols != null)
             {
                 int index = 0, max = Session.PendingBreakpoints.Count;
@@ -64,9 +64,10 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             }
         }
 
-        ISymbolsProvider IModule.Symbols
+        public ISymbolsProvider Symbols
         {
-            get { return Symbols; }
+            get;
+            private set;
         }
 
         #endregion
@@ -74,12 +75,6 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         public RuntimeAssembly Assembly
         {
             get { return _assembly; }
-        }
-
-        public PdbSymbols Symbols
-        {
-            get;
-            private set;
         }
 
         public bool TrySetBreakpoint(BreakpointBookmark breakpoint)

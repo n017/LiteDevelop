@@ -113,6 +113,7 @@
     <Compile Include="IFunctionSymbols.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="ISymbolsProvider.cs" />
+    <Compile Include="ISymbolsResolver.cs" />
     <Compile Include="IThreadProvider.cs" />
     <Compile Include="IType.cs" />
     <Compile Include="IValue.cs" />
