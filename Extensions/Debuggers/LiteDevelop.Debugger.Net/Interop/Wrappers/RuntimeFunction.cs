@@ -72,7 +72,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             get
             {
                 if (_methodSymbols == null && Module != null && Module.Symbols != null)
-                    _methodSymbols = Module.Symbols.GetFunctionSymbols(this);
+                    _methodSymbols = (MethodSymbols)Module.Symbols.GetFunctionSymbols(this);
                 return _methodSymbols;
             }
         }
