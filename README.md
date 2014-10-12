@@ -36,10 +36,6 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View call stack.
     -   View running threads.
 
-Donate
----
-
-
 How to compile
 ---
 Open the project in visual studio and click build, or use one of the batch files included in the root directory.
