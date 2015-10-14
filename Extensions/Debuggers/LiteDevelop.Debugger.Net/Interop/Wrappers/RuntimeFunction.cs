@@ -13,7 +13,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
     {
         private readonly RuntimeModule _module;
         private readonly ICorDebugFunction _comFunction;
-        private MethodSymbols _methodSymbols;
+        private IFunctionSymbols _methodSymbols;
         private RuntimeFunctionCode _code;
 
         internal RuntimeFunction(RuntimeModule module, ICorDebugFunction comFunction)
@@ -54,27 +54,33 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             get
             {
+                
                 uint token;
                 _comFunction.GetToken(out token);
                 return new SymbolToken((int)token);
             }
         }
 
-        IFunctionSymbols IFunction.Symbols
-        {
-            get { return Symbols; }
-        }
+        //IFunctionSymbols IFunction.Symbols
+        //{
+        //    get { return Symbols; }
+        //}
 
         #endregion
 
-        public MethodSymbols Symbols
+        public IFunctionSymbols Symbols
         {
             get
             {
                 if (_methodSymbols == null && Module != null && Module.Symbols != null)
-                    _methodSymbols = (MethodSymbols)Module.Symbols.GetFunctionSymbols(this);
+                    _methodSymbols = Module.Symbols.GetFunctionSymbols(this);
                 return _methodSymbols;
             }
+        }
+
+        IFunctionCode IFunction.Code
+        {
+            get { return Code; }
         }
 
         public RuntimeFunctionCode Code

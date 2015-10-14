@@ -21,24 +21,20 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
             SymMethod = symMethod;
         }
 
-        #region IFunctionSymbols Members
-
         IFunction IFunctionSymbols.Function
         {
             get { return Function; }
         }
 
-        IVariable[] IFunctionSymbols.GetVariables()
+        IEnumerable<IVariable> IFunctionSymbols.GetVariables()
         {
             return LocalVariables;
         }
 
-        public SourceRange GetSourceRange(uint offset)
+        IEnumerable<SequencePoint> IFunctionSymbols.GetSequencePoints()
         {
-            return GetSequencePoint((int)offset);
+            return SequencePoints;
         }
-
-        #endregion
 
         public RuntimeFunction Function
         {
@@ -119,9 +115,9 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
                             startCols[i],
                             endLines[i],
                             endCols[i],
-                            new ILRange(
+                            new ByteRange(
                                 (uint)ilOffsets[i],
-                                (uint)((i + 1) < pointsCount ? ilOffsets[i + 1] : (int)Function.Code.CodeSize)));
+                                (uint)((i + 1) < pointsCount ? ilOffsets[i + 1] : (int)Function.Code.Size)));
                     }
                     _sequencePoints = sequencePoints;
                 }
@@ -129,12 +125,12 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
             }
         }
 
-        public SequencePoint GetSequencePoint(int ilOffset)
+        public SequencePoint GetSequencePoint(uint offset)
         {
             var points = SequencePoints.Where(p => p.Line != SpecialSequencePoint);
 
-            var sequencePoint = points.FirstOrDefault(p => p.ILRange.StartOffset <= ilOffset && ilOffset < p.ILRange.EndOffset) ??
-            points.FirstOrDefault(p => ilOffset <= p.ILOffset);
+            var sequencePoint = points.FirstOrDefault(p => p.ByteRange.StartOffset <= offset && offset < p.ByteRange.EndOffset) ??
+            points.FirstOrDefault(p => offset <= p.Offset);
             return sequencePoint;
         }
 
@@ -143,12 +139,9 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
             return SequencePoints.Where(x => x.Line == SpecialSequencePoint);
         }
 
-        public uint GetILOffset(int line)
+        public SequencePoint GetSequencePointByLine(int line)
         {
-            var point = SequencePoints.Where(p => p.Line != SpecialSequencePoint).FirstOrDefault(x => x.Line >= line);
-            if (point != null)
-                return point.ILOffset;
-            return uint.MaxValue;
+            return SequencePoints.Where(p => p.Line != SpecialSequencePoint).FirstOrDefault(x => x.Line >= line);
         }
 
     }

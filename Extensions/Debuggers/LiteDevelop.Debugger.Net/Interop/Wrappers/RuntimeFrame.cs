@@ -17,18 +17,6 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         MAPPING_PROLOG = 1,
         MAPPING_UNMAPPED_ADDRESS = 8
     }
-    
-    [StructLayout(LayoutKind.Sequential, Pack = 4)]
-	public struct ILRange
-	{
-        public ILRange(uint start, uint end)
-        {
-            StartOffset = start;
-            EndOffset = end;
-        }
-
-		public uint StartOffset, EndOffset;
-	}
 
     public class RuntimeFrame : DebuggerSessionObject, IFrame
     {
@@ -153,6 +141,16 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             return GetNativeOffset();
         }
 
+        /// <summary>
+        /// Gets the value of the given local variable.
+        /// </summary>
+        /// <param name="index">The index of the variable to get the value from.</param>
+        /// <returns></returns>
+        IValue IFrame.GetLocalVariableValue(uint index)
+        {
+            return GetLocalVariableValue(index);
+        }
+
         #endregion
 
         public bool IsIL
@@ -208,7 +206,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                 return new RuntimeValue(Session, value);
             }
 
-            throw new ArgumentException("Can only get offset from an IL frame.");
+            throw new ArgumentException("Can only get variable value from an IL frame.");
         }
     }
 }

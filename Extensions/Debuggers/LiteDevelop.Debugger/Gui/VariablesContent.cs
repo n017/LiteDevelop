@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LiteDevelop.Debugger.Net;
-using LiteDevelop.Debugger.Net.Interop.Wrappers;
 using LiteDevelop.Framework;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.Extensions;

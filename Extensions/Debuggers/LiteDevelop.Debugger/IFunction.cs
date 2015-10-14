@@ -30,5 +30,25 @@ namespace LiteDevelop.Debugger
         /// Gets the symbols associated with this function.
         /// </summary>
         IFunctionSymbols Symbols { get; }
+        
+        IFunctionCode Code
+        {
+            get;
+        }
+    }
+
+    public interface IFunctionCode
+    {
+        ulong Address
+        {
+            get;
+        }
+
+        uint Size
+        {
+            get;
+        }
+
+        byte[] GetBytes();
     }
 }

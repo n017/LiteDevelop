@@ -1,0 +1,3 @@
+[submodule "Libraries/AsmResolver"]
+	path = Libraries/AsmResolver
+	url = https://github.com/JerreS/AsmResolver

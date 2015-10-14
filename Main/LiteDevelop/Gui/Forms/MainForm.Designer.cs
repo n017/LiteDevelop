@@ -46,6 +46,8 @@
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.runToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.runWithoutDebuggerToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.breakToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.stopDebuggingToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripPanel1 = new System.Windows.Forms.ToolStripPanel();
@@ -112,8 +114,6 @@
             this.sourceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.breakToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.stopDebuggingToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolBar.SuspendLayout();
             this.toolStripPanel1.SuspendLayout();
@@ -292,6 +292,28 @@
             this.runWithoutDebuggerToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.runWithoutDebuggerToolStripButton.Text = "Run without debugger";
             this.runWithoutDebuggerToolStripButton.Click += new System.EventHandler(this.runWithoutDebuggerToolStripMenuItem_Click);
+            // 
+            // breakToolStripButton
+            // 
+            this.breakToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.breakToolStripButton.Enabled = false;
+            this.breakToolStripButton.Image = global::LiteDevelop.Properties.Resources.pause;
+            this.breakToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.breakToolStripButton.Name = "breakToolStripButton";
+            this.breakToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.breakToolStripButton.Text = "Break";
+            this.breakToolStripButton.Click += new System.EventHandler(this.breakToolStripMenuItem_Click);
+            // 
+            // stopDebuggingToolStripButton
+            // 
+            this.stopDebuggingToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.stopDebuggingToolStripButton.Enabled = false;
+            this.stopDebuggingToolStripButton.Image = global::LiteDevelop.Properties.Resources.stop;
+            this.stopDebuggingToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.stopDebuggingToolStripButton.Name = "stopDebuggingToolStripButton";
+            this.stopDebuggingToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.stopDebuggingToolStripButton.Text = "Stop debugging";
+            this.stopDebuggingToolStripButton.Click += new System.EventHandler(this.stopDebuggingToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -871,28 +893,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // breakToolStripButton
-            // 
-            this.breakToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.breakToolStripButton.Enabled = false;
-            this.breakToolStripButton.Image = global::LiteDevelop.Properties.Resources.pause;
-            this.breakToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.breakToolStripButton.Name = "breakToolStripButton";
-            this.breakToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.breakToolStripButton.Text = "Break";
-            this.breakToolStripButton.Click += new System.EventHandler(this.breakToolStripMenuItem_Click);
-            // 
-            // stopDebuggingToolStripButton
-            // 
-            this.stopDebuggingToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.stopDebuggingToolStripButton.Enabled = false;
-            this.stopDebuggingToolStripButton.Image = global::LiteDevelop.Properties.Resources.stop;
-            this.stopDebuggingToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.stopDebuggingToolStripButton.Name = "stopDebuggingToolStripButton";
-            this.stopDebuggingToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.stopDebuggingToolStripButton.Text = "Stop debugging";
-            this.stopDebuggingToolStripButton.Click += new System.EventHandler(this.stopDebuggingToolStripMenuItem_Click);
             // 
             // MainForm
             // 

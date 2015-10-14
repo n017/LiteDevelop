@@ -62,8 +62,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 	    void GetCode([In] uint startOffset, [In] uint endOffset,
-					   [In] uint cBufferAlloc, 
-                       [Out, MarshalAs(UnmanagedType.Interface)] ICorDebugCode buffer, 
+					   [In] uint cBufferAlloc,
+                       [Out, MarshalAs(UnmanagedType.LPArray)] byte[] buffer, 
                        out uint pcBufferSize);
 
         /*

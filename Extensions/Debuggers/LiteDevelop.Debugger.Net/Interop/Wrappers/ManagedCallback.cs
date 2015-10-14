@@ -99,12 +99,12 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 
         public void StepComplete(ICorDebugAppDomain pAppDomain, ICorDebugThread pThread, ICorDebugStepper pStepper, CorDebugStepReason reason)
         {
-            Log("Step completed.");
+            Log("Step completed. ({0})", reason);
 
             var domain = GetProcessWrapper(pAppDomain).GetAppDomain(pAppDomain);
             var thread = domain.GetThread(pThread);
             var stepper = domain.GetStepper(pStepper);
-
+            
             var eventArgs = new StepperEventArgs(domain, thread, stepper);
 
             if (thread.CurrentFrame.IsUserCode)

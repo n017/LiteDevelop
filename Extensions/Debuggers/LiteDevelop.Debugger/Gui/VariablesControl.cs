@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LiteDevelop.Debugger.Net.Interop.Wrappers;
 using System.Threading;
 
 namespace LiteDevelop.Debugger.Gui
@@ -94,23 +93,24 @@ namespace LiteDevelop.Debugger.Gui
             {
                 item.SubItems[0].Text = localVariable.Name;
 
-                var value = localVariable.GetValue(frame);
-
                 try
                 {
                     item.SubItems[1].ForeColor = item.ForeColor;
                     if (frame == null || frame.Thread == null)
-                        item.SubItems[1].Text = "Stack frame is required to get a value from the variable.";
+                        throw new InvalidOperationException("Stack frame is required to get a value from the variable.");
                     else
+                    {
+                        var value = localVariable.GetValue(frame);
                         item.SubItems[1].Text = value.ValueAsString(frame.Thread);
+                        item.SubItems[2].Text = value.Type.ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
                     item.SubItems[1].ForeColor = Color.Red;
                     item.SubItems[1].Text = ex.Message;
+                    item.SubItems[2].Text = "?";
                 }
-
-                item.SubItems[2].Text = value.Type.ToString();
             }
         }
 

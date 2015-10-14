@@ -26,12 +26,12 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private AutoCompletionMap _autoCompletionMap;
         private InternalAutoCompletionMap _itemEnumerator;
         private EditorLayoutData _layoutData;
-        private CodeEditorContent _content;
-        private CodeEditorExtension _extension;
+        private readonly CodeEditorContent _content;
+        private readonly CodeEditorExtension _extension;
         private bool _justCompletedBrace;
-        private Range _lastIPRange;
-        private ErrorStyle _errorStyle;
-        private WarningStyle _warningStyle;
+        private Range _lastIpRange;
+        private readonly ErrorStyle _errorStyle;
+        private readonly WarningStyle _warningStyle;
         
         public CodeEditorControl(CodeEditorContent content, OpenedFile file)
         {
@@ -395,17 +395,17 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             range.ClearStyle(StyleIndex.All);
             range.SetStyle(style);
             
-            _lastIPRange = range;
+            _lastIpRange = range;
         }
 
         private void ClearLastHighlighting(TextStyle style)
         {
-            if (_lastIPRange != null)
+            if (_lastIpRange != null)
             {
                 // clear ip highlighting
-                _lastIPRange.ClearStyle(style);
+                _lastIpRange.ClearStyle(style);
                 // add syntax highlighting
-                HighlightSyntax(_lastIPRange);
+                HighlightSyntax(_lastIpRange);
             }
         }
 

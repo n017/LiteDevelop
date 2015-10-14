@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using LiteDevelop.Debugger.Gui;
+using LiteDevelop.Debugger.Net.Disassembler.Gui;
 using LiteDevelop.Debugger.Net.Gui;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.Extensions;
@@ -18,6 +21,9 @@ namespace LiteDevelop.Debugger.Net
         public static NetDebuggerExtension Instance { get; private set; }
 
         private NetDebuggerSession _session;
+        
+        private DebuggerToolWindow[] _toolWindows;
+
 
         public NetDebuggerExtension()
         {
@@ -74,6 +80,21 @@ namespace LiteDevelop.Debugger.Net
         protected override void InitializeCore(InitializationContext context)
         {
             ExtensionHost = context.Host;
+            var controlManager = ExtensionHost.ControlManager;
+            controlManager.ResolveToolWindow +=
+                (sender, args) => _toolWindows.FirstOrDefault(x => x.GetPersistName() == args.PersistName);
+            _toolWindows = new DebuggerToolWindow[]
+            {
+                new MsilInstructionsContent(),
+            };
+
+            controlManager.ViewMenuItems.Add(new ToolStripMenuItem("Disassembly (MSIL)", Properties.Resources.icon_read,
+                (sender, args) => controlManager.ShowAndActivate(GetToolWindow<MsilInstructionsContent>())));
+        }
+
+        public TToolWindow GetToolWindow<TToolWindow>() where TToolWindow : LiteToolWindow
+        {
+            return _toolWindows.FirstOrDefault(x => x is TToolWindow) as TToolWindow;
         }
 
         public override bool CanDebugProject(Framework.FileSystem.Projects.Project project)

@@ -21,7 +21,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             _assembly = assembly;
             _comModule = comModule;
 
-            Symbols = _assembly.Domain.Process.Session.SymbolsResolver.GetSymbolsProviderForFile(this.Name);
+            Symbols = _assembly.Domain.Process.Session.SymbolsServer.GetSymbolsProviderForFile(this.Name);
             if (Symbols != null)
             {
                 int index = 0, max = Session.PendingBreakpoints.Count;
@@ -90,12 +90,12 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                     return false;
 
                 Session.ProgressReporter.Report("Method found. Finding IL offset");
-                var offset = (uint)function.Symbols.GetILOffset(breakpoint.Location.Line);
-                if (offset == uint.MaxValue)
+                var sequencePoint = function.Symbols.GetSequencePointByLine(breakpoint.Location.Line);
+                if (sequencePoint == null)
                     return false;
-
-                Session.ProgressReporter.Report("Setting breakpoint at offset {0}", offset);
-                function.Code.CreateBreakpoint((uint)offset);
+                
+                Session.ProgressReporter.Report("Setting breakpoint at offset {0}", sequencePoint.Offset);
+                function.Code.CreateBreakpoint(sequencePoint.Offset);
                 return true;
             }
             return false;

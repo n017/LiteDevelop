@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using LiteDevelop.Debugger.Net.Disassembler;
 using LiteDevelop.Debugger.Net.Interop.Com;
 using LiteDevelop.Debugger.Net.Interop.Wrappers;
 using LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols;
@@ -17,7 +18,7 @@ using LiteDevelop.Framework.FileSystem.Projects.Net;
 
 namespace LiteDevelop.Debugger.Net
 {
-    public class NetDebuggerSession : DebuggerSession
+    public class NetDebuggerSession : SymbolsDebuggerSession
     {
         private static Guid metaHostClsId = new Guid("9280188D-0E8E-4867-B30C-7FA83884E8DE");
         private static Guid metaHostRiId = new Guid("D332DB9E-B9B3-4125-8207-A14884F53216");
@@ -48,7 +49,8 @@ namespace LiteDevelop.Debugger.Net
 
             PendingBreakpoints = new List<BreakpointBookmark>();
             ComInstanceCollector = new ComInstanceCollector();
-            SymbolsResolver = new PdbSymbolsResolver(ComInstanceCollector);
+            SymbolsServer.Resolvers.Add(new PdbSymbolsResolver(ComInstanceCollector));
+            //SymbolsServer.Resolvers.Add(new DisassemblerSymbolsResolver());
             AssemblyResolver = new ReflectionAssemblyResolver();
         }
 
@@ -198,13 +200,7 @@ namespace LiteDevelop.Debugger.Net
         #endregion
 
         #region Properties
-
-        public ISymbolsResolver SymbolsResolver
-        {
-            get;
-            set;
-        }
-
+        
         public IAssemblyResolver AssemblyResolver
         {
             get;
@@ -359,7 +355,7 @@ namespace LiteDevelop.Debugger.Net
             var frame = e.AppDomain.Process.CurrentFrame;
 
             if (frame.Function.Symbols != null)
-                _currentRange = frame.Function.Symbols.GetSourceRange(frame.GetOffset()); 
+                _currentRange = frame.Function.Symbols.GetSequencePoint(frame.GetOffset()); 
             else
                 _currentRange = null;
 
