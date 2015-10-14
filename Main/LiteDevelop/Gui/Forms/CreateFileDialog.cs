@@ -120,7 +120,11 @@ namespace LiteDevelop.Gui.Forms
 
         private void UpdateOkButton()
         {
-            okButton.Enabled = templatesListView.SelectedItems.Count != 0 && !string.IsNullOrEmpty(fileNameTextBox.Text) && !string.IsNullOrEmpty(directoryTextBox.Text);
+            okButton.Enabled = templatesListView.SelectedItems.Count != 0
+                               && !string.IsNullOrEmpty(fileNameTextBox.Text)
+                               && !string.IsNullOrEmpty(directoryTextBox.Text)
+                               && !Path.GetInvalidPathChars().Any(directoryTextBox.Text.Contains)
+                               && Path.IsPathRooted(directoryTextBox.Text);
         }
 
         private TreeNode GetLanguageOrderNode(List<TreeNode> nodes, string languageOrder)
@@ -143,6 +147,19 @@ namespace LiteDevelop.Gui.Forms
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if (!System.IO.Directory.Exists(directoryTextBox.Text))
+            {
+                MessageBox.Show(
+                    LiteDevelopApplication.Current.MuiProcessor.GetString("Common.Messages.DirectoryDoesNotExist", new Dictionary<string, string>
+                    {
+                        {"directory", directoryTextBox.Text}
+                    }),
+                    "", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
         }
@@ -175,7 +192,7 @@ namespace LiteDevelop.Gui.Forms
 
         private void templatesListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            okButton.Enabled = templatesListView.SelectedItems.Count != 0;
+            UpdateOkButton();
         }
 
         private void textBoxes_TextChanged(object sender, EventArgs e)
