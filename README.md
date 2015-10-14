@@ -36,11 +36,6 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View call stack.
     -   View running threads.
 
-Donate
----
-
-[![Alt text](http://puu.sh/7I7aC.gif "Please donate! :D")](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HAEW49Q5VY2YC)
-
 
 How to compile
 ---
@@ -66,3 +61,9 @@ Todo
 -   Forms designer serializer needs work.
 -	Forms designer event bindings.
 -   Appearance mapping needs work.
+
+
+Donate
+---
+
+[![Donate!](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VS2P6V5X85QHA)
