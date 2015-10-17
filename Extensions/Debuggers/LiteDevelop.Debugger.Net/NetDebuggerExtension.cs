@@ -86,10 +86,22 @@ namespace LiteDevelop.Debugger.Net
             _toolWindows = new DebuggerToolWindow[]
             {
                 new MsilInstructionsContent(),
+                new X86InstructionsContent(),
             };
 
+            if (context.InitializationTime == InitializationTime.Startup)
+                ExtensionHost.Initialized += ExtensionHostOnInitialized;
+            else
+                ExtensionHostOnInitialized(null, null);
+        }
+
+        private void ExtensionHostOnInitialized(object sender, EventArgs eventArgs)
+        {
+            var controlManager = ExtensionHost.ControlManager;
             controlManager.ViewMenuItems.Add(new ToolStripMenuItem("Disassembly (MSIL)", Properties.Resources.icon_read,
-                (sender, args) => controlManager.ShowAndActivate(GetToolWindow<MsilInstructionsContent>())));
+                (s, e) => controlManager.ShowAndActivate(GetToolWindow<MsilInstructionsContent>())));
+            controlManager.ViewMenuItems.Add(new ToolStripMenuItem("Disassembly (x86)", Properties.Resources.icon_read,
+                (s, e) => controlManager.ShowAndActivate(GetToolWindow<X86InstructionsContent>())));
         }
 
         public TToolWindow GetToolWindow<TToolWindow>() where TToolWindow : LiteToolWindow

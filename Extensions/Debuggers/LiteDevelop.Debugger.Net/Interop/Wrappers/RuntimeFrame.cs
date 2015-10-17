@@ -169,7 +169,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 
                 return offset;
             }
-
+            
             throw new InvalidOperationException("Can only get IL offset from an IL frame.");
         }
 

@@ -14,23 +14,35 @@ namespace LiteDevelop.Debugger
         /// <summary>
         /// Gets the module defining this function.
         /// </summary>
-        IModule Module { get; }
+        IModule Module
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets the name of the function.
         /// </summary>
-        string Name { get; }
+        string Name
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets the symbol token that is used for looking up symbols of this function.
         /// </summary>
-        SymbolToken Token { get; }
+        SymbolToken Token
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets the symbols associated with this function.
         /// </summary>
-        IFunctionSymbols Symbols { get; }
-        
+        IFunctionSymbols Symbols
+        {
+            get;
+        }
+
         IFunctionCode Code
         {
             get;

@@ -117,7 +117,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
                             endCols[i],
                             new ByteRange(
                                 (uint)ilOffsets[i],
-                                (uint)((i + 1) < pointsCount ? ilOffsets[i + 1] : (int)Function.Code.Size)));
+                                (uint)((i + 1) < pointsCount ? ilOffsets[i + 1] : (int)Function.IlCode.Size)));
                     }
                     _sequencePoints = sequencePoints;
                 }

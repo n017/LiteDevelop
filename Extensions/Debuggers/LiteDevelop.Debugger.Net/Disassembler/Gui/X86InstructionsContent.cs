@@ -1,40 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using LiteDevelop.Debugger.Gui;
-using LiteDevelop.Framework.Extensions;
-using LiteDevelop.Framework.Gui;
 
 namespace LiteDevelop.Debugger.Net.Disassembler.Gui
 {
-    public class MsilInstructionsContent : DebuggerToolWindow
+    public class X86InstructionsContent : DebuggerToolWindow
     {
-        private readonly MsilInstructionsControl _msilControl;
+        private readonly X86InstructionsControl _x86Control;
 
-        public MsilInstructionsContent()
+        public X86InstructionsContent()
         {
-            Text = "Disassembly (MSIL)";
+            Text = "Disassembly (x86)";
             Icon = System.Drawing.Icon.FromHandle(Properties.Resources.icon_read.GetHicon());
-            Control = _msilControl = new MsilInstructionsControl()
+            Control = _x86Control = new X86InstructionsControl()
             {
                 Dock = DockStyle.Fill
             };
         }
-        
+
         protected override void OnDebuggerResumed(EventArgs e)
         {
-            _msilControl.SetCurrentFrame(null);
+            _x86Control.SetCurrentFrame(null);
             base.OnDebuggerResumed(e);
         }
 
         protected override void OnCurrentFrameChanged(EventArgs e)
         {
             if (DebuggerBase.Instance.CurrentFrame != null)
-                _msilControl.SetCurrentFrame(DebuggerBase.Instance.CurrentFrame);
+                _x86Control.SetCurrentFrame(DebuggerBase.Instance.CurrentFrame);
             base.OnCurrentFrameChanged(e);
 
         }

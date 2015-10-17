@@ -57,9 +57,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Disassembler\Gui\MsilInstructionsContent.cs" />
-    <Compile Include="Disassembler\Gui\MsilInstructionsControl.cs" />
+    <Compile Include="Disassembler\Gui\MsilInstructionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Disassembler\Gui\MsilInstructionsControl.Designer.cs">
       <DependentUpon>MsilInstructionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Disassembler\Gui\X86InstructionsContent.cs" />
+    <Compile Include="Disassembler\Gui\X86InstructionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Disassembler\Gui\X86InstructionsControl.Designer.cs">
+      <DependentUpon>X86InstructionsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IAssemblyResolver.cs" />
     <Compile Include="Interop\Com\ICLRMetaHost.cs" />
@@ -154,6 +163,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Disassembler\Gui\MsilInstructionsControl.resx">
       <DependentUpon>MsilInstructionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Disassembler\Gui\X86InstructionsControl.resx">
+      <DependentUpon>X86InstructionsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

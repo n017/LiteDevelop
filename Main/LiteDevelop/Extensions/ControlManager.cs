@@ -118,6 +118,9 @@ namespace LiteDevelop.Extensions
 
         public void ShowAndActivate(LiteViewContent viewContent)
         {
+            if (viewContent == null)
+                throw new ArgumentNullException("viewContent");
+
             var dockContent = DockPanel.GetContainer(viewContent);
 
             if (dockContent == null)

@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using LiteDevelop.Debugger.Net.Interop.Com;
 
 namespace LiteDevelop.Debugger.Net.Interop.Wrappers
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    public struct ILToNativeMap
+    {
+        public uint ILOffset;
+        public uint NativeStartOffset;
+        public uint NativeEndOffset;
+    }
+
     public class RuntimeFunctionCode : DebuggerSessionObject, IFunctionCode
     {
         private RuntimeFunction _function;
@@ -33,6 +42,16 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             get { return _function; }
         }
 
+        public bool IsIL
+        {
+            get
+            {
+                int isIL;
+                _comCode.IsIL(out isIL);
+                return isIL == 1;
+            }
+        }
+
         public ulong Address
         {
             get
@@ -52,13 +71,23 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                 return size;
             }
         }
-
+        
         public byte[] GetBytes()
         {
             byte[] buffer = new byte[Size];
             uint actualLength;
-            _comCode.GetCode(0,(uint)buffer.Length, (uint)buffer.Length, buffer,out actualLength);
+            _comCode.GetCode(0, (uint)buffer.Length, (uint)buffer.Length, buffer, out actualLength);
             return buffer;
+        }
+        
+
+        public IEnumerable<ILToNativeMap> GetILToNativeMapping()
+        {
+            const uint bufferSize = 100;
+            var buffer = new ILToNativeMap[bufferSize];
+            uint actualLength;
+            _comCode.GetILToNativeMapping(bufferSize, out actualLength, buffer);
+            return buffer.Take((int) actualLength);
         }
 
         public FunctionBreakpoint CreateBreakpoint(uint offset)

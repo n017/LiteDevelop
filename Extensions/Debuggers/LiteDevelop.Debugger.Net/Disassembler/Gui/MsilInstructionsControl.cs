@@ -10,11 +10,55 @@ using AsmResolver;
 using AsmResolver.Net.Metadata;
 using AsmResolver.Net.Msil;
 using AsmResolver.Net.Signatures;
+using LiteDevelop.Debugger.Net.Interop.Wrappers;
 using LiteDevelop.Framework.Debugging;
 using LiteDevelop.Framework.Extensions;
 
 namespace LiteDevelop.Debugger.Net.Disassembler.Gui
 {
+    public partial class MsilInstructionsControl : UserControl
+    {
+        private DebuggerSession _session;
+        private IFunction _lastFunction;
+
+        public MsilInstructionsControl()
+        {
+            InitializeComponent();
+        }
+        
+        public void SetCurrentFrame(IFrame currentFrame)
+        {
+            if (currentFrame == null || currentFrame.Function != _lastFunction)
+            {
+                instructionsListView.Items.Clear();
+                _lastFunction = null;
+            }
+
+            if (currentFrame != null)
+            {
+                if (currentFrame.Function == _lastFunction)
+                {
+                    foreach (var item in instructionsListView.Items.Cast<MsilInstructionListViewItem>()) 
+                        item.UpdateItem(currentFrame);
+                }
+                else
+                {
+                    _lastFunction = currentFrame.Function;
+                    var bytes = ((RuntimeFunction)currentFrame.Function).IlCode.GetBytes();
+                    var disassembler = new MsilDisassembler(new MemoryStreamReader(bytes), new DefaultOperandResolver());
+                    foreach (var instruction in disassembler.Disassemble())
+                    {
+                        var instructionBytes = new byte[instruction.Size];
+                        Buffer.BlockCopy(bytes, instruction.Offset, instructionBytes, 0, instruction.Size);
+                        var item = new MsilInstructionListViewItem(instruction, instructionBytes);
+                        item.UpdateItem(currentFrame);
+                        instructionsListView.Items.Add(item);
+                    }
+                }
+            }
+        }
+    }
+
     public class MsilInstructionListViewItem : ListViewItem
     {
         public MsilInstructionListViewItem(MsilInstruction instruction, byte[] bytes)
@@ -52,7 +96,10 @@ namespace LiteDevelop.Debugger.Net.Disassembler.Gui
         private Color GetBackgroundColor(IFrame frame)
         {
             if (frame.GetOffset() == Instruction.Offset)
+            {
+                this.EnsureVisible();
                 return Color.Yellow;
+            }
 
             var symbols = frame.Function.Symbols;
             if (symbols != null)
@@ -60,53 +107,10 @@ namespace LiteDevelop.Debugger.Net.Disassembler.Gui
                 var sequencePoint = symbols.GetSequencePoint(frame.GetOffset());
                 if (Instruction.Offset >= sequencePoint.ByteRange.StartOffset
                     && Instruction.Offset < sequencePoint.ByteRange.EndOffset)
-                    return Color.Yellow;
+                    return Color.FromArgb(255, 255, 160);
             }
 
             return Color.Transparent;
-        }
-    }
-
-    public partial class MsilInstructionsControl : UserControl
-    {
-        private DebuggerSession _session;
-        private IFunction _lastFunction;
-
-        public MsilInstructionsControl()
-        {
-            InitializeComponent();
-        }
-        
-        public void SetCurrentFrame(IFrame currentFrame)
-        {
-            if (currentFrame == null || currentFrame.Function != _lastFunction)
-            {
-                instructionsListView.Items.Clear();
-                _lastFunction = null;
-            }
-
-            if (currentFrame != null)
-            {
-                if (currentFrame.Function == _lastFunction)
-                {
-                    foreach (var item in instructionsListView.Items.Cast<MsilInstructionListViewItem>()) 
-                        item.UpdateItem(currentFrame);
-                }
-                else
-                {
-                    _lastFunction = currentFrame.Function;
-                    var bytes = currentFrame.Function.Code.GetBytes();
-                    var disassembler = new MsilDisassembler(new MemoryStreamReader(bytes), new DefaultOperandResolver());
-                    foreach (var instruction in disassembler.Disassemble())
-                    {
-                        var instructionBytes = new byte[instruction.Size];
-                        Buffer.BlockCopy(bytes, instruction.Offset, instructionBytes, 0, instruction.Size);
-                        var item = new MsilInstructionListViewItem(instruction, instructionBytes);
-                        item.UpdateItem(currentFrame);
-                        instructionsListView.Items.Add(item);
-                    }
-                }
-            }
         }
     }
 

@@ -95,7 +95,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                     return false;
                 
                 Session.ProgressReporter.Report("Setting breakpoint at offset {0}", sequencePoint.Offset);
-                function.Code.CreateBreakpoint(sequencePoint.Offset);
+                function.IlCode.CreateBreakpoint(sequencePoint.Offset);
                 return true;
             }
             return false;

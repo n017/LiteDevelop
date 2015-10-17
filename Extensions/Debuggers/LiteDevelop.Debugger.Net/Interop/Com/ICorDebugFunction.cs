@@ -75,7 +75,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
 
         /*
          * Obtains the current version of the function, which is the same version
-         * as that obtained by Get{IL or Native}Code's ICorDebugCode's 
+         * as that obtained by Get{IL or Native}IlCode's ICorDebugCode's 
          * GetVersionNumber()
          */
 
