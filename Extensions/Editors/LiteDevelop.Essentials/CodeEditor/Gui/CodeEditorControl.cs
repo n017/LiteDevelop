@@ -88,7 +88,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private void SetupTextBox()
         {
             this.TextBox.BeginUpdate();
-
+            
             this.TextBox.Font = new Font("Consolas", 9.75F);
             this.TextBox.Text = _file.GetContentsAsString();
             this.TextBox.AllowDrop = true;
@@ -484,7 +484,9 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             if (_autoCompleteMenu != null && _autoCompleteMenu.Visible)
             {
                 // auto complete when a key specified in the settings has been pressed.
-                if ((settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnSpaceBar") && e.KeyChar == ' ') || (settings.GetValue<string>("AutoCompletion.AutoCompleteCommitChars").Contains(e.KeyChar)))
+                if ((settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnSpaceBar") && e.KeyChar == ' ') 
+                    || (settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnTab") && e.KeyChar == '\t') 
+                    || (settings.GetValue<string>("AutoCompletion.AutoCompleteCommitChars").Contains(e.KeyChar)))
                 {
                     _autoCompleteMenu.OnSelecting();
 
@@ -676,7 +678,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             this.TextBox.CurrentLineColor = settings.GetValue<bool>("General.HighlightCurrentLine") ? _extension.StyleMap.CurrentLineStyle.Description.BackColor : Color.Transparent;
             this.TextBox.ChangedLineColor = settings.GetValue<bool>("General.TrackUnsavedChanges") ? _extension.StyleMap.ChangedLineStyle.Description.BackColor : Color.Transparent;
             this.TextBox.SelectionColor = _extension.StyleMap.SelectionStyle.Description.BackColor;
-
+            _autoCompleteMenu.AllowTabKey = settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnTab");
             var appearance = _extension.StyleMap.DefaultText.Description;
             this.TextBox.BackColor = this.documentMap1.BackColor = appearance.BackColor;
             this.TextBox.ForeColor = appearance.ForeColor;

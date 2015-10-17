@@ -37,6 +37,7 @@
             this.autoAddParanthesesCheckBox = new System.Windows.Forms.CheckBox();
             this.autoCompleteCodeBlocksCheckBox = new System.Windows.Forms.CheckBox();
             this.autoListMembersCheckBox = new System.Windows.Forms.CheckBox();
+            this.completeOnTabCheckBox = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.completeOnTabCheckBox);
             this.panel1.Controls.Add(this.showSuggestionsListWhenLabel);
             this.panel1.Controls.Add(this.showSuggestionsListComboBox);
             this.panel1.Controls.Add(this.commitSelectedItemWhenLabel);
@@ -51,7 +53,7 @@
             this.panel1.Controls.Add(this.autoCompleteCharsTextBox);
             this.panel1.Location = new System.Drawing.Point(27, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(346, 102);
+            this.panel1.Size = new System.Drawing.Size(346, 128);
             this.panel1.TabIndex = 13;
             // 
             // showSuggestionsListWhenLabel
@@ -108,20 +110,20 @@
             // autoAddParanthesesCheckBox
             // 
             this.autoAddParanthesesCheckBox.AutoSize = true;
-            this.autoAddParanthesesCheckBox.Location = new System.Drawing.Point(13, 172);
+            this.autoAddParanthesesCheckBox.Location = new System.Drawing.Point(13, 192);
             this.autoAddParanthesesCheckBox.Name = "autoAddParanthesesCheckBox";
             this.autoAddParanthesesCheckBox.Size = new System.Drawing.Size(329, 17);
-            this.autoAddParanthesesCheckBox.TabIndex = 10;
+            this.autoAddParanthesesCheckBox.TabIndex = 11;
             this.autoAddParanthesesCheckBox.Text = "Auto add method parantheses after inserting method suggestion.";
             this.autoAddParanthesesCheckBox.UseVisualStyleBackColor = true;
             // 
             // autoCompleteCodeBlocksCheckBox
             // 
             this.autoCompleteCodeBlocksCheckBox.AutoSize = true;
-            this.autoCompleteCodeBlocksCheckBox.Location = new System.Drawing.Point(13, 149);
+            this.autoCompleteCodeBlocksCheckBox.Location = new System.Drawing.Point(13, 169);
             this.autoCompleteCodeBlocksCheckBox.Name = "autoCompleteCodeBlocksCheckBox";
             this.autoCompleteCodeBlocksCheckBox.Size = new System.Drawing.Size(232, 17);
-            this.autoCompleteCodeBlocksCheckBox.TabIndex = 9;
+            this.autoCompleteCodeBlocksCheckBox.TabIndex = 10;
             this.autoCompleteCodeBlocksCheckBox.Text = "Auto complete code blocks (e.g. ( ) [ ] \" \" \' \')";
             this.autoCompleteCodeBlocksCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -135,6 +137,16 @@
             this.autoListMembersCheckBox.Text = "Auto list members";
             this.autoListMembersCheckBox.UseVisualStyleBackColor = true;
             this.autoListMembersCheckBox.CheckedChanged += new System.EventHandler(this.autoCompleteCheckBox_CheckedChanged);
+            // 
+            // completeOnTabCheckBox
+            // 
+            this.completeOnTabCheckBox.AutoSize = true;
+            this.completeOnTabCheckBox.Location = new System.Drawing.Point(6, 103);
+            this.completeOnTabCheckBox.Name = "completeOnTabCheckBox";
+            this.completeOnTabCheckBox.Size = new System.Drawing.Size(252, 17);
+            this.completeOnTabCheckBox.TabIndex = 9;
+            this.completeOnTabCheckBox.Text = "Commit selected item when pressing the tab key";
+            this.completeOnTabCheckBox.UseVisualStyleBackColor = true;
             // 
             // AutoCompleteSettingsControl
             // 
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Label showSuggestionsListWhenLabel;
         private System.Windows.Forms.ComboBox showSuggestionsListComboBox;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox completeOnTabCheckBox;
     }
 }

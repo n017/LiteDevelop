@@ -49,6 +49,7 @@
       </ItemGroup>
       <Item Id = "CommitItemOnKeyChars">Voeg in item als er op één van de volgende toetsen wordt gedrukt:</Item>
       <Item Id = "CommitItemOnSpaceBar">Voeg in item als er op de spatiebalk wordt gedrukt</Item>
+      <Item Id = "CommitItemOnTab">Voeg in item als er op de tab toets wordt gedrukt</Item>
     </ItemGroup>
     <Item Id = "AutoCompleteCodeBlocks">Completeer code blokken (Bijvoorbeeld ( ) [ ] " " ' ')</Item>
     <Item Id = "AutoAddParantheses">Voeg haakjes toe wanneer er een methode suggestie wordt ingevoerd.</Item>
