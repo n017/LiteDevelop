@@ -1,3 +1,9 @@
 [submodule "Libraries/AsmResolver"]
 	path = Libraries/AsmResolver
 	url = https://github.com/JerreS/AsmResolver
+[submodule "Libraries/FastColoredTextBox"]
+	path = Libraries/FastColoredTextBox
+	url = https://github.com/JerreS/FastColoredTextBox.git
+[submodule "Libraries/dockpanelsuite"]
+	path = Libraries/dockpanelsuite
+	url = https://github.com/JerreS/dockpanelsuite.git
