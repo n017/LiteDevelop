@@ -36,6 +36,22 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View call stack.
     -   View running threads.
 
+How to clone
+---
+
+In order to successfully clone the project, make sure you also clone the submodules in the Libraries folder. If you're using Git 1.6.5 or later, you can run the following command:
+```
+git clone --recursive https://github.com/JerreS/LiteDevelop.git
+```
+
+Else use:
+
+```
+git clone https://github.com/JerreS/LiteDevelop.git
+cd LiteDevelop
+git submodule update --init --recursive
+```
+
 
 How to compile
 ---
