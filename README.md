@@ -35,6 +35,8 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View variable values.
     -   View call stack.
     -   View running threads.
+    -	View current MSIL code.
+    -	View x86 code (alpha).
 
 How to clone
 ---
