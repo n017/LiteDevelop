@@ -40,5 +40,12 @@ namespace LiteDevelop.Debugger
         /// </summary>
         /// <returns>The offset.</returns>
         uint GetOffset();
+
+        /// <summary>
+        /// Gets the value of the given local variable.
+        /// </summary>
+        /// <param name="index">The index of the variable to get the value from.</param>
+        /// <returns></returns>
+        IValue GetLocalVariableValue(uint index);
     }
 }

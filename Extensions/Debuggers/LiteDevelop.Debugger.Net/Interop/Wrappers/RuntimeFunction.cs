@@ -13,8 +13,9 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
     {
         private readonly RuntimeModule _module;
         private readonly ICorDebugFunction _comFunction;
-        private MethodSymbols _methodSymbols;
-        private RuntimeFunctionCode _code;
+        private IFunctionSymbols _methodSymbols;
+        private RuntimeFunctionCode _ilCode;
+        private RuntimeFunctionCode _nativeCode;
 
         internal RuntimeFunction(RuntimeModule module, ICorDebugFunction comFunction)
         {
@@ -54,44 +55,68 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             get
             {
+                
                 uint token;
                 _comFunction.GetToken(out token);
                 return new SymbolToken((int)token);
             }
         }
 
-        IFunctionSymbols IFunction.Symbols
-        {
-            get { return Symbols; }
-        }
+        //IFunctionSymbols IFunction.Symbols
+        //{
+        //    get { return Symbols; }
+        //}
 
         #endregion
 
-        public MethodSymbols Symbols
+        public IFunctionSymbols Symbols
         {
             get
             {
                 if (_methodSymbols == null && Module != null && Module.Symbols != null)
-                    _methodSymbols = (MethodSymbols)Module.Symbols.GetFunctionSymbols(this);
+                    _methodSymbols = Module.Symbols.GetFunctionSymbols(this);
                 return _methodSymbols;
             }
         }
 
-        public RuntimeFunctionCode Code
+        IFunctionCode IFunction.Code
+        {
+            get { return IlCode ?? NativeCode; }
+        }
+
+        public RuntimeFunctionCode IlCode
         {
             get
             {
-                ICorDebugCode code;
-                _comFunction.GetILCode(out code);
+                ICorDebugCode ilCode;
+                _comFunction.GetILCode(out ilCode);
 
-                if (code == null)
+                if (ilCode == null)
                     return null;
 
-                if (_code == null || _code.ComCode != code)
+                if (_ilCode == null || _ilCode.ComCode != ilCode)
                 {
-                    _code = new RuntimeFunctionCode(this, code);
+                    _ilCode = new RuntimeFunctionCode(this, ilCode);
                 }
-                return _code;
+                return _ilCode;
+            }
+        }
+
+        public RuntimeFunctionCode NativeCode
+        {
+            get
+            {
+                ICorDebugCode nativeCode;
+                _comFunction.GetNativeCode(out nativeCode);
+
+                if (nativeCode == null)
+                    return null;
+
+                if (_nativeCode == null || _nativeCode.ComCode != nativeCode)
+                {
+                    _nativeCode = new RuntimeFunctionCode(this, nativeCode);
+                }
+                return _nativeCode;
             }
         }
 

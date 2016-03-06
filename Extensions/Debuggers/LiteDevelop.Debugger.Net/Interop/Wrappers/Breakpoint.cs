@@ -79,7 +79,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
                 if (point is FunctionBreakpoint)
                 {
                     var functionBreakpoint = point as FunctionBreakpoint;
-                    if (functionBreakpoint.Offset == functionBreakpoint.Function.Symbols.GetILOffset(breakpointBookmark.Location.Line))
+                    var sequencePointByLine = functionBreakpoint.Function.Symbols.GetSequencePointByLine(breakpointBookmark.Location.Line);
+                    if (sequencePointByLine!=null && functionBreakpoint.Offset == sequencePointByLine.Offset)
                     {
                         return functionBreakpoint;
                     }

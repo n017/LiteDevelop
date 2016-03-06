@@ -35,6 +35,25 @@ Next to that the standard LiteDevelop comes with couple of essential extensions:
     -   View variable values.
     -   View call stack.
     -   View running threads.
+    -	View current MSIL code.
+    -	View x86 code (alpha).
+
+How to clone
+---
+
+In order to successfully clone the project, make sure you also clone the submodules in the Libraries folder. If you're using Git 1.6.5 or later, you can run the following command:
+```
+git clone --recursive https://github.com/JerreS/LiteDevelop.git
+```
+
+Else use:
+
+```
+git clone https://github.com/JerreS/LiteDevelop.git
+cd LiteDevelop
+git submodule update --init --recursive
+```
+
 
 How to compile
 ---
@@ -60,3 +79,9 @@ Todo
 -   Forms designer serializer needs work.
 -	Forms designer event bindings.
 -   Appearance mapping needs work.
+
+
+Donate
+---
+
+[![Donate!](https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VS2P6V5X85QHA)

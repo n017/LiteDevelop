@@ -12,6 +12,7 @@
     <Item Id="AutoComplete">True</Item>
     <Item Id="ShowSuggestionsWhenTyping">True</Item>
     <Item Id="AutoCompleteCommitOnSpaceBar">False</Item>
+    <Item Id="AutoCompleteCommitOnTab">True</Item>
     <Item Id="AutoCompleteCommitChars">{}[](),:;+-*/%&amp;|^!~=&lt;&gt;?@#'"\</Item>
     <Item Id="AutoCompleteCodeBlocks">True</Item>
     <Item Id="AutoCompleteMethodParantheses">False</Item>

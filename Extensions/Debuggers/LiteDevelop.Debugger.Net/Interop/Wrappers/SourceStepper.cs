@@ -16,6 +16,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             _thread = thread;
             _comStepper = comStepper;
+            _comStepper.SetRangeIL(1);
+            _comStepper.SetUnmappedStopMask(CorDebugUnmappedStop.STOP_NONE);
         }
 
         internal ICorDebugStepper ComStepper
@@ -62,17 +64,17 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
         {
             // get sequence points
             var startOffset = _thread.CurrentFrame.GetOffset();
-            var sequencePoint = _thread.CurrentFrame.Function.Symbols.GetSequencePoint((int)startOffset);
+            var sequencePoint = _thread.CurrentFrame.Function.Symbols.GetSequencePoint(startOffset);
             var sequencePoints = _thread.CurrentFrame.Function.Symbols.GetIgnoredSequencePoints().ToList();
             sequencePoints.Insert(0, sequencePoint);
           
-            int size = Marshal.SizeOf(sequencePoint.ILRange);
+            int size = Marshal.SizeOf(sequencePoint.ByteRange);
 
             // write ranges to pointer.
             IntPtr rangesPtr = Marshal.AllocHGlobal(size * sequencePoints.Count);
             for (int i = 0; i < sequencePoints.Count; i++)
             {
-                Marshal.StructureToPtr(sequencePoints[i].ILRange, rangesPtr + (i * size), true);
+                Marshal.StructureToPtr(sequencePoints[i].ByteRange, rangesPtr + (i * size), true);
             }
 
             // step
@@ -81,6 +83,22 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers
             // free ranges
             Marshal.FreeHGlobal(rangesPtr);
 
+            _thread.Process.Continue();
+        }
+
+        public void StepInInstruction()
+        {
+            StepInstruction(1);
+        }
+
+        public void StepOverInstruction()
+        {
+            StepInstruction(0);
+        }
+
+        private void StepInstruction(int stepIn)
+        {
+            _comStepper.Step(stepIn);
             _thread.Process.Continue();
         }
 

@@ -20,13 +20,19 @@ namespace LiteDevelop.Debugger
         /// Gets all variables defined in the function.
         /// </summary>
         /// <returns>An array of all variables.</returns>
-        IVariable[] GetVariables();
+        IEnumerable<IVariable> GetVariables();
+
+        IEnumerable<SequencePoint> GetSequencePoints();
+
+        IEnumerable<SequencePoint> GetIgnoredSequencePoints();
+
+        SequencePoint GetSequencePointByLine(int line);
 
         /// <summary>
         /// Gets the source range that is associated with the given raw offset.
         /// </summary>
         /// <param name="offset">The offset to look up.</param>
         /// <returns>A source range refering to the location of the original code.</returns>
-        SourceRange GetSourceRange(uint offset);
+        SequencePoint GetSequencePoint(uint offset);
     }
 }

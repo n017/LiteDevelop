@@ -286,7 +286,7 @@ namespace LiteDevelop.Extensions
 
             var session = sender as DebuggerSession;
             var range = session.CurrentSourceRange;
-            if (range != null)
+            if (range != null && range.FilePath != null)
             {
                 SourceNavigator.NavigateToLocation(range);
             }

@@ -71,6 +71,7 @@
     <Compile Include="Debugging\BreakpointBookmark.cs" />
     <Compile Include="Extensions\ExtensionLoadResult.cs" />
     <Compile Include="Extensions\IAppearanceMapProvider.cs" />
+    <Compile Include="Extensions\IAstService.cs" />
     <Compile Include="Extensions\IBookmarkHandler.cs" />
     <Compile Include="Extensions\IBookmarkManager.cs" />
     <Compile Include="Extensions\ICredentialManager.cs" />
@@ -102,9 +103,7 @@
     <Compile Include="Gui\LiteToolWindow.cs" />
     <Compile Include="Gui\LiteToolWindowDockState.cs" />
     <Compile Include="Gui\LiteViewContent.cs" />
-    <Compile Include="Gui\MenuService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Gui\MenuService.cs" />
     <Compile Include="Extensions\ToolboxService.cs" />
     <Compile Include="FileSystem\Projects\Net\FrameworkDetector.cs" />
     <Compile Include="FileSystem\Projects\Net\FrameworkInstallationType.cs" />
@@ -140,9 +139,7 @@
     <Compile Include="Extensions\IErrorManager.cs" />
     <Compile Include="Extensions\ISettingsManager.cs" />
     <Compile Include="Extensions\ISettingsProvider.cs" />
-    <Compile Include="Gui\SettingsNode.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Gui\SettingsNode.cs" />
     <Compile Include="FileSystem\IAssemblyReferenceProvider.cs" />
     <Compile Include="FileSystem\BuildError.cs" />
     <Compile Include="FileSystem\BuildResult.cs" />
@@ -237,7 +234,6 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\info.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

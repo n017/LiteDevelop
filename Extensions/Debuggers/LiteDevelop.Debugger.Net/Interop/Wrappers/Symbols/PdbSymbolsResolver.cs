@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using LiteDevelop.Debugger.Net.Interop.Com.Symbols;
 
@@ -40,23 +41,20 @@ namespace LiteDevelop.Debugger.Net.Interop.Wrappers.Symbols
                 var importerIID = typeof(IMetaDataImport).GUID;
                 var importer = _dispenser.OpenScope(assemblyFile, 0, ref importerIID);
 
-                int result = _symbolBinder.GetReaderForFile2(importer, 
+                int result = _symbolBinder.GetReaderForFile2(importer,
                     assemblyFile,
-                    Path.GetDirectoryName(assemblyFile), 
+                    Path.GetDirectoryName(assemblyFile),
                     SymSearchPolicies.AllowOriginalPathAccess,
                     out rawReader);
 
-                if (result == (int)DiaErrors.E_PDB_NOT_FOUND)
+                if (result == (int)DiaErrors.E_PDB_NOT_FOUND ||
+                    result < 0)
                     return null;
-
-                if (result < 0)
-                    throw new Win32Exception(result);
 
                 _readers.Add(assemblyFile, reader = new PdbSymbols(rawReader));
                 _instanceCollector.AddComObject(rawReader);
                 _instanceCollector.AddComObject(importer);
             }
-
             return reader;
         }
 

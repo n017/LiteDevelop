@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LiteDevelop.Framework.Debugging;
+﻿using LiteDevelop.Framework.Debugging;
 
-namespace LiteDevelop.Debugger.Net.Interop.Wrappers
+namespace LiteDevelop.Debugger
 {
     /// <summary>
     /// Provides members for holding a <see cref="DebuggerSession"/> instance.

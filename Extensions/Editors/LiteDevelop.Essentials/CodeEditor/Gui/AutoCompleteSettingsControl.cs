@@ -28,6 +28,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
                 {this.showSuggestionsListWhenLabel, "AutoCompleteSettingsControl.AutoListMembers.PopupTime.Title"},
                 {this.commitSelectedItemWhenLabel, "AutoCompleteSettingsControl.AutoListMembers.CommitItemOnKeyChars"},
                 {this.completeOnSpaceBarCheckBox, "AutoCompleteSettingsControl.AutoListMembers.CommitItemOnSpaceBar"},
+                {this.completeOnTabCheckBox, "AutoCompleteSettingsControl.AutoListMembers.CommitItemOnTab"},
                 {this.autoCompleteCodeBlocksCheckBox, "AutoCompleteSettingsControl.AutoCompleteCodeBlocks"},
                 {this.autoAddParanthesesCheckBox, "AutoCompleteSettingsControl.AutoAddParantheses"},
             };
@@ -42,6 +43,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             _settings.SetValue("AutoCompletion.ShowSuggestionsWhenTyping", showSuggestionsListComboBox.SelectedIndex == 0);
             _settings.SetValue("AutoCompletion.AutoCompleteCommitChars", autoCompleteCharsTextBox.Text.Trim());
             _settings.SetValue("AutoCompletion.AutoCompleteCommitOnSpaceBar", completeOnSpaceBarCheckBox.Checked);
+            _settings.SetValue("AutoCompletion.AutoCompleteCommitOnTab", completeOnTabCheckBox.Checked);
             _settings.SetValue("AutoCompletion.AutoCompleteCodeBlocks", autoCompleteCodeBlocksCheckBox.Checked);
             _settings.SetValue("AutoCompletion.AutoCompleteMethodParantheses", autoAddParanthesesCheckBox.Checked);
         }
@@ -52,6 +54,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             showSuggestionsListComboBox.SelectedIndex = Convert.ToInt32(!_settings.GetValue<bool>("AutoCompletion.ShowSuggestionsWhenTyping"));
             autoCompleteCharsTextBox.Text = _settings.GetValue<string>("AutoCompletion.AutoCompleteCommitChars");
             completeOnSpaceBarCheckBox.Checked = _settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnSpaceBar");
+            completeOnTabCheckBox.Checked = _settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnTab");
             autoCompleteCodeBlocksCheckBox.Checked = _settings.GetValue<bool>("AutoCompletion.AutoCompleteCodeBlocks");
             autoAddParanthesesCheckBox.Checked = _settings.GetValue<bool>("AutoCompletion.AutoCompleteMethodParantheses");
         }

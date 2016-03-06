@@ -118,6 +118,9 @@ namespace LiteDevelop.Extensions
 
         public void ShowAndActivate(LiteViewContent viewContent)
         {
+            if (viewContent == null)
+                throw new ArgumentNullException("viewContent");
+
             var dockContent = DockPanel.GetContainer(viewContent);
 
             if (dockContent == null)
@@ -269,7 +272,14 @@ namespace LiteDevelop.Extensions
         internal LiteViewContent DispatchResolveViewContent(ResolveToolWindowEventArgs e)
         {
             if (ResolveToolWindow != null)
-                return ResolveToolWindow(this, e);
+            {
+                foreach (var method in ResolveToolWindow.GetInvocationList())
+                {
+                    var result = method.DynamicInvoke(this, e) as LiteViewContent;
+                    if (result != null)
+                        return result;
+                }
+            }
             return null;
         }
         

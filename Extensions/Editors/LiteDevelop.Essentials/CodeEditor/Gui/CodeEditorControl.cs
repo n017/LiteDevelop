@@ -26,12 +26,12 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private AutoCompletionMap _autoCompletionMap;
         private InternalAutoCompletionMap _itemEnumerator;
         private EditorLayoutData _layoutData;
-        private CodeEditorContent _content;
-        private CodeEditorExtension _extension;
+        private readonly CodeEditorContent _content;
+        private readonly CodeEditorExtension _extension;
         private bool _justCompletedBrace;
-        private Range _lastIPRange;
-        private ErrorStyle _errorStyle;
-        private WarningStyle _warningStyle;
+        private Range _lastIpRange;
+        private readonly ErrorStyle _errorStyle;
+        private readonly WarningStyle _warningStyle;
         
         public CodeEditorControl(CodeEditorContent content, OpenedFile file)
         {
@@ -88,7 +88,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
         private void SetupTextBox()
         {
             this.TextBox.BeginUpdate();
-
+            
             this.TextBox.Font = new Font("Consolas", 9.75F);
             this.TextBox.Text = _file.GetContentsAsString();
             this.TextBox.AllowDrop = true;
@@ -395,17 +395,17 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             range.ClearStyle(StyleIndex.All);
             range.SetStyle(style);
             
-            _lastIPRange = range;
+            _lastIpRange = range;
         }
 
         private void ClearLastHighlighting(TextStyle style)
         {
-            if (_lastIPRange != null)
+            if (_lastIpRange != null)
             {
                 // clear ip highlighting
-                _lastIPRange.ClearStyle(style);
+                _lastIpRange.ClearStyle(style);
                 // add syntax highlighting
-                HighlightSyntax(_lastIPRange);
+                HighlightSyntax(_lastIpRange);
             }
         }
 
@@ -484,7 +484,9 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             if (_autoCompleteMenu != null && _autoCompleteMenu.Visible)
             {
                 // auto complete when a key specified in the settings has been pressed.
-                if ((settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnSpaceBar") && e.KeyChar == ' ') || (settings.GetValue<string>("AutoCompletion.AutoCompleteCommitChars").Contains(e.KeyChar)))
+                if ((settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnSpaceBar") && e.KeyChar == ' ') 
+                    || (settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnTab") && e.KeyChar == '\t') 
+                    || (settings.GetValue<string>("AutoCompletion.AutoCompleteCommitChars").Contains(e.KeyChar)))
                 {
                     _autoCompleteMenu.OnSelecting();
 
@@ -676,7 +678,7 @@ namespace LiteDevelop.Essentials.CodeEditor.Gui
             this.TextBox.CurrentLineColor = settings.GetValue<bool>("General.HighlightCurrentLine") ? _extension.StyleMap.CurrentLineStyle.Description.BackColor : Color.Transparent;
             this.TextBox.ChangedLineColor = settings.GetValue<bool>("General.TrackUnsavedChanges") ? _extension.StyleMap.ChangedLineStyle.Description.BackColor : Color.Transparent;
             this.TextBox.SelectionColor = _extension.StyleMap.SelectionStyle.Description.BackColor;
-
+            _autoCompleteMenu.AllowTabKey = settings.GetValue<bool>("AutoCompletion.AutoCompleteCommitOnTab");
             var appearance = _extension.StyleMap.DefaultText.Description;
             this.TextBox.BackColor = this.documentMap1.BackColor = appearance.BackColor;
             this.TextBox.ForeColor = appearance.ForeColor;

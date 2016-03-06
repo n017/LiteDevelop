@@ -49,6 +49,7 @@
       </ItemGroup>
       <Item Id = "CommitItemOnKeyChars">Commit selected item when pressing one of the following characters:</Item>
       <Item Id = "CommitItemOnSpaceBar">Commit selected item when pressing the space bar</Item>
+      <Item Id = "CommitItemOnTab">Commit selected item when pressing the tab key</Item>
     </ItemGroup>
     <Item Id = "AutoCompleteCodeBlocks">Auto complete code blocks (e.g. ( ) [ ] " " ' ')</Item>
     <Item Id = "AutoAddParantheses">Auto add method parantheses after inserting method suggestion.</Item>

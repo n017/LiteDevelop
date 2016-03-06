@@ -139,15 +139,27 @@ namespace LiteDevelop.Debugger.Gui
                 else
                 {
                     SubItems[0].Text = string.Format("{0} ({1} {2:X8})", Frame.Function.Name, Path.GetFileName(Frame.Function.Module.Name), Frame.Function.Token.GetToken());
-                    SubItems[1].Text = Frame.GetOffset().ToString("X");
+                    uint offset = Frame.GetOffset();
+                    SubItems[1].Text = offset.ToString("X");
                     if (Frame.IsUserCode)
                     {
                         ForeColor = Color.Black;
-                        SourceRange = Frame.Function.Symbols.GetSourceRange(Frame.GetOffset());
-                        SubItems[2].Text = string.Format("{0}:{1},{2}",
-                            SourceRange.FilePath,
-                            SourceRange.Line,
-                            SourceRange.Column);
+                        SourceRange = Frame.Function.Symbols.GetSequencePoint(offset);
+                        if (SourceRange != null)
+                        {
+                            SubItems[2].Text = string.Format("{0}:{1},{2}",
+                                SourceRange.FilePath,
+                                SourceRange.Line,
+                                SourceRange.Column);
+                        }
+                        else
+                        {
+                            SubItems[2].Text = string.Format("Offset 0x{3:X}", 
+                                Frame.Function.Module.Name,
+                                Frame.Function.Token.GetToken(),
+                                Name,
+                                offset);
+                        }
                     }
                     else
                     {

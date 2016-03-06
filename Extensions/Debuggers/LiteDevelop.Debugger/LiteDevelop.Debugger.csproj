@@ -83,6 +83,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ByteRange.cs" />
+    <Compile Include="SequencePoint.cs" />
+    <Compile Include="SymbolsServer.cs" />
     <Compile Include="DebuggerBaseSettings.cs" />
     <Compile Include="DebuggerExtension.cs" />
     <Compile Include="Gui\ExceptionDialog.cs">
@@ -145,6 +148,7 @@
     <Compile Include="IFrame.cs" />
     <Compile Include="IVariable.cs" />
     <Compile Include="NullValue.cs" />
+    <Compile Include="SymbolsDebuggerSession.cs" />
     <Compile Include="VirtualType.cs" />
     <Compile Include="VirtualVariable.cs" />
   </ItemGroup>

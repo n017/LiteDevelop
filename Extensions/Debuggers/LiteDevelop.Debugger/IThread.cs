@@ -61,7 +61,7 @@ namespace LiteDevelop.Debugger
             if (thread.CurrentFrame != null &&
                 thread.CurrentFrame.Function != null &&
                 thread.CurrentFrame.Function.Symbols != null)
-                return thread.CurrentFrame.Function.Symbols.GetSourceRange(thread.CurrentFrame.GetOffset());
+                return thread.CurrentFrame.Function.Symbols.GetSequencePoint(thread.CurrentFrame.GetOffset());
             return null;
         }
     }

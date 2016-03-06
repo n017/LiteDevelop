@@ -4,10 +4,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using LiteDevelop.Debugger.Net.Interop.Wrappers;
 
 namespace LiteDevelop.Debugger.Net.Interop.Com
 {
-
     [ComImport, Guid("CC7BCAF4-8A68-11d2-983C-0000F808342D"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface ICorDebugCode
     {
@@ -62,8 +62,8 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
 
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 	    void GetCode([In] uint startOffset, [In] uint endOffset,
-					   [In] uint cBufferAlloc, 
-                       [Out, MarshalAs(UnmanagedType.Interface)] ICorDebugCode buffer, 
+					   [In] uint cBufferAlloc,
+                       [Out, MarshalAs(UnmanagedType.LPArray)] byte[] buffer, 
                        out uint pcBufferSize);
 
         /*
@@ -78,7 +78,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
 
         /*
          * GetILToNativeMapping returns a map from IL offsets to native
-         * offsets for this code. An array of COR_DEBUG_IL_TO_NATIVE_MAP
+         * offsets for this code. An array of ILToNativeMap
          * structs will be returned, and some of the ilOffsets in this array
          * map be the values specified in CorDebugIlToNativeMappingTypes.
          *
@@ -90,7 +90,7 @@ namespace LiteDevelop.Debugger.Net.Interop.Com
         [MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
         void GetILToNativeMapping([In] uint cMap,
                                     out uint pcMap,
-                                    [Out, MarshalAs(UnmanagedType.Interface)] ICorDebugCode map);
+                                    [Out, MarshalAs(UnmanagedType.LPArray)] ILToNativeMap[] map);
 
         /*
          * GetEnCRemapSequencePoints returns a list of IL offsets that the Runtime

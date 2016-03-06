@@ -56,6 +56,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Disassembler\Gui\MsilInstructionsContent.cs" />
+    <Compile Include="Disassembler\Gui\MsilInstructionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Disassembler\Gui\MsilInstructionsControl.Designer.cs">
+      <DependentUpon>MsilInstructionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Disassembler\Gui\X86InstructionsContent.cs" />
+    <Compile Include="Disassembler\Gui\X86InstructionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Disassembler\Gui\X86InstructionsControl.Designer.cs">
+      <DependentUpon>X86InstructionsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="IAssemblyResolver.cs" />
     <Compile Include="Interop\Com\ICLRMetaHost.cs" />
     <Compile Include="Interop\Com\ICLRRuntimeInfo.cs" />
@@ -118,7 +132,6 @@
     <Compile Include="Interop\Wrappers\Symbols\LocalVariable.cs" />
     <Compile Include="Interop\Wrappers\Symbols\PdbSymbolsResolver.cs" />
     <Compile Include="Interop\Wrappers\Symbols\MethodSymbols.cs" />
-    <Compile Include="Interop\Wrappers\Symbols\SequencePoint.cs" />
     <Compile Include="Interop\Wrappers\Symbols\PdbSymbols.cs" />
     <Compile Include="MtaStaConnector.cs" />
     <Compile Include="NetDebuggerExtension.cs" />
@@ -132,6 +145,10 @@
     <Compile Include="ReflectionAssemblyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\AsmResolver\AsmResolver\AsmResolver.csproj">
+      <Project>{228b5994-1035-4eb0-a095-8d85b6ee1146}</Project>
+      <Name>AsmResolver</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Main\LiteDevelop.Framework\LiteDevelop.Framework.csproj">
       <Project>{28fcb063-b56a-4b6e-9b9e-9865ca71d852}</Project>
       <Name>LiteDevelop.Framework</Name>
@@ -144,12 +161,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Disassembler\Gui\MsilInstructionsControl.resx">
+      <DependentUpon>MsilInstructionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Disassembler\Gui\X86InstructionsControl.resx">
+      <DependentUpon>X86InstructionsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\stock_open-read-only-16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
